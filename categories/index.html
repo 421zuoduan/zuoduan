@@ -21,7 +21,7 @@
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
 
 
-<title>Tags 标签 | Ruochen Cui</title>
+<title>Categories 类别 | Ruochen Cui</title>
 
 
 
@@ -513,362 +513,34 @@
   </div>
 </div>
   <main>
-    <!-- 
-This page has two versions, which is shown is based on whether current page
-is "tag".
+    
 
-  - url:'http://localhost:4000/tag/' return false.
-- url:'http://localhost:4000/tags/test/' return true.
 
-The '/tag/' page shows all tags and is where you land on when you click
-on the "Tags" in the navigation bar. Otherwise if you enter 'tags' by clicking on of the tag elements in some
-posts, and it shows all posts with that tag.
-
-To add a "Tags" page.
-
-1. hexo new page "tag"
-2. cd source/tag/index.md
-3. Add the following front matter.
-
----
-title: '''tag'''
-date: 2019-06-09 09:56:49
-layout: tag
----
--->
-
-  <!-- 显示所有tag，让用户选择 -->
+  <!-- 显示所有存在的 category -->
   <div class="flex flex-col gap-2 px-6 max-w-prose mx-auto md:px-0 my-8">
     <div class="flex flex-row items-center gap-2">
-      <iconify-icon width="28" icon="mingcute:tag-fill"></iconify-icon>
-      <h2 class="font-bold text-2xl">Tags</h2>
+      <iconify-icon width="30" icon="mingcute:classify-2-fill">
+      </iconify-icon>
+      <h2 class="font-bold text-2xl">Categories</h2>
     </div>
-    <div class="tags-container flex flex-wrap gap-1 mt-2">
+    <div class="mt-2 flex flex-col">
       
-      
-        <a href="/tags/paper/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/paper/">
-          #paper
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×4
-          </span>
+        <a href="/categories/research/" class="py-2 group">
+          <div class="flex flex-row gap-1 group-hover:translate-x-2 transition-transform group-hover:underline">
+            <p> Research</p>
+            <span>(4)</span>
+          </div>
         </a>
       
-        <a href="/tags/research/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/research/">
-          #research
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×4
-          </span>
-        </a>
-      
-        <a href="/tags/mllms/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/mllms/">
-          #mllms
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×3
-          </span>
-        </a>
-      
-        <a href="/tags/deep-learning/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/deep-learning/">
-          #deep-learning
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×4
-          </span>
-        </a>
-      
-        <a href="/tags/MoE/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/MoE/">
-          #MoE
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/math/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/math/">
-          #math
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/course-note/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/course-note/">
-          #course-note
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×3
-          </span>
-        </a>
-      
-        <a href="/tags/cs/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/cs/">
-          #cs
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×2
-          </span>
-        </a>
-      
-        <a href="/tags/llms/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/llms/">
-          #llms
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/CoT/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-0)]
-          "
-          href="/tags/CoT/">
-          #CoT
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            hover:text-[var(--c-20)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
+        <a href="/categories/course-note/" class="py-2 group">
+          <div class="flex flex-row gap-1 group-hover:translate-x-2 transition-transform group-hover:underline">
+            <p> Course-Note</p>
+            <span>(3)</span>
+          </div>
         </a>
       
     </div>
   </div>
-
 
   </main>
   <footer class="flex flex-col mt-18 mb-12 items-center
