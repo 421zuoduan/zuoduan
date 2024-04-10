@@ -21,7 +21,7 @@
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
 
 
-<title>Archives: 2024 | Ruochen Cui</title>
+<title>Tags 标签 | Ruochen Cui</title>
 
 
 
@@ -513,169 +513,41 @@
   </div>
 </div>
   <main>
-    <section class="px-2 py-8 max-w-prose mx-auto gap-4 grid grid-cols-1">
-  
-  <!-- Sort posts by date -->
-  
-  
-    
-    <!-- Large text showing the year in the background -->
-    
-      <div class="relative pointer-events-none h-[30px]">
-        <div class="absolute -top-6 w-[100%]">
-          <p class="
-            text-clip overflow-hidden -translate-x-3 text-9xl
-            font-extrabold
-            text-[var(--c-theme)]
-            opacity-10
-            dark:opacity-20">
-            2024
-          </p>
-        </div>
-      </div>
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/421zuoduan/2024/04/10/test-my-site/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                        test_my_site
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
-            </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-04-10
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-04-10
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    0 words, 1 min
-                </p>
-            </span>
-            <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
-            
-                
-<div class="flex flex-wrap gap-1">
-  
-</div>
-            
-        </div>
-</div>
-    </div>
-  
-    
-    <!-- Large text showing the year in the background -->
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/421zuoduan/2024/04/10/hello-world/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                        Hello World
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
-            </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-04-10
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-04-10
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    75 words, 1 min
-                </p>
-            </span>
-            <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
-            
-                
-<div class="flex flex-wrap gap-1">
-  
-</div>
-            
-        </div>
-</div>
-    </div>
-  
-</section>
+    <!-- 
+This page has two versions, which is shown is based on whether current page
+is "tag".
 
-<div class="border-t border-[--c-40]">
+  - url:'http://localhost:4000/tag/' return false.
+- url:'http://localhost:4000/tags/test/' return true.
 
-</div>
+The '/tag/' page shows all tags and is where you land on when you click
+on the "Tags" in the navigation bar. Otherwise if you enter 'tags' by clicking on of the tag elements in some
+posts, and it shows all posts with that tag.
+
+To add a "Tags" page.
+
+1. hexo new page "tag"
+2. cd source/tag/index.md
+3. Add the following front matter.
+
+---
+title: '''tag'''
+date: 2019-06-09 09:56:49
+layout: tag
+---
+-->
+
+  <!-- 显示所有tag，让用户选择 -->
+  <div class="flex flex-col gap-2 px-6 max-w-prose mx-auto md:px-0 my-8">
+    <div class="flex flex-row items-center gap-2">
+      <iconify-icon width="28" icon="mingcute:tag-fill"></iconify-icon>
+      <h2 class="font-bold text-2xl">Tags</h2>
+    </div>
+    <div class="tags-container flex flex-wrap gap-1 mt-2">
+      
+      
+    </div>
+  </div>
 
 
   </main>
