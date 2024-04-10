@@ -709,7 +709,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-f4800647a618496028d5b65557e1530f_1440w.webp" alt="img"></p>
 <p><strong>Gating Network</strong></p>
 <p>传统门控网络的输出是所有experts的加权和<br>$$<br>y &#x3D; \sum_{i&#x3D;1}^n G(x)_iE_i(x)<br>$$<br>作者加入了sparsity和noise<br>$$<br>G(x) &#x3D; Softmax(KeepTopK(H(x), k))<br>$$</p>
-<p>$$<br>H(x)_i &#x3D; (x\cdot W_g)<em>i + StandardNormal()\cdot Softplus((x\cdot W</em>{noise})_i)<br>$$</p>
+<p>$$<br>H(x)_i &#x3D; (x \cdot W_g)<em>i + StandardNormal() \cdot Softplus((x \cdot W</em>{noise})_i)<br>$$</p>
 <p>$$<br>KeepTopK(v, k)_i &#x3D;<br>\begin{cases}<br>    v_i &amp; \text{if } v_i in topK elements \<br>    -\infty &amp; otherwise \<br>\end{cases}<br>$$</p>
 <p>实验中作者使用的$K$在2-4间</p>
 <p><strong>Expert Banlancing</strong></p>
@@ -727,7 +727,7 @@
 <h4 id="Motivation-3"><a href="#Motivation-3" class="headerlink" title="Motivation"></a>Motivation</h4><p>MoE的方法带来了训练和推理的不确定性, 通信成本高等问题</p>
 <h4 id="Method-2"><a href="#Method-2" class="headerlink" title="Method"></a>Method</h4><p>SwitchTransformer使用MoE替代了FFN, 只使用了单专家的策略, 保留了expert balance的辅助损失函数(和其他模型比更稀疏)</p>
 <p>减少了Gate的计算, expert训练的bs减半, communication cost(分布式训练中, 不同设备的模型参数要保持一致, 设备间梯度传输)下降</p>
-<p><strong>探讨Expert Capacity</strong><br>$$<br>Expert_Capacity &#x3D; (\frac{token_per_batch}{number_of_experts}) \cdot Capacity_factor<br>$$<br>设置$Capacity_factor$在1-1.25间</p>
+<p><strong>探讨Expert Capacity</strong><br>$$<br>Expert_ Capacity &#x3D; (\frac{token_ per _ batch}{number_ of_ experts}) \cdot Capacity_ factor<br>$$<br>设置$Capacity_factor$在1-1.25间</p>
 <h3 id="5-GLaM-Efficient-Scaling-of-Language-Models-with-Mixture-of-Experts"><a href="#5-GLaM-Efficient-Scaling-of-Language-Models-with-Mixture-of-Experts" class="headerlink" title="5. GLaM: Efficient Scaling of Language Models with Mixture-of-Experts"></a>5. GLaM: Efficient Scaling of Language Models with Mixture-of-Experts</h3><p>谷歌团队2021年的工作, 使用Sparse MoE使得训练成本只有GPT-3的三分之一, 结构与GShard基本一致</p>
 <p><img src="https://pic2.zhimg.com/v2-ba4daaa9bdc05ab46fdf49b73ef57b79_b.webp" alt="动图"></p>
 <p>GShard, Switch-Transformer, GLaM都是把模型做大(几百个几千个experts)</p>
