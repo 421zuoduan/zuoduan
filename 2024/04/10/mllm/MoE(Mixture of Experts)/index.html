@@ -21,7 +21,7 @@
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
 
 
-<title>About Me | Ruochen Cui</title>
+<title>Ruochen Cui</title>
 
 
 
@@ -532,7 +532,7 @@
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">About Me</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4"></p>
       </div>
       <!-- Meta data -->
       <div>
@@ -546,7 +546,7 @@
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-04-10</time>
+              Edited: <time class="w-max">2024-02-16</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -556,7 +556,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>439 words, 2 min</span>
+              <span>2.2k words, 8 min</span>
             </span>
             <!-- Categories -->
             
@@ -574,70 +574,105 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <img src="images/portrait.png" alt="Portrait of Ruochen Cui, refering from one album."/>
-
-<p><iconify-icon icon="mingcute:world-2-fill"></iconify-icon> <a href="#Chinese-Version-%E4%B8%AD%E6%96%87%E7%89%88%E6%9C%AC">中文</a></p>
-<p><iconify-icon icon="mingcute:link-fill"></iconify-icon> Social links:</p>
-<!-- - [Google Scholar](https://scholar.google.com/citations?user=IgPWvEQAAAAJ&hl=en) -->
-<!-- - [X (Twitter)](https://www.twitter.com/DonnyChan123) -->
+    <h1 id="MoE-in-LLMs-Mixture-of-Experts"><a href="#MoE-in-LLMs-Mixture-of-Experts" class="headerlink" title="MoE in LLMs(Mixture of Experts)"></a>MoE in LLMs(Mixture of Experts)</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>既有数据集特征与标注的关系大有不同, 既有LLMs训练与推理难度大. 为了实现LLMs的高效训练与推理, 有以下几种方法</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">GitHub</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">知乎</a></li>
-<li><a target="_blank" rel="noopener" href="https://space.bilibili.com/2051636097?spm_id_from=333.1007.0.0">B站</a></li>
+<li>改变底层模型架构,Transformer -&gt; 基于状态空间模型(SSM)的mamba架构</li>
+<li>预训练微调方法, 如URIAL方法</li>
+<li>MoE基于门控网络的混合专家模型</li>
 </ul>
-<p><iconify-icon icon="mingcute:mail-fill"></iconify-icon> Email:</p>
+<h2 id="MoE经典论文一览"><a href="#MoE经典论文一览" class="headerlink" title="MoE经典论文一览"></a>MoE经典论文一览</h2><h3 id="1-Adaptive-mixtures-of-local-experts"><a href="#1-Adaptive-mixtures-of-local-experts" class="headerlink" title="1. Adaptive mixtures of local experts"></a>1. Adaptive mixtures of local experts</h3><p>作者Michael Jordan, Geoffrey Hinton</p>
+<h4 id="Motivation-1"><a href="#Motivation-1" class="headerlink" title="Motivation"></a>Motivation</h4><p>假设数据集中存在不同domain和不同topic的子集, 用单个模型去学习会有很多干扰.</p>
+<h4 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h4><p>提出一种新的监督学习过程, c.</p>
+<p>那么多个模型(expert)去学习, 使用一个门网络(gating network)决定每个数据应该被哪个模型训练, 可以减少不同类型样本间的干扰</p>
+<p>更改损失函数<br>$$<br>E^c &#x3D; |\textbf{d} - \sum_ip_i^c \textbf{o}_i^c|^2<br>$$<br>为<br>$$<br>E^c &#x3D; \sum_ip_i^c|\textbf{d}^c - \textbf{o}_i^c|^2<br>$$<br>expert间从鼓励合作变成鼓励竞争, 而且单个expert的值改变不用影响其他expert. $p$是门控网络分配的权重, 和experts一起训练</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-d5a049747414d4b1e6aebf7e9eb3f2ca_1440w.webp" alt="img"></p>
+<h3 id="2-Outrageously-Large-Neural-Networks-The-Sparsely-Gated-Mixture-of-Experts-Layer"><a href="#2-Outrageously-Large-Neural-Networks-The-Sparsely-Gated-Mixture-of-Experts-Layer" class="headerlink" title="2. Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer"></a>2. Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer</h3><p>谷歌英国团队2017年的工作, 也有Quoc Le和Hinton的参与</p>
+<h4 id="Motivation-2"><a href="#Motivation-2" class="headerlink" title="Motivation"></a>Motivation</h4><p>想要在有限的计算成本内提高model scale</p>
+<h4 id="Method-1"><a href="#Method-1" class="headerlink" title="Method"></a>Method</h4><p>提出Sparsely-Gated Mixture-of-Experts layer</p>
+<p>两个不同:</p>
+<ol>
+<li>Sparsely-Gated: 不是所有expert都会起作用, 只有极少数的expert会被用来推理</li>
+<li>token-level: 97年的文章是sample-level, 本篇token-level, 一个句子中不同的token使用不同的experts</li>
+</ol>
+<p>具体的操作是在RNN结构上加入MoE Layer</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-f4800647a618496028d5b65557e1530f_1440w.webp" alt="img"></p>
+<p><strong>Gating Network</strong></p>
+<p>传统门控网络的输出是所有experts的加权和<br>$$<br>y &#x3D; \sum_{i&#x3D;1}^n G(x)_iE_i(x)<br>$$<br>作者加入了sparsity和noise<br>$$<br>G(x) &#x3D; Softmax(KeepTopK(H(x), k))<br>$$</p>
+<p>$$<br>H(x)_i &#x3D; (x\cdot W_g)<em>i + StandardNormal()\cdot Softplus((x\cdot W</em>{noise})_i)<br>$$</p>
+<p>$$<br>KeepTopK(v, k)_i &#x3D;<br>\begin{cases}<br>    v_i &amp; \text{if } v_i in topK elements \<br>    -\infty &amp; otherwise \<br>\end{cases}<br>$$</p>
+<p>实验中作者使用的$K$在2-4间</p>
+<p><strong>Expert Banlancing</strong></p>
+<p>存在可能只有少数几个expert起作用的结果, 额外增加一个loss来缓解这个问题<br>$$<br>Importance(X) &#x3D; \sum_{x\in X}G(x)<br>$$</p>
+<p>$$<br>L(X) &#x3D; \lambda\cdot CV(Importance(X))^2<br>$$</p>
+<p>$X$表示一个Batch的样本, 把一个Batch的gating weights加起来, 计算变异系数(Coefficient of Variation, 反映离散程度, 原始数据标准差与原始数据平均数的比, 去除量纲影响), 反应不同experts间不平衡的程度, loss加到总体loss中, 鼓励不同的experts发挥各自的作用</p>
+<h3 id="3-GShard-Scaling-Giant-Models-with-Conditional-Computation-and-Automatic-Sharding"><a href="#3-GShard-Scaling-Giant-Models-with-Conditional-Computation-and-Automatic-Sharding" class="headerlink" title="3. GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding"></a>3. GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding</h3><p>谷歌2021年的工作</p>
+<p>GShard, 自称第一个将MoE思想拓展到Transformer上的工作. 做法是在Transformer的encoder和decoder中, 每隔一个FFN换成position-wise的MoE层, k&#x3D;2</p>
+<p><img src="https://pic1.zhimg.com/80/v2-860569793d8fbad55d98825e003f2260_1440w.webp" alt="img"></p>
+<p>Expert capacity balancing：强制每个expert处理的tokens数量在一定范围内</p>
+<p>Local group dispatching：通过把一个batch内所有的tokens分组，来实现并行化计算</p>
+<p>Auxiliary loss：也是为了缓解“赢者通吃”问题, 与97年的文章类似</p>
+<p>Random routing：在Top-2 gating的设计下，两个expert如何更高效地进行routing</p>
+<h3 id="4-Switch-Transformers-Scaling-to-Trillion-Parameter-Models-with-Simple-and-Efficient-Sparsity"><a href="#4-Switch-Transformers-Scaling-to-Trillion-Parameter-Models-with-Simple-and-Efficient-Sparsity" class="headerlink" title="4. Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity"></a>4. Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity</h3><p>谷歌团队2021年的工作. 在T5模型基础上加入MoE设计, 在C4数据集上预训练</p>
+<h4 id="Motivation-3"><a href="#Motivation-3" class="headerlink" title="Motivation"></a>Motivation</h4><p>MoE的方法带来了训练和推理的不确定性, 通信成本高等问题</p>
+<h4 id="Method-2"><a href="#Method-2" class="headerlink" title="Method"></a>Method</h4><p>SwitchTransformer使用MoE替代了FFN, 只使用了单专家的策略, 保留了expert balance的辅助损失函数(和其他模型比更稀疏)</p>
+<p>减少了Gate的计算, expert训练的bs减半, communication cost(分布式训练中, 不同设备的模型参数要保持一致, 设备间梯度传输)下降</p>
+<p><strong>探讨Expert Capacity</strong><br>$$<br>Expert_Capacity &#x3D; (\frac{token_per_batch}{number_of_experts}) \cdot Capacity_factor<br>$$<br>设置$Capacity_factor$在1-1.25间</p>
+<h3 id="5-GLaM-Efficient-Scaling-of-Language-Models-with-Mixture-of-Experts"><a href="#5-GLaM-Efficient-Scaling-of-Language-Models-with-Mixture-of-Experts" class="headerlink" title="5. GLaM: Efficient Scaling of Language Models with Mixture-of-Experts"></a>5. GLaM: Efficient Scaling of Language Models with Mixture-of-Experts</h3><p>谷歌团队2021年的工作, 使用Sparse MoE使得训练成本只有GPT-3的三分之一, 结构与GShard基本一致</p>
+<p><img src="https://pic2.zhimg.com/v2-ba4daaa9bdc05ab46fdf49b73ef57b79_b.webp" alt="动图"></p>
+<p>GShard, Switch-Transformer, GLaM都是把模型做大(几百个几千个experts)</p>
+<h3 id="6-Go-Wider-Instead-of-Deeper"><a href="#6-Go-Wider-Instead-of-Deeper" class="headerlink" title="6. Go Wider Instead of Deeper"></a>6. Go Wider Instead of Deeper</h3><p>NUS的团队</p>
+<h4 id="Motivation-4"><a href="#Motivation-4" class="headerlink" title="Motivation"></a>Motivation</h4><p>训练和推理过程中, 需要并行地保存参数, performance不能被线性的提升</p>
+<p>基于MoE的模型的稀疏性不能在相对较小的数据集上扩展</p>
+<p>如何在压缩模型参数量的情况下取得更好的效果?</p>
+<h4 id="Method-3"><a href="#Method-3" class="headerlink" title="Method"></a>Method</h4><p>深度上参数共享, 来压缩模型大小, 宽度上使用MoE的设计(所有FFN替换为MoE), 扩大模型容量</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240212135752426.png" alt="image-20240212135752426"></p>
+<p><strong>recurrence机制</strong></p>
+<p>recurrence机制: 共享参数. 这里只有nomalization layer不共享参数, 用以建模不同的语义信息</p>
+<p>使用4个experts, K&#x3D;2</p>
+<p><strong>Balanced Loading</strong></p>
+<p>将Balanced Loading归结为解决两个问题</p>
 <ul>
-<li><a href="mailto:&#x32;&#56;&#x32;&#x36;&#51;&#49;&#52;&#x37;&#x38;&#52;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;">&#x32;&#56;&#x32;&#x36;&#51;&#49;&#52;&#x37;&#x38;&#52;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;</a><!-- - donnychan1999@gmail.com --></li>
+<li>分派单个expert的token过多</li>
+<li>分派单个expert的token过少</li>
 </ul>
-<hr>
-<p>你好, hello, hei!</p>
-<p>My name is Ruochen Cui (崔若晨).</p>
-<p>I’m a 3nd year undergraduate student at the <a target="_blank" rel="noopener" href="https://www.uestc.edu.cn/">University of Electronic Science and Technology of China</a>(UESTC), advised by Prof. Liangjian Deng. My research interests are about image restoration and hallucination of multimodal large language models.</p>
-<p>I’m just getting started with academia, and will be applying for PhD in the same lab this year (the end of 2023), there is so much to learn!</p>
-<!-- [:page_facing_up: My resume (last updated: December, 2022)](/pdf/cv.pdf) -->
-
-<h2 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h2><hr>
-<p><strong>B.S. in Artificial Intelligence (人工智能)</strong></p>
-<div align="right">Sep 2021 - Now</div>
-
-<p>UESTC, China</p>
-<!-- *Research direction: image restoration, large language models*
-
-*Advisor: Prof. Liangjian Deng* -->
-
-<hr>
-<p><strong>General Studies in Natural Science (Studiespesialisering med realfag)</strong></p>
-<div align="right">
-Sep 2018 - Jun 2021
-</div>
-
-<p>Hengshui High School, China</p>
-<hr>
-<h2 id="Personal-Background"><a href="#Personal-Background" class="headerlink" title="Personal Background"></a>Personal Background</h2><p>I was born in April 21, 2003 in Beijing. I grew up in Beijing and attended high school at Hengshui High School in Hebei. Now I am an undergraduate student at UESTC (University of Electronic Science and Technology of China).</p>
-<h2 id="Interests"><a href="#Interests" class="headerlink" title="Interests"></a>Interests</h2><p>🎵 Music: Post Rock, Metal, Neo-Classicism, Shoegaze, J-pop</p>
-<p>🎮 Entertainment: Music, video games, art exhibition, anime, read, etc.</p>
-<hr>
-<blockquote>
-<p>Below is the Chinese version of this text, no need to read it if you understand the above text already.</p>
-</blockquote>
-<h2 id="Chinese-Version"><a href="#Chinese-Version" class="headerlink" title="Chinese Version"></a>Chinese Version</h2><p>我叫崔若晨。</p>
-<p>我是<a target="_blank" rel="noopener" href="https://www.uestc.edu.cn/">电子科技大学</a>的三年级本科生。我的研究兴趣是关于图像复原和多模态大模型幻觉。</p>
-<p>我刚刚开始学术生涯，将在今年（2024年底）申请硕士或博士学位，还有很多要学习！</p>
-<!-- [📃 我的简历（最后更新：2022年12月）](/pdf/cv.pdf) -->
-
-<h3 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h3><ul>
-<li><p><strong>本科：计算机科学与技术</strong></p>
-<p>  电子科技大学，中国</p>
-<p>  2021年9月 - 现在</p>
-</li>
-<li><p><strong>高中：自然科学通识教育</strong></p>
-<p>  衡水中学，中国河北</p>
-<p>  2018年9月 - 2021年6月</p>
-</li>
-</ul>
-<h3 id="个人背景"><a href="#个人背景" class="headerlink" title="个人背景"></a>个人背景</h3><p>我出生于2003年4月21日，出生在北京。我在北京长大，就读于河北衡水中学高中。现在我是电子科技大学（University of Electronic Science and Technology of China）的本科生。</p>
-<h3 id="兴趣爱好"><a href="#兴趣爱好" class="headerlink" title="兴趣爱好"></a>兴趣爱好</h3><p>🎵 音乐：后摇、金属、新古典主义、盯鞋、日本流行音乐</p>
-<p>🎮 娱乐：音乐、电子游戏、艺术展览、动漫、阅读等</p>
+<p>解决分配过多: 每个expert最多分配B个token, 有<br>$$<br>B &#x3D; CKNL<br>$$<br>$C$为超参数, 控制每个expert保留token的比例; $K$为每个token选择的专家数量; $N$为batch size; $L$为每张图像中patch token的数量</p>
+<p>解决分配过少: softmax(topk())的传统方法</p>
+<h3 id="7-MoEBERT-from-BERT-to-Mixture-of-Experts-via-Importance-Guided-Adaptation"><a href="#7-MoEBERT-from-BERT-to-Mixture-of-Experts-via-Importance-Guided-Adaptation" class="headerlink" title="7. MoEBERT: from BERT to Mixture-of-Experts via Importance-Guided Adaptation"></a>7. MoEBERT: from BERT to Mixture-of-Experts via Importance-Guided Adaptation</h3><h4 id="Motivation-5"><a href="#Motivation-5" class="headerlink" title="Motivation"></a>Motivation</h4><p>在MoE大模型结合知识蒸馏时, distillation(蒸馏)方法效果较差</p>
+<h4 id="Method-4"><a href="#Method-4" class="headerlink" title="Method"></a>Method</h4><p>将预训练好的模型的FFN层分解成多个experts, 这样计算时的速度可以大幅提高(相当于只激活原始FFN网络的一部分). 然后再将原始模型的知识蒸馏到MoE版本的模型中</p>
+<p>与WideNet的区别: 二者都是为了减少参数量. WideNet是自己从头训练的, MoEBERT想把pre-train好的模型迁移过来, 通过蒸馏的方式在下游任务上学习</p>
+<p>expert routing没有用门控网络, 而是训练前使用哈希函数给每个token随机分配了一个expert</p>
+<p><strong>Importance-Guided Adaptation</strong></p>
+<p>将FFN改造成MoE Layer时, 计算FFN Layer各个neuron的importance. 重要的neurons在每个expert中共享, 剩下的部分平均分配到每个expert</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240213105522896.png" alt="image-20240213105522896"></p>
+<h3 id="8-Scaling-Vision-with-Sparse-Mixture-of-Experts"><a href="#8-Scaling-Vision-with-Sparse-Mixture-of-Experts" class="headerlink" title="8. Scaling Vision with Sparse Mixture of Experts"></a>8. Scaling Vision with Sparse Mixture of Experts</h3><p>谷歌英国团队2021NIPS上的工作</p>
+<h4 id="Method-5"><a href="#Method-5" class="headerlink" title="Method"></a>Method</h4><p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240215140319345.png" alt="image-20240215140319345"></p>
+<p>利用模型的稀疏性跳过某些patch的计算, 减少对不提供信息的图像区域的计算</p>
+<p>routing<br>$$<br>g(\textbf{x}) &#x3D; \textbf{TOP}_{\textbf{k}}(\textbf{softmax(\textbf{Wx}+$\epsilon$ )})<br>$$<br>这里routing选择先softmax再topk使得k&#x3D;1时也可以训练, 否则梯度会处处为0</p>
+<p><strong>Expert’ s Buffer Capacity</strong><br>$$<br>\textbf{B}_{\textbf{e}} &#x3D; \text{round}(\frac{\text{kNPC}}{\text{E}})<br>$$<br>$\text{N}$是batch数, $\text{P}$是每个图像的token数量, $\text{k}$是每个token选定的expert数量, $\text{E}$是experts数量, $\text{C}$是容量比率</p>
+<p>$\textbf{B}_{\text{e}}$是单个expert最多处理的tokens个数, 这里剩余的tokens并不完全丢掉</p>
+<p><strong>BPR(Batch Prioritized Routing Algorithm)</strong></p>
+<p>对tokens进行重要性排序, 丢弃无用的tokens<br>$$<br>\text{g}(\textbf{x})<em>{\text{t, i}}表示第t个\text{token}和第i个\text{expert}的路由权重<br>$$<br>根据token的最大路由权重对token进行排序, $\text{s(\textbf{x})}</em>{\text{t}}$代表每个token的优先级分数<br>$$<br>\text{s(\textbf{x})}<em>{\text{t}} \text{&#x3D; \textbf{max}}</em>{\text{i}}\text{g(\textbf{x})}_{\text{t, i}}<br>$$<br>BPR选择合适的tokens, 变相提供了一种减少缓冲大小的方法</p>
+<h3 id="9-Multimodal-Contrastive-Learning-with-LIMoE：the-Language-Image-Mixture-of-Experts"><a href="#9-Multimodal-Contrastive-Learning-with-LIMoE：the-Language-Image-Mixture-of-Experts" class="headerlink" title="9. Multimodal Contrastive Learning with LIMoE：the Language-Image Mixture of Experts"></a>9. Multimodal Contrastive Learning with LIMoE：the Language-Image Mixture of Experts</h3><p>来自谷歌2022NIPS的工作, LIMoE同时处理文本和图像</p>
+<h4 id="Motivation-6"><a href="#Motivation-6" class="headerlink" title="Motivation"></a>Motivation</h4><p>多模态的MoE存在问题: 模态失衡, 训练集中图片与文本的比例会很大程度影响训练结果</p>
+<h4 id="Method-6"><a href="#Method-6" class="headerlink" title="Method"></a>Method</h4><p>没有采用MLLM常用的每个模态一个网络的方法.</p>
+<p>将稀疏化方法用在图像文本模型上, 采用对比学习方法让图像-文本表示更接近. 训练中图像比文本要多, 所有expert都会处理一些图像</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240214201127560.png" alt="image-20240214201127560"></p>
+<h2 id="MoE与集成学习的区别"><a href="#MoE与集成学习的区别" class="headerlink" title="MoE与集成学习的区别"></a>MoE与集成学习的区别</h2><p>实现方式上, 集成学习不需要将任务分解为子任务, 而是将多个基础学习器组合</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-90e5f1eb4703b1f6a9f08af3ce7a4472_1440w.webp" alt="img"></p>
+<h2 id="MoE发展的愿景与困难"><a href="#MoE发展的愿景与困难" class="headerlink" title="MoE发展的愿景与困难"></a>MoE发展的愿景与困难</h2><h3 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h3><ol>
+<li>MoE的架构更难训练, 要调的地方很多</li>
+<li>MoE的架构有复杂度的下限, 很难蒸馏到非MoE的结构</li>
+<li>experts的数量需要适当增加, 否则没办法route到合适的expert</li>
+</ol>
+<h3 id="困难"><a href="#困难" class="headerlink" title="困难"></a>困难</h3><ol>
+<li>训练MoE存在很大的困难</li>
+<li>需要合适的Expert Routing Method</li>
+</ol>
+<h2 id="MoE在LLMs上的发展"><a href="#MoE在LLMs上的发展" class="headerlink" title="MoE在LLMs上的发展"></a>MoE在LLMs上的发展</h2><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/672712751">大模型LLM之混合专家模型MoE（上-基础篇） - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/542465517">Mixture-of-Experts (MoE) 经典论文一览 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/674162664">万字长文详解 MoE - 超越ChatGPT的开源混合专家模型 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/672025580">大模型的研究新方向：混合专家模型（MoE） - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/636604779">【2023Q2】LLM炼丹trick拾遗：LLM的MoE架构与Lifelong learning - 知乎 (zhihu.com)</a></p>
 
   </article>
 
@@ -648,8 +683,33 @@ Sep 2018 - Jun 2021
   ">
     <div>
       
+        <a href="/2024/04/10/llm/CoT(Chain-of-Thought)/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          
+        </a>
+      
     </div>
     <div>
+      
+        <a href="/2024/04/10/mllm/%E5%A4%9A%E6%A8%A1%E6%80%81MLLM(Multimodal-Large-Language%20Models)/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>

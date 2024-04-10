@@ -21,7 +21,7 @@
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
 
 
-<title>About Me | Ruochen Cui</title>
+<title>Ruochen Cui</title>
 
 
 
@@ -532,7 +532,7 @@
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">About Me</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4"></p>
       </div>
       <!-- Meta data -->
       <div>
@@ -546,7 +546,7 @@
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-04-10</time>
+              Edited: <time class="w-max">2024-02-02</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -556,7 +556,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>439 words, 2 min</span>
+              <span>2.2k words, 8 min</span>
             </span>
             <!-- Categories -->
             
@@ -574,70 +574,138 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <img src="images/portrait.png" alt="Portrait of Ruochen Cui, refering from one album."/>
-
-<p><iconify-icon icon="mingcute:world-2-fill"></iconify-icon> <a href="#Chinese-Version-%E4%B8%AD%E6%96%87%E7%89%88%E6%9C%AC">中文</a></p>
-<p><iconify-icon icon="mingcute:link-fill"></iconify-icon> Social links:</p>
-<!-- - [Google Scholar](https://scholar.google.com/citations?user=IgPWvEQAAAAJ&hl=en) -->
-<!-- - [X (Twitter)](https://www.twitter.com/DonnyChan123) -->
+    <h1 id="CoT-Chain-of-Thought"><a href="#CoT-Chain-of-Thought" class="headerlink" title="CoT(Chain-of-Thought)"></a>CoT(Chain-of-Thought)</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><h3 id="Zero-Shot-One-Shot-Few-Shot的三种prompt方法"><a href="#Zero-Shot-One-Shot-Few-Shot的三种prompt方法" class="headerlink" title="Zero-Shot, One-Shot, Few-Shot的三种prompt方法"></a>Zero-Shot, One-Shot, Few-Shot的三种prompt方法</h3><p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-98b084fa12e763992fc5842c8c4fd1c8_1440w.webp" alt="img"></p>
+<ol>
+<li>Few-Shot, 模型在推理时给少量样本, 不允许进行权重更新</li>
+<li>One-Shot, 仅给一个样本. 最接近某些任务与人类沟通的方式</li>
+<li>Zero-Shot, 不提供样本, 仅给出描述任务的自然语言指令</li>
+</ol>
+<h3 id="FS-1S-0S的缺点"><a href="#FS-1S-0S的缺点" class="headerlink" title="FS, 1S, 0S的缺点"></a>FS, 1S, 0S的缺点</h3><p>问题如果比较简单, 仅靠LLM的知识就能解决, 不需要逻辑推理. 但逻辑推理问题就不是很work, 推理能力的技术与思维链(Chain of Thought, CoT)有关</p>
+<h2 id="CoT"><a href="#CoT" class="headerlink" title="CoT"></a>CoT</h2><p>MultiArith和GSM8K两个数据集, 用以测试语言模型解决数学问题的能力</p>
+<h3 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h3><h4 id="1-Chain-of-Thought-Prompting-Elicits-Reasoning-in-Large-Language-Models"><a href="#1-Chain-of-Thought-Prompting-Elicits-Reasoning-in-Large-Language-Models" class="headerlink" title="1. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"></a>1. <a href="https://link.zhihu.com/?target=https://arxiv.org/abs/2005.14165">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a></h4><p>作者Jason Wei个人博客<a target="_blank" rel="noopener" href="http://www.jasonwei.net/">www.jasonwei.net</a>, 从Google进入OpenAI</p>
+<p>具体而言的不同点</p>
+<ol>
+<li>常识推理能力赶超人类</li>
+<li>数学逻辑推理能力大幅提升</li>
+<li>LLM更具可解释性</li>
+</ol>
+<p>思维链提示, 即将一个多步骤推理问题, 分解成多个中间步骤, 这些问题和答案拼接在一起进行求解</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-ec6aeb333cdaba7b2af19fec9bcfb40c_1440w.webp" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-fb5a82b4689c8cfa03379636a07f7798_1440w.webp" alt="img"></p>
+<h4 id="2-Large-Language-Models-are-Zero-Shot-Reasoners-Zero-shot-CoT"><a href="#2-Large-Language-Models-are-Zero-Shot-Reasoners-Zero-shot-CoT" class="headerlink" title="2. Large Language Models are Zero-Shot Reasoners(Zero-shot-CoT)"></a>2. <a href="https://link.zhihu.com/?target=https://arxiv.org/pdf/2205.11916.pdf">Large Language Models are Zero-Shot Reasoners</a>(Zero-shot-CoT)</h4><p>爱来自Google, 这种方法是manual-CoT</p>
+<p>在问题的结尾添加”Let’s think step by step”, 将生成的rationale(理由)和question拼在一起, 用以生成答案.</p>
+<p>分为”推理抽取”与”答案抽取”两部分, 前者生成一个思维链, 后者接收前者的输出, 从思维链中提取答案.</p>
+<p>答案抽取的过程可以看做自我增强的prompt</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-1958c74ccb875508ce5fe24dca4f98cc_1440w.webp" alt="img"></p>
+<h4 id="3-Self-Consistency-Improves-Chain-of-Thought-Reasoning-in-Language-Models-多数投票-自洽性"><a href="#3-Self-Consistency-Improves-Chain-of-Thought-Reasoning-in-Language-Models-多数投票-自洽性" class="headerlink" title="3. Self-Consistency Improves Chain of Thought Reasoning in Language Models(多数投票, 自洽性)"></a>3. <a href="https://link.zhihu.com/?target=https://arxiv.org/abs/2203.11171">Self-Consistency Improves Chain of Thought Reasoning in Language Models</a>(多数投票, 自洽性)</h4><p>大语言模型的self-consistency自我一致性. 爱来自Google英国团队</p>
+<p>motivation: 每个复杂的问题都有多种解决方案. 过去CoT+LLM常用贪婪解码Greedy Decoding(每个时间步选择概率最高的词作为输出)</p>
+<p>Method: 用self-consistency替代CoT+LLM使用的贪婪解码</p>
+<ol>
+<li>使用CoT提示语言模型</li>
+<li>从语言模型的解码器中采样, 取代CoT提示中的”贪婪解码”, 生成一组不同的推理路径</li>
+<li>在答案集中选择最一致的答案</li>
+</ol>
+<p>在不同数据集上, 采样个数为50-70时能达到最好的效果</p>
+<p>Conclusion: ① 算术和常识性任务上有很大的提升 ② self-consistency会提供不确定性估计</p>
+<p>改进: 只提高了可信数据的可靠性, 没有降低不可信数据的可靠性</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-8167f5580c3ceb0a8321c05bdd86d663_1440w.webp" alt="img"></p>
+<h4 id="4-Least-to-Most-Prompting-Enables-Complex-Reasoning-in-Large-Language-Models"><a href="#4-Least-to-Most-Prompting-Enables-Complex-Reasoning-in-Large-Language-Models" class="headerlink" title="4. Least-to-Most Prompting Enables Complex Reasoning in Large Language Models"></a>4. <a href="https://link.zhihu.com/?target=https://arxiv.org/abs/2205.10625">Least-to-Most Prompting Enables Complex Reasoning in Large Language Models</a></h4><p>Google英国团队</p>
+<p>与思维链类似, 将问题分解为子问题, 逐个解决. 与思维链不同的的是, 先前子问题的解可视作prompt来解决下一个问题. 这种方法也可以看作多步CoT后合并子问题及答案.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-b88109363b51bc641dfef48b68ff78e1_1440w.webp" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-8c7e8183d4bc4a247e9b1e0831d1feec_1440w.webp" alt="img"></p>
+<p>个人看法: 思维链从一步到位变成多步到位, 加强了问题内部信息的关联</p>
+<p>缺点: 子问题的解有先后之分, 这会影响问题信息的内部影响</p>
+<h4 id="5-Auto-CoT-Automatic-Chain-of-Thought-Prompting-in-Large-Language-Models"><a href="#5-Auto-CoT-Automatic-Chain-of-Thought-Prompting-in-Large-Language-Models" class="headerlink" title="5. Auto-CoT(Automatic Chain of Thought Prompting in Large Language Models)"></a>5. Auto-CoT(<a href="https://link.zhihu.com/?target=https://arxiv.org/pdf/2210.03493.pdf">Automatic Chain of Thought Prompting in Large Language Models</a>)</h4><p>在few-shot问题上, 只有测试集, 将manual-CoT方法变成Auto-CoT. Auto-CoT分为① question clustering ② demonstration sampling两个步骤</p>
+<h5 id="生成thought"><a href="#生成thought" class="headerlink" title="生成thought"></a>生成thought</h5><p>使用”Let’s think step by step”生成演示的思维链, 但是生成的思维链会存在错误. 作者在论文中指出, few-shot-CoT的演示核心是问题的diversity</p>
+<p>解决方法: </p>
+<ol>
+<li>将给定数据集中的问题聚为不同的簇</li>
+<li>每个簇中选择代表性的问题, 通过zero-shot-CoT生成思维链</li>
+</ol>
+<p>设置了Manual-CoT, Retrieval-Q-CoT和Random-Q-CoT三种对比方法. 后两者基于距离分类</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">GitHub</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">知乎</a></li>
-<li><a target="_blank" rel="noopener" href="https://space.bilibili.com/2051636097?spm_id_from=333.1007.0.0">B站</a></li>
+<li>Manual-CoT: 人工写出的CoT</li>
+<li>Retrieval-Q-CoT: 检索top-k个相似的Q. 容易失效, 原因是根据IcL研究的结论, 大模型的生成结果效果与复制接近, 而演示示例的推理链可能有错误的答案</li>
+<li>Random-Q-CoT: 随机采样k个Q</li>
 </ul>
-<p><iconify-icon icon="mingcute:mail-fill"></iconify-icon> Email:</p>
+<h5 id="两个步骤"><a href="#两个步骤" class="headerlink" title="两个步骤"></a>两个步骤</h5><ol>
+<li>question clustering问题聚类. 使用K-means算法将questions分簇</li>
+<li>demonstration sampling演示采样. 每个簇构造对应的demonstration</li>
+</ol>
+<p>Auto-CoT在测试集上将问题分簇, 每个簇选中心点(演示问题), 利用zero-shot-CoT的方法生成相应的答案, 作为演示示例</p>
+<p>实验结果上, Auto-CoT可以超过Manual-CoT, 但不一定能超过具有正确标签的Retrieval-Q-CoT</p>
+<p>另外一种Auto的方法是MoT, 通过多路径解码, 投票一致性和answerentropy(困惑度)进行过滤模型生成的thought, 来保证thought的质量</p>
+<h4 id="6-Plan-and-Solve-Prompting-Improving-Zero-Shot-Chain-of-Thought-Reasoning-by-Large-Language-Models"><a href="#6-Plan-and-Solve-Prompting-Improving-Zero-Shot-Chain-of-Thought-Reasoning-by-Large-Language-Models" class="headerlink" title="6. Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models"></a>6. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.04091">Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models</a></h4><p>有西南交通大学团队的参与</p>
+<p>motivation: zero-shot-CoT存在计算错误, 缺少步骤和语义误解的问题. 为了解决缺失步骤的问题, 提出了PS(Plan-and-Solve)提示</p>
+<p>PS(Plan-and-Solve)提示, 将整个任务分成多个子任务并按计划执行</p>
+<h4 id="7-Scaling-Instruction-Finetuned-Language-Models-Flan-PaLm-T5-CoT-Finetuning"><a href="#7-Scaling-Instruction-Finetuned-Language-Models-Flan-PaLm-T5-CoT-Finetuning" class="headerlink" title="7 .Scaling Instruction-Finetuned Language Models(Flan-PaLm&#x2F;T5: CoT + Finetuning)"></a>7 .<a href="https://link.zhihu.com/?target=https://arxiv.org/pdf/2210.11416.pdf">Scaling Instruction-Finetuned Language Models</a>(Flan-PaLm&#x2F;T5: CoT + Finetuning)</h4><p>Google团队的任务, 由2019的Flan-T5发展成2022的Flan-PaLM&#x2F;T5</p>
+<p>吸收了Flan的精华, 加入了CoT的数据来做finetune. 提出了一套多任务的微调方案, 提高了LM的泛化性. 训练时使用多任务指令微调, 推理时泛化到其他任务</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-6142eaeebb917dad92577d2205d56979_r.jpg" alt="img"></p>
+<p>Flan-PaLM&#x2F;T5的具体做法如下:</p>
+<ol>
+<li>任务收集. 一个任务被定义成&lt;数据集, 任务类型&gt;</li>
+<li>形式改写. 不同任务转换成相同的输入格式和输出格式</li>
+<li>训练过程. 恒定学习率, Adafactor优化器, 多个训练样本打包成一个训练样本, 样本间通过特殊的结束token分隔. 在没有训练的任务上validate</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-b410f0deeac3b2fcf36dfadb705c05fe_1440w.webp" alt="img"></p>
+<p>论文给出的结论:</p>
 <ul>
-<li><a href="mailto:&#x32;&#56;&#x32;&#x36;&#51;&#49;&#52;&#x37;&#x38;&#52;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;">&#x32;&#56;&#x32;&#x36;&#51;&#49;&#52;&#x37;&#x38;&#52;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#x6d;</a><!-- - donnychan1999@gmail.com --></li>
+<li>微调效果更好</li>
+<li>模型越大越好</li>
+<li>任务越多效果越好. 多任务微调的本质是模型能将预训练学到的知识更好地进行表达. 282 tasks best.</li>
+<li>混杂CoT相关的任务很重要</li>
 </ul>
-<hr>
-<p>你好, hello, hei!</p>
-<p>My name is Ruochen Cui (崔若晨).</p>
-<p>I’m a 3nd year undergraduate student at the <a target="_blank" rel="noopener" href="https://www.uestc.edu.cn/">University of Electronic Science and Technology of China</a>(UESTC), advised by Prof. Liangjian Deng. My research interests are about image restoration and hallucination of multimodal large language models.</p>
-<p>I’m just getting started with academia, and will be applying for PhD in the same lab this year (the end of 2023), there is so much to learn!</p>
-<!-- [:page_facing_up: My resume (last updated: December, 2022)](/pdf/cv.pdf) -->
-
-<h2 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h2><hr>
-<p><strong>B.S. in Artificial Intelligence (人工智能)</strong></p>
-<div align="right">Sep 2021 - Now</div>
-
-<p>UESTC, China</p>
-<!-- *Research direction: image restoration, large language models*
-
-*Advisor: Prof. Liangjian Deng* -->
-
-<hr>
-<p><strong>General Studies in Natural Science (Studiespesialisering med realfag)</strong></p>
-<div align="right">
-Sep 2018 - Jun 2021
-</div>
-
-<p>Hengshui High School, China</p>
-<hr>
-<h2 id="Personal-Background"><a href="#Personal-Background" class="headerlink" title="Personal Background"></a>Personal Background</h2><p>I was born in April 21, 2003 in Beijing. I grew up in Beijing and attended high school at Hengshui High School in Hebei. Now I am an undergraduate student at UESTC (University of Electronic Science and Technology of China).</p>
-<h2 id="Interests"><a href="#Interests" class="headerlink" title="Interests"></a>Interests</h2><p>🎵 Music: Post Rock, Metal, Neo-Classicism, Shoegaze, J-pop</p>
-<p>🎮 Entertainment: Music, video games, art exhibition, anime, read, etc.</p>
-<hr>
-<blockquote>
-<p>Below is the Chinese version of this text, no need to read it if you understand the above text already.</p>
-</blockquote>
-<h2 id="Chinese-Version"><a href="#Chinese-Version" class="headerlink" title="Chinese Version"></a>Chinese Version</h2><p>我叫崔若晨。</p>
-<p>我是<a target="_blank" rel="noopener" href="https://www.uestc.edu.cn/">电子科技大学</a>的三年级本科生。我的研究兴趣是关于图像复原和多模态大模型幻觉。</p>
-<p>我刚刚开始学术生涯，将在今年（2024年底）申请硕士或博士学位，还有很多要学习！</p>
-<!-- [📃 我的简历（最后更新：2022年12月）](/pdf/cv.pdf) -->
-
-<h3 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h3><ul>
-<li><p><strong>本科：计算机科学与技术</strong></p>
-<p>  电子科技大学，中国</p>
-<p>  2021年9月 - 现在</p>
-</li>
-<li><p><strong>高中：自然科学通识教育</strong></p>
-<p>  衡水中学，中国河北</p>
-<p>  2018年9月 - 2021年6月</p>
-</li>
+<p>Flan微调框架的核心</p>
+<ul>
+<li>统一的输入输出格式(4种类型)</li>
+<li>引入CoT</li>
+<li>增加任务数量</li>
+<li>增加模型体积</li>
 </ul>
-<h3 id="个人背景"><a href="#个人背景" class="headerlink" title="个人背景"></a>个人背景</h3><p>我出生于2003年4月21日，出生在北京。我在北京长大，就读于河北衡水中学高中。现在我是电子科技大学（University of Electronic Science and Technology of China）的本科生。</p>
-<h3 id="兴趣爱好"><a href="#兴趣爱好" class="headerlink" title="兴趣爱好"></a>兴趣爱好</h3><p>🎵 音乐：后摇、金属、新古典主义、盯鞋、日本流行音乐</p>
-<p>🎮 娱乐：音乐、电子游戏、艺术展览、动漫、阅读等</p>
+<h4 id="7-Large-Language-Models-Are-Reasoning-Teachers-Fine-tune-CoT"><a href="#7-Large-Language-Models-Are-Reasoning-Teachers-Fine-tune-CoT" class="headerlink" title="7. Large Language Models Are Reasoning Teachers(Fine-tune-CoT)"></a>7. <a href="https://link.zhihu.com/?target=https://arxiv.org/pdf/2212.10071.pdf">Large Language Models Are Reasoning Teachers</a>(Fine-tune-CoT)</h4><p>韩国科学技术院KAIST的工作, 一篇自学推理方法的文章来自斯坦福STaR: Self-Taught Reasoner Bootstrapping Reasoning With Reasoning</p>
+<p>motivation: </p>
+<ol>
+<li>基于CoT的工作依赖于数百亿参数的巨大语言模型, 模型难以大规模部署. </li>
+<li>纯微调小模型需要巨量的推理注释, 而且需要特定任务匹配的训练设置</li>
+</ol>
+<p>应用前面的Zero-Shot-CoT从教师模型中生成推理, 用来微调较小的学生模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-7bb71e3c605cbed33543a21177f22698_1440w.webp" alt="img"></p>
+<p>Fine-tune-CoT的核心思想是采用Zero-Shot-CoT生成问答数据, 再用温度T采样或Top-p采样来生成数据, 再进行Fine-tune</p>
+<h4 id="其他论文"><a href="#其他论文" class="headerlink" title="其他论文"></a>其他论文</h4><h5 id="SELF-CONSISTENCY-IMPROVES-CHAIN-OF-THOUGHT-REASONING-IN-LANGUAGE-MODELS"><a href="#SELF-CONSISTENCY-IMPROVES-CHAIN-OF-THOUGHT-REASONING-IN-LANGUAGE-MODELS" class="headerlink" title="SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT REASONING IN LANGUAGE MODELS"></a><a href="%5Bhttps://arxiv.org/abs/2203.11171%5D(https://link.zhihu.com/?target=https://arxiv.org/abs/2203.11171)">SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT REASONING IN LANGUAGE MODELS</a></h5><h5 id="On-the-Advance-of-Making-Language-Models-Better-Reasoners"><a href="#On-the-Advance-of-Making-Language-Models-Better-Reasoners" class="headerlink" title="On the Advance of Making Language Models Better Reasoners"></a>On the Advance of Making Language Models Better Reasoners</h5><h5 id="Rationale-Augmented-Ensembles-in-Language-Models"><a href="#Rationale-Augmented-Ensembles-in-Language-Models" class="headerlink" title="Rationale-Augmented Ensembles in Language Models"></a>Rationale-Augmented Ensembles in Language Models</h5><h5 id="STaR-Self-Taught-Reasoner-Bootstrapping-Reasoning-With-Reasoning"><a href="#STaR-Self-Taught-Reasoner-Bootstrapping-Reasoning-With-Reasoning" class="headerlink" title="STaR: Self-Taught Reasoner Bootstrapping Reasoning With Reasoning"></a>STaR: Self-Taught Reasoner Bootstrapping Reasoning With Reasoning</h5><h5 id="mmcot"><a href="#mmcot" class="headerlink" title="mmcot"></a>mmcot</h5><p><a target="_blank" rel="noopener" href="https://github.com/Timothyxxx/Chain-of-ThoughtsPapers">Timothyxxx&#x2F;Chain-of-ThoughtsPapers: A trend starts from “Chain of Thought Prompting Elicits Reasoning in Large Language Models”. (github.com)</a></p>
+<p>涌现能力: <a href="https://link.zhihu.com/?target=https://pan.baidu.com/s/1cTfhzr-elwCi7Q5txhrIhA?pwd=g4a6">Emergent Abilities of Large Language Models</a></p>
+<h2 id="MLLM-Multimodal-Large-Language-Model"><a href="#MLLM-Multimodal-Large-Language-Model" class="headerlink" title="MLLM(Multimodal Large Language Model)"></a>MLLM(Multimodal Large Language Model)</h2><h3 id="经典论文"><a href="#经典论文" class="headerlink" title="经典论文"></a>经典论文</h3><h4 id="1-A-Survey-on-Multimodal-Large-Language-Models"><a href="#1-A-Survey-on-Multimodal-Large-Language-Models" class="headerlink" title="1. A Survey on Multimodal Large Language Models"></a>1. <a href="%5Barxiv.org/pdf/2306.1354%5D(https://link.zhihu.com/?target=https://arxiv.org/pdf/2306.13549.pdf)">A Survey on Multimodal Large Language Models</a></h4><h2 id="一些其他的知识"><a href="#一些其他的知识" class="headerlink" title="一些其他的知识"></a>一些其他的知识</h2><h3 id="大模型的缩放定律"><a href="#大模型的缩放定律" class="headerlink" title="大模型的缩放定律"></a>大模型的缩放定律</h3><p><a href="https://link.zhihu.com/?target=https://arxiv.org/abs/2001.08361">Scaling Laws for Neural Language Models</a></p>
+<h3 id="开源大模型"><a href="#开源大模型" class="headerlink" title="开源大模型"></a>开源大模型</h3><p>GPT-3没有微软的开源, GPT-J使用Mesh-Transformer-JAX, [地址](<a target="_blank" rel="noopener" href="https://github.com/kingoflolz/mesh-transformer-jax">kingoflolz&#x2F;mesh-transformer-jax: Model parallel transformers in JAX and Haiku (github.com)</a>)</p>
+<h3 id="Prompt-Engineer"><a href="#Prompt-Engineer" class="headerlink" title="Prompt Engineer"></a>Prompt Engineer</h3><p>Prompt Engineer应当有效地指导模型思考. 工业级的提示工程流程:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-a3c33253ae7fc90722c4301972daa177_1440w.webp" alt="img"></p>
+<p>Prompt Engineer可细分为语言提示工程(LanguagePrompting)和代码提示工程(Code Prompting)</p>
+<h4 id="Prompt-Engineer与CoT的关系"><a href="#Prompt-Engineer与CoT的关系" class="headerlink" title="Prompt Engineer与CoT的关系"></a>Prompt Engineer与CoT的关系</h4><p>使用Prompt Engineer来激发模型的涌现能力, </p>
+<ul>
+<li>优势: 是一种轻量级的引导方法, 门槛更低</li>
+<li>劣势: 受限于模型对话上下文限制, 提示量有限</li>
+</ul>
+<p>fine-tuning:</p>
+<ul>
+<li>优势: 强化模型某方面的能力, Prompt的方法对比来讲算是”调用”</li>
+<li>劣势: 重新训练模型, 训练成本较大</li>
+</ul>
+<h2 id="CoT的局限性"><a href="#CoT的局限性" class="headerlink" title="CoT的局限性"></a>CoT的局限性</h2><ol>
+<li><p>思维链在模型规模足够大时才能”涌现”</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-e59c9229bd5c2e067bc843d2009428cf_1440w.webp" alt="img"></p>
+</li>
+<li><p>思维链的应用领域有限. 如数学问题.</p>
+</li>
+<li><p>相关研究的模型或数据集都是半公开或不公开的</p>
+</li>
+<li><p>有思维链提示的LLM依然不能解决小学水平的数学问题. 在GSM8K的一个子集中, LLM出现过8%的计算错误</p>
+</li>
+</ol>
+<h2 id="CoT的改进方向"><a href="#CoT的改进方向" class="headerlink" title="CoT的改进方向"></a>CoT的改进方向</h2><p>auto-CoT?</p>
+<h2 id="LMM-Large-Multimodal-Model-大型多模态模型"><a href="#LMM-Large-Multimodal-Model-大型多模态模型" class="headerlink" title="LMM(Large Multimodal Model)大型多模态模型"></a>LMM(Large Multimodal Model)大型多模态模型</h2><p>LMM处理多图像输入的两个主要问题:</p>
+<ul>
+<li>缺乏细粒度感知.  自然语言对视觉内容的描述不足</li>
+<li>跨多图像信息融合. 图像间的关系和互动难以捕捉</li>
+</ul>
+<h2 id="我的问题"><a href="#我的问题" class="headerlink" title="我的问题"></a>我的问题</h2><p>连续prompt的问题: 伪资源节约和不稳定</p>
 
   </article>
 
@@ -650,6 +718,19 @@ Sep 2018 - Jun 2021
       
     </div>
     <div>
+      
+        <a href="/2024/04/10/mllm/MoE(Mixture%20of%20Experts)/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
       
     </div>
   </div>
