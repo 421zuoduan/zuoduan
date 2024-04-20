@@ -21,7 +21,7 @@
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
 
 
-<title>服务器环境配置 | Ruochen Cui</title>
+<title>21 × 365 + 5 | Ruochen Cui</title>
 
 
 
@@ -522,17 +522,13 @@
 
     <!-- toc -->
     
-  <!-- tocbot -->
-<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
-
-
 <section class="px-6 max-w-prose mx-auto md:px-0">
   <!-- Post header before content -->
   <header class="py-4">
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">服务器环境配置</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">21 × 365 + 5</p>
       </div>
       <!-- Meta data -->
       <div>
@@ -542,11 +538,11 @@
             <!-- Dates -->
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
-              Created: <time class="w-max">2024-04-12</time>
+              Created: <time class="w-max">2024-04-21</time>
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-04-12</time>
+              Edited: <time class="w-max">2024-04-21</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -561,7 +557,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>712 words, 3 min</span>
+              <span>3.3k words, 11 min</span>
             </span>
             <!-- Categories -->
             
@@ -571,7 +567,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+                <a class="article-category-link" href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
               </span>
             
           </div>
@@ -583,7 +579,7 @@
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/tags/server/" 
+      <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" 
         class="
           tag
           text-sm
@@ -599,26 +595,7 @@
           hover:text-[var(--c-0)]
           dark:hover:text-[var(--c-theme-2)]
         ">
-        server
-      </a>
-    
-      <a href="/tags/code/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        code
+        碎碎念
       </a>
     
   
@@ -628,64 +605,29 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <p>#!/usr/bin/env python</p>
-<h1 id="coding-utf-8">-<em>- coding:utf-8 -</em>-</h1>
-<p>‘’’</p>
-<ul>
-<li>@Author: Ruochen Cui</li>
-<li>@Date: 2024-04-12 07:46:27</li>
-<li>@Last Modified by:   Ruochen Cui</li>
-<li>@Last Modified time: 2024-04-12 07:46:27</li>
-<li>@Desc:<br>
-‘’’</li>
-</ul>
-<h1 id="anaconda-安装">anaconda 安装</h1>
-<p>从官网直接下载</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh</span><br><span class="line">bash Anaconda3-2023.09-0-Linux-x86_64.sh -p anaconda/ -u</span><br></pre></td></tr></table></figure>
-<p>一直yes, 包括添加到环境</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PATH=&quot;/home/cuiruochen/anaconda/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p>此时输入<code>conda env list</code>, 能看到base环境</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41335923/article/details/108368436">参考博客</a></p>
-<h1 id="conda-环境配置">conda 环境配置</h1>
-<h2 id="llava-1-5环境配置及运行">LLaVA-1.5环境配置及运行</h2>
-<h3 id="在cuiruochen文件夹路径下-下载llava-1-5代码">在<code>cuiruochen</code>文件夹路径下, 下载LLaVA-1.5代码</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/haotian-liu/LLaVA.git</span><br><span class="line">cd LLaVA</span><br></pre></td></tr></table></figure>
-<h3 id="创建llava虚拟环境">创建llava虚拟环境</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n llava python=3.10 -y</span><br><span class="line">conda activate llava</span><br><span class="line">pip install --upgrade pip  # enable PEP 660 support</span><br></pre></td></tr></table></figure>
-<h3 id="模型预测安装">模型预测安装</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
-<h3 id="模型训练环境安装">模型训练环境安装</h3>
-<p>（若无需进一步训练，只是部署，则可暂时跳过本步骤）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install -e &quot;.[train]&quot;</span><br><span class="line">pip install flash-attn --no-build-isolation  # 可能安装失败</span><br></pre></td></tr></table></figure>
-<p>如果报错<code>OSError: CUDA_HOME environment variable is not set. Please set it to your CUDA install root.</code>, <code>note: This is an issue with the package mentioned above, not pip.</code></p>
-<p>一般是deepspeed库安装出错, 由于cuda重新安装或没有在默认路径<code>/usr/local/</code>下，因此没有找到系统环境变量<code>CUDA_HOME</code>.</p>
-<h4 id="命令行exportcuda安装路径">命令行exportCUDA安装路径</h4>
-<p>找到自己的cuda安装路径后，使<code>CUDA_HOME</code>指向相应的位置即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export CUDA_HOME=/user_path/cuda-12.0/</span><br></pre></td></tr></table></figure>
-<p>需要自行找到cuda地址替换<code>user_path</code></p>
-<blockquote>
-<p><s>经检查, 具有<code>/bin/nvcc</code>的文件夹路径有<code>/home/kongfei/lun/cuda-11.7</code>, 使用<code>export CUDA_HOME=/home/kongfei/lun/cuda-11.7</code></s></p>
-</blockquote>
-<h4 id="module-load加载cuda环境">module load加载CUDA环境</h4>
-<p>可以通过指令<code>module avail</code>查找可用环境, 发现有<code>cuda/11.3.1</code>和<code>cuda/12.1.1</code>两个环境, 再通过指令<code>module load</code>加载指定环境</p>
-<blockquote>
-<p><code>module</code>指令需要<code>source /etc/profile</code>后才能使用</p>
-</blockquote>
-<blockquote>
-<p>想要每次登陆时自动输入指令, 可以在<code>.bashrc</code>文件末尾输入</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34784753/article/details/132722933">参考博客1</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kikiLQQ/article/details/135613642">参考博客2</a></p>
-<h3 id="本地电脑下载llava-1-5-7b和clip-vit的参数并上传">本地电脑下载LLaVA-1.5 7B和CLIP-ViT的参数并上传</h3>
-<p>在<code>https://huggingface.co/liuhaotian/llava-v1.5-7b/tree/main</code>下载LLaVA-1.5 7B的参数, 并上传至服务器<code>model/llava-v1.5-7b/</code></p>
-<p>在<code>https://huggingface.co/openai/clip-vit-large-patch14-336/tree/main</code>下载CLIP-ViT的参数, 并上传至服务器<code>model/clip-vit-large-patch14-336/</code></p>
-<p>修改在<code>llava-v1.5-7b/config.json</code>文件, 把<code>mm_vision_tower</code>修改为刚刚上传的<code>clip-vit-large-patch14-336</code>文件夹路径</p>
-<p>这里使用XShell和Xftp通过跳板机将文件传输到服务器上</p>
-<h3 id="运行demo">运行demo</h3>
-<p>运行以下代码, <code>–image-file</code>后面可以换成你自己想要交流的图片, <code>–load-4bit</code>是使用量化位(4 位)启动模型工作线程, 减少GPU内存占用的情况下运行推理</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=7 python -m llava.serve.cli     --model-path /home/cuiruochen/model/llava-v1.5-7b     --image-file &quot;https://llava-vl.github.io/static/images/view.jpg&quot;     --load-4bit</span><br></pre></td></tr></table></figure>
-<h2 id="ha-dpo-环境配置及运行">HA-DPO 环境配置及运行</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n hadpo python==3.9</span><br><span class="line">conda activate hadpo</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+    <p>现在是2024年4月21日，深夜0点40分，我在宿舍。今天是生日，稍微宕机一会。好久都没有把电脑平摊在宿舍桌子上用了，一直都是放在支架上。放在支架上总是没什么感觉码字，用机械键盘也是。虽然一直都有想要写点什么，但为什么突然就写点字呢，是因为有人祝我生日快乐，一个没有联系那么频繁的，一个还在一起相处时关系很好的朋友。</p>
+<p>现在在听之前创建的…的那张歌单，现在是狂犬病的《Absent Friend》，现在我也依然喜欢这首曲子。20号正好是国际唱片店日，原本想去院子那边看一看的，很想要Athletics的那张经典专辑。虽然没有听黑胶的机器，但拿来把玩也是很不错的。可是想到自己买回来也很可能最后闲鱼出出去，或者受潮放坏，或者某些意外弄折，想想倒也没那么想去了。不如留给那些真的喜欢这张专辑的人（才不是因为懒呢）。</p>
+<p>就这样慢慢地随便写一点东西。现在是阿飞西雅的《Behind The River》，我也不知道会放到哪一首了，我是随机播放的。我很喜欢现在桌子上这盏灯的光，把亮度调到最低的时候不会影响舍友睡觉（也许），还很柔和，我把灯放到桌子靠左边的位置，所以桌面上左边会亮一些，右边会暗一些。而上面的那盏灯被我关掉了。我的面前并没有很亮，我还把vscode从白色的主题改成了黑色的主题，我觉得这样写一点东西刚刚好。这样的光很像19年桌子上的那盏光，那次差点没有回去学校，那时候还没有认识F，也没有和Q很熟悉，但很多有趣的事情都是从那天开始的。</p>
+<p>19号去看了缺省，我一直以为第二个字念“xing”，新主唱自己讲话的时候说的“省”。喜欢这只乐队很久了，那时候这支乐队还很年轻，屹然那时候已经北漂了吗？不知道。从北京往张家口开的火车上，我的手机没有网，那时候也没有流量，就听着《将死之时掩以水门汀》单曲循环，火车从张家口开出来，经过平原，不久远处的山就到了眼前，往外望，满是夕阳下说不出名的野草。然后火车过山区，还会过水库，过河，从逼仄的山峦间缓缓开进城市。有时还会过桥，桥两边有一些我猜测用于排水的孔洞，往外看能看到大片大片的美丽景色。这样的景致我好像在高中地理的卷子上看到过，如果我当时想到这些，我一定会在本子上写出来，那样的设计不仅在西南地区有，华北平原也有的。</p>
+<p>缺省的风格变化很快，他们不做盯鞋了，艾迪娜加进来后往流行的方向发展了。演出当天，他们还做了一个简陋的颁奖仪式，讲，新专辑《共同的土地》获得最佳摇滚奖奖项。挺好的，专辑不差，融入了很多的风格，很多的技巧。不过我还是怀念他们在加州星云的样子。想起来《Life In A Vacuum》那张专辑发布的时候，我正在东直门等发车，我和Q讲，可以听一听这张专辑。我很确定的是，我给很多人推过音乐，他们中大多数人没有听完，也许都没有听过。现在vscode上还挂着一个md，青葉市子的《Windswept Adan roots》那张，昨天这个时候再晚些想写一写了，听了两天，梦回高考前后，躺在那张床上听风扇吱吱作响的日子。看了下那个md文件，只写了这样两句话“十分沉迷这张专辑的时间，是在高考前和高考后的那段日子。”</p>
+<p>写完上面两段话，已经过去了两首歌，一首来自Mogwai的《Take Me Somewhere Nice》，一首来自Lander Configurations的《My Imaginery Friend The Polar Bear》。写完上面一个句号，正好听完。下一首是Mogwai的《R U Still In 2 It》，歌词第一句话是“Are you still into it? 'Cause I’m still into it”。</p>
+<p>紧接着想起的是信。其实后来没有写很多信了，最近一次写信是写给一年后的自己的。我还挺喜欢这个活动的，一年后的某天有人通过飞书告诉你，这里有你的一封信，是你自己写给你自己的，还有一封，是你写给一年后的其他人的。还挺不错的。自己早就忘了自己写了什么了。前年自己也这么干过，当时想，写一封信，也许第二年能给某某某寄过去，不过最后也没有寄过去，就像那次赶到地铁却没有上去一样。“Will u miss me?”</p>
+<p>三个月前离校的时候，整理东西发现还有好多信封，我以为我已经用掉了好多的，没想到还剩这么多。也许后面零零散散再寄一些明信片出去。耳边现在是Industries Of The Blind《I just wanted to make you something beautiful》，音乐和歌名同样美丽，也是曾经沉溺过的音乐，那时候经常走过上面有火车经过的某段地下通道，自己还在没人的时候大吼大叫。</p>
+<p>高中时候写的那些字，最后也只敲了F的那几本。不过我没有忘掉哦，我还是想着敲出来的，不过总是找借口没有去做。也许某天全部码成电子版，啪的一下按下回车，给对面一个大大的惊喜。不过写给F的那两个word已经忘记被我放在哪里了，也许是在那台坏掉的电脑上，在这台电脑上反正是没有找到。相似的事情也太多了，我把Q写的不多的那一点扫描出来，也后来不知道被放在哪里了，怎么找也找不到。</p>
+<p>看到桌子上的书突然想起来，图书馆借的书有好久没有还了。有四本吧，莫里亚克的《蛇结》，赫塔·米勒的《呼吸秋千》和《国王鞠躬，国王杀人》，还有一本排版方式蛮新奇的书，读起来莫名其妙的，啊，翻不到了，不写书名了。桌面上也还有几本书，《加缪手记》第二卷，黑塞《在轮下》，黑塞这本也是图书馆的，不过还没有到期，微信读书上没有这个译本，打算继续读完。《Effective Python》，《Python计算机视觉编程》。还有几本上周成都独立书店市集淘来的书，《双重时间》，一本和作家对谈的书，决定读一读这些作者的书再看；《锈蚀，人类最漫长的战争》，讲锈蚀历史的一本书；《海之辞典》，一个日本人写的，有关海洋的一些词语的书籍，配有很多图片，应该用的是铜版纸印刷，当时旁边还有一本《色之辞典》的，有点遗憾没有拆开来看一看；还有一本和S交换的书，《维罗妮卡决定去死》。</p>
+<p>桌子最左边还有一本日历，上面写着“今天吃什么？”，遗憾的是，日历上大多数写的食物我都吃不到，放了好长时间了，当摆饰也还不错。一根应援用的泡沫荧光棒，我转了一下，是四月初和S去看的《朱莉小姐》，上面写着“我狂奔在做自己的路上”，说来也巧，两张票都是去看相声社组织去的脱口秀的时候拿到的。日历后面还有一盒新冠冠状病毒抗原检测试剂盒，一个说出来自觉很遥远的名词。板蓝根，风扇，水杯，雨伞，键盘，笔袋，卫生纸。左边还有一些便利贴，很多都已经贴了两年了。有一张上面写着，“美好的事情可不可以发生在我的身上 --康士坦的变化球 2021.10.25 21:50”，与康士坦的变化球的那首曲子名相同，这是来成都看的第一场演出；还有一张写着“Some Tears Can Never Dry --As The Stars Fall 2021.11.04 23:04”，这是来自As The Stars Fall的同名音乐；还有一些其他音乐的歌曲名或歌词，不过不多。之前还有一张便利贴，写着“你要少熬夜，多吃饭，等我把你从无聊的生活中解救出来”，这来自声子虫《时雨》下面的一条评论，刚才去翻原句的时候，就突然点进了这首歌，我还想听完上面那首《All My Feelings Were Fake》的来着。这张便利贴后来掉了很多次，我每次都把它粘回去，直到某一天清理桌面的时候给撕掉了，扔进垃圾桶里。</p>
+<p>F问过我，为什么要说上面那句话，我忘记自己怎么回答了。自己好像失去了好多记忆，自己生活的各个阶段，都是，所以时不时就写一些随便发在哪里，某一天想起来了就整合一下。我还挺喜欢这些记忆的，真的。但是想起那些回忆和场景时再也找不到当初的心境了，蛮感慨的。</p>
+<p>查了查聊天记录，很奇怪电脑上完全查不到，像是只能检索最近一段时间的记录一样，但是手机上能查到。我当时这么讲的“多吃饭 少熬夜 等我把你从无聊的生活中解救出来”，她讲“我感觉每天的生活不无聊，像是闯关游戏一样”，“我是一个失去梦想的骑士”，“，而这个游戏没有尽头”，“不是重复的关卡，是与日俱增的难度”。时至今日，我依然觉得F的比喻水平堪称奇才，难有后来者。看了下差不多一年后的聊天记录，我也不知道我在说什么鬼话。不过我很清楚我很赞成这句，“我需要很多很多的钱和很多很多的认同和很多很多的爱”。该死，有种想翻聊天记录的欲望在心中膨胀起来。</p>
+<p>正好换到下一首曲子，这首我不看手机也能写出歌名来，The Last Days《The Time Will Never Come Back》。这张专辑在我右手的架子上正立着呢，很喜欢的一张。还在高中的时候，每次回学校都在听这首，当时用这个词来形容，“返监”，意指重返牢笼。这首音乐的名字真的不错，休恋逝水。</p>
+<p>哦对，便利贴贴在一幅油画上面（当然是印刷品啦），搜了下，是莫奈的《撑阳伞的女人》，放在那个位置真的很合适。我还在上面贴了一个看悲剧药方时拿回来的贴纸，上面写着“真实不虚”。</p>
+<p>翻到F的空间，爱是一种可以量化的指标吗？我不知道，其实应该这样讲，我不知道什么是爱。</p>
+<p>突然有点饿了，现在是2024年4月21日，2点16分。明明前一眼看过去还是15分的。上一次进食是在八小时前，中间还有2h的高强度展示与讨论。</p>
+<p>耳机里放到Jathb的《Koelreuteria Tree》。今天上午出门时还在想这首歌，好像是22年夏天的某一日，随机播放到这首自己都已忘却的曲子，当时在和母亲在街上买菜，她在和街坊聊天。天上没有一朵云彩，西边有一点点夕阳的影子了，我站在主干道的街边，看着街道延伸到东边，没有尽头。我想是那个时候，听到这首歌的时候，才是真正意义上的接受某些事实，关于这些事实的我才发生变化。结束了，我要再听一遍。唔，我记得F有发表过关于这张专辑封面的看法来着，找不到了，倒是看到23年自己有讲一个学姐的说法，“一个好的前男友应该像死了一样”。我不是很认可她的价值取向和一些问题上的看法，不过看到这句话的时候还是很戚戚然。</p>
+<p>极饿，决定传上博客，再传上好久都没有发的公众号。不然就要下楼去买吃食了。</p>
+<p>那就这样吧。正好耳边又放了和码字开始时同样的那首曲子，Bark Psychosis的《Absent Friend》。虽然不知道自己写了些什么，白天要补充什么，但还是写的蛮舒服的。好久没有正儿八经的过过生日了，感觉能写点东西就已经耗费了很大的精力。</p>
+<p>生日快乐，佐渡安。</p>
+<p>晚安。2024年4月21日，02:32。</p>
+
   </article>
 
   <!-- prev and next -->
@@ -695,22 +637,10 @@
   ">
     <div>
       
-        <a href="/2024/04/17/ppt-md/"
-          class="
-            transition-all
-            flex justify-center
-            hover:-translate-x-1
-            hover:text-[var(--c-80)]
-          ">
-          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
-          </iconify-icon>
-          
-        </a>
-      
     </div>
     <div>
       
-        <a href="/2024/04/11/course_note/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%AB%E9%A2%84%E4%B9%A0/"
+        <a href="/2024/04/20/music_note/%E9%9D%92%E8%91%89%E5%B8%82%E5%AD%90%20-%20Windswept%20Adan%20roots/"
           class="
             flex 
             justify-center
@@ -719,7 +649,7 @@
             hover:text-[var(--c-100)]
           "
         >
-          2022-2023春季学期离散数学期末预习笔记
+          青葉市子 - Windswept Adan roots
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       

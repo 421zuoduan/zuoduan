@@ -640,25 +640,6 @@
         research
       </a>
     
-      <a href="/tags/deep-learning/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        deep-learning
-      </a>
-    
       <a href="/tags/mllms/" 
         class="
           tag
@@ -678,6 +659,25 @@
         mllms
       </a>
     
+      <a href="/tags/deep-learning/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        deep-learning
+      </a>
+    
   
 </div>
       </div>
@@ -690,10 +690,10 @@
 <li>@Author: Ruochen Cui</li>
 <li>@Date: 2024-03-25 01:39:45</li>
 <li>@Last Modified by:   Ruochen Cui</li>
-<li>@Last Modified time: 2024-03-25 01:39:45<br />
+<li>@Last Modified time: 2024-03-25 01:39:45<br>
 */</li>
 </ul>
-<h2 id="对-github-repo-的理解"><a class="markdownIt-Anchor" href="#对-github-repo-的理解"></a> 对 github repo 的理解</h2>
+<h2 id="对-github-repo-的理解">对 github repo 的理解</h2>
 <p><code>MODEL_ZOO</code>: 包含了各种预训练的机器学习模型的权重和配置</p>
 <p><code>Demo</code>: 可使用图形界面或命令行进行推理, 测试模型效果</p>
 <p><code>Gradio Web UI</code>: 基于 Gradio 库构建的Web用户界面</p>
@@ -706,8 +706,8 @@
 </ul>
 <p><code>CLI Inference</code>: CLI Inference是指通过命令行界面 (CLI)进行推断 (Inference) 的过程</p>
 <p><code>legacy model</code>: 旧有的模型</p>
-<h2 id="linux-和-vscode-的使用"><a class="markdownIt-Anchor" href="#linux-和-vscode-的使用"></a> linux 和 vscode 的使用</h2>
-<h3 id="linux-常用命令"><a class="markdownIt-Anchor" href="#linux-常用命令"></a> linux 常用命令</h3>
+<h2 id="linux-和-vscode-的使用">linux 和 vscode 的使用</h2>
+<h3 id="linux-常用命令">linux 常用命令</h3>
 <p><code>cd</code>, <code>ls</code></p>
 <p><code>cd ~</code>: 进入 home 目录</p>
 <p><code>pwd</code>: 查看当前目录</p>
@@ -720,7 +720,7 @@
 <p><code>top</code>: CPU 实时使用情况, 按 I 显示每个进程占用总资源的百分比</p>
 <p><code>kill PID</code>: 杀死进程</p>
 <p><code>ls -l file name</code>: 查看上次文件的修改日期和修改人</p>
-<h3 id="vscode-的使用"><a class="markdownIt-Anchor" href="#vscode-的使用"></a> vscode 的使用</h3>
+<h3 id="vscode-的使用">vscode 的使用</h3>
 <ol>
 <li>
 <p>在服务器上安装 python extension 后, 使用 <code>ctrl + left mouse</code> 可以跳转至变量/函数上一次使用处或定义处</p>
@@ -738,10 +738,10 @@
 <p>安装 nvitop 命令,</p>
 </li>
 </ol>
-<h2 id="conda环境搭建"><a class="markdownIt-Anchor" href="#conda环境搭建"></a> conda环境搭建</h2>
+<h2 id="conda环境搭建">conda环境搭建</h2>
 <p>参考<a href="/home/cuiruochen/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">环境配置</a>完成conda环境搭建与配置, 使用以下代码使用环境</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate hadpo</span><br></pre></td></tr></table></figure>
-<h2 id="git版本管理"><a class="markdownIt-Anchor" href="#git版本管理"></a> git版本管理</h2>
+<h2 id="git版本管理">git版本管理</h2>
 <p><strong><em>step1.</em></strong> vscode 安装 git 相关插件</p>
 <p><strong><em>step2.</em></strong> 用户登录 github 账号</p>
 <ol>
@@ -824,13 +824,13 @@
 <p>从用户登录处重新操作</p>
 </li>
 </ol>
-<h2 id="数据集与代码准备"><a class="markdownIt-Anchor" href="#数据集与代码准备"></a> 数据集与代码准备</h2>
-<h3 id="数据集准备"><a class="markdownIt-Anchor" href="#数据集准备"></a> 数据集准备</h3>
+<h2 id="数据集与代码准备">数据集与代码准备</h2>
+<h3 id="数据集准备">数据集准备</h3>
 <p>依照 <a href="ha_dpo/data/data_preparation.md">data preparation</a> 进行数据集和测试集的准备</p>
 <p>数据集结构如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ha_dpo/data</span><br><span class="line">├── coco2014</span><br><span class="line">│   └── val2014</span><br><span class="line">│       └── ...</span><br><span class="line">├── hadpo</span><br><span class="line">│   └── llava-v1.5</span><br><span class="line">│       ├── desc_data.json</span><br><span class="line">|       └── pope_data.json</span><br><span class="line">├── POPE</span><br><span class="line">│   └── ...</span><br><span class="line">├── shr</span><br><span class="line">│   ├── shr_factual_part1.jsonl</span><br><span class="line">│   ├── shr_factual_part2.jsonl</span><br><span class="line">│   └── val_images_final.json</span><br><span class="line">└── VG</span><br><span class="line">    ├── image_data.json+</span><br><span class="line">    ├── region_descriptions.json</span><br><span class="line">    ├── VG_100K</span><br><span class="line">        └── ...</span><br><span class="line">    └── VG_100K_2</span><br><span class="line">        └── ...</span><br></pre></td></tr></table></figure>
-<h3 id="代码准备"><a class="markdownIt-Anchor" href="#代码准备"></a> 代码准备</h3>
-<h4 id="deepspeed-库介绍"><a class="markdownIt-Anchor" href="#deepspeed-库介绍"></a> DeepSpeed 库介绍</h4>
+<h3 id="代码准备">代码准备</h3>
+<h4 id="deepspeed-库介绍">DeepSpeed 库介绍</h4>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010751000/article/details/123516433">博客介绍</a></p>
 <p><a target="_blank" rel="noopener" href="https://deepspeed.readthedocs.io/en/latest/">官方文档</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.deepspeed.ai/docs/config-json/">配置参数文档</a></p>
@@ -838,21 +838,21 @@
 <p>以 pytorch 为例, pytorch 的分布式并行计算框架 (Distributed Data Parallel, 简称 DDP), 仅能使数据并行, 即模型大于显卡显存时, 除非将模型参数拆开到各个 GPU 上, 否则无法使用.</p>
 <p>DeepSpeed 是微软开源的框架, 能实现拆散功能, 将模型参数拆散到各个 GPU 上, 实现大模型的计算, 是我们用更少的 GPU 训练更大的模型而不受限于显存. 但是 DeepSpeed 的文档写的不好 (我证明! 沟槽的文档,)</p>
 <p>载入模型和编写模型的代码基本相同, DeepSpeed 通过输入参数来启动训练, 使用argparse解析参数</p>
-<h4 id="llava-15"><a class="markdownIt-Anchor" href="#llava-15"></a> LLaVA-1.5</h4>
-<h2 id="idea-结构-dev"><a class="markdownIt-Anchor" href="#idea-结构-dev"></a> idea 结构 (dev)</h2>
+<h4 id="llava-1-5">LLaVA-1.5</h4>
+<h2 id="idea-结构-dev">idea 结构 (dev)</h2>
 <p>Summary:</p>
 <ol>
 <li>causal attention mask 是必须要有的</li>
 <li>attention mask 是没有必要的</li>
 </ol>
-<h2 id="llava-15训练"><a class="markdownIt-Anchor" href="#llava-15训练"></a> LLaVA-1.5训练</h2>
-<h3 id="源码更新"><a class="markdownIt-Anchor" href="#源码更新"></a> 源码更新</h3>
-<h4 id="更新-evaluation-代码"><a class="markdownIt-Anchor" href="#更新-evaluation-代码"></a> 更新 Evaluation 代码</h4>
+<h2 id="llava-1-5训练">LLaVA-1.5训练</h2>
+<h3 id="源码更新">源码更新</h3>
+<h4 id="更新-evaluation-代码">更新 Evaluation 代码</h4>
 <p>由于部分 Evaluation 代码已经更新, 需要手动下载 <a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1atZSBBrAX54yYpxtVVW33zFvcnaHeFPy/view?usp=sharing">eval.zip</a> 放到 <code>ha_dpo/models/llava-v1_5/playground/data/eval</code> 路径, 压缩包内的十一个文件夹用作不同测试集.</p>
-<h4 id="更新pope代码"><a class="markdownIt-Anchor" href="#更新pope代码"></a> 更新POPE代码</h4>
+<h4 id="更新pope代码">更新POPE代码</h4>
 <p>根据 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/issues/626">LLaVA-issue-626</a>, repo 内 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md#pope">POPE的教程</a> 是对POPE旧版本的指导, 但是代码内已经修改为新版本. LLavA在 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md#scripts">Scripts教程</a> 内给出 <code>eval.zip</code>, 压缩包内含有新版POPE的评估代码与测试集. 按照<a href="%E6%9B%B4%E6%96%B0Evaluation%E4%BB%A3%E7%A0%81">此处</a>更新测试集和代码即可.</p>
-<h3 id="deepspeed-指令解读与更新"><a class="markdownIt-Anchor" href="#deepspeed-指令解读与更新"></a> deepspeed 指令解读与更新</h3>
-<h4 id="deepspeed-指令解读"><a class="markdownIt-Anchor" href="#deepspeed-指令解读"></a> deepspeed 指令解读</h4>
+<h3 id="deepspeed-指令解读与更新">deepspeed 指令解读与更新</h3>
+<h4 id="deepspeed-指令解读">deepspeed 指令解读</h4>
 <p>根据<a target="_blank" rel="noopener" href="https://github.com/opendatalab/HA-DPO/blob/main/ha_dpo/models/llava-v1_5/README.md#model-training">文档</a>给出的下述训练指令, 找到 <code>ha_dpo/models/llava-v1_5/train_dpo.py</code>.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">deepspeed ha_dpo/models/llava-v1_5/train_dpo.py \</span><br><span class="line">    --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 0 \</span><br><span class="line">    --deepspeed ha_dpo/models/llava-v1_5/scripts/zero3.json \</span><br><span class="line">    --model_name_or_path liuhaotian/llava-v1.5-7b \</span><br><span class="line">    --version v1 \</span><br><span class="line">    --vg_path ha_dpo/data/VG \</span><br><span class="line">    --desc_data_path ha_dpo/data/hadpo/llava-v1.5/desc_data.json \</span><br><span class="line">    --pope_data_path ha_dpo/data/hadpo/llava-v1.5/pope_data.json \</span><br><span class="line">    --vision_tower openai/clip-vit-large-patch14-336 \</span><br><span class="line">    --mm_projector_type mlp2x_gelu \</span><br><span class="line">    --mm_vision_select_layer -2 \</span><br><span class="line">    --mm_use_im_start_end False \</span><br><span class="line">    --mm_use_im_patch_token False \</span><br><span class="line">    --image_aspect_ratio pad \</span><br><span class="line">    --group_by_modality_length True \</span><br><span class="line">    --bf16 True \</span><br><span class="line">    --output_dir ha_dpo/models/llava-v1_5/checkpoints/&#123;model_name&#125; \</span><br><span class="line">    --num_train_epochs 1 \</span><br><span class="line">    --per_device_train_batch_size 16 \</span><br><span class="line">    --per_device_eval_batch_size 4 \</span><br><span class="line">    --gradient_accumulation_steps 1 \</span><br><span class="line">    --evaluation_strategy &quot;no&quot; \</span><br><span class="line">    --save_strategy &quot;steps&quot; \</span><br><span class="line">    --save_steps 50000 \</span><br><span class="line">    --save_total_limit 1 \</span><br><span class="line">    --learning_rate 2e-6 \</span><br><span class="line">    --weight_decay 0. \</span><br><span class="line">    --warmup_steps 0 \</span><br><span class="line">    --lr_scheduler_type &quot;cosine&quot; \</span><br><span class="line">    --logging_steps 1 \</span><br><span class="line">    --tf32 True \</span><br><span class="line">    --model_max_length 2048 \</span><br><span class="line">    --gradient_checkpointing True \</span><br><span class="line">    --dataloader_num_workers 4 \</span><br><span class="line">    --lazy_preprocess True \</span><br><span class="line">    --report_to wandb \</span><br><span class="line">    --run_name &quot;llava-v1.5&quot; \</span><br><span class="line">    --beta 0.1</span><br></pre></td></tr></table></figure>
 <p><code>deepspeed</code> 指令后的参数与 <code>train_dpo.py</code> 中的 <code>ScriptArguments</code>, <code>DataArguments</code>, <code>ModelArguments</code> 有关, 这里我摘取部分重要参数作解释:</p>
@@ -903,7 +903,7 @@
 <li><strong>group_by_modality_length</strong>: default=False</li>
 <li><strong>lazy_preprocess</strong></li>
 </ul>
-<h4 id="deepspeed-指令更新-dev"><a class="markdownIt-Anchor" href="#deepspeed-指令更新-dev"></a> deepspeed 指令更新 (dev)</h4>
+<h4 id="deepspeed-指令更新-dev">deepspeed 指令更新 (dev)</h4>
 <p>需要注意的是, HA-DPO 和 LLaVA 都有使用 lora 训练的教程, 我的实验需要在 backbone 和 head 间加入模块训练. 所以我们作出以下调整:</p>
 <p><strong>stage 1</strong></p>
 <ul>
@@ -921,14 +921,14 @@
 <li>tune_post_decoder True</li>
 <li>tune_lm_head True</li>
 </ul>
-<h3 id="代码解读"><a class="markdownIt-Anchor" href="#代码解读"></a> 代码解读</h3>
-<h4 id="model-文件夹结构"><a class="markdownIt-Anchor" href="#model-文件夹结构"></a> model 文件夹结构</h4>
+<h3 id="代码解读">代码解读</h3>
+<h4 id="model-文件夹结构">model 文件夹结构</h4>
 <p><code>ha_dpo/models/llava-v1_5/llava/model</code> 路径下, 可以看到有 <code>language_model</code>, <code>multimodal_encoder</code>, <code>multimodal_projector</code> 三个文件夹. 经检查, ‘language_model’ 通过继承 <code>llava_arch.py</code> 中的类, 调用了 <code>multimodal_encoder</code> 和 <code>multimodal_encoder</code> 的方法.</p>
 <p>检查发现, 与 <code>train_dpo.py</code> 在 <code>ha_dpo/models/llava-v1_5/llava/train/train.py</code> 基础上完成, 前者引用了后者的一部分方法</p>
-<h5 id="language_model-文件夹"><a class="markdownIt-Anchor" href="#language_model-文件夹"></a> language_model 文件夹</h5>
+<h5 id="language-model-文件夹">language_model 文件夹</h5>
 <p><code>llava_llama.py</code> 中含有 llava 代码与 head 代码. <code>LlavaLlamaForCausalLM</code> 类是 llava, 类中 <code>self.lm_head</code> 是 head, head 被定义为一个无偏 linear</p>
 <p>文件夹下 <code>mpt/</code> 和<code>llava_mpt.py</code> 是使用 MPT 作为 LLM 进行微调的代码, 这里我们不需要使用.</p>
-<h5 id="multimodal_encoder-文件夹"><a class="markdownIt-Anchor" href="#multimodal_encoder-文件夹"></a> multimodal_encoder 文件夹</h5>
+<h5 id="multimodal-encoder-文件夹">multimodal_encoder 文件夹</h5>
 <p>内有 <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a> 和 clip_encoder.py 两个文件. 使用前者的 <code>build_vision_tower</code> 建立 vision encoder 的模型. 后者只包括 CLIPVisionTower 类,</p>
 <p>CLIPVisionTower 类内包括:</p>
 <ol>
@@ -938,9 +938,9 @@
 <li>forward 方法得到 vision encoder 的输出</li>
 </ol>
 <p>clip_encoder.py <a target="_blank" rel="noopener" href="https://blog.csdn.net/Afree_learnC/article/details/135651147">解读</a></p>
-<h5 id="multimodal_projector-文件夹"><a class="markdownIt-Anchor" href="#multimodal_projector-文件夹"></a> multimodal_projector 文件夹</h5>
+<h5 id="multimodal-projector-文件夹">multimodal_projector 文件夹</h5>
 <p>内有 <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a> 一个文件. 包括 IdentityMap, SimpleResBlock 两个类和 build_vision_projector 一个方法. 返回一个 Sequential</p>
-<h5 id="llava_archpy"><a class="markdownIt-Anchor" href="#llava_archpy"></a> llava_arch.py</h5>
+<h5 id="llava-arch-py">llava_arch.py</h5>
 <p>该文件在 <code>model</code> 文件夹中, 定义的 LlavaMetaModel 和 LlavaMetaForCausalLM 被 llava_llama.py 作为父类被引用</p>
 <p><strong>LlavaMetaModel 类</strong></p>
 <ol>
@@ -957,7 +957,7 @@
 <li><code>prepare_inputs_labels_for_multimodal</code>: 很复杂的函数, 没有为 ha-dpo 作特别修改 (TODO: 应该?). 最终输出新的 label</li>
 <li><code>initialize_vision_tokenizer</code>: 与 deepspeed 设置中 mm_use_im_patch_token 和 mm_use_im_start_end 参数有关, 其值为 True 时发挥作用, 没细读</li>
 </ol>
-<h5 id="builderpy"><a class="markdownIt-Anchor" href="#builderpy"></a> <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></h5>
+<h5 id="builder-py"><a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></h5>
 <p>只有 load_pretrained_model 一个函数, 在 <code>model_vqa.py</code>, <code>pope_eval.py</code> 中被调用</p>
 <ol>
 <li>
@@ -984,8 +984,8 @@
 <p>返回 tokenizer, model, image_processor, context_len</p>
 </li>
 </ol>
-<h4 id="train_dpopy"><a class="markdownIt-Anchor" href="#train_dpopy"></a> train_dpo.py</h4>
-<h5 id="train_dpopy-语法解读"><a class="markdownIt-Anchor" href="#train_dpopy-语法解读"></a> train_dpo.py 语法解读</h5>
+<h4 id="train-dpo-py">train_dpo.py</h4>
+<h5 id="train-dpo-py-语法解读">train_dpo.py 语法解读</h5>
 <p>deepspeed 库的代码偏向工程, 这里写一些 Python 里的用法</p>
 <ol>
 <li>
@@ -1047,7 +1047,7 @@
 <p><code>@abstractmethod</code> 是 Python 中的一个装饰器, 用于声明抽象方法. 抽象方法是一个在抽象类中定义的方法, 它只有方法签名而没有具体实现. 在 Python 中, 抽象方法是通过 abc 模块中的 ABC 基类和 abstractmethod 装饰器来定义的. 使用 <code>@abstractmethod</code> 装饰器修饰的方法必须在包含该装饰器的类的子类中进行实现. 如果子类没有实现被装饰的方法, 那么在实例化子类时会抛出 TypeError 异常</p>
 </li>
 </ol>
-<h5 id="train_dpopy-代码解读"><a class="markdownIt-Anchor" href="#train_dpopy-代码解读"></a> train_dpo.py 代码解读</h5>
+<h5 id="train-dpo-py-代码解读">train_dpo.py 代码解读</h5>
 <p><strong>如有必要, 请读源码</strong></p>
 <ol>
 <li>
@@ -1108,8 +1108,8 @@
 </ul>
 </li>
 </ol>
-<h3 id="修改代码-dev"><a class="markdownIt-Anchor" href="#修改代码-dev"></a> 修改代码 (dev)</h3>
-<h4 id="train_dpo_postpy"><a class="markdownIt-Anchor" href="#train_dpo_postpy"></a> train_dpo_post.py</h4>
+<h3 id="修改代码-dev">修改代码 (dev)</h3>
+<h4 id="train-dpo-post-py">train_dpo_post.py</h4>
 <p><strong>训练参数</strong></p>
 <ol>
 <li>增加了 <code>tune_lm_head</code>, ‘tune_post_decoder’ 参数和相关的梯度调整</li>
@@ -1119,7 +1119,7 @@
 <ol>
 <li>(TODO) SaverCallBack: 改变 if 判断条件</li>
 </ol>
-<h4 id="base_dpo_trainer_postpy"><a class="markdownIt-Anchor" href="#base_dpo_trainer_postpy"></a> base_dpo_trainer_post.py</h4>
+<h4 id="base-dpo-trainer-post-py">base_dpo_trainer_post.py</h4>
 <p>(TODO) 修改 reference model 相关的代码</p>
 <ol>
 <li>
@@ -1129,7 +1129,7 @@
 <p><s>(TODO: check) policy_model 是 <code>ha_dpo/models/llava-v1_5/llava/model/language_model/llava_llama.py</code> 的 <code>LlavaLlamaForCausalLM</code> 实例, 该实例中有 <code>get_model</code> 函数, 使用该方法可以得到 reference model 的模型 (因为没有使用lora)</s></p>
 </li>
 </ol>
-<h4 id="llava_llama_postpy-dev"><a class="markdownIt-Anchor" href="#llava_llama_postpy-dev"></a> llava_llama_post.py (dev)</h4>
+<h4 id="llava-llama-post-py-dev">llava_llama_post.py (dev)</h4>
 <p><strong>LlavaLlamaModel 类</strong></p>
 <p><code>LlavaLlamaModel</code> 类定义了 llava 的 backbone, 继承自 <code>LlavaMetaModel</code> 和 <code>LlamaModel</code>, 父类都是 <code>ha_dpo/models/llava-v1_5/llava/model/llava_arch.py</code> 定义的类.</p>
 <p><code>LlavaLlamaForCausalLM</code> 类继承自 <code>LlamaForCausalLM</code> 和 <code>LlavaMetaForCausalLM</code>, 该类的初始化与其父类 <code>LlamaForCausalLM</code> 相同, 父类是 transformers 库中 llama 的模块. 在 <code>train_dpo.py</code> 文件中, 以下代码定义了该类的初始化输入</p>
@@ -1164,13 +1164,13 @@
 </li>
 </ol>
 <p>TODO: 修改 <code>llava_llama_post.py</code> 内的新父类, 并由其文件夹下的子类继承</p>
-<h4 id="增加文件夹-multimodal_post_decoder-dev"><a class="markdownIt-Anchor" href="#增加文件夹-multimodal_post_decoder-dev"></a> 增加文件夹 multimodal_post_decoder (dev)</h4>
+<h4 id="增加文件夹-multimodal-post-decoder-dev">增加文件夹 multimodal_post_decoder (dev)</h4>
 <p>文件夹内有 <code>builder.py</code>, <code>configuration_post_decoder.py</code>, ‘modelling_post_decoder.py’, ‘post_decoder.py’</p>
-<h5 id="builderpy-2"><a class="markdownIt-Anchor" href="#builderpy-2"></a> <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></h5>
+<h5 id="builder-py"><a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></h5>
 <p>没有用到, 借鉴 CLIP 的 <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></p>
-<h5 id="configuration_post_decoderpy"><a class="markdownIt-Anchor" href="#configuration_post_decoderpy"></a> configuration_post_decoder.py</h5>
+<h5 id="configuration-post-decoder-py">configuration_post_decoder.py</h5>
 <p>借鉴 CLIP 的 CLIPVisionConfig, CLIPTextConfig 和 CLIPConfig, 写出 PostDecoderBackboneConfig, PostDecoderVisionConfig, PostDecoderConfig</p>
-<h5 id="modeling_post_decoderpy"><a class="markdownIt-Anchor" href="#modeling_post_decoderpy"></a> modeling_post_decoder.py</h5>
+<h5 id="modeling-post-decoder-py">modeling_post_decoder.py</h5>
 <p>斗胆扒源码, 写一下 transformers 库 QAQ</p>
 <p>TODO list:</p>
 <ol>
@@ -1233,12 +1233,12 @@
 <li></li>
 </ol>
 <p>需要注意 super().forward,</p>
-<p>&quot;<br />
+<p>&quot;<br>
 在Python中，super().forward()会调用父类的forward()函数，但它所使用的self是子类的实例。这意味着，当你在子类的forward()函数中使用super().forward()调用父类的方法时，父类的forward()函数中使用的self.model将引用子类中的model。</p>
 <p>因此，如果子类和父类都定义了self.model，而在子类的forward()函数中调用了super().forward()，那么父类的forward()函数中使用的self.model将是子类中定义的model。&quot;</p>
-<h5 id="post_decoderpy"><a class="markdownIt-Anchor" href="#post_decoderpy"></a> post_decoder.py</h5>
-<p>😃</p>
-<h3 id="测试中的发现"><a class="markdownIt-Anchor" href="#测试中的发现"></a> 测试中的发现</h3>
+<h5 id="post-decoder-py">post_decoder.py</h5>
+<p>:)</p>
+<h3 id="测试中的发现">测试中的发现</h3>
 <ol>
 <li>将 SaverCallBack 中的 on_train_end 方法 (经检测, **kwargs 继承了 TrainerCallback 的初始化参数)拿出来测试</li>
 </ol>
@@ -1279,7 +1279,7 @@
 <ol start="7">
 <li><code>llava_arch_post.py</code> 的 <code>encode_images</code> 里可以获得 vision_tower 和 projector 的输出, 得到 vision_tower 输出 shape [<em>, 576, 1024], image_features 输出 shape [</em>, 576, 4096]</li>
 </ol>
-<h3 id="替换-bin-文件"><a class="markdownIt-Anchor" href="#替换-bin-文件"></a> 替换 bin 文件</h3>
+<h3 id="替换-bin-文件">替换 bin 文件</h3>
 <ol>
 <li>
 <p>若仅替换 head:</p>
@@ -1289,14 +1289,14 @@
 <p>替换 head 和 post decoder</p>
 </li>
 </ol>
-<h2 id="训练日志中的问题"><a class="markdownIt-Anchor" href="#训练日志中的问题"></a> 训练日志中的问题</h2>
+<h2 id="训练日志中的问题">训练日志中的问题</h2>
 <ol>
 <li>
 <p>Could not estimate the number of tokens of the input, floating-point operations will not be computed</p>
 <p>huggingface 上的<a target="_blank" rel="noopener" href="https://discuss.huggingface.co/t/get-warning-could-not-estimate-the-number-of-tokens-of-the-input-floating-point-operations-will-not-be-computed-when-use-a-customize-trainer-and-customize-data-collator/18517">讨论</a></p>
 </li>
 <li>
-<p>warnings.warn(<br />
+<p>warnings.warn(<br>
 /home/cuiruochen/HA-DPO/ha_dpo/trainer/llava_dpo_trainer_origin.py:135: UserWarning: compute_loss is only implemented for DPODataCollatorWithPadding, and you passed a datacollator that is different than DPODataCollatorWithPadding - you might see unexpected behavior. Alternatively, you can implement your own prediction_step method if you are using a custom data collator</p>
 </li>
 <li>
@@ -1318,17 +1318,17 @@
 <p>aten/src/ATen/native/cuda/Indexing.cu:1146: indexSelectLargeIndex: block: [488,0,0], thread: [0,0,0] Assertion <code>srcIndex &lt; srcSelectDimSize</code> failed. CSDN</p>
 </li>
 <li>
-<p>RuntimeError: CUDA error: device-side assert triggered<br />
-CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.<br />
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.<br />
+<p>RuntimeError: CUDA error: device-side assert triggered<br>
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.<br>
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.<br>
 Compile with <code>TORCH_USE_CUDA_DSA</code> to enable device-side assertions.</p>
 </li>
 <li>
 <p>…/aten/src/ATen/native/cuda/Indexing.cu…/aten/src/ATen/native/cuda/Indexing.cu:1146:1146: indexSelectLargeIndex: indexSelectLargeIndex: block: [464: block: [492,0,0,0,0], thread: [84], thread: [108,0,0,0,0] Assertion <code>srcIndex &lt; srcSelectDimSize] Assertion </code>srcIndex &lt; srcSelectDimSize<code>failed.</code> failed.</p>
 </li>
 <li>
-<p>RuntimeError: CUDA error: device-side assert triggered<br />
-CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.<br />
+<p>RuntimeError: CUDA error: device-side assert triggered<br>
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.<br>
 For debugging consider passing CUDA_LAUNCH_BLOCKING=1.</p>
 </li>
 <li>
@@ -1338,9 +1338,9 @@ For debugging consider passing CUDA_LAUNCH_BLOCKING=1.</p>
 <p>calling `cublasGemmStridedBatchedExFix( handle, opa, opb, m, n, k, (void*)(&amp;falpha), a, CUDA_R_16F, lda, stridea, b, CUDA_R_16F, ldb, strideb, (void*)(&amp;fbeta), c, CUDA_R_16F, ldc, stridec, num_batches, CUDA_R_32F, CUBLAS_GEMM_DEFAULT_TENSOR_OP)</p>
 </li>
 </ol>
-<h2 id="baseline测试"><a class="markdownIt-Anchor" href="#baseline测试"></a> baseline测试</h2>
+<h2 id="baseline测试">baseline测试</h2>
 <p>根据 HA-DPO 给出<a href="ha_dpo/models/llava-v1_5/README.md">教程</a>, 进行 Evaluation</p>
-<h3 id="pope-evaluation"><a class="markdownIt-Anchor" href="#pope-evaluation"></a> POPE Evaluation</h3>
+<h3 id="pope-evaluation">POPE Evaluation</h3>
 <p><strong><em>step 1.</em></strong> 输入以下指令,</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torchrun --nproc_per_node 1 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval.py \</span><br><span class="line">    --coco_path ha_dpo/data/coco2014 \</span><br><span class="line">    --pope_path ha_dpo/data/POPE \</span><br><span class="line">    --model-path /home/cuiruochen/model/llava-v1.5-7b \</span><br><span class="line">    --model-base liuhaotian/llava-v1.5-7b \</span><br><span class="line">    --set &#123;random/popular/adv&#125;</span><br></pre></td></tr></table></figure>
 <ol>
@@ -1351,21 +1351,21 @@ For debugging consider passing CUDA_LAUNCH_BLOCKING=1.</p>
 </ol>
 <p>在服务器上我使用的指令为:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torchrun --nproc_per_node 8 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval.py \</span><br><span class="line">    --coco_path ha_dpo/data/coco2014 \</span><br><span class="line">    --pope_path ha_dpo/data/POPE \</span><br><span class="line">    --model-path /home/cuiruochen/model/llava-v1.5-7b \</span><br><span class="line">    --set popular</span><br></pre></td></tr></table></figure>
-<p>CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval_post.py <br />
-–coco_path ha_dpo/data/coco2014 <br />
-–pope_path ha_dpo/data/POPE <br />
-–model-path /home/cuiruochen/model/llava-v1.5-7b-train_postv1-20240331-bs-1-1-16 <br />
+<p>CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval_post.py <br>
+–coco_path ha_dpo/data/coco2014 <br>
+–pope_path ha_dpo/data/POPE <br>
+–model-path /home/cuiruochen/model/llava-v1.5-7b-train_postv1-20240331-bs-1-1-16 <br>
 –set popular</p>
-<p>CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval.py <br />
-–coco_path ha_dpo/data/coco2014 <br />
-–pope_path ha_dpo/data/POPE <br />
-–model-path /home/cuiruochen/model/llava-v1.5-7b <br />
+<p>CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval.py <br>
+–coco_path ha_dpo/data/coco2014 <br>
+–pope_path ha_dpo/data/POPE <br>
+–model-path /home/cuiruochen/model/llava-v1.5-7b <br>
 –set popular</p>
-<p>CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval_post.py <br />
-–coco_path ha_dpo/data/coco2014 <br />
-–pope_path ha_dpo/data/POPE <br />
-–model-path /home/cuiruochen/HA-DPO/ha_dpo/results/train_post-20240331-bs1-1-16/llava-origin <br />
-–model-base /home/cuiruochen/model/llava-v1.5-7b <br />
+<p>CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval_post.py <br>
+–coco_path ha_dpo/data/coco2014 <br>
+–pope_path ha_dpo/data/POPE <br>
+–model-path /home/cuiruochen/HA-DPO/ha_dpo/results/train_post-20240331-bs1-1-16/llava-origin <br>
+–model-base /home/cuiruochen/model/llava-v1.5-7b <br>
 –set popular</p>
 <p>这一指令执行时间较长, 使用两张 3090, 各占用显存 15G, 约 18min; 8 卡 3090 约 5 分钟</p>
 <p><strong>note:</strong> 在 LLaVA 给出的 python==3.10 环境中, 在 torchrun 过程中会报错. 原因未知, 怀疑是 llava 环境重名产生报错</p>
@@ -1375,10 +1375,10 @@ For debugging consider passing CUDA_LAUNCH_BLOCKING=1.</p>
 <p>可以使用<code>CUDA_VISIBLE_DEVICES</code>指定使用哪几张显卡. 不使用该指令同时指定<code>nproc_per_node</code>大于1, 会默认使用序号为 0 到 nproc_per_node-1 的显卡</p>
 </li>
 <li>
-<p>(官方推荐, 可拓展到多机多卡) 在命令指定的 <code>pope_eval.py</code> 文件中可以修改来指定使用哪几张显卡. 值得注意的是, 分布式运行指令 <code>torch.distributed.launch</code> 已经被遗弃, 现在都使用torchrun, 详情见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/elastic/run.html">官方文档</a>. “Note that --use-env is set by default in torchrun.<br />
-If your script expects <code>--local-rank</code> argument to be set, please<br />
-change it to read from <code>os.environ['LOCAL_RANK']</code> instead. See<br />
-<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/distributed.html#launch-utility">https://pytorch.org/docs/stable/distributed.html#launch-utility</a> for<br />
+<p>(官方推荐, 可拓展到多机多卡) 在命令指定的 <code>pope_eval.py</code> 文件中可以修改来指定使用哪几张显卡. 值得注意的是, 分布式运行指令 <code>torch.distributed.launch</code> 已经被遗弃, 现在都使用torchrun, 详情见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/elastic/run.html">官方文档</a>. “Note that --use-env is set by default in torchrun.<br>
+If your script expects <code>--local-rank</code> argument to be set, please<br>
+change it to read from <code>os.environ['LOCAL_RANK']</code> instead. See<br>
+<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/distributed.html#launch-utility">https://pytorch.org/docs/stable/distributed.html#launch-utility</a> for<br>
 further instructions”.</p>
 </li>
 </ol>
@@ -1506,10 +1506,10 @@ further instructions”.</p>
 </tr>
 </tbody>
 </table>
-<p>Accuracy: 0.8966666666666666<br />
-Precision: 0.8888888888888888<br />
-Recall: 0.9066666666666666<br />
-F1 score: 0.8976897689768976<br />
+<p>Accuracy: 0.8966666666666666<br>
+Precision: 0.8888888888888888<br>
+Recall: 0.9066666666666666<br>
+F1 score: 0.8976897689768976<br>
 Yes ratio: 0.51</p>
 <p>使用 8 卡 3090, 仅训练 head, 未定义 ref_model, 得到结果:</p>
 <table>
@@ -1588,7 +1588,7 @@ Yes ratio: 0.51</p>
 </tr>
 </tbody>
 </table>
-<h2 id="todo"><a class="markdownIt-Anchor" href="#todo"></a> TODO</h2>
+<h2 id="todo">TODO</h2>
 <ol>
 <li>
 <ul>
@@ -1620,9 +1620,9 @@ Yes ratio: 0.51</p>
 </ul>
 </li>
 </ol>
-<h2 id="maybe-useful"><a class="markdownIt-Anchor" href="#maybe-useful"></a> maybe useful</h2>
+<h2 id="maybe-useful">maybe useful</h2>
 <p><a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/issues/948">mm_projector issue</a></p>
-<h2 id="几个问题"><a class="markdownIt-Anchor" href="#几个问题"></a> 几个问题</h2>
+<h2 id="几个问题">几个问题</h2>
 <ol>
 <li>
 <p>flash-attn 和 xformers</p>
@@ -1686,9 +1686,9 @@ Yes ratio: 0.51</p>
 </li>
 <li>
 <p>Tensor Parallel</p>
-<p>对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mi>X</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">Y = XA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mord mathnormal">A</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 的形状分别为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b, c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span>, 有两种切分方式进行分块计算:</p>
+<p>对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mi>X</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">Y = XA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord mathdefault">A</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 的形状分别为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b, c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">c</span><span class="mclose">)</span></span></span></span>, 有两种切分方式进行分块计算:</p>
 <ul>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 沿着第二维切分为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 份, 每一份的形状为 <span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \split at position 14: (b ,c_{\text{\̲s̲p̲l̲i̲t̲}})'>(b ,c_{\text{\split}})</span>, 每一份放在一个 GPU 上与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 相乘, 得到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><msub><mi>c</mi><mtext>split</mtext></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, c_{\text{split}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">split</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, 最后将各个 GPU 上的结果按照第二维进行顺序拼接 (all_gather 通信操作), 得到最终结果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 沿着第二维切分为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 份, 每一份的形状为 <span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \split at position 14: (b ,c_{\text{\̲s̲p̲l̲i̲t̲}})'>(b ,c_{\text{\split}})</span>, 每一份放在一个 GPU 上与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span> 相乘, 得到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><msub><mi>c</mi><mtext>split</mtext></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, c_{\text{split}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">split</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, 最后将各个 GPU 上的结果按照第二维进行顺序拼接 (all_gather 通信操作), 得到最终结果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span></li>
 </ul>
 </li>
 <li>
@@ -1711,10 +1711,10 @@ Yes ratio: 0.51</p>
 <li>BF16: Google 在 TensorFlow 中引入的数据类型, 可以认为是将 FP32 的前16位截取获得的</li>
 <li>符号位 S, 指数偏移位 E, 分数值 M, FP32-1-8-32, TF32-1-8-10, FP16-1-5-10, BF1-8-7</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-a90125ad6dc18102767b3b8ac02a405b_1440w.image" alt="图示" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-a90125ad6dc18102767b3b8ac02a405b_1440w.image" alt="图示"></p>
 </li>
 </ol>
-<h2 id="acknowledge"><a class="markdownIt-Anchor" href="#acknowledge"></a> Acknowledge</h2>
+<h2 id="acknowledge">Acknowledge</h2>
 
   </article>
 
@@ -1725,7 +1725,7 @@ Yes ratio: 0.51</p>
   ">
     <div>
       
-        <a href="/2024/04/10/mllm/%E5%A4%9A%E6%A8%A1%E6%80%81MLLM(Multimodal-Large-Language%20Models)/"
+        <a href="/2024/04/10/llm/CoT(Chain-of-Thought)/"
           class="
             transition-all
             flex justify-center
@@ -1734,7 +1734,7 @@ Yes ratio: 0.51</p>
           ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          MLLMs 笔记
+          CoT in LLMs 笔记
         </a>
       
     </div>
