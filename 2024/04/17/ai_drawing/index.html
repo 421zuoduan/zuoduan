@@ -546,7 +546,7 @@
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-04-17</time>
+              Edited: <time class="w-max">2024-04-25</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -561,7 +561,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>496 words, 1 min</span>
+              <span>924 words, 3 min</span>
             </span>
             <!-- Categories -->
             
@@ -647,29 +647,31 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="资源下载">资源下载</h1>
-<h2 id="webui-资源整合包">WebUI 资源整合包</h2>
+    <h1 id="ai-绘图笔记"><a class="markdownIt-Anchor" href="#ai-绘图笔记"></a> AI 绘图笔记</h1>
+<h2 id="资源下载"><a class="markdownIt-Anchor" href="#资源下载"></a> 资源下载</h2>
+<h3 id="webui-资源整合包"><a class="markdownIt-Anchor" href="#webui-资源整合包"></a> WebUI 资源整合包</h3>
 <p>按照<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iM4y1y7oA/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ac32ad3a164f0885799c00267b582e94">b站视频</a>教程进行下载, 已经更新到 v4.7</p>
-<p>夸克网盘: <a target="_blank" rel="noopener" href="https://pan.quark.cn/s/2c832199b09b">链接</a><br>
+<p>夸克网盘: <a target="_blank" rel="noopener" href="https://pan.quark.cn/s/2c832199b09b">链接</a><br />
 百度网盘: <a target="_blank" rel="noopener" href="https://pan.quark.cn/s/1trvEUi64NZFGwTmAKya9Zw">链接</a> 提取码:672p</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22661198/">快速开始</a><br>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22661198/">快速开始</a><br />
 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22159609/">教程</a></p>
-<h2 id="代理设置">代理设置</h2>
+<h3 id="代理设置"><a class="markdownIt-Anchor" href="#代理设置"></a> 代理设置</h3>
 <p>我选择使用代理暴力下载所有资源, 不使用国内镜像, 在设置中进行具体操作. 如果使用 Clash, 代理端口默认是 7890. 勾选所有 “将代理应用到xxx”, 取消勾选 “PyPI国内镜像”, “Git国内镜像”, “HuggingFace国内镜像”, “替换扩展列表链接”.</p>
-<h1 id="插件安装">插件安装</h1>
+<h2 id="插件安装"><a class="markdownIt-Anchor" href="#插件安装"></a> 插件安装</h2>
 <p>由于蓝桥杯的视频教程中用到了 roop 插件, 这里以 roop 为例进行安装.</p>
-<h2 id="roop-下载">roop 下载</h2>
+<h3 id="roop-下载"><a class="markdownIt-Anchor" href="#roop-下载"></a> roop 下载</h3>
 <p>感谢前人的<a target="_blank" rel="noopener" href="https://github.com/s0md3v/sd-webui-roop">馈赠</a></p>
 <ol>
 <li>将 repo 克隆到 extensions 文件夹中</li>
 <li>在整合包的 “高级选项-环境维护-重装单个 Python 组件” 中安装 ifnude 包 (只需输入安装包名称即可)</li>
 <li>根据教程, 如果有 Nonetype 的一个有关驱动的问题, 需要下载一个 onnx 文件并替换. 这里我没有这个问题,</li>
 </ol>
-<h1 id="魔法导论笔记">魔法导论笔记</h1>
+<h2 id="魔法导论笔记"><a class="markdownIt-Anchor" href="#魔法导论笔记"></a> 魔法导论笔记</h2>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22159609/">链接</a></p>
 <p>作者：秋葉aaaki <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22661198/">https://www.bilibili.com/read/cv22661198/</a> 出处：bilibili</p>
-<h2 id="设置">设置</h2>
-<h3 id="tag">Tag</h3>
+<h2 id="文生图"><a class="markdownIt-Anchor" href="#文生图"></a> 文生图</h2>
+<h3 id="设置"><a class="markdownIt-Anchor" href="#设置"></a> 设置</h3>
+<h4 id="tag"><a class="markdownIt-Anchor" href="#tag"></a> Tag</h4>
 <p>常用正向 Tag: masterpiece, best quality</p>
 <p>常用反向 Tag: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry</p>
 <p>如果你不知道那些 Tag 好，可以使用<a target="_blank" rel="noopener" href="https://tags.novelai.dev/">标签超市</a></p>
@@ -685,9 +687,62 @@
 <p>(girl:1.5) 指定倍数，这里是1.5倍的权重。还可以 (girl:0.9) 达到减权重的效果</p>
 </li>
 </ul>
-<h3 id="放大图片">放大图片</h3>
+<h3 id="放大图片"><a class="markdownIt-Anchor" href="#放大图片"></a> 放大图片</h3>
 <p>AI 基本上无法生成超级大图，想要生成高清图片正确的做法是分辨率调小, 比如512x768, 然后开启 “高清修复”. 作者的推荐</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/74521aafd205a243fa95f4d243a4e7d73a841943.png@1256w_340h_!web-article-pic.avif" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/74521aafd205a243fa95f4d243a4e7d73a841943.png@1256w_340h_!web-article-pic.avif" alt="img" /></p>
+<h2 id="图生图"><a class="markdownIt-Anchor" href="#图生图"></a> 图生图</h2>
+<p>可以全部修改, 部分修改, 指定颜色修改</p>
+<h2 id="查询图片参数"><a class="markdownIt-Anchor" href="#查询图片参数"></a> 查询图片参数</h2>
+<p>AI 生成图片会自动保存全部参数到原图中, 在WebUI的 “图片信息” 一栏可通过解析原图看到</p>
+<h2 id="controlnet-精细控制画面"><a class="markdownIt-Anchor" href="#controlnet-精细控制画面"></a> ControlNet 精细控制画面</h2>
+<h3 id="预训练-模型介绍"><a class="markdownIt-Anchor" href="#预训练-模型介绍"></a> 预训练 + 模型介绍</h3>
+<p>ControlNet 对文生图可以控制人物姿势/深度/线稿上色控制</p>
+<p>预处理器 + 模型</p>
+<ul>
+<li>
+<p>None, 有骨骼图</p>
+</li>
+<li>
+<p>canny + control_canny模型, 边缘检测, 达到上色效果. 可以使用 lineart 和 lineart_anime 替换原来的 canny 模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104241159.png" alt="image-20240425104241159" /></p>
+</li>
+<li>
+<p>depth + control_depth模型, 深度图, 达到指定画面结构. 新版本可以用Leres++ 或 Zoe 预处理器, 再使用 Depth 模型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104255422.png" alt="image-20240425104255422" /></p>
+</li>
+<li>
+<p>hed + contorl_head模型, 没有 canny 那么精准的控制, AI自由发挥更多</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104123719.png" alt="image-20240425104123719" /></p>
+</li>
+<li>
+<p>OpenPose+control_openpose模型, 人体动作控制</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104213716.png" alt="image-20240425104213716" /></p>
+</li>
+<li>
+<p>MLSD 线段图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104457206.png" alt="image-20240425104457206" /></p>
+</li>
+<li>
+<p>Scribble 手绘图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104514744.png" alt="image-20240425104514744" /></p>
+</li>
+</ul>
+<h3 id="人设三视图"><a class="markdownIt-Anchor" href="#人设三视图"></a> 人设三视图</h3>
+<p>lora使用, 在正向Tag里最后一行加入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;lora:charturnbetalora:0.2&gt;</span><br></pre></td></tr></table></figure>
+<p>这里使用 0.2-0.6 间的数字即可</p>
+<p>高清修复 (Denoising) 设置为 0.6</p>
+<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
+<p>模型命名方式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110232900.png" alt="image-20240425110232900" /></p>
+<p>Lineart 模型, 强大的线稿上色能力</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110637428.png" alt="image-20240425110637428" /></p>
+<p>Instruct Pix2Pix, 按照指令/tag 局部整体操纵图像程度的能力. eg. 变为夜晚. 效果不稳定</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110738814.png" alt="image-20240425110738814" /></p>
+<p>Tile 模型, 增加局部细节, 根据画面自动退段内容, 修复直接拉大分辨率导致的细节丢失. 如果局部内容与全局提示词不匹配, 则忽略掉提示词, 根据局部信息推断当前去雨内容</p>
+<p>Shuffle 打乱重建 / 风格迁移</p>
+<h2 id="更换模型"><a class="markdownIt-Anchor" href="#更换模型"></a> 更换模型</h2>
+<p>常见模型: 大模型, Embedding 模型, Hypernet 模型, LoRA 模型. 常用的是大模型和 LoRA 模型</p>
 
   </article>
 
@@ -722,7 +777,7 @@
             hover:text-[var(--c-100)]
           "
         >
-          
+           PPT/文档制作笔记
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
