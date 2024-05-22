@@ -545,7 +545,7 @@ A second year undergraduate student at UESTC
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-05-12</time>
+              Edited: <time class="w-max">2024-05-13</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -560,7 +560,7 @@ A second year undergraduate student at UESTC
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>115 words, 1 min</span>
+              <span>149 words, 1 min</span>
             </span>
             <!-- Categories -->
             
@@ -633,7 +633,7 @@ A second year undergraduate student at UESTC
 <hr />
 <p><strong>scp 传文件</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r /home/cuiruochen/model/weighs.zip  root@shi.kongfei.life:22:/home/root/model/weights.zip</span><br></pre></td></tr></table></figure>
-<!-- scp -r /home/cuiruochen/model/llava-v1.5-7b-train_postv8-20240423-bs-2-1-16-epoch-2-gpu-4-lr-5e-7.zip  wuzongqian@shi.kongfei.life:22:/home/wuzongqian/model/weights.zip -->
+<!-- scp -r /home/cuiruochen/llava-v1.5-7b-train_postv8-20240423-bs-2-1-16-epoch-2-gpu-4-lr-5e-7.zip  wuzongqian@shi.kongfei.life:22:/home/wuzongqian/model/llava-v1.5-7b-train_postv8-20240423-bs-2-1-16-epoch-2-gpu-4-lr-5e-7.zip -->
 <p><code>-r</code> 代表递归</p>
 <p><strong><code>nohup</code> 后台运行程序并重定向输出</strong></p>
 <p>使用 <code>nohup</code> 指令后台运行程序并读取 <code>nohup.out</code> 文件</p>
@@ -643,6 +643,14 @@ A second year undergraduate student at UESTC
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f nohup.out</span><br></pre></td></tr></table></figure>
 <p>后台运行并输出重定向</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup sh your_command.sh &gt; output 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p><strong>hexo 博客上传</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p><strong>查看 linux 版本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
+<p><strong>程序运行到指定位置退出</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">sys.exit(0)</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit(0)</span><br></pre></td></tr></table></figure>
 
   </article>
 
@@ -652,6 +660,18 @@ A second year undergraduate student at UESTC
     gap-2 text-[var(--c-50)]
   ">
     <div>
+      
+        <a href="/2024/05/19/%E7%A2%8E%E7%A2%8E%E5%BF%B5/%E9%B1%BC-20240519/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          鱼-20240519
+        </a>
       
     </div>
     <div>
