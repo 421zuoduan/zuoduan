@@ -564,7 +564,7 @@ A second year undergraduate student at UESTC
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>1.6k words, 6 min</span>
+              <span>2.1k words, 7 min</span>
             </span>
             <!-- Categories -->
             
@@ -684,8 +684,7 @@ A second year undergraduate student at UESTC
 <p>多模态大模型结构建立在预训练好的视觉模型和语言模型上, 并使用 Adapter 连接不同模态, 显然预训练视觉模型中的问题也会级联到下游 MLLM 中.</p>
 <p>当前大多数开源 MLLM 采用 CLIP 作为 Vision Encoder, 不过 CLIP 对某些 instance 无法正确编码, 也即视觉上有明显差距但是在 Embedding 上却十分相似. 作者称两张这样的图片为 “CLIP-blind-pairs”.</p>
 <p>为了进一步测量图像间的视觉相似性, 作者使用 SSL 方法 (具体是 DINOv2) 对图像重新编码, 因此上面的 CLIP 盲对应该具有相似的 CLIP Embedding 和不相似的 DINOv2 Embedding. 作者认为这些盲对会导致下游 MLLM 出错.</p>
-<p>通过上面的盲对, 作者引入了 MMVP Benchmark, 用以评估不同模型对 CLIP 盲对的差异. 这里的 MMVP Benchmark</p>
-<p>识别出 MLLM 中的盲对后, 作者进一步将 MMVP 中的盲对分为了九种常见的视觉模式, 其中大部分模式通过 scale up 和加数据的方法是无法进一步判别的. 这说明 CLIP 作为 Vision Encoder 存在不可避免的问题.</p>
+<p>通过上面的盲对, 作者引入了 MMVP Benchmark, 用以评估不同模型对 CLIP 盲对的差异. 这里的 MMVP Benchmark 别出 MLLM 中的盲对后, 作者进一步将 MMVP 中的盲对分为了九种常见的视觉模式, 其中大部分模式通过 scale up 和加数据的方法是无法进一步判别的. 这说明 CLIP 作为 Vision Encoder 存在不可避免的问题.</p>
 <p>为了改善 MLLM 的视觉基础, 作者探索了 MLLM 与 SSL 模型结合的方法, 提出了 Mixture of Features (MoF), 改进后提出了 Additive-MoF (A-MoF) 和 Interleaved MoF (I-MoF)</p>
 <h1 id="mmvp-benchmark"><a class="markdownIt-Anchor" href="#mmvp-benchmark"></a> MMVP Benchmark</h1>
 <p>作者展示了 Intro 中提到的, 盲对在 CLIP Embedding 和 DINOv2 Embedding 上的相似性, 结果表示盲对在 CLIP 上很相似, 但是在 DINO 上没有很相似.</p>
@@ -707,6 +706,11 @@ A second year undergraduate student at UESTC
 </blockquote>
 <p>加大图像分辨率基本没用, 加大模型参数有少量的作用</p>
 <h1 id="我的思考"><a class="markdownIt-Anchor" href="#我的思考"></a> 我的思考</h1>
+<p>这篇文章有杨立昆和谢赛宁的参与, 作者童晟邦是杨立昆的博士. 文章的思路 follow 作者在 2023 NIPS 的一篇工作, 那篇文章主要做的是识别 Vision Encoder 中的系统故障, 并用自然语言加以描述.</p>
+<p>当前多模态大模型主要由预训练好的语言模型和视觉模型组成, 视觉模型的缺陷也会被带入 MLLM. 所以作者尝试分析 CLIP 的缺陷, 发现一些视觉有明显差异的图片对在 CLIP 处理后的 Embedding 上具有明显的相似特征, 作者称这样的图片对为 CLIP 盲对. 如何进一步判别出 CLIP 盲对呢? 作者用自监督的方法同样处理了图片对, 发现处理后的 Embedding 明显不一样. 这里判定 CLIP Embedding 相似而 DINO Embedding 不相似的图片对为 CLIP 盲对.</p>
+<p>作者在 CLIP 盲对的基础上构建了 MMVP Benchmark, 用以评估多模态大模型在 CLIP 盲对上的判别效果. 进一步将 MMVP 中的 150 对盲对分为 9 种容易分错的视觉模式, 证明了其中一部分视觉模式在 CLIP 方法上无法通过 scale up 和加数据的方法解决.</p>
+<p>作者从而提出了他的解决方法, Mixture-of-Features, 使用 CLIP 和 DINOv2 作为两个 Vision Encoder, 将二者处理后的 Embedding 交错得到输入进 LLM 的Embedding.</p>
+<p>实验部分有一个比较有意思的地方, 在 ImageNet-1K 上表现很好的模型, 在 MMVP Benchmark 上效果却各不相同; 在 ImageNet-1K 上表现不好的模型, 在两个数据集上的效果表现趋势相同. 这可能说明了当前多模态大模型在既有结构和训练数据确定的情况下, 多模态大模型可能达到了某种效果的上限?</p>
 
   </article>
 
@@ -716,6 +720,18 @@ A second year undergraduate student at UESTC
     gap-2 text-[var(--c-50)]
   ">
     <div>
+      
+        <a href="/2024/07/08/BaoYan/SummerCamp/SummerCamp-RUC/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          中国人民大学信息学院夏令营回顾
+        </a>
       
     </div>
     <div>
