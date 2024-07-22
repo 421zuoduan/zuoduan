@@ -24,7 +24,7 @@ A third year undergraduate student at UESTC
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
 
 
-<title>Tag: CoT | Ruochen Cui</title>
+<title>InternVL Series | Ruochen Cui</title>
 
 
 
@@ -516,103 +516,94 @@ A third year undergraduate student at UESTC
   </div>
 </div>
   <main>
-    <section class="px-2 py-8 max-w-prose mx-auto gap-4 grid grid-cols-1">
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
   
-  <!-- Sort posts by date -->
-  
-  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
     
-    <!-- Large text showing the year in the background -->
-    
-      <div class="relative pointer-events-none h-[30px]">
-        <div class="absolute -top-6 w-[100%]">
-          <p class="
-            text-clip overflow-hidden -translate-x-3 text-9xl
-            font-extrabold
-            text-[var(--c-theme)]
-            opacity-10
-            dark:opacity-20">
-            2024
-          </p>
-        </div>
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">InternVL Series</p>
       </div>
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/2024/04/10/llm/CoT(Chain-of-Thought)/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                        CoT in LLMs 笔记
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-07-21</time>
             </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-04-10
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-04-11
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    2.2k words, 8 min
-                </p>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-07-22</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>崔若晨 Ruochen Cui</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>786 words, 3 min</span>
             </span>
             <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-                    <iconify-icon class="
-                            group-hover:scale-125
-                            transition-transform
-                            group-hover:text-[var(--c-theme)]
-                        "
-                        width="16"
-                        icon="mingcute:classify-2-fill" class="mr-0">
-                    </iconify-icon>
-                    
-                        <a class="underline underline-offset-2"
-                            href="/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                            研究-大模型
-                        </a>
-                    
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
             
-                
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
 <div class="flex flex-wrap gap-1">
   
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        RL
+      </a>
     
       <a href="/tags/research/" 
         class="
@@ -631,6 +622,25 @@ A third year undergraduate student at UESTC
           dark:hover:text-[var(--c-theme-2)]
         ">
         research
+      </a>
+    
+      <a href="/tags/mllms/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        mllms
       </a>
     
       <a href="/tags/deep-learning/" 
@@ -652,76 +662,229 @@ A third year undergraduate student at UESTC
         deep-learning
       </a>
     
-      <a href="/tags/paper/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        paper
-      </a>
-    
-      <a href="/tags/llms/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        llms
-      </a>
-    
-      <a href="/tags/CoT/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        CoT
-      </a>
-    
   
 </div>
-            
-        </div>
-</div>
+      </div>
     </div>
-  
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <h1 id="internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks"><a class="markdownIt-Anchor" href="#internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks"></a> InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks</h1>
+<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
+<ol>
+<li>Vision Encoder 和 LLM 参数量相当</li>
+<li>多语言一致性表示 (就是简单使用 LLaMA 初始化)</li>
+<li>渐进式的模态对齐方法, 先通过对比学习 pretrain, 然后过渡到对不同细粒度数据的学习</li>
+</ol>
+<h2 id="related-work"><a class="markdownIt-Anchor" href="#related-work"></a> Related Work</h2>
+<p>目前的 Vision Encoder 来自 ImageNet 或 JFT 等纯视觉数据集, 或对比学习得到的 ViT, 而且 Vision Encoder 的规模较小.</p>
+<h2 id="proposed-method"><a class="markdownIt-Anchor" href="#proposed-method"></a> Proposed Method</h2>
+<h3 id="overall-architecture"><a class="markdownIt-Anchor" href="#overall-architecture"></a> Overall Architecture</h3>
+<p>InternVL 使用类似 LLaVA 的结构</p>
+<blockquote>
+<p>As depicted in Figure 3, unlike traditional vision-only backbones [57, 94, 148] and dual-encoder models [67, 117, 130], the proposed InternVL is designed with a vision encoder InternViT-6B and a language middleware QLLaMA.</p>
+</blockquote>
+<p>提出 QLLaMA 作为 projector</p>
+<p>引入了渐进式模态对齐策略</p>
+<h3 id="model-design"><a class="markdownIt-Anchor" href="#model-design"></a> Model Design</h3>
+<ol>
+<li>
+<p>Large-Scale Vision Encoder: InternViT-6B</p>
+<p>为了和 LLMs 的尺度匹配, scale up 到 6B, 使用对比学习在 LAION-en 数据集的 100M 子集上训练</p>
+</li>
+<li>
+<p>Language Middleware: QLLaMA</p>
+<p>QLLaMA 是在 LLaMA 基础上, 使用 learnable queries 和 cross attention 训练得到的. QLLaMA 用于对齐模态, 大小为 8B</p>
+</li>
+<li>
+<p>“Swiss Army Knife” Model: InternVL</p>
+<p>灵活使用 InternViT-6B, QLLaMA 和 learnable queries, 可以完成各种任务</p>
+</li>
+</ol>
+<h3 id="alignment-strategy"><a class="markdownIt-Anchor" href="#alignment-strategy"></a> Alignment Strategy</h3>
+<ol>
+<li>对比学习, 将 InternViT 与 LLaMA-7B 对齐 (与CLIP 训练方法相同), 二者都训练</li>
+<li>使用生成式任务训练. 将 InternViT 与 QLLaMA (也即第一阶段中训练后的 LLaMA) 串联, 二者间加入 cross attention, 并使用 learnable queries (这里训练使用的任务都是同时使用 learnable queries 和 cross attention 的). 这里与 BLIP-2 的训练方法相似</li>
+<li>SFT. 将 InternViT 与 QLLaMA 与 LLM 通过 MLP 连接在一起, SFT 训练. 由于 QLLaMA 与 LLMs 原本就处于同一特征空间, 所以此时仅训练 LLMs 和 MLP 即可</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240721233221246.png" alt="InternVL 结构图" /></p>
+<h1 id="how-far-are-we-to-gpt-4v-closing-the-gap-to-commercial-multimodal-models-with-open-source-suites"><a class="markdownIt-Anchor" href="#how-far-are-we-to-gpt-4v-closing-the-gap-to-commercial-multimodal-models-with-open-source-suites"></a> How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites</h1>
+<h2 id="introduction-2"><a class="markdownIt-Anchor" href="#introduction-2"></a> Introduction</h2>
+<p>优点:</p>
+<ol>
+<li>
+<p>Flexible Resolution</p>
+</li>
+<li>
+<p>Bilingual Proficiency</p>
+<p>卓越的中英双语能力</p>
+</li>
+<li>
+<p>Strong Visual Representation</p>
+<p>增强了 InternViT-6B 的视觉表示能力</p>
+</li>
+</ol>
+<h2 id="related-work-2"><a class="markdownIt-Anchor" href="#related-work-2"></a> Related Work</h2>
+<p>既有多模态大模型通常在较小的固定分辨率上训练, 这导致在不常见的长宽比或文档数据的图像上表现不佳. 为了解决以上问题, 常见的技术路线有</p>
+<ol>
+<li>双分支图像编码器</li>
+<li>高分辨率划分为多个低分辨率</li>
+</ol>
+<h2 id="internvl-15"><a class="markdownIt-Anchor" href="#internvl-15"></a> InternVL 1.5</h2>
+<h3 id="overall-architecture-2"><a class="markdownIt-Anchor" href="#overall-architecture-2"></a> Overall Architecture</h3>
+<p>结构与 LLaVA 类似, “InternViT-6B-MLP-InternLM2-20B”</p>
+<p>训练中将图片分别多个 448*448 的图像块, 为了进一步减少 vision token, 使用 pixelshuffle 减少 vision token 数量, 将 448*448 的图像块变为 256 vision tokens</p>
+<h3 id="strong-vision-encoder"><a class="markdownIt-Anchor" href="#strong-vision-encoder"></a> Strong Vision Encoder</h3>
+<p>丢弃了 InternViT-6B 的最后三层, 从 48 层减少到 45 层</p>
+<h3 id="dynamic-high-resolution"><a class="markdownIt-Anchor" href="#dynamic-high-resolution"></a> Dynamic High-Resolution</h3>
+<p>受到 UReader 的启发, 采用动态高分辨率训练方法</p>
+<ol>
+<li>
+<p>Dynamic Aspect Ratio Matching</p>
+<p>保持自然的宽高比, 从预定义的宽高比中动态匹配最佳的宽高比</p>
+</li>
+<li>
+<p>Image Division &amp; Thumbnail</p>
+<p>确定适合的宽高比后, 图像大小被调整成响应的分辨率. 800*1300 -&gt; 896*1344 -&gt; 多个448*448. 再用一个大小为 448*448 的缩略图捕获全局上下文. 所以训练时一共有 256*(12+1)=3328 个 vision tokens, 测试时最多有 256*(40+1)=10496 个 vision tokens</p>
+</li>
+</ol>
+<h3 id="high-quality-bilingual-dataset"><a class="markdownIt-Anchor" href="#high-quality-bilingual-dataset"></a> High-Quality Bilingual Dataset</h3>
+<h2 id="experiments"><a class="markdownIt-Anchor" href="#experiments"></a> Experiments</h2>
+<h1 id="internvl2"><a class="markdownIt-Anchor" href="#internvl2"></a> InternVL2</h1>
+<p>技术报告待公布</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/07/19/BaoYan/SummerCamp/SummerCamp-ICT/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          中国科学院计算所 VIPL 组夏令营回顾
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+
+  </div>
 </section>
+<!-- js inspect -->
 
-<div class="border-t border-[--c-40]">
+<script src="/lib/clipboard.min.js"></script>
 
-</div>
 
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
   </main>
   <footer class="flex flex-col mt-18 mb-12 items-center

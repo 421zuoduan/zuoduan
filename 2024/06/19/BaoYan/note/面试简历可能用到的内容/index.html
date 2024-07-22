@@ -549,7 +549,7 @@ A third year undergraduate student at UESTC
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-07-09</time>
+              Edited: <time class="w-max">2024-07-19</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -564,7 +564,7 @@ A third year undergraduate student at UESTC
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>2.1k words, 8 min</span>
+              <span>2.3k words, 9 min</span>
             </span>
             <!-- Categories -->
             
@@ -663,6 +663,12 @@ A third year undergraduate student at UESTC
 <p>考虑到窗口自注意力是在窗口内计算的, 这里是窗口的尺度. 如果使用 self attention 的全局注意力, 那依然存在计算量成平方的问题, 而且这里不能以窗口为单位进行全局注意力的计算注意力, 只是像素层面上的计算, 所以也没有选择.</p>
 <h2 id="全局卷积核没有在空间上计算"><a class="markdownIt-Anchor" href="#全局卷积核没有在空间上计算"></a> 全局卷积核没有在空间上计算?</h2>
 <p>是的, 在通道上进行的注意力计算, 算是变相的加参数.</p>
+<h2 id="uformer-的创新点是什么"><a class="markdownIt-Anchor" href="#uformer-的创新点是什么"></a> Uformer 的创新点是什么?</h2>
+<p>在 Decoder 的 Attention 模块上加入了 modulator. 图像退化的方式不同, 为了提高处理各种退化的能力.</p>
+<p>modulator 是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>×</mo><mi>M</mi><mo>×</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">M\times M\times C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> 形状的可学习张量, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> 为窗口大小, 每个 modulator 作为一个共享偏置项 (每一层中加到每个窗口上的 modulator 相同, 不同层的 modulator 不同)</p>
+<p>多尺度噪声项加入到 feature map 中, 实现随机变化已生成更逼真的图像</p>
+<h2 id="有没有试过只用我们自己的模块"><a class="markdownIt-Anchor" href="#有没有试过只用我们自己的模块"></a> 有没有试过只用我们自己的模块?</h2>
+<p>我们的模块是在 SW-MSA 上进行的补足, 所以要和 SW-MSA 一起使用效果会更好. 单独使用效果不会更好</p>
 <h1 id="针对多模态大模型的图像信息补足"><a class="markdownIt-Anchor" href="#针对多模态大模型的图像信息补足"></a> 针对多模态大模型的图像信息补足</h1>
 <h2 id="attention-value-小可以说明图像信息的丢失吗"><a class="markdownIt-Anchor" href="#attention-value-小可以说明图像信息的丢失吗"></a> attention value 小可以说明图像信息的丢失吗?</h2>
 <p>不能直接说明,  但是可以由此推出图像信息丢失, 作者进一步作实验证明了图像信息在前几层向 text tokens 的转移. 但是这种转移过程存在信息的不完全转化的问题 (就像模型训练那样, 这在大模型中更甚), 图像信息可能在转移过程中丢失或被遗忘.</p>
