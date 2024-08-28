@@ -24,7 +24,7 @@ A third year undergraduate student at UESTC
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
 
 
-<title>Category: 笔记 | Ruochen Cui</title>
+<title>VPN 协议梳理 | Ruochen Cui</title>
 
 
 
@@ -516,105 +516,77 @@ A third year undergraduate student at UESTC
   </div>
 </div>
   <main>
-    <section class="px-2 py-8 max-w-prose mx-auto gap-4 grid grid-cols-1">
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
   
-  <!-- Sort posts by date -->
-  
-  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
     
-    <!-- Large text showing the year in the background -->
-    
-      <div class="relative pointer-events-none h-[30px]">
-        <div class="absolute -top-6 w-[100%]">
-          <p class="
-            text-clip overflow-hidden -translate-x-3 text-9xl
-            font-extrabold
-            text-[var(--c-theme)]
-            opacity-10
-            dark:opacity-20">
-            2024
-          </p>
-        </div>
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">VPN 协议梳理</p>
       </div>
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/2024/06/07/BaoYan/note/LLM%E9%9D%A2%E8%AF%95/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                        LLM 面试
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-08-21</time>
             </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-06-07
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-06-16
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    746 words, 3 min
-                </p>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-08-21</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>崔若晨 Ruochen Cui</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>170 words, 1 min</span>
             </span>
             <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-                    <iconify-icon class="
-                            group-hover:scale-125
-                            transition-transform
-                            group-hover:text-[var(--c-theme)]
-                        "
-                        width="16"
-                        icon="mingcute:classify-2-fill" class="mr-0">
-                    </iconify-icon>
-                    
-                        <a class="underline underline-offset-2"
-                            href="/categories/%E7%AC%94%E8%AE%B0/">
-                            笔记
-                        </a>
-                    
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
             
-                
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E6%9D%82%E9%A1%B9/">杂项</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/tags/note/" 
+      <a href="/tags/others/" 
         class="
           tag
           text-sm
@@ -630,316 +602,181 @@ A third year undergraduate student at UESTC
           hover:text-[var(--c-0)]
           dark:hover:text-[var(--c-theme-2)]
         ">
-        note
-      </a>
-    
-      <a href="/tags/interview/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        interview
+        others
       </a>
     
   
 </div>
-            
-        </div>
-</div>
+      </div>
     </div>
-  
-    
-    <!-- Large text showing the year in the background -->
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/2024/06/07/BaoYan/note/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                        保研-数学速成笔记
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
-            </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-06-07
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-07-13
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    5.9k words, 24 min
-                </p>
-            </span>
-            <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-                    <iconify-icon class="
-                            group-hover:scale-125
-                            transition-transform
-                            group-hover:text-[var(--c-theme)]
-                        "
-                        width="16"
-                        icon="mingcute:classify-2-fill" class="mr-0">
-                    </iconify-icon>
-                    
-                        <a class="underline underline-offset-2"
-                            href="/categories/%E7%AC%94%E8%AE%B0/">
-                            笔记
-                        </a>
-                    
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
-            
-                
-<div class="flex flex-wrap gap-1">
-  
-    
-      <a href="/tags/note/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        note
-      </a>
-    
-      <a href="/tags/interview/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        interview
-      </a>
-    
-  
-</div>
-            
-        </div>
-</div>
-    </div>
-  
-    
-    <!-- Large text showing the year in the background -->
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/2024/06/06/BaoYan/note/%E7%99%BE%E9%9D%A2%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                        百面机器学习笔记
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
-            </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-06-06
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-06-16
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    1.7k words, 6 min
-                </p>
-            </span>
-            <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-                    <iconify-icon class="
-                            group-hover:scale-125
-                            transition-transform
-                            group-hover:text-[var(--c-theme)]
-                        "
-                        width="16"
-                        icon="mingcute:classify-2-fill" class="mr-0">
-                    </iconify-icon>
-                    
-                        <a class="underline underline-offset-2"
-                            href="/categories/%E7%AC%94%E8%AE%B0/">
-                            笔记
-                        </a>
-                    
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
-            
-                
-<div class="flex flex-wrap gap-1">
-  
-    
-      <a href="/tags/note/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        note
-      </a>
-    
-      <a href="/tags/interview/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        interview
-      </a>
-    
-  
-</div>
-            
-        </div>
-</div>
-    </div>
-  
-</section>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p>‘’’</p>
+<ul>
+<li>@Author: Ruochen Cui</li>
+<li>@Date: 2024-04-12 07:46:27</li>
+<li>@Last Modified by:   Ruochen Cui</li>
+<li>@Last Modified time: 2024-04-12 07:46:27</li>
+<li>@Desc:<br />
+‘’’</li>
+</ul>
+<p>协议上分为 SS, SSR, V2ray, Trojan, Xray</p>
+<h1 id="ssssr"><a class="markdownIt-Anchor" href="#ssssr"></a> SS/SSR</h1>
+<p>SS 是 Shadowsocks, 基于 Socks5 代理的加密传输协议; SSR 是 ShadowsocksR 的所写, 在 SS 基础上加了一些数据混淆方式</p>
+<p>运营商能检测这两种流量, 使用的人在减少</p>
+<h1 id="v2ray"><a class="markdownIt-Anchor" href="#v2ray"></a> V2ray</h1>
+<p>目前应用最多的科学上网方式, 支持很多协议</p>
+<h1 id="trojan-trojan-go"><a class="markdownIt-Anchor" href="#trojan-trojan-go"></a> Trojan, Trojan-Go</h1>
+<p>速度更快, 伪装更逼真</p>
+<p>监听 443 端口, 模仿 HTTPS 协议, 完整完成 TLS 握手. Trojan-Go 在 Trojan 基础上增加了更多功能</p>
+<h1 id="xray"><a class="markdownIt-Anchor" href="#xray"></a> Xray</h1>
+<p>与V2ray 相同, 在其基础上做了性能优化</p>
 
-<div class="border-t border-[--c-40]">
+  </article>
 
-  <!-- <nav class="pagination"> -->
-  <div class="flex flex-row justify-center px-24 max-w-prose mx-auto py-4">
-
-    
-        <a class="hover:bg-gray-100 rounded-md text-center shadow-md flex flex-row border-1 items-center justify-center pr-4 pl-2" href="/categories/笔记/" class="pagination-prev">
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/2024/08/28/%E7%A2%8E%E7%A2%8E%E5%BF%B5/%E6%B4%BB%E5%9C%A8%E8%BF%99%E7%8F%8D%E8%B4%B5%E7%9A%84%E4%BA%BA%E9%97%B4/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          Prev
+          活在这珍贵的人间
         </a>
       
-      <div class="flex flex-grow text-center justify-center">
-        <div class="border-2 text-xl font-bold opacity-70 w-fit px-2 rounded-lg">
-          <p>2</p>
-        </div>
-      </div>
+    </div>
+    <div>
       
-          <div class="opacity-20 rounded-md text-center justify-center border-1 shadow-md flex flex-row items-center pl-4 pr-2">
-            Next
-            <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false">Next!</iconify-icon>
-          </div>
-          
-      </div>
-      <!-- <a class="page-number" href="/categories/%E7%AC%94%E8%AE%B0/">1</a><span class="page-number current">2</span> -->
-  <!-- </nav> -->
-  
-</div>
+        <a href="/2024/08/01/%E7%A2%8E%E7%A2%8E%E5%BF%B5/2024-08-01-01-46/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          八月一日夏季午夜梦回
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
 
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
   </main>
   <footer class="flex flex-col mt-18 mb-12 items-center
