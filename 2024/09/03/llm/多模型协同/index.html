@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="zh-cn,en,default">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="崔若晨 Ruochen Cui">
+
+
+  <meta name="subtitle" content="崔若晨">
+
+
+  <meta name="description" content="电子科技大学三年级本科生
+
+A third year undergraduate student at UESTC
+">
+
+
+  <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
+
+
+<title>LLM综述-多模型协同 | Ruochen Cui</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+      Ruochen Cui
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+      
+      
+      
+      
+      
+      
+      <a href="/./archives" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:inbox-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Posts</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./publications" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:science-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Publications</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./about" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:user-info-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>About</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./categories" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-2-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Categories</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./tags" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Tags</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./index" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:home-2-fill" width="22">
+        </iconify-icon>
+        
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center">
+
+      <!-- TODO: Add search icon here -->
+
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]" width="24" id="theme-icon">
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex p-1 mx-1 sm:hidden">
+        <a class="w-5 h-5" aria-hidden="true" id="open-menu">
+          <iconify-icon width="24" icon="mingcute:menu-fill" class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+          </iconify-icon>
+        </a>
+        <a class="w-5 h-5 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon width="24" icon="mingcute:close-circle-fill" class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content" class="
+        flex
+        flex-row
+        justify-center
+        items-center
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+    
+    
+    
+    <a href="/./archives" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:inbox-fill" width="22">
+      </iconify-icon>
+      <p>
+        posts
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./publications" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:science-fill" width="22">
+      </iconify-icon>
+      <p>
+        publications
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./about" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:user-info-fill" width="22">
+      </iconify-icon>
+      <p>
+        about
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./categories" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:classify-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        categories
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./tags" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:tag-fill" width="22">
+      </iconify-icon>
+      <p>
+        tags
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./index" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:home-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        home
+      </p>
+    </a>
+    
+    
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">LLM综述-多模型协同</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-09-03</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-09-04</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>崔若晨 Ruochen Cui</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>2.7k words, 10 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/paper/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        paper
+      </a>
+    
+      <a href="/tags/research/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        research
+      </a>
+    
+      <a href="/tags/llms/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        llms
+      </a>
+    
+      <a href="/tags/deep-learning/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        deep-learning
+      </a>
+    
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2407.06089">Merge, Ensemble, and Cooperate! A Survey on Collaborative Strategies in the Era of Large Language Models</a></p>
+<h1 id="intro">Intro</h1>
+<ol>
+<li><strong>Merging</strong>: Merging involves integrating multiple LLMs into a unified, stronger one, primarily through arithmetic operations in the model parameter space.</li>
+<li><strong>Ensemble</strong>: Ensemble combines the outputs of different models to obtain coherent results.</li>
+<li><strong>Cooperation</strong>: Cooperation is a relatively broad concept. This survey focuses on cooperation methods that leverage the diverse capabilities of different LLMs to accomplish specific objectives, such as efficient computation or knowledge transfer.</li>
+</ol>
+<p>这三种方法是由小到大要求逐渐宽松的</p>
+<h1 id="background">Background</h1>
+<p>针对 pre-trained language model (PLMs), 大多数模型使用 causal language modeling (逐 token 预测)</p>
+<p>finetuning 阶段, 大多数采用 RLHF 技术 (InstructGPT), 但是存在 RLHF 后模型效果变差的情况</p>
+<h2 id="emergent-abilities">Emergent Abilities</h2>
+<p>语言模型的基础是文本生成, 自回归生成 tokens</p>
+<p>In-Context-Learning (ICL): 为了更好完成任务</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi mathvariant="bold">y</mi><mi mathvariant="normal">∣</mi><mi mathvariant="bold">x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi mathvariant="bold">y</mi><mi mathvariant="normal">∣</mi><mi mathvariant="bold">x</mi><mo separator="true">,</mo><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow><mo stretchy="false">(</mo><mo stretchy="false">{</mo><msub><mi mathvariant="bold">x</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi mathvariant="bold">y</mi><mi>i</mi></msub><msubsup><mo stretchy="false">}</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></msubsup><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(\mathbf{y}|\mathbf{x}) = p(\mathbf{y}|\mathbf{x},\mathrm{demonstration}(\{\mathbf{x}_i, \mathbf{y}_i  \}^k_{i=1}))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mord">∣</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1491079999999998em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mord">∣</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathrm">d</span><span class="mord mathrm">e</span><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span><span class="mord mathrm">s</span><span class="mord mathrm">t</span><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">t</span><span class="mord mathrm">i</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span></span><span class="mopen">(</span><span class="mopen">{</span><span class="mord"><span class="mord"><span class="mord mathbf">x</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999998em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+<p>Instruction Following (指令微调): 为了更好地提升多任务泛化性, 这里 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">L</mi></mrow><annotation encoding="application/x-tex">\mathcal{L}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal">L</span></span></span></span></span> 是当前样本的指令</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi mathvariant="bold">y</mi><mi mathvariant="normal">∣</mi><mi mathvariant="bold">x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi mathvariant="bold">y</mi><mi mathvariant="normal">∣</mi><mi mathvariant="bold">x</mi><mo separator="true">,</mo><mi mathvariant="script">L</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(\mathbf{y}|\mathbf{x}) = p(\mathbf{y}|\mathbf{x}, \mathcal{L})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mord">∣</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mord">∣</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathcal">L</span></span><span class="mclose">)</span></span></span></span></span></p>
+<h2 id="collaboration-for-llms">Collaboration for LLMs</h2>
+<h1 id="merging">Merging</h1>
+<p>模型融合主要关注两个问题</p>
+<ol>
+<li>
+<p>M-ROS: merging to approch a relatively optimal solution</p>
+<p>梯度优化的最优值往往在梯度变化最小的地方 (DLFC 里的图)</p>
+</li>
+<li>
+<p>M-MTC: multi-task capability</p>
+<p>让单个模型具有多个模型在多任务上的良好性能</p>
+</li>
+</ol>
+<p>以上这两种模型合并方法仅适用于具有相同架构的模型</p>
+<h2 id="merging-for-relatively-optimal-solution-m-ros">Merging for Relatively Optimal Solution (M-ROS)</h2>
+<p>深度学习模型难以达到最优解, 既有研究指出参数平均可以平衡不同的局部最优解, 整合不同模型的优势, 减少单个模型的偏差和方差. 这些方法主要分为两类, 简单平均和加权平均</p>
+<h3 id="basic-m-ros-methodologies">Basic M-ROS Methodologies</h3>
+<p>以下是一些 pre-LLM 时代的模型融合方法</p>
+<h4 id="simple-average">Simple Average</h4>
+<p>推理时进行暴力参数求平均</p>
+<ol>
+<li>
+<p>Model Soup (2022) 提出了 Uniform Soup 和 Greedy Soup</p>
+<ol>
+<li>
+<p>Uniform Soup: 简单地平均模型参数</p>
+</li>
+<li>
+<p>Greedy Soup: 逐个添加模型到集合中, 确保每个新模型都能得到效果提升</p>
+</li>
+</ol>
+</li>
+<li>
+<p>DiWA (2022) 利用候选模型在验证集上的表现进行排序, 有性能提升时才进行参数平均.</p>
+</li>
+</ol>
+<h4 id="weighted-average">Weighted Average</h4>
+<p>推理时进行加权平均</p>
+<ol>
+<li>
+<p>Learned Soup (2022) 在验证集上优化混合系数来最小化损失函数</p>
+</li>
+<li>
+<p>利用 Fisher 信息矩阵来衡量使用不同随机种子微调模型参数的重要性</p>
+</li>
+<li>
+<p>基于几何关系, 根据参数间的角度偏差来插值微调模型</p>
+</li>
+</ol>
+<h3 id="adaptation">Adaptation</h3>
+<p>在大模型时代的方法</p>
+<h4 id="acquiring-stronger-llms">Acquiring Stronger LLMs</h4>
+<p>基于微调前后参数矩阵的变化率来计算合并系数</p>
+<ol>
+<li>
+<p>利用预训练过程中的 checkpoint, 结合贝叶斯优化来搜索最优合并系数</p>
+</li>
+<li>
+<p>模型不同层分配不同的合并系数</p>
+</li>
+<li>
+<p>先使用不同的指令调优数据训练多个子模型, 然后合并大模型</p>
+</li>
+</ol>
+<h4 id="enhancing-rlhf">Enhancing RLHF</h4>
+<p>以下是一些在 RLHF 上的合并方法</p>
+<ol>
+<li>
+<p>为了模型不同层分配不同的合并系数</p>
+</li>
+<li>
+<p>微调多个 reward model, 平均参数</p>
+</li>
+<li>
+<p>SFT 期间加权平均来提高 LLM 与人类偏好的对齐效果, 减少数据偏差的影响</p>
+</li>
+</ol>
+<h2 id="merging-for-enhancing-multi-task-capability-m-mtc">Merging for Enhancing Multi-Task Capability (M-MTC)</h2>
+<p>实现具有不同能力的模型的平衡融合, 得到能处理多个任务的单一模型. 早期研究聚焦于使用不同的合并系数, 当前研究倾向于根据任务特点进行灵活合并. 近期还有使用 incremental learning (增量学习) 技术来提升性能的工作</p>
+<h3 id="methods-based-on-weighted-average">Methods based on Weighted Average</h3>
+<ol>
+<li>RegMean: 选择性整合线性层, 对其他层采用简单平均</li>
+<li>从黑塞矩阵得到的估计值来进行加权平均</li>
+<li>Fisher 加权平均和模型剪枝结合</li>
+</ol>
+<h3 id="methods-based-on-task-property">Methods based on task Property</h3>
+<p>基于加权平均的融合方法强调了参数的重要性, 但忽略了任务本身的特点, 导致某些任务重性能下降. 既有研究指出, 简单平均会导致 10% 的性能下降, 近期研究引入了一种名为任务向量的新范式</p>
+<p>任务向量 (Task Property): 一个参数空间中的向量, 指定了预训练模型参数空间中的移动方向, 参数在该方向上的移动能提升任务性能</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>τ</mi><mi>t</mi></msub><mo>=</mo><msup><mi>θ</mi><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi></mrow></msup><mo>−</mo><msup><mi>θ</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\tau_t = \theta^{\mathrm{ft}} - \theta^{\mathrm{pre}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9824379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.07778em;">f</span><span class="mord mathrm mtight">t</span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.714392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.714392em;"><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">p</span><span class="mord mathrm mtight">r</span><span class="mord mathrm mtight">e</span></span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>这里 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi><mtext>ft</mtext></msup></mrow><annotation encoding="application/x-tex">\theta^{\text{ft}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.849108em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">ft</span></span></span></span></span></span></span></span></span></span></span></span></span> 是在特定任务 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 上微调后的参数, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi><mtext>pre</mtext></msup></mrow><annotation encoding="application/x-tex">\theta^{\text{pre}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">pre</span></span></span></span></span></span></span></span></span></span></span></span></span> 是预训练模型原本的参数</p>
+<p>任务向量在模型合并的过程中能更有效地解决参数冲突</p>
+<blockquote>
+<p>参数冲突: 当不同模型的参数向量在同一参数上方向相反时, 冲突发生</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240903165121491.png" alt="任务向量与参数冲突"></p>
+</blockquote>
+<p>近期的工作致力于缓解冲突和平衡不同模型. 一部分参数冲突方法在参数位置解决冲突, 还有一部分工作识别并去除参数来减少冲突.</p>
+<h4 id="resolving-parameter-conflicts">Resolving Parameter Conflicts</h4>
+<ol>
+<li>task arithmetic (2023) 最初通过微调参数和预训练参数的差异来推导任务向量</li>
+<li>Ties-Merging: 分析冲突产生的两个原因, 荣誉参数和模型间的符号冲突</li>
+<li>AdaMerging: 考虑不同模型参数的重要性</li>
+<li>基于 AdaMerging 和 task arithmetic 的高效方法</li>
+<li>在参数空间中使用 TieMerging 合并参数, 并使用进化算法优化合并模型内部的数据推理路径</li>
+</ol>
+<p>ZipIt: 没有使用任务向量, 从另一个角度保留相似参数. 首先找到模型间高度相关的参数, 合并这些参数的同时保留显著不同的层, 提高合并的灵活性</p>
+<h4 id="pruning-redundant-parameters">Pruning Redundant Parameters</h4>
+<p>通过剪枝可以去掉一些冲突参数</p>
+<ol>
+<li>DARE (2023): 丢弃或缩放参数来减少冗余参数的技术. 但是模型泛化性较差</li>
+<li>DELLA-Merging (2024): 在 DARE 基础上选择重要参数进行融合</li>
+<li>DPPA (动态剪枝, 分区放大)</li>
+</ol>
+<h4 id="toolkit">Toolkit</h4>
+<p>一个开源工具包, 集成了多种模型合并方法</p>
+<h3 id="methods-based-on-incremental-training">Methods based on Incremental Training</h3>
+<p>前述方法不同程度地存在效果下降的问题</p>
+<p>Concrete TA/AM (2023): 在参数空间内找一个共享的低维子空间, 最小化任务间的干扰</p>
+<p>Surgery (2024): 引入一种表征修正技术, 缓解多任务模型融合中的表征偏差</p>
+<h1 id="ensemble">Ensemble</h1>
+<p>传统的机器学习中集成学习有 Adaboost, Bagging, Stacking</p>
+<h2 id="llm-ensemble-methodology">LLM Ensemble Methodology</h2>
+<p>LLM 生成 token 输出, 这种输出是离散的, 且 LLM 间的结构差异使得词汇和输出分布难以统一, 复杂了集成策略</p>
+<p>一般在推理过程中进行模型集成, 所以这里氛围推理前, 推理中和推理后进行介绍. 一般而言</p>
+<ol>
+<li>推理前: 不同输入选择不同 LLM</li>
+<li>推理中: 在每个解码步骤中合并输出</li>
+<li>推理后: 从多个 LLM 输出中选择最佳的输出</li>
+</ol>
+<h3 id="ensemble-before-inference">Ensemble Before Inference</h3>
+<p>根据不同输入选择不同 LLM (路由, 和 MoE 类似), 这些工作是从 23 年 9 月开始的</p>
+<ol>
+<li>用 benchmark datasets 训练了路由 (router)</li>
+<li>Zooter (2023): 用 reward model 计算训练集中 query-output 对的分数, 然后蒸馏训练路由器, 使其仅根据 Q 查找最佳 LLM</li>
+<li>根据 Q 的难度分给小模型或 LLM</li>
+<li>基于分类器和基于聚类的路由方法</li>
+<li>受 RL 启发, 循环利用自生成的三元组 (查询, 响应, 分数) 来训练路由器</li>
+<li>对话中每轮随机选择一个 LLM</li>
+<li>RouteBench: 评估路由器的能力和局限性</li>
+</ol>
+<h3 id="ensemble-during-inference">Ensemble During Inference</h3>
+<p>大模型自回归的特性导致后面的 token更可能出错</p>
+<p>一些工作在解码中加入 LLM, 要求词汇表相同, 这确保了输出分布的对齐, 能够有效集成</p>
+<ol>
+<li>加权平均输出, 将不可信的 LLM 和一个良性的小型 LLM 结合</li>
+<li>对机器翻译模型和 LLM 中的输出分布插值, 提升翻译性能</li>
+<li>&quot;节俭专家融合&quot;问题, 转换为图的最短路径问题</li>
+</ol>
+<p>然而, 大多数开源模型都是异构且词汇表不同的, 基于此</p>
+<ol>
+<li>(没看懂) 作了 token alignment</li>
+<li>将上面的严格匹配限制改为最小距离限制</li>
+<li>提出利用困惑度 (perplexity) 来计算集成系数</li>
+<li>一些工作将多个模型回答中重复出现的 token 作为锚点, 将异构 LLM 产生的输出分布投影到同一空间
+<ol>
+<li>直接利用锚点, 学习不同词汇间的投影矩阵</li>
+<li>计算锚点到不同词汇的相同表示, 间接实现词汇投影</li>
+</ol>
+</li>
+</ol>
+<h3 id="ensemble-after-inference">Ensemble After Inference</h3>
+<p>多个 LLM 级联</p>
+<ol>
+<li>用多个按参数数量排序的 LLM 级联来生成输出, 前序较小 LLM 产生质量足够好的输出时返回结果</li>
+<li>先验证较小 LLM 生成答案的正确性, 初始答案不正确时使用更大的 LLM</li>
+</ol>
+<p>从多个 LLM 答案中选最好的</p>
+<ol>
+<li>选择最佳指令, 构建指令调优数据</li>
+<li>无监督选择指标, 如 BERTScore, BLEURT, BARTScore 和ChatGPT 评分</li>
+<li>用一个额外的融合模型, 利用排名最高的候选答案作为输入, 得到最终输出</li>
+</ol>
+<h3 id="discussion-about-llm-ensumble-methods">Discussion about LLM Ensumble Methods</h3>
+<p>以下从推理速度, 集成粒度和局限性三个方面讨论</p>
+<h4 id="inference-speed">Inference Speed</h4>
+<p>所有的集成方法都会造成推理速度的下降. 时间上 Before&lt;During&lt;After</p>
+<h4 id="ensemble-granularity">Ensemble Granularity</h4>
+<p>Before 和 After 是在样本的粗粒度上集成, During 是在 token 的细粒度上集成. 由于自回归的性质, 细粒度的方法能够减少 曝光偏差 (exposure bias), 减少幻觉</p>
+<h4 id="limitations">Limitations</h4>
+<ol>
+<li>推理前: 路由器会限制集成方法的能力</li>
+<li>推理中: 受限于大模型的异构架构, 词汇差异可能导致输出分布不对应</li>
+<li>推理后: 候选答案的准确性和选择策略</li>
+</ol>
+<h2 id="llm-ensemble-application">LLM Ensemble Application</h2>
+<h3 id="llm-emsemble-for-specific-tasks-or-domains">LLM Emsemble for Specific Tasks or Domains</h3>
+<ol>
+<li>训练分类器, 选择不同的 LLM 专家生成最佳答案</li>
+<li>SQL 生成</li>
+<li>Medical</li>
+<li>临床文本错误检测与纠正</li>
+<li>多数投票和平均甲醛来选择最常出现的疾病</li>
+</ol>
+<h3 id="llm-ensemble-for-overestimation-mitigation-in-rlhf">LLM Ensemble for Overestimation Mitigation in RLHF</h3>
+<p>缓解 LLM 的校准不良和预测不可靠问题</p>
+<ol>
+<li>多个 reward model 集成来缓解过度优化问题</li>
+<li>轻量级 LoRA 来适应多个奖励模型</li>
+<li>使用共享 LLM, 但是各个头独立进行 reward 集成</li>
+</ol>
+<h1 id="cooperation">Cooperation</h1>
+<p>LLM Cooperation 主要关注高效计算, 知识传递, 补偿性合作, 联邦合作</p>
+<h2 id="efficient-computation">Efficient Computation</h2>
+<p>模型加速还可分为输入压缩 (Input Compression) 和 推测性解码 (Speculative Decoding)</p>
+<h3 id="input-compression">Input Compression</h3>
+<p>使用较小的 LLM 压缩输入, 减少上下文长度</p>
+<h3 id="speculative-decoding">Speculative Decoding</h3>
+<p>利用较小的 LLM 来推测多个可能的 tokens, 用较大的 LLM 验证这些 tokens</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/08/28/%E7%A2%8E%E7%A2%8E%E5%BF%B5/%E6%B4%BB%E5%9C%A8%E8%BF%99%E7%8F%8D%E8%B4%B5%E7%9A%84%E4%BA%BA%E9%97%B4/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          活在这珍贵的人间
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">
+            <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
+        </a>
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="ZhiHu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">
+            <iconify-icon width="28" icon="ri:zhihu-line"></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>
