@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="zh-cn,en,default">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="崔若晨 Ruochen Cui">
+
+
+  <meta name="subtitle" content="崔若晨">
+
+
+  <meta name="description" content="电子科技大学三年级本科生
+
+A third year undergraduate student at UESTC
+">
+
+
+  <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
+
+
+<title>MLLMs 笔记 | Ruochen Cui</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+      Ruochen Cui
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+      
+      
+      
+      
+      
+      
+      <a href="/./archives" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:inbox-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Posts</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./publications" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:science-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Publications</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./about" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:user-info-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>About</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./categories" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-2-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Categories</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./tags" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Tags</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./index" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:home-2-fill" width="22">
+        </iconify-icon>
+        
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center">
+
+      <!-- TODO: Add search icon here -->
+
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]" width="24" id="theme-icon">
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex p-1 mx-1 sm:hidden">
+        <a class="w-5 h-5" aria-hidden="true" id="open-menu">
+          <iconify-icon width="24" icon="mingcute:menu-fill" class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+          </iconify-icon>
+        </a>
+        <a class="w-5 h-5 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon width="24" icon="mingcute:close-circle-fill" class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content" class="
+        flex
+        flex-row
+        justify-center
+        items-center
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+    
+    
+    
+    <a href="/./archives" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:inbox-fill" width="22">
+      </iconify-icon>
+      <p>
+        posts
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./publications" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:science-fill" width="22">
+      </iconify-icon>
+      <p>
+        publications
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./about" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:user-info-fill" width="22">
+      </iconify-icon>
+      <p>
+        about
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./categories" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:classify-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        categories
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./tags" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:tag-fill" width="22">
+      </iconify-icon>
+      <p>
+        tags
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./index" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:home-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        home
+      </p>
+    </a>
+    
+    
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">MLLMs 笔记</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-04-10</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-10-14</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>3.6k words, 13 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/research/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        research
+      </a>
+    
+      <a href="/tags/paper/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        paper
+      </a>
+    
+      <a href="/tags/mllm/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        mllm
+      </a>
+    
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <h1 id="多模态mllmmultimodal-large-language-models"><a class="markdownIt-Anchor" href="#多模态mllmmultimodal-large-language-models"></a> 多模态MLLM(Multimodal-Large-Language Models)</h1>
+<p>多模态的两个挑战:</p>
+<ol>
+<li>数据对齐: 视觉和文本数据间的正确对齐</li>
+<li>复杂性: 模型架构和训练过程的复杂性</li>
+</ol>
+<p>实现路径:</p>
+<ol>
+<li>模态融合
+<ul>
+<li>早期融合: 简单地连接特征或将两种模式嵌入到模型早期的共享空间中</li>
+<li>中间融合: 每种模态独立处理后进行融合, 一般允许每个模态在集成前通过跨模态注意力机制形成中间理解</li>
+<li>后期/决策级融合: 两种模态经过深层独立处理后, 在输出附近进行融合. 可以保持模态更长时间的分离, 允许在集成前进行更专业的处理</li>
+</ul>
+</li>
+<li>模态对齐
+<ul>
+<li>跨模态注意力: 常使用Transformer将模态的一种元素与另一种模态的元素对齐. 如图像中的对象与句子中的单词对齐</li>
+<li>联合嵌入空间: 创造共享表示空间. 如CLIP</li>
+</ul>
+</li>
+<li>培训策略
+<ul>
+<li>对比学习. 常用于对齐, 涉及到训练模型使得相似的文本和图像的表示更加接近, 如CLIP的协方差矩阵对角元素值最大, 其他的值更小.</li>
+<li>多任务学习</li>
+</ul>
+</li>
+</ol>
+<h2 id="mllm的常用技术和架构"><a class="markdownIt-Anchor" href="#mllm的常用技术和架构"></a> MLLM的常用技术和架构</h2>
+<h3 id="常见技术与架构"><a class="markdownIt-Anchor" href="#常见技术与架构"></a> 常见技术与架构</h3>
+<h4 id="1-clip-对比语言-图像预训练"><a class="markdownIt-Anchor" href="#1-clip-对比语言-图像预训练"></a> 1. CLIP, 对比语言-图像预训练</h4>
+<ul>
+<li>架构：使用文本Transformer和图像 ResNet/ViT。</li>
+<li>融合策略：后期融合，重点是学习联合嵌入空间。</li>
+<li>对齐方法：使用对比学习进行训练，其中图像-文本对在共享嵌入空间中对齐。</li>
+</ul>
+<h4 id="2-dall-e"><a class="markdownIt-Anchor" href="#2-dall-e"></a> 2. DALL-E</h4>
+<ul>
+<li>架构：基于 GPT-3 架构，适用于处理文本和图像标记。</li>
+<li>融合策略：早期到中期融合，其中文本和图像特征以交织的方式进行处理。</li>
+<li>对齐方法：使用自回归模型，以顺序方式理解文本和图像特征。</li>
+</ul>
+<h4 id="3-visualbert"><a class="markdownIt-Anchor" href="#3-visualbert"></a> 3. VisualBERT</h4>
+<ul>
+<li>架构：类似 BERT 的模型，可处理视觉和文本信息。</li>
+<li>融合策略：与跨模式注意机制的中间融合。</li>
+<li>对齐方法：在变压器框架内使用注意力对齐文本和图像特征。</li>
+</ul>
+<h4 id="4-lxmert-learning-cross-modality-encoder-representations-from-transformers"><a class="markdownIt-Anchor" href="#4-lxmert-learning-cross-modality-encoder-representations-from-transformers"></a> 4. LXMERT (Learning Cross-Modality Encoder Representations from Transformers)：</h4>
+<ul>
+<li>架构：使用单独的语言和视觉编码器，然后是跨模态编码器。</li>
+<li>融合策略：使用专用的跨模态编码器进行中间融合。</li>
+<li>对齐方法：在语言和视觉编码器之间采用跨模式注意力。</li>
+</ul>
+<h3 id="代表性项目"><a class="markdownIt-Anchor" href="#代表性项目"></a> 代表性项目</h3>
+<h4 id="1-gpt4v"><a class="markdownIt-Anchor" href="#1-gpt4v"></a> 1. GPT4V</h4>
+<h4 id="2-llava"><a class="markdownIt-Anchor" href="#2-llava"></a> 2. LLaVA</h4>
+<p>爱来自微软, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/669723892">Visual Instruction Tuning</a>, LLaVA是对LLaMA的改进.</p>
+<h4 id="llama-open-and-efficient-foundation-language-models"><a class="markdownIt-Anchor" href="#llama-open-and-efficient-foundation-language-models"></a> <a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2302.13971.pdf">LLaMA: Open and Efficient Foundation Language Models</a></h4>
+<p>motivation: Hoffmann的缩放定律: 给定计算预算, 最佳性能由更多数据训练的较小模型实现, 而非最大的模型. 来自<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2001.08361">Scaling Laws for Neural Language Models</a>, 也称大模型的缩放定律</p>
+<p>LLaMA是开源的, 所用数据集均为公开可得的数据集. 技术要点有:</p>
+<ol>
+<li>基于xformers的Causal-MSA.</li>
+<li>位置编码 --&gt; 旋转编码(RoPE)</li>
+<li>LayerNorm --&gt; RMSNorm</li>
+<li>GeLU --&gt; SwiGLU</li>
+</ol>
+<h4 id="llava"><a class="markdownIt-Anchor" href="#llava"></a> LLaVa</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-f569f515e6ef896c4f0480cc89ea7a36_1440w.webp" alt="img" /></p>
+<h5 id="结构"><a class="markdownIt-Anchor" href="#结构"></a> 结构:</h5>
+<p>Vision Encoder来自预训练的CLIP的ViT-L/14, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">X</mi><mi mathvariant="bold">v</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{X_v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83611em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.161108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathbf mtight" style="margin-right:0.01597em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>经过编码器和投影后得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">H</mi><mi mathvariant="monospace">v</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{H_{\mathtt{v}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83611em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathtt mtight">v</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, 图片的处理方式考虑到了轻量级, 成本低的特点</p>
+<h5 id="训练"><a class="markdownIt-Anchor" href="#训练"></a> 训练:</h5>
+<ol>
+<li>特征对齐Pre-training. 在图像-文本对只有投影矩阵是需要更新的</li>
+<li>Fine-tuning End-to-End. End-to-End端到端的学习: 特征提取的任务也交给模型去做, 直接输入原始数据. 这里使用Visual Chat和Science QA两个数据集训练. 仅保持CLIP冻结</li>
+</ol>
+<h5 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试:</h5>
+<p>使用数据集通过GPT-4生成, 数据集里包括30张图片的caption和目标检测信息, 每张图片对应三个问题, 共90个样本.</p>
+<p>作者本人认为LLaVA取得的效果来自data quality. 这里数据集构建的一个创新点在于使用GPT4构造language-image instruction数据集.</p>
+<h4 id="clipcontrastive-language-image-pre-training"><a class="markdownIt-Anchor" href="#clipcontrastive-language-image-pre-training"></a> CLIP(Contrastive Language-Image Pre-training)</h4>
+<p>爱来自OpenAI, 用于结合图像和文本的多模态模型. CLIP是用文本作为来训练可迁移的视觉模型, 同时期的DALL-E是基于文本生成</p>
+<h2 id="llm和mllm的差异"><a class="markdownIt-Anchor" href="#llm和mllm的差异"></a> LLM和MLLM的差异</h2>
+<ol>
+<li>
+<p>输入方式</p>
+<p>VLM输入视觉图像和文本, LLM只处理和生成文本</p>
+</li>
+<li>
+<p>任务多功能性</p>
+<p>VLM要完成理解和关联视觉和文本数据中的信息的任务, LLM专门从事仅涉及文本的任务</p>
+</li>
+<li>
+<p>集成的复杂性</p>
+<p>VLM设计两种模态, 更复杂</p>
+</li>
+</ol>
+<h2 id="综述a-survey-on-multimodal-large-language-models"><a class="markdownIt-Anchor" href="#综述a-survey-on-multimodal-large-language-models"></a> 综述<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2306.13549.pdf">A Survey on Multimodal Large Language Models</a></h2>
+<p>来自中科大和腾讯, [github仓库](<a target="_blank" rel="noopener" href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">BradyFU/Awesome-Multimodal-Large-Language-Models: ✨✨Latest Papers and Datasets on Multimodal Large Language Models, and Their Evaluation. (github.com)</a>)</p>
+<h3 id="mllm的三个关键技术和一个应用"><a class="markdownIt-Anchor" href="#mllm的三个关键技术和一个应用"></a> MLLM的三个关键技术和一个应用</h3>
+<ol>
+<li>指令微调Multimodal Instruction Tuning, M-IT</li>
+<li>上下文学习Multimodal In-Context Learning, M-ICL</li>
+<li>思维链Multimodal Chain of Thought, M-CoT</li>
+<li>LLM辅助的视觉推理LLM-Aided Visual Reasoning, LAVR</li>
+</ol>
+<h3 id="指令微调m-it"><a class="markdownIt-Anchor" href="#指令微调m-it"></a> 指令微调M-IT</h3>
+<p>Instruction, 指对任务的描述, M-IT是一种通过指令格式的数据来微调预训练MLLM的技术</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-202103894a034219608fd515d023b520_1440w.webp" alt="img" /></p>
+<p>多模态指令数据的基本形式<Instruction><Input><Response>, 指令的设计分为手工设计与GPT设计. M-IT从数据, 模态桥接和评测三个方面总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-be330710b015d786df7cee7014d3f532_1440w.webp" alt="img" /></p>
+<h3 id="上下文学习m-icl"><a class="markdownIt-Anchor" href="#上下文学习m-icl"></a> 上下文学习M-ICL</h3>
+<p>In-Context-Learning指给定少量样例作为Prompt输入, 激发模型潜在能力并规范化模型的输出</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-35cdff5cc101263dab4883cd0e70ea0d_1440w.webp" alt="img" /></p>
+<p>这方面的研究工作相对较少, 以Flamingo为代表</p>
+<p>MLLM的ICL能力比较依赖训练, 目前仍缺乏对样例选择和样例顺序等方面的深入研究</p>
+<h3 id="多模态思维链m-cot"><a class="markdownIt-Anchor" href="#多模态思维链m-cot"></a> 多模态思维链M-CoT</h3>
+<p>从模态桥接, 学习范式, 思维链配置和生成模式四个方面总结:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131162040880.png" alt="image-20240131162040880" /></p>
+<h3 id="llm辅助的视觉推理lavr"><a class="markdownIt-Anchor" href="#llm辅助的视觉推理lavr"></a> LLM辅助的视觉推理LAVR</h3>
+<p>特点</p>
+<ol>
+<li>强大的zero/few-shot泛化能力</li>
+<li>涌现能力</li>
+<li>更好的互动性和可控性</li>
+</ol>
+<p>从训练范式, LLM扮演的角色和评测三个部分总结</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131165736786.png" alt="image-20240131165736786" /></p>
+<h3 id="挑战和未来方向"><a class="markdownIt-Anchor" href="#挑战和未来方向"></a> 挑战和未来方向</h3>
+<p>MLLM存在的问题</p>
+<ol>
+<li>MLLM感知能力受限. 视觉信息获取有限, 信息容量和计算负担间有妥协</li>
+<li>MLLM的推理链脆弱. 简单的多模态推理问题也可能有错误</li>
+<li>MLLM的指令服从能力有待提高. 指令微调后, 简单地指令仍无法输出预期答案</li>
+<li>物体幻视问题. MLLM可能编造物体</li>
+<li>高效参数训练. MLLM模型容量较大</li>
+</ol>
+<h2 id="文章总结"><a class="markdownIt-Anchor" href="#文章总结"></a> 文章总结</h2>
+<h3 id="1-eyes-wide-shut-exploring-the-visual-shortcomings-of-multimodal-llms"><a class="markdownIt-Anchor" href="#1-eyes-wide-shut-exploring-the-visual-shortcomings-of-multimodal-llms"></a> 1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.06209">Eyes Wide Shut? Exploring the Visual Shortcomings of Multimodal LLMs</a></h3>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/s89eaZ3um1Yl2qBGHNlCdQ">LLM存在重大缺陷？这篇论文团队成员堪称「豪华」！！！</a></p>
+<p><strong>motivation</strong>: 视觉方面, 模型往往只基于实例级别的对比语言-图像预训练(CLIP), CLIP的embedding中识别不准确主要来源于那些视觉上不同但编码相似的图像. 在特殊场景上, 不如随机猜测</p>
+<p><strong>method</strong>: 某些系统性的视觉模式容易产生误解. 参考MMVP基准测试中的问题和选项, 将这些视觉模式转换为语言描述. 容易产生误解的九种视觉模式如下:</p>
+<ol>
+<li>朝向和方向</li>
+<li>某个特征是否出现</li>
+<li>某种状态或条件</li>
+<li>数量的问题</li>
+<li>颜色和外观</li>
+<li>位置和上下文</li>
+<li>结构特征</li>
+<li>文字</li>
+<li>不同的视角</li>
+</ol>
+<p>引入新基准MMVP-VLM, 将MMVP基准测试中的问题子集提炼成语言描述, 分类为视觉模式, 使每个视觉模式由15个文本-图像对表示</p>
+<p>过去有关CLIP在MVP基准测试的研究表明, 扩大CLIP规模无助于解决视觉模式问题, 仅在&quot;颜色和外观&quot;与&quot;状态和条件&quot;两种视觉模式上有帮助. 实验表明, CLIP在特定视觉模式上表现不佳时, MLLM也会显示出相似的不足.</p>
+<p><strong>全新特征混合(MoF)方法</strong></p>
+<p>MoF方法将视觉的自监督学习特征(DINOv2)和CLIP特征结合在一起, 在LLaVA上实验</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131203820049.png" alt="image-20240131203820049" /></p>
+<ul>
+<li>标准MLLM使用既有CLIP预训练视觉编码器</li>
+<li>加性特征混合(A-MoF MLLM)大语言模型. Adapter前CLIP和DINOv2特征进行线性混合</li>
+<li>交错特征混合(I-MoF MLLM)大语言模型. Adapter后CLIP视觉token和DINOv2视觉token进行空间交错</li>
+</ul>
+<p>两种方法只依赖视觉的自监督学习特征, 提升了视觉识别能力, 但削弱了语言处理性能</p>
+<p>结论:</p>
+<ol>
+<li>自监督学习特征A-MoF
+<ul>
+<li>DINOv2特征比例提高, LM在执行指令方面的能力下降</li>
+<li>DINOv2特征比例的增加提升了模型对视觉信息的理解能力, 75%为拐点</li>
+</ul>
+</li>
+<li>交错特征混合I-MoF
+<ul>
+<li>执行指令的能力不会受到影响</li>
+<li>对视觉信息的理解有大幅提升</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-vila-on-pre-training-for-visual-language-models"><a class="markdownIt-Anchor" href="#2-vila-on-pre-training-for-visual-language-models"></a> 2. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2312.07533.pdf">VILA: On Pre-training for Visual Language Models</a></h3>
+<p><strong>motivation and method</strong></p>
+<p>MLLMs的框架分为两类</p>
+<ol>
+<li>
+<p>基于交叉注意力, 如Flamingo, BLIP-2</p>
+</li>
+<li>
+<p>基于自回归, 视觉和文本tokens拼接到一起作为输入, 如Fuyu, PaLM-E, LLaVA</p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/FpNegicE8tU4IYGvynEiaZxgrW8ibMtS5MbVlf90yQh1KXpLqfF2l9u8boLDFoiarrkrxo5dyzxn4HSCKhiaffS7PyA/640?wx_fmt=png&amp;from=appmsg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+<p>自回归MLLMs包括Visual Encoder(VE), LLM和连接两个模态的Projector, Projector可以是Linear(LLaVA)或TransfomerBlock(InstructBLIP, OpenFlamingo)</p>
+<ul>
+<li>Step0: Project init. 图片-文本对训练projector, 如InsructBlip, BLIP-2, LLaVA</li>
+<li>Step1: Interleaved pre-training(Visual Language Pre-training). 图文交织训练LLM和projector, 固定CLIP</li>
+<li>Step2: Vision-text SFT(Visual Instruction-tuning). 视觉指令微调, 训练LLM和projector</li>
+</ul>
+</li>
+</ol>
+<p>Visual Language Pre-training的研究</p>
+<ol>
+<li>prompt-tuning. 只训projector, 防止纯文本训练的LLM能力退化</li>
+<li>fine-tuning: 训projector和LLM</li>
+</ol>
+<p>结论看出, 容量更大的TransformerBlock作为project, LLM微调的收益更明显, 只训projector性能很差; 容量较小的linear作为project, 只训projector能得到更好的效果. Step1预训练期间冻结LLM会导致few-shot性能变差, 也即会影响泛化性. ---- 调整LLM会为视觉和文本的embedding提供更好的对齐, 证据如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131223531725.png" alt="image-20240131223531725" /></p>
+<p>图文交织数据很重要</p>
+<ul>
+<li>图文样本对数据. 图片和文本一一对应, 如COYO</li>
+<li>图文交织数据. 任意交错的图像和文本序列</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;image_info&#x27;</span>: [&#123;<span class="string">&#x27;face_detections&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">                 <span class="string">&#x27;image_name&#x27;</span>: <span class="string">&#x27;b9040a0dbb22.jpg&#x27;</span>,</span><br><span class="line">                 <span class="string">&#x27;matched_sim&#x27;</span>: <span class="number">0.27694183588027954</span>,</span><br><span class="line">                 <span class="string">&#x27;matched_text_index&#x27;</span>: <span class="number">2</span>,</span><br><span class="line">                 <span class="string">&#x27;raw_url&#x27;</span>: <span class="string">&#x27;http://www.hfitinfo.com/honda_fit_pics/3/2/index.90.jpg&#x27;</span>&#125;,</span><br><span class="line">                &#123;<span class="string">&#x27;face_detections&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line">                 <span class="string">&#x27;image_name&#x27;</span>: <span class="string">&#x27;db1c21bc8474.jpg&#x27;</span>,</span><br><span class="line">                 <span class="string">&#x27;matched_sim&#x27;</span>: <span class="number">0.3234919607639313</span>,</span><br><span class="line">                 <span class="string">&#x27;matched_text_index&#x27;</span>: <span class="number">1</span>,</span><br><span class="line">                 <span class="string">&#x27;raw_url&#x27;</span>: <span class="string">&#x27;http://www.hfitinfo.com/honda_fit_pics/3/2/index.91.jpg&#x27;</span>&#125;],</span><br><span class="line"> <span class="string">&#x27;similarity_matrix&#x27;</span>: [[<span class="number">0.24363446235656738</span>,</span><br><span class="line">                        <span class="number">0.31758785247802734</span>,</span><br><span class="line">                        <span class="number">0.27694183588027954</span>],</span><br><span class="line">                       [<span class="number">0.2233106791973114</span>,</span><br><span class="line">                        <span class="number">0.3234919607639313</span>,</span><br><span class="line">                        <span class="number">0.26118797063827515</span>]],</span><br><span class="line"> <span class="string">&#x27;text_list&#x27;</span>: [<span class="string">&#x27;When you lock the door using the lock tab on the driver’s &#x27;</span></span><br><span class="line">               <span class="string">&#x27;door, all of the other doors and tailgate lock at the same &#x27;</span></span><br><span class="line">               <span class="string">&#x27;time.&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;Press the master door lock switch in as shown to lock or &#x27;</span></span><br><span class="line">               <span class="string">&#x27;unlock all doors and the tailgate.&#x27;</span>,</span><br><span class="line">               <span class="string">&#x27;When you lock/unlock the driver’s door and tailgate using the &#x27;</span></span><br><span class="line">               <span class="string">&#x27;master lock switch, all the other doors lock/ unlock at the &#x27;</span></span><br><span class="line">               <span class="string">&#x27;same time.&#x27;</span>],</span><br><span class="line"> <span class="string">&#x27;url&#x27;</span>: <span class="string">&#x27;http://www.hfitinfo.com/hofi-48.html&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;could_have_url_duplicate&#x27;</span>: <span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>指令微调可以恢复LLM能力</p>
+<p>​	图文交织数据缓解了LLM能力的退化，但仍有5.3%的gap。一种直观的办法是在训练时混合用于训练LLM的纯文本数据，但这种数据通常是私有的，且如何配比来配合图文交织数据仍不明确。</p>
+<p>​	幸运的是，LLM的纯文本能力可能只是暂时被隐藏，并没有被遗忘。在SFT期间添加纯文本数据可以弥补退化，尽管与文本预训练语料库(通常是万亿规模)相比，使用的规模要小得多</p>
+<p><strong>conclusion</strong></p>
+<ol>
+<li>预训练期间freeze掉LLM可以取得不错的zero-shot效果, 但缺乏上下文能力(few-shot能力差)</li>
+<li>图文交织数据比图片-文本对数据效果好</li>
+<li>指令微调可以恢复LLM的能力</li>
+</ol>
+<h3 id="3-benchlmm-benchmarking-cross-style-visual-capability-of-large-multimodal-models"><a class="markdownIt-Anchor" href="#3-benchlmm-benchmarking-cross-style-visual-capability-of-large-multimodal-models"></a> 3. <a target="_blank" rel="noopener" href="https://aifeg.github.io/BenchLMM/">BenchLMM: Benchmarking Cross-style Visual Capability of Large Multimodal Models</a></h3>
+<p><strong>motivation</strong></p>
+<p>BenchLMM 测试集专为评估大型多模态模型在处理不同视觉风格时的能力而设计, 包括艺术风格, 传感器风格和应用风格三个维度</p>
+<ul>
+<li>艺术风格: 多种独特的视觉表达形式, 如卡通, 绘画, 纹身. VLM不能解释创意元素或风格特点</li>
+<li>传感器风格: 不同的成像技术, 如红外成像, X光扫描和CT图像. VLM不能解读特殊成像技术产生的视觉差异</li>
+<li>应用风格: 一些特定的实际应用场景, 如遥感图像分析, 自动驾驶中的视觉识别, 机器人视觉系统. VLM不能适应特定领域的视觉特征和需求</li>
+</ul>
+<p><strong>method and conclusion</strong></p>
+<p>风格提示增强Style Prompt Enhancement(简称SPE). 模型自行判断图像风格, 再进行问题解答, 这一过程不需要对模型进行额外的训练或改造, 利用模型本身提升其在多样化视觉环境中的表现.</p>
+<p>模型的错误反思能力. 如GPT-4V能识别并解释其错误答案的原因, 还能在错误反思过程中提供详细的推理链条</p>
+<h3 id="4-prompting-large-vision-language-models-for-compositional-reasoning"><a class="markdownIt-Anchor" href="#4-prompting-large-vision-language-models-for-compositional-reasoning"></a> 4. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2401.11337.pdf">Prompting Large Vision-Language Models for Compositional Reasoning</a></h3>
+<p><strong>motivation</strong></p>
+<p>CLIP是图像和文本在embedding上对齐, 在视觉语言组合性上具有局限性, 探究原因如下:</p>
+<ol>
+<li>复杂多模态数据使用单一向量表示</li>
+<li>基于embedding的方法缺乏逐步推理</li>
+</ol>
+<p><strong>method: KEYCOMP提示大型视觉语言模型描述图像并进行组合推理</strong></p>
+<ol>
+<li>从文本中自动检测出一组关键词K, 以指导VLM描述图像的相关内容</li>
+<li>使用预训练的VLM为图像生成文本描述. 通过使用关键词K来引导图像描述的生成, 以确保VLM专注于图像细节, 以便于图像-文本匹配</li>
+<li>LLM推理与解释. 鉴于LLM展示出令人印象深刻的zero-shot推理能力，我们提示LLM对生成的图像描述和给定的字幕进行推理，并为Winoground任务选择答案。</li>
+</ol>
+<h3 id="5-cocot-contrastive-chain-of-thought-prompting-for-large-multimodal-models-with-multiple-image-inputs"><a class="markdownIt-Anchor" href="#5-cocot-contrastive-chain-of-thought-prompting-for-large-multimodal-models-with-multiple-image-inputs"></a> 5. <a href="%5Barxiv.org/pdf/2401.02582.pdf%5D(https://arxiv.org/pdf/2401.02582.pdf)">CoCoT: Contrastive Chain-of-Thought Prompting for Large Multimodal Models with Multiple Image Inputs</a></h3>
+<p><strong>motivation</strong></p>
+<p>在多图像输入时的问题:</p>
+<ol>
+<li>缺乏细粒度感知. LM处理视觉内容会丢失图像细节</li>
+<li>跨多图像信息融合困难. LMMs难以理解图像间的关系和互动, 语言描述图像内和图像间关系很复杂</li>
+</ol>
+<p><strong>method: Contrastive Chain-of-Thought, CoCoT</strong></p>
+<p>引导LMMs比较多图像输入间的相似性和差异性, 基于相似性和差异性回答问题</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/2024/04/10/mllm/summary-reading/MoE(Mixture%20of%20Experts)/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          MoE in MLLMs and LLMs 笔记
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/03/25/mywork/post_decoder/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          基于 HA-DPO 和 LLaVA 的代码库进行训练和测试
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">
+            <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
+        </a>
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="ZhiHu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">
+            <iconify-icon width="28" icon="ri:zhihu-line"></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

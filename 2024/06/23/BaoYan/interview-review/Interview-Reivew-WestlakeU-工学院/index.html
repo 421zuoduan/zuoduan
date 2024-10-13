@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-cn,en,default">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="崔若晨 Ruochen Cui">
+
+
+  <meta name="subtitle" content="崔若晨">
+
+
+  <meta name="description" content="电子科技大学三年级本科生
+
+A third year undergraduate student at UESTC
+">
+
+
+  <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence,Image Restoration,Hallucination Multimodal Large Language Model">
+
+
+<title>西湖大学面试回顾 | Ruochen Cui</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+      Ruochen Cui
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+      
+      
+      
+      
+      
+      
+      <a href="/./archives" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:inbox-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Posts</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./publications" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:science-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Publications</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./about" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:user-info-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>About</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./categories" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-2-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Categories</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./tags" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Tags</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./index" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:home-2-fill" width="22">
+        </iconify-icon>
+        
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center">
+
+      <!-- TODO: Add search icon here -->
+
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]" width="24" id="theme-icon">
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex p-1 mx-1 sm:hidden">
+        <a class="w-5 h-5" aria-hidden="true" id="open-menu">
+          <iconify-icon width="24" icon="mingcute:menu-fill" class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+          </iconify-icon>
+        </a>
+        <a class="w-5 h-5 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon width="24" icon="mingcute:close-circle-fill" class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content" class="
+        flex
+        flex-row
+        justify-center
+        items-center
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+    
+    
+    
+    <a href="/./archives" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:inbox-fill" width="22">
+      </iconify-icon>
+      <p>
+        posts
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./publications" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:science-fill" width="22">
+      </iconify-icon>
+      <p>
+        publications
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./about" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:user-info-fill" width="22">
+      </iconify-icon>
+      <p>
+        about
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./categories" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:classify-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        categories
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./tags" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:tag-fill" width="22">
+      </iconify-icon>
+      <p>
+        tags
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./index" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:home-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        home
+      </p>
+    </a>
+    
+    
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">西湖大学面试回顾</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-06-23</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-10-14</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>5.2k words, 18 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E6%95%B4%E7%90%86/">面试整理</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/interview/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        interview
+      </a>
+    
+      <a href="/tags/BaoYan/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        BaoYan
+      </a>
+    
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <h1 id="实验室内部面试-2024-06-22"><a class="markdownIt-Anchor" href="#实验室内部面试-2024-06-22"></a> 实验室内部面试 2024-06-22</h1>
+<h2 id="一些闲话"><a class="markdownIt-Anchor" href="#一些闲话"></a> 一些闲话</h2>
+<h3 id="时间线"><a class="markdownIt-Anchor" href="#时间线"></a> 时间线</h3>
+<p>其实还挺惊讶的, 居然最后入营了. 时间线是这样的:</p>
+<ol>
+<li>2024-06-19 夏令营出结果, 发现自己入营了</li>
+<li>2024-06-20 lzq老师实验室的 xj 师兄搜索微信号找到我 (已经是第二次被搜索微信号加微信了, 我是不是应该主动加一下微信呢), 十分钟电话大概聊了一下入营情况, 我听的是师兄筛简历的时候没注意到我的 rank 那么低, 入营的其他同学都是 985 高校的 rank 前三, 或者有 CCF-A 的顶会一篇或两篇. 是我过于在意自己的 rank 吗? 唔, 其实也确实吧, 很多数学课和专业课当时都没有认真学, 都是意识到这东西有用后才回过头来找补. 虽然讲读研读博还是在意科研经历, 但是自己的基础知识确实相比他们拾起来要困难一些.</li>
+<li>2024-06-23 晚 9 点进行面试.</li>
+</ol>
+<h3 id="面试官的情况"><a class="markdownIt-Anchor" href="#面试官的情况"></a> 面试官的情况</h3>
+<h4 id="xj"><a class="markdownIt-Anchor" href="#xj"></a> xj</h4>
+<p>看样子是中南大学过来直博的学长, 19 年入学到现在 A 会也有十篇了吧, 后面打算冲一冲 nature 的正刊 or 大子刊</p>
+<!-- [github 主页](https://github.com/junxia97)
+
+[个人主页](https://junxia97.github.io/)
+
+[谷歌学术‬](https://scholar.google.com/citations?user=aPKKpSYAAAAJ) -->
+<h4 id="lzc"><a class="markdownIt-Anchor" href="#lzc"></a> lzc</h4>
+<!-- 刘梓呈 -->
+<p>只记得前两个字是 “lz” 了</p>
+<h2 id="正式面试"><a class="markdownIt-Anchor" href="#正式面试"></a> 正式面试</h2>
+<p>貌似是应该三个学长一起面试, 但是另一个学长貌似睡过了, 可能是知乎上那个人吧 (doge). 一共面了五十分钟, 讲 PPT 有 15-20 min 吧.</p>
+<p>讲 PPT, 感觉比想象中的要发挥的好, 正儿八经就自己过了一遍 PPT, 不过说了一遍嘴已经干了, 要多喝水. 还是只讲了自己 ICLR 和 PIB 的工作.</p>
+<p>首先日常拷打排名, 36%, 能保研吗? 能, 算上 3 分加分的话能保.</p>
+<p>有没有报其他学校? 报了很多, 入营很少, 因为 rank 太低了.</p>
+<h3 id="wim"><a class="markdownIt-Anchor" href="#wim"></a> WIM</h3>
+<p>问了 motivation, 认为我们的 motivation 不是很强, 对于我们这里的任务为什么不好其实没有给出很好的分析. 没有分析好 Swin Transformer 的具体的缺陷怎么样, 这部分确实分析上有些不足.</p>
+<p>不过新的故事我打算这样讲, 滑动窗口其实只是和相邻窗口计算关联度, 对于长距离关系建模的能力仍然有所不足. 嗯, 感觉也确实存在这样的问题.</p>
+<p>还问了参数量怎么样, 这里 l 师兄可能怀疑是单纯的加参导致的效果提升, 不过我们实验降低了参数量, 减小了计算量</p>
+<p>这次比上海 AILab 面试好的点在于, 讲的逻辑串起来了, 我要讲哪部分时我用框框了出来, 这样能让听者明白我在讲什么</p>
+<h3 id="pib"><a class="markdownIt-Anchor" href="#pib"></a> PIB</h3>
+<h4 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h4>
+<p>motivation 还是可以的, 但是 vision token 的 attention ratio 那张图应该写明是哪篇文献的, 这样可以避免误会为我们画出来的. 同理答案的分布的熵那张图</p>
+<h4 id="motivation"><a class="markdownIt-Anchor" href="#motivation"></a> Motivation</h4>
+<p>两个学长都对 vision token 在 LLM 中受到的注意力不断减小这个观点很感兴趣</p>
+<ul>
+<li>问我有没有做一些深入分析的工作, 答没有, 尝试过量化, 但是没有做出来, 如果能做出来那工作量就是第二篇文章了</li>
+<li>我有提这篇文章是做大模型加速推理的, x 学长问我这篇文章提出了什么方法, 答由观察到的这种现象, 发现 vision token 受到的注意力很少, 从而将后一半 (比如是后一半) 的 vision token 丢掉, 不参与计算了; 有点忘记师兄的反应了, 貌似是质疑了下 task, 这里也没太听懂, 讲了句这个是加速推理多模态大模型的, 也有一些加速推理语言大模型的工作; x 学长表示我这些工作和他手头的工作其实很接近, 也是多模态大模型</li>
+<li>l 学长提出, LLM Backbone 里的 softmax 是造成图片吧啦吧啦的原因, 具体忘记了, 应该明天交 PPT 的时候再问一下, 这个感觉还蛮重要的</li>
+</ul>
+<h4 id="deepspeed"><a class="markdownIt-Anchor" href="#deepspeed"></a> DeepSpeed</h4>
+<p>简历上有写熟悉 DeepSpeed, 唔, 其实并没有很熟悉, 被拷打了. 这个应该是很明确的减分项, 我突然就很着急, 只想起来了用 HuggingFace 那样的接口, transformers 库的 Trainer, 先定义 Arguments, 定义 model, 定义 Trainer, 然后 model.train() 这些了. 应该详细了解下 DeepSpeed 的, 这大概就是面向使用的学习带来的弊端吧.</p>
+<h4 id="大模型八股"><a class="markdownIt-Anchor" href="#大模型八股"></a> 大模型八股</h4>
+<ul>
+<li>先是问这是哪个大模型, 答 BLIP; BLIP 是一系列工作, 是具体哪个, 答 BLIP2;</li>
+<li>Q-Former 的作用是什么, 这里在讲 PPT 有讲是实现模态对齐, 所以我答了它可以压缩其他模态如视频的 token 数量; Q-Former 训练的三个 loss 是什么, 完全没了解过, 答没了解过; 由于这里说不知道的东西有点多, 我抢答了 Q-Former 现在已经基本被淘汰了, 大多用的是 LLaVA 那样的 MLP 或 Linear, 只有在一些 token 数量很多的任务中才会使用, xj 学长讲他们的任务 token 数量就很多, 需要用 Q-Former</li>
+<li>对于 BLIP2 还有什么其他了解, 语塞了一会, 答不是很清楚</li>
+</ul>
+<h4 id="论文实验"><a class="markdownIt-Anchor" href="#论文实验"></a> 论文实验</h4>
+<p>x 师兄主动提了一些我们那篇论文可以做的点, 非常感谢</p>
+<ul>
+<li>vision token 注意力值下降的问题, 我们也可以做一个类似的 motivaiton 式的探索实验, 这样投 AAAI 是比较稳得</li>
+<li>LLM 回答越自信, 答案分布的熵越小, 我们也可以做一个类似的实验</li>
+</ul>
+<h3 id="一些琐碎的问题"><a class="markdownIt-Anchor" href="#一些琐碎的问题"></a> 一些琐碎的问题</h3>
+<ul>
+<li>你这个论文 Track 中投率如何? 答还真没细查过, 但是今年是第二年, 应该挺高的 (不敢直接报应该能有一半hhh)</li>
+<li>你有了解过 Restormer? 答我最开始就是做的 Restormer, 我尝试过替换他的 Attention 和 FFN, 感觉只有这两个在一起效果很好; l 师兄讲他们后续的 Restormer++ 有了解过吗, 答没有, 于是师兄放弃了继续提问的欲望 (doge)</li>
+<li>你想做什么方向? 答: 我没有了解很深入, 我看到咱们实验室论文产出主要有 DNA, 蛋白质, 分子三个方向, 以及少部分 AI 基础研究. 我高中没有学过化学, 我选的是物生地, 所以想做 DNA 多一些. 学长讲其实两周时间基本就能入门, 背景不重要</li>
+<li>l 师兄主动讲, 想要拿到最终的 offer 最好还是要去实习, 虽然不是必须的, 但最好过来实习</li>
+<li>腾讯会议后, xj 师兄主动讲了很多他们这边的工作, 基本瞬间发给我几张图, 感觉这几张图是他之前给其他人发过的吧, 所以这边应该还是也有做大模型或者想让过来一起帮忙发 nature 的 candidate; 此外组内大概有六个方向, xj 师兄应该就是大模型相关的方向, 不过大多数还是做 AlphaFold 那样的工作</li>
+</ul>
+<h3 id="反问"><a class="markdownIt-Anchor" href="#反问"></a> 反问</h3>
+<ul>
+<li>实验室氛围如何, 要打卡吗? 不需要, 已经有面试官还没睡醒的例子, 甚至可以在宿舍; 实验室氛围还是比较自由的, 李老师大概一个月或半个月会和每个人一对一 meeting</li>
+<li>没有生化背景可以吗? 答没问题, 其实到最后处理的都是 sequence</li>
+<li>和工业界联系如何? 这是第一次电话里聊的, 学长讲主要是和一些医疗和学术机构合作, 和工业界相对联系少一些</li>
+<li>实验室卡怎么样? 这是微信里问的, 截图显示正在使用 32 * A100, 羡慕 !</li>
+<li>西湖大学的优营怎么算, 是基本全靠当时面试吗? 答基本是李老师决定, 学长讲今年名额很多</li>
+<li>如果没有拿到保研名额, 可以申请普博吗, 难度怎么样? 没有直接回答难度的高低, 但是说可以过去做实习, 毕竟 12 月普博申请, 中间时间还很长. 如果没有拿到保研名额, 我应该就过去做实习了吧, 这样的话这边也就不太能鸽了</li>
+<li>我今天面试有什么不足或者可以改进的地方吗? 官答挺好的, PPT有一些细节可以修改一会微信发我, 不过最后师兄在 PPT 上除了加参考文献外没什么其他意见了, 发了我两份西湖大学的 PPT 模版, 明天改成英文再看看</li>
+</ul>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>面试的两个师兄还是很 nice 的, 我以为 xj 师兄是读完硕士再读的博士, 所以有那么多 paper, 但是看到知乎上的回答感觉是直博的, 那这个 pub 还是很强的, 也说明实验室李老师其实现在还是能在一线给出很多有效的指导的. 而且只是处理序列的话, 除了需要干一些 dirty 的工作外, 也就是数据科学上的序列处理问题, 只需要在意输入输出就可以了, 加上与学术机构的合作, 感觉发展还是很好的. 两个学长科研的 taste 都还蛮好的.</p>
+<p>面试前和面试中其实都没有很正式, 有时就真的像闲聊一样, 感觉这样的状态更适合我吧. 自我评价这次面试比上次上海 AILab 面试要面的好很多 (不过代码面问简历也是有点逆天了), 主要是 PPT 准备相对充分了很多, 把衔接的逻辑串起来了 (不过感觉这 PPT 30min 也能讲, 15min 也能讲, 感觉需要加内容)</p>
+<h1 id="正式面试-2024-06-30"><a class="markdownIt-Anchor" href="#正式面试-2024-06-30"></a> 正式面试 2024-06-30</h1>
+<h2 id="ppt-准备"><a class="markdownIt-Anchor" href="#ppt-准备"></a> PPT 准备</h2>
+<p>6 月 24 号晚之前将 PPT 发过去, 要求 PPT 内容包括个人的科研背景和科研计划. 此时也就不允许更改 PPT 内容了, 这还是比较麻烦的, 实际在进行英文准备的时候, 感觉有一些地方还是最好修改一下. 不过上一次面试后师兄大概过了一下, 希望没什么大问题吧. 但是我看 zt 的 PPT 和我前面那个人的 PPT, 感觉他们做的还是花里胡哨的, 介绍了自己的很多其他经历, 在科研计划这里其实也会更详细一些. 相比之下, 我的科研计划这里还是写的太单薄了, 应该仔细了解一下, 然后多写一下的.</p>
+<h2 id="英文文稿准备"><a class="markdownIt-Anchor" href="#英文文稿准备"></a> 英文文稿准备</h2>
+<p>我本来是没准备特意准备的, 但是看 zt 准备的很详细, 而没有准备的我在讲 PPT 的时候像个憨憨一样, 所以还是决定详细地准备一下. 面试当天在候场的时候发现大多数人都做了文稿, 幸好是和 zt 一起, 否则大抵这次面试是寄了吧.</p>
+<p>我是先写的中文, 然后 ChatGPT 转成的英文, 其实这样效率有些太低了, 应该直接写英文, 然后让 ChatGPT 修改的. 实际这个文稿也没有太用到, 我在PPT 上呈现的文字其实很多了, 照着念了很大一段. 主要是涉及到一些衔接的地方和图片表格描述的地方</p>
+<h2 id="正式面试-2"><a class="markdownIt-Anchor" href="#正式面试-2"></a> 正式面试</h2>
+<p>我在 E10-210 面试, 我感觉我的时间应该是讲超了, 在我的科研背景上讲的时间太长了. 开始讲 PPT 时李子青老师就提醒注意一下时间, 在四分之三的地方老师又提醒了下时间.</p>
+<p>讲 PPT 的时候还好, 基本还算流畅, 不过有一些地方的发音感觉很奇怪, 就重复了两遍. 不过念了很多 PPT, 感觉和老师的现场交流上少了一些.</p>
+<p>主要记录一下提问环节吧. 我的提问环节很奇怪, 大多数问题是用中文提问的, 只有两个问题是用英文提问的, 而且不知道是他们觉得我英文太次还是认为我表述不清楚, 这两个英文问题又用中文重新表述一下. xj 师兄说, 其实这个提问很随意的, 也不知道会不会有真的影响.</p>
+<ul>
+<li>英文提问, 我第一次回答后他又用中文重新问了一遍, 你提出的这个 PIB 的作用是什么? 答: 用以在 LLM Backbone 后面进行图像信息的二次增强. 这里我的回答在之前的面试都能让老师理解, 但是这里提问的老师貌似还是没理解, 我感觉他像是一个外国人, 但是会说中文 (带了口罩). 他小声嘟囔了一句 “没听懂, 就这样吧”, 说着说着就往那表格上写分数, 呜呜呜.</li>
+<li>你意向报考哪个老师? 答: 李子青老师 (说完看向了李子青老师)</li>
+<li>李子青老师提问, 你的研究计划里讲你对大语言模型和 AI4Science 都有兴趣, 那你有了解什么 AI4Science 的内容吗? 答: 比如在生命科学中, 我们的很多问题都可以抽象成序列处理问题, 以一个序列作为输入, 一个序列作为输出, 中间的过程我们可以借助一些 AI 的技术来处理</li>
+<li>李子青老师提问, 你回答的太宽泛了, 能具体一点吗? 答: 我倾向于做一些偏上游的任务, 比如 xj 师兄正在做的工作, 如从质谱数据得到后面物质的预测, 这个过程其实可以用到多模态大模型, 这与我过去的一些研究内容其实是很匹配的, 我认为我可以在这方面进行研究. (我感觉李子青老师摇了摇头, 唔, 所以感觉要寄了)</li>
+<li>有一个老师用英文提问了一个问题, 因为前面都是用中文提问的, 这里我没反应过来, 回了一个 “Sorry, I didnt hear what u said clearly”, 然后老师又用中文提问了一次. 不过现在已经忘记这个问题是什么了</li>
+<li>你有读过 AI4Science 相关的论文吗? 答没有</li>
+<li>然后是一个心理老师的问题, 这里可能是我之前填的那个问卷有一些不太好的东西.
+<ol>
+<li>你在过去一年最快乐的时刻是什么时候? 答在做 Prompt Tuning 的高维医学小样本分类的任务的那两周, 虽然很累但是很充实, 这也是我接触到大模型的契机, 从 0 开始学习到了很多了prompt tuning, prefix tuning 的方法, 最终我们的效果超过往年最好的效果十个百分点</li>
+<li>有其他老师问, 时间投入如何呢? 答基本是 all in, 老师又问了是什么程度的 all in? 答睡醒了就做, 做差不多了就睡</li>
+<li>有另外的老师问, 是课程的项目吗? 是的</li>
+<li>别人认为你是一个内向还是外向的人? 过去认识我的人大多认为我是一个内向的人, 其实我认为我现在也是一个内向的人; 现在我身边的人很多人认为我是一个外向的人</li>
+<li>你觉得你最艰难的一段时间是在什么时候? 在高一我感觉是我目前经历的人声中最艰难的时期, 我高中是在衡水中学读的, 但是我自小生活在北京, 从一个环境到另一个环境, 我的人生观和价值观都受到了很大的冲击; 不过在后面与周围同学的交流不管是高中还是大学, 我逐步建立起自己对这个世界的认识, 就不再有当时的那种感受了.</li>
+<li>你有没有和别人起过很大的冲突? 这里我纠结了一下要不要回答, 怕会留下不好的印象; 不过还是坦诚的回答了, 和 yzc 的冲突; 讲着讲着就有点后悔, 不太好圆回来, 我讲最终我们还是解决了矛盾, 通过沟通与协商的方式 (当时想说妥协, 但感觉还是怪怪的, 所以没用这个词)</li>
+</ol>
+</li>
+</ul>
+<p>基本就问了这些内容吧, 这里的回答基本就是我当时的回答. 总体来说没有很刁难人, 也没有问基础知识, 最好表现出个人具有较好的 “心理状态”. 老师们很在意我个人的科研计划, 这里其实应该多准备一下的.</p>
+<h2 id="其他同学的面试"><a class="markdownIt-Anchor" href="#其他同学的面试"></a> 其他同学的面试</h2>
+<p>zt: 2 组, 纯英文问答, 手里有两篇 TCS 的 Top 期刊, 因为研究生想做 ai 方向, zc 老师那边让他回答做生成式 AI, 所以有老师问他 Diffusion 涉及到哪些数学知识; zt 回答了概率分布 (distribution of possibility), 还有一些数学知识, 但貌似那边老师不是很满意. 他觉得他很多问题没回答上来, 但是我觉得他的 Background 应该没问题吧, 做数学的转过来应该也有很大的优势. 我认为他优营没问题, 他觉得有问题, 应该是强者的自谦吧.</p>
+<p>候场时的路人甲: 他在和别人讲的时候我听到的, 他也是全英文面试, 包括 QA, 他也感觉老师们对他的回答都不是很满意.</p>
+<h2 id="和-xj-师兄的两次线下交流"><a class="markdownIt-Anchor" href="#和-xj-师兄的两次线下交流"></a> 和 xj 师兄的两次线下交流</h2>
+<h3 id="2024-06-27"><a class="markdownIt-Anchor" href="#2024-06-27"></a> 2024-06-27</h3>
+<p>刚到学校, xj 师兄就把实验室这边的 candidates 聚到一起, 开了个短会, 主要是介绍他们实验室目前的情况, 有 6 个方向, 他是做质谱大模型的. 这边 candidate 一共有 7 个人, 有北邮的周恒, 华东师范, 某校的李鹏凯, 吧啦吧啦, 记不住了. 后来和周恒和李鹏凯加了v.</p>
+<p>xj 师兄讲大家放轻松, 今年实验室的名额很充足, 预计接收 4-6 名博士生, 今天是想破冰的. 让大家提问题, 不过这一次都是一些无关痛痒的问题了.</p>
+<h3 id="2024-06-30"><a class="markdownIt-Anchor" href="#2024-06-30"></a> 2024-06-30</h3>
+<p>从超市回来的时候遇到师兄刚打完羽毛球回来了, 和师兄聊了十分钟吧. 和师兄说了还是想做多模态大模型, 就是师兄目前的这个方向, 师兄要去 MIT 读博后, 不过去读博后前想去德国那边做 visiting student 几个月, 师兄下面还有两三个也是做多模态大模型的学长. 貌似那边有 34 万引的大牛.</p>
+<ul>
+<li>
+<p>我们生物上的先验除了数据的处理外, 还有什么体现吗, 具体一点, 我这几天看其他老师的工作, 我看他们有用 Graph 做 AI4science 的. 师兄讲, 他们的很多工作已经是师兄前几年做的东西了; 举个栗子, 坏了, 忘了那个例子是什么了, 这交流也是白交流了, 就想问这个来着.</p>
+</li>
+<li>
+<p>质谱这里是怎么体现的多模态的, 有哪些模态? 师兄讲例如核质比序列和质谱序列, 在 token 上 concat 一起, 然后做后面多模态那样的操作</p>
+</li>
+<li>
+<p>师兄讲, 目前医学这边主要是数据问题, 现在已有的大模型他们很多其实只有几百 M, 这确实超出我的预料, 我以为起码 7B 这样的是已经有了, 没想到这么小. 不过师兄他们这边目前也只有 1B, 我怀疑还没到涌现的那种地步.</p>
+</li>
+</ul>
+<p>关键信息就这些吧, 有一些车轱辘话已经听第三遍了. 师兄给我发了一篇论文, 然后我才发现这篇他之前发给过我, 笑死.</p>
+<h1 id="总结-2"><a class="markdownIt-Anchor" href="#总结-2"></a> 总结</h1>
+<p>西湖大学这边面试还是比较舒服的, 也有可能是我遇到的老师和学长都比较好吧. 有一些欠缺的是针对这边做的调研研究确实没有太多, 我应该提前多了解下 AI4Science 的, 目前的认知还是太浅薄了. 我个人的认知上, 李老师这边的一部分工作, 其实很偏向落地, 像是工程一样, 不知道自己对这方面的接收能力怎么样, 毕竟没有完整的做过一个工程项目. Anyway, 希望能拿到优营吧, 能拿到 offer, 也确认保研的话, 可以过来提前实习, 毕竟有这么多卡的机会还是不多啊.</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/2024/06/26/BaoYan/SummerCamp/SummerCamp-WestLake/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          西湖大学夏令营回顾
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/06/20/BaoYan/interview-review/Interview-Review-PKUSZ-%E4%BF%A1%E5%B7%A5%E9%99%A2/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          北深面试
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">
+            <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
+        </a>
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="ZhiHu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">
+            <iconify-icon width="28" icon="ri:zhihu-line"></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>
