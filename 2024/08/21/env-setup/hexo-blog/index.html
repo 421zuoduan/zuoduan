@@ -24,7 +24,7 @@ A fourth year undergraduate student at UESTC
   <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence">
 
 
-<title>Tag: tools | Ruochen Cui</title>
+<title>Hexo 博客代码结构介绍 | Ruochen Cui</title>
 
 
 
@@ -516,105 +516,77 @@ A fourth year undergraduate student at UESTC
   </div>
 </div>
   <main>
-    <section class="px-2 py-8 max-w-prose mx-auto gap-4 grid grid-cols-1">
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
   
-  <!-- Sort posts by date -->
-  
-  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
     
-    <!-- Large text showing the year in the background -->
-    
-      <div class="relative pointer-events-none h-[30px]">
-        <div class="absolute -top-6 w-[100%]">
-          <p class="
-            text-clip overflow-hidden -translate-x-3 text-9xl
-            font-extrabold
-            text-[var(--c-theme)]
-            opacity-10
-            dark:opacity-20">
-            2024
-          </p>
-        </div>
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">Hexo 博客代码结构介绍</p>
       </div>
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/2024/04/17/tools/ppt-md/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                         PPT/文档制作笔记
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-08-21</time>
             </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-04-17
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2024-10-14
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    109 words, 1 min
-                </p>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-10-15</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>709 words, 2 min</span>
             </span>
             <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-                    <iconify-icon class="
-                            group-hover:scale-125
-                            transition-transform
-                            group-hover:text-[var(--c-theme)]
-                        "
-                        width="16"
-                        icon="mingcute:classify-2-fill" class="mr-0">
-                    </iconify-icon>
-                    
-                        <a class="underline underline-offset-2"
-                            href="/categories/%E5%B7%A5%E5%85%B7/">
-                            工具
-                        </a>
-                    
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
             
-                
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/tags/note/" 
+      <a href="/tags/setup/" 
         class="
           tag
           text-sm
@@ -630,10 +602,10 @@ A fourth year undergraduate student at UESTC
           hover:text-[var(--c-0)]
           dark:hover:text-[var(--c-theme-2)]
         ">
-        note
+        setup
       </a>
     
-      <a href="/tags/tools/" 
+      <a href="/tags/server/" 
         class="
           tag
           text-sm
@@ -649,22 +621,183 @@ A fourth year undergraduate student at UESTC
           hover:text-[var(--c-0)]
           dark:hover:text-[var(--c-theme-2)]
         ">
-        tools
+        server
       </a>
     
   
 </div>
-            
-        </div>
-</div>
+      </div>
     </div>
-  
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348093645">Hexo参考文章</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/52722144">EJS文件参考文章</a></p>
+<h1 id="hexo代码结构"><a class="markdownIt-Anchor" href="#hexo代码结构"></a> Hexo代码结构</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── _config.yml      // 站点配置文件</span><br><span class="line">├── db.json          // 缓存文件</span><br><span class="line">├── node_modules     // 安装的插件以及hexo所需的一些nodejs模块</span><br><span class="line">├── package.json     // 项目的依赖文件</span><br><span class="line">├── scaffolds        // 模版文件</span><br><span class="line">├── source           // 源文件，用来存放你的文章 md 文件</span><br><span class="line">└── themes           // 主题文件</span><br></pre></td></tr></table></figure>
+<p>上面是Hexo博客的结构, 我们使用的主题都放在<code>themes</code>文件夹中. 比如我使用的是<code>zuoduan</code>的主题, 在<code>themes</code>里能看到<code>zuoduan</code>.</p>
+<p>再打开<code>zuoduan</code>文件夹有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.en.md       // READEME 英文版</span><br><span class="line">├── README.md          // READEME 中文文件</span><br><span class="line">├── _config.yml        // 主题配置文件</span><br><span class="line">├── bower.json</span><br><span class="line">├── gulpfile.coffee</span><br><span class="line">├── languages         // 多语言配置文件</span><br><span class="line">├── layout            // 模板文件</span><br><span class="line">├── package.json      // 项目的依赖文件</span><br><span class="line">├── scripts           // 主题的脚本文件</span><br><span class="line">├── source            // 主题的资源文件 CSS IMG</span><br><span class="line">└── test</span><br></pre></td></tr></table></figure>
+<p>主题模版文件在<code>layout</code>文件夹下, 其结构为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _custom                  // 通用布局</span><br><span class="line">├── _layout.swig             // 默认布局布局</span><br><span class="line">├── _macro                   // 插件模板</span><br><span class="line">├── _partials                // 局部布局</span><br><span class="line">├── _scripts                 // script模板</span><br><span class="line">├── _third-party             // 第三方插件模板</span><br><span class="line">├── archive.swig             // 归档模板</span><br><span class="line">├── category.swig            // 分类模板</span><br><span class="line">├── index.swig               // 首页模板</span><br><span class="line">├── page.swig                // 其他模板</span><br><span class="line">├── photo.swig               // 照片模板（自定义）</span><br><span class="line">├── post.swig                // 文章模板</span><br><span class="line">├── schedule.swig            // 归档模板</span><br><span class="line">└── tag.swig                 // 标签模板</span><br></pre></td></tr></table></figure>
+<h1 id="hexo工作部署流程"><a class="markdownIt-Anchor" href="#hexo工作部署流程"></a> Hexo工作部署流程</h1>
+<ol>
+<li>hexo g：生成静态文件。将我们的数据和界面相结合生成静态文件的过程。会遍历主题文件中的 source 文件夹（js、css、img 等静态资源），然后建立索引，然后根据索引生成 public 文件夹中，此时的 public 文件是由 html、 js、css、img 建立的纯静态文件可以通过 index.html 作为入口访问你的博客。</li>
+<li>hexo d：部署文件。部署主要是根据在 _config.yml 中配置的 git 仓库或者 coding 的地址，将 public 文件上传至 github 或者 coding 中。然后再根据上面的 github 提供的 pages 服务呈现出页面。当然你也可以直接将你生成的 public 文件上传至你自己的服务器上。</li>
+</ol>
+<p><strong>什么是模板引擎?</strong></p>
+<p>初学前端, 从写静态HTML页面开始, 也即网页内容都是固定的. 想实现动态网页, 很明显不能认为修改HTML文件, 那么怎么让HTML动态展示内容呢?</p>
+<p>模版引擎: 让表现层 (HTML文档) 和业务数据分离. 通过特定的语法, 动态地渲染出HTML文档</p>
+<p><strong>EJS 模板引擎</strong></p>
+<p>EJS 是 Embedded JavaScript 的缩写, 在HTML文件内使用JS代码进行HTML模板渲染. EJS上手很快, 无需破坏HTML文档结构, 只需在标签内写JS代码</p>
+<p>ejs文件中, <code>&lt;% %&gt;</code> 括起来的变量会作为JS代码来编译.</p>
+<h1 id="教练-我想加地图"><a class="markdownIt-Anchor" href="#教练-我想加地图"></a> 教练, 我想加地图!</h1>
+<p>别人的博客里经常能看到访问者的ip地址, 看着很酷炫, 我也想加一个.</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/2024/08/21/env-setup/VPN%E5%8D%8F%E8%AE%AE/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          VPN 协议梳理
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/08/03/research-basic-knowledge/deep-learning-foundations-and-concepts-exercises/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          《Deep Learning Foundations and Concepts》课后习题
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+
+  </div>
 </section>
+<!-- js inspect -->
 
-<div class="border-t border-[--c-40]">
+<script src="/lib/clipboard.min.js"></script>
 
-</div>
 
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
   </main>
   <footer class="flex flex-col mt-18 mb-12 items-center
