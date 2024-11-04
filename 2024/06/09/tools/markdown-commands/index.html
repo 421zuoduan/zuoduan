@@ -135,7 +135,11 @@ A fourth year undergraduate student at UESTC
 
 
 <meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
-<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200 relative">
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
   <!-- The navigation bar -->
 <header class="
     flex flex-row items-center
@@ -511,56 +515,122 @@ A fourth year undergraduate student at UESTC
     
   </div>
 </div>
-  <main class="pt-14">
+  <main>
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
-
+  
 <link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
 
-<!-- toc -->
-
+    <!-- toc -->
+    
   <!-- tocbot -->
 <nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
 <section class="px-6 max-w-prose mx-auto md:px-0">
-  <!-- header -->
-  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
-    <div class="pt-4 md:pt-6">
-      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        markdown 常用指令
-      </h1>
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">markdown 常用指令</p>
+      </div>
+      <!-- Meta data -->
       <div>
-        <section class="flex items-center gap-3 text-sm">
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2024-10-14</time>
-          </span>
-          <span class="text-gray-400">·</span>
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>5 min</span>
-          </span>
-          <span class="text-gray-400">·</span>
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>869 words</span>
-          </span>
-          
-            <span class="text-gray-400">·</span>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-06-09</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-10-14</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
             <span class="flex items-center gap-1">
-              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
-              <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>869 words, 5 min</span>
             </span>
-          
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+              </span>
+            
+          </div>
         </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/note/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        note
+      </a>
+    
+      <a href="/tags/tool/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        tool
+      </a>
+    
+  
+</div>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
+  <article class="post-content prose m-auto dark:prose-invert">
     <h1 id="字体"><a class="markdownIt-Anchor" href="#字体"></a> 字体</h1>
 <p>\mathbf <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">A</mi><mi mathvariant="bold">B</mi><mi mathvariant="bold">C</mi><mi mathvariant="bold">D</mi><mi mathvariant="bold">E</mi><mi mathvariant="bold">F</mi><mi mathvariant="bold">G</mi><mi mathvariant="bold">H</mi><mi mathvariant="bold">I</mi><mi mathvariant="bold">J</mi><mi mathvariant="bold">K</mi><mi mathvariant="bold">L</mi><mi mathvariant="bold">M</mi><mi mathvariant="bold">N</mi><mi mathvariant="bold">O</mi><mi mathvariant="bold">P</mi><mi mathvariant="bold">Q</mi><mi mathvariant="bold">R</mi><mi mathvariant="bold">S</mi><mi mathvariant="bold">T</mi><mi mathvariant="bold">U</mi><mi mathvariant="bold">V</mi><mi mathvariant="bold">W</mi><mi mathvariant="bold">X</mi><mi mathvariant="bold">Y</mi><mi mathvariant="bold">Z</mi><mi mathvariant="bold">a</mi><mi mathvariant="bold">b</mi><mi mathvariant="bold">c</mi><mn mathvariant="bold">123</mn></mrow><annotation encoding="application/x-tex">\mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZabc123}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf">A</span><span class="mord mathbf">B</span><span class="mord mathbf">C</span><span class="mord mathbf">D</span><span class="mord mathbf">E</span><span class="mord mathbf">F</span><span class="mord mathbf">G</span><span class="mord mathbf">H</span><span class="mord mathbf">I</span><span class="mord mathbf">J</span><span class="mord mathbf">K</span><span class="mord mathbf">L</span><span class="mord mathbf">M</span><span class="mord mathbf">N</span><span class="mord mathbf">O</span><span class="mord mathbf">P</span><span class="mord mathbf">Q</span><span class="mord mathbf">R</span><span class="mord mathbf">S</span><span class="mord mathbf">T</span><span class="mord mathbf">U</span><span class="mord mathbf" style="margin-right:0.01597em;">V</span><span class="mord mathbf" style="margin-right:0.01597em;">W</span><span class="mord mathbf">X</span><span class="mord mathbf" style="margin-right:0.02875em;">Y</span><span class="mord mathbf">Z</span><span class="mord mathbf">a</span><span class="mord mathbf">b</span><span class="mord mathbf">c</span><span class="mord mathbf">1</span><span class="mord mathbf">2</span><span class="mord mathbf">3</span></span></span></span></span></p>
 <p>\mathcal  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">A</mi><mi mathvariant="script">B</mi><mi mathvariant="script">C</mi><mi mathvariant="script">D</mi><mi mathvariant="script">E</mi><mi mathvariant="script">F</mi><mi mathvariant="script">G</mi><mi mathvariant="script">H</mi><mi mathvariant="script">I</mi><mi mathvariant="script">J</mi><mi mathvariant="script">K</mi><mi mathvariant="script">L</mi><mi mathvariant="script">M</mi><mi mathvariant="script">N</mi><mi mathvariant="script">O</mi><mi mathvariant="script">P</mi><mi mathvariant="script">Q</mi><mi mathvariant="script">R</mi><mi mathvariant="script">S</mi><mi mathvariant="script">T</mi><mi mathvariant="script">U</mi><mi mathvariant="script">V</mi><mi mathvariant="script">W</mi><mi mathvariant="script">X</mi><mi mathvariant="script">Y</mi><mi mathvariant="script">Z</mi><mi mathvariant="script">a</mi><mi mathvariant="script">b</mi><mi mathvariant="script">c</mi><mn mathvariant="script">123</mn></mrow><annotation encoding="application/x-tex">\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZabc123}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7916599999999999em;vertical-align:-0.09722em;"></span><span class="mord"><span class="mord mathcal">A</span><span class="mord mathcal" style="margin-right:0.03041em;">B</span><span class="mord mathcal" style="margin-right:0.05834em;">C</span><span class="mord mathcal" style="margin-right:0.02778em;">D</span><span class="mord mathcal" style="margin-right:0.08944em;">E</span><span class="mord mathcal" style="margin-right:0.09931em;">F</span><span class="mord mathcal" style="margin-right:0.0593em;">G</span><span class="mord mathcal" style="margin-right:0.00965em;">H</span><span class="mord mathcal" style="margin-right:0.07382em;">I</span><span class="mord mathcal" style="margin-right:0.18472em;">J</span><span class="mord mathcal" style="margin-right:0.01445em;">K</span><span class="mord mathcal">L</span><span class="mord mathcal">M</span><span class="mord mathcal" style="margin-right:0.14736em;">N</span><span class="mord mathcal" style="margin-right:0.02778em;">O</span><span class="mord mathcal" style="margin-right:0.08222em;">P</span><span class="mord mathcal">Q</span><span class="mord mathcal">R</span><span class="mord mathcal" style="margin-right:0.075em;">S</span><span class="mord mathcal" style="margin-right:0.25417em;">T</span><span class="mord mathcal" style="margin-right:0.09931em;">U</span><span class="mord mathcal" style="margin-right:0.08222em;">V</span><span class="mord mathcal" style="margin-right:0.08222em;">W</span><span class="mord mathcal" style="margin-right:0.14643em;">X</span><span class="mord mathcal" style="margin-right:0.08222em;">Y</span><span class="mord mathcal" style="margin-right:0.07944em;">Z</span><span class="mord mathnormal">a</span><span class="mord mathnormal">b</span><span class="mord mathnormal">c</span><span class="mord">1</span><span class="mord">2</span><span class="mord">3</span></span></span></span></span></p>
@@ -698,39 +768,45 @@ loss&amp;=(y_i-Q(s,a;\theta))^2 \\
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">f(x) = </span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">2x,\,\,x&gt;0\\</span><br><span class="line">3x,\,\,x\le0\\</span><br><span class="line">\end&#123;cases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
 
   </article>
-  <!-- tag -->
-  <div class="mt-12 pt-6 border-t border-gray-200">
-    
-      
-        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/note/">note</a>
-        </span>
-      
-        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/tool/">tool</a>
-        </span>
-      
-    
-  </div>
+
   <!-- prev and next -->
-  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
     <div>
       
-        <a href="/2024/06/16/BaoYan/interview-review/Interview-Review-Shanghai-AI-Lab-OpenMMLab/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
+        <a href="/2024/06/16/BaoYan/interview-review/Interview-Review-Shanghai-AI-Lab-OpenMMLab/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
           上海 AI Lab (浦视) 面试回顾
         </a>
       
     </div>
     <div>
       
-        <a href="/2024/06/07/BaoYan/note/LLM/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2024/06/07/BaoYan/note/LLM/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
           LLM 面试
-          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
     </div>
   </div>
+
   <!-- comment -->
   <div class="article-comments mt-12">
     
@@ -962,10 +1038,23 @@ loss&amp;=(y_i-Q(s,a;\theta))^2 \\
 
 </footer>
 
-  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
     <span class="flex justify-center items-center text-sm">
-      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
       <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
     </span>
   </div>
   

@@ -135,7 +135,11 @@ A fourth year undergraduate student at UESTC
 
 
 <meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
-<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200 relative">
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
   <!-- The navigation bar -->
 <header class="
     flex flex-row items-center
@@ -511,56 +515,103 @@ A fourth year undergraduate student at UESTC
     
   </div>
 </div>
-  <main class="pt-14">
+  <main>
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
-
+  
 <link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
 
-<!-- toc -->
-
+    <!-- toc -->
+    
   <!-- tocbot -->
 <nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
 <section class="px-6 max-w-prose mx-auto md:px-0">
-  <!-- header -->
-  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
-    <div class="pt-4 md:pt-6">
-      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        一些想法与回应
-      </h1>
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">一些想法与回应</p>
+      </div>
+      <!-- Meta data -->
       <div>
-        <section class="flex items-center gap-3 text-sm">
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2024-10-14</time>
-          </span>
-          <span class="text-gray-400">·</span>
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>6 min</span>
-          </span>
-          <span class="text-gray-400">·</span>
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>1.8k words</span>
-          </span>
-          
-            <span class="text-gray-400">·</span>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-04-11</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-10-14</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
             <span class="flex items-center gap-1">
-              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
-              <a class="article-category-link" href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>1.8k words, 6 min</span>
             </span>
-          
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
+              </span>
+            
+          </div>
         </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        碎碎念
+      </a>
+    
+  
+</div>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
+  <article class="post-content prose m-auto dark:prose-invert">
     <h1 id="2023-07-22"><a class="markdownIt-Anchor" href="#2023-07-22"></a> 2023-07-22</h1>
 <h2 id="2023-07-22-2"><a class="markdownIt-Anchor" href="#2023-07-22-2"></a> 2023-07-22</h2>
 <p>关于与F的讨论。作者写作的目的或许是为了展示给读书人有这样的世界与逻辑是存在的，可能是表达不清吧，被理解成作者一定要呼吁什么。我想说的是，有这样的不被人喜欢的世界或逻辑，那是不是就有与作者描述的冷酷世界相对的某种可能并不存在的美好世界呢？</p>
@@ -592,35 +643,45 @@ A fourth year undergraduate student at UESTC
 <p>不，你没有。你一直都是个胆小鬼，一直都是</p>
 
   </article>
-  <!-- tag -->
-  <div class="mt-12 pt-6 border-t border-gray-200">
-    
-      
-        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
-        </span>
-      
-    
-  </div>
+
   <!-- prev and next -->
-  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
     <div>
       
-        <a href="/2024/04/12/env-setup/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
+        <a href="/2024/04/12/env-setup/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
           服务器环境配置
         </a>
       
     </div>
     <div>
       
-        <a href="/2024/04/11/Article/%E6%88%91%E7%88%B1%E4%BD%A0/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2024/04/11/Article/%E6%88%91%E7%88%B1%E4%BD%A0/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
           我爱你
-          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
     </div>
   </div>
+
   <!-- comment -->
   <div class="article-comments mt-12">
     
@@ -852,10 +913,23 @@ A fourth year undergraduate student at UESTC
 
 </footer>
 
-  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
     <span class="flex justify-center items-center text-sm">
-      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
       <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
     </span>
   </div>
   

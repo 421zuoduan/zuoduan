@@ -135,7 +135,11 @@ A fourth year undergraduate student at UESTC
 
 
 <meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
-<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200 relative">
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
   <!-- The navigation bar -->
 <header class="
     flex flex-row items-center
@@ -511,56 +515,122 @@ A fourth year undergraduate student at UESTC
     
   </div>
 </div>
-  <main class="pt-14">
+  <main>
     <!-- css -->
 
 <link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
-
+  
 <link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
 
-<!-- toc -->
-
+    <!-- toc -->
+    
   <!-- tocbot -->
 <nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
 <section class="px-6 max-w-prose mx-auto md:px-0">
-  <!-- header -->
-  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
-    <div class="pt-4 md:pt-6">
-      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
-        西湖大学夏令营回顾
-      </h1>
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">西湖大学夏令营回顾</p>
+      </div>
+      <!-- Meta data -->
       <div>
-        <section class="flex items-center gap-3 text-sm">
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
-            <time>2024-10-14</time>
-          </span>
-          <span class="text-gray-400">·</span>
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
-            <span>12 min</span>
-          </span>
-          <span class="text-gray-400">·</span>
-          <span class="flex items-center gap-1">
-            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
-            <span>3.6k words</span>
-          </span>
-          
-            <span class="text-gray-400">·</span>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-06-26</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-10-14</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
             <span class="flex items-center gap-1">
-              <iconify-icon width="16" icon="icon-park-outline:box" class="mr-2"></iconify-icon>
-              <a class="article-category-link" href="/categories/%E4%BF%9D%E7%A0%94/">保研</a>
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>3.6k words, 12 min</span>
             </span>
-          
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E4%BF%9D%E7%A0%94/">保研</a>
+              </span>
+            
+          </div>
         </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/interview/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        interview
+      </a>
+    
+      <a href="/tags/BaoYan/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        BaoYan
+      </a>
+    
+  
+</div>
       </div>
     </div>
   </header>
   <!-- content -->
-  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
+  <article class="post-content prose m-auto dark:prose-invert">
     <h1 id="行前准备"><a class="markdownIt-Anchor" href="#行前准备"></a> 行前准备</h1>
 <p>虽然说是 “西湖大学夏令营回顾”, 但其实是边进行边写的, 不能算是回顾吧.</p>
 <p>现在是 2024 年 6 月 26 日晚 9 点 11 分, 在宿舍.</p>
@@ -634,39 +704,45 @@ A fourth year undergraduate student at UESTC
 <p>现在是 2024 年 7 月 1 日, 下午 3 点 38 分, 在从杭州东开往北京南的 G186 次列车上. 窗外是原野, 远处是高达的树木, 它们像柱子一样. 我在听, Industries Of The Blind《Waiting and waltzing in airport terminals》. 下午好.</p>
 
   </article>
-  <!-- tag -->
-  <div class="mt-12 pt-6 border-t border-gray-200">
-    
-      
-        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/interview/">interview</a>
-        </span>
-      
-        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
-          <a href="/tags/BaoYan/">BaoYan</a>
-        </span>
-      
-    
-  </div>
+
   <!-- prev and next -->
-  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
     <div>
       
-        <a href="/2024/06/27/BaoYan/note/Transformer%E5%85%AB%E8%82%A1/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
-          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
+        <a href="/2024/06/27/BaoYan/note/Transformer%E5%85%AB%E8%82%A1/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
           Transformer 八股
         </a>
       
     </div>
     <div>
       
-        <a href="/2024/06/23/BaoYan/interview-review/Interview-Reivew-WestlakeU-%E5%B7%A5%E5%AD%A6%E9%99%A2/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+        <a href="/2024/06/23/BaoYan/interview-review/Interview-Reivew-WestlakeU-%E5%B7%A5%E5%AD%A6%E9%99%A2/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
           西湖大学面试回顾
-          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
     </div>
   </div>
+
   <!-- comment -->
   <div class="article-comments mt-12">
     
@@ -898,10 +974,23 @@ A fourth year undergraduate student at UESTC
 
 </footer>
 
-  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
     <span class="flex justify-center items-center text-sm">
-      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
       <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
     </span>
   </div>
   
