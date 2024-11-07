@@ -549,7 +549,7 @@ A fourth year undergraduate student at UESTC
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-10-29</time>
+              Edited: <time class="w-max">2024-11-07</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -564,7 +564,7 @@ A fourth year undergraduate student at UESTC
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>4.3k words, 16 min</span>
+              <span>5.5k words, 20 min</span>
             </span>
             <!-- Categories -->
             
@@ -920,6 +920,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <h3 id="self-attention-计算中-如何对-padding-位做-mask"><a class="markdownIt-Anchor" href="#self-attention-计算中-如何对-padding-位做-mask"></a> Self Attention 计算中, 如何对 padding 位做 mask</h3>
 <p>QK在点积后, 先经过 mask 再进行 softmax, 因此要屏蔽的部分要在 mask 后输出为负无穷</p>
 <h3 id="self-attention-和全连接层的区别"><a class="markdownIt-Anchor" href="#self-attention-和全连接层的区别"></a> Self Attention 和全连接层的区别</h3>
+<p>单一的全连接层其实就是 V, Q 和 K 共同产生 Attention Score, 这个分数其实就是给 V 一个权重</p>
 <blockquote>
 <p>来一个比较形象的比喻吧。如果一个神经网络的任务是从一堆白色小球中找到一个略微发灰的，那么全连接就是在里面随便乱抓然后凭记忆和感觉找，而attention则是左手拿一个白色小球，右手从袋子里一个一个抓出来，两两对比颜色，你左手抓的那个白色小球就是Query。</p>
 </blockquote>
@@ -938,6 +939,87 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <li>解码器自注意力中的权重共享 (QKV 权重共享)</li>
 </ol>
 <h3 id="transformer-的点积模型做缩放的原因"><a class="markdownIt-Anchor" href="#transformer-的点积模型做缩放的原因"></a> Transformer 的点积模型做缩放的原因</h3>
+<p>控制注意力权重的尺度, 避免在计算过程中出现梯度爆炸的问题. 在 softmax 后, attention 的分布接近一个 one-hot 分布, 这带来梯度消失问题, 导致训练效果差</p>
+<p>解决方案:</p>
+<ol>
+<li>Q 和 K 内积后除以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>d</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.10777999999999999em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.93222em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">d</span></span></span><span style="top:-2.89222em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.10777999999999999em;"><span></span></span></span></span></span></span></span></span>, 使 QK 的方差变为 1. 常规的 Transformer 如 BERT 里都是这样做的</li>
+<li>不除以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mi>d</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.10777999999999999em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.93222em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">d</span></span></span><span style="top:-2.89222em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.10777999999999999em;"><span></span></span></span></span></span></span></span></span>, 在初始化 Q 和 K 的全连接层时, 其初始化方差要多除以一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">d</span></span></span></span>. T5 采用了这样的方法</li>
+</ol>
+<h2 id="bert"><a class="markdownIt-Anchor" href="#bert"></a> BERT</h2>
+<h3 id="bert-用字粒度和词粒度的优缺点有哪些"><a class="markdownIt-Anchor" href="#bert-用字粒度和词粒度的优缺点有哪些"></a> BERT 用字粒度和词粒度的优缺点有哪些</h3>
+<p>字粒度和词粒度都是用来文本表示的方法</p>
+<ul>
+<li>字粒度
+<ul>
+<li>优点: 处理未登录词更方便. 字粒度可以处理任意字符串, 不需要像词粒度那样遇到未登录词就忽略或特殊标记. 字粒度对少见词和低频词可以学习更丰富的字符级别表示, 能捕捉细粒度信息</li>
+<li>缺点: 计算复杂度高, 需要更多的训练数据. 输入序列变长, 计算复杂度和内存消耗更多; 对少见词和低频词需要更多训练数据来学习有效的字符级别表示, 否则会过拟合</li>
+</ul>
+</li>
+<li>词粒度
+<ul>
+<li>优点: 计算效率高, 学习更稳定的词级别表示. 减少输入序列长度, 降低模型计算复杂度和内存消耗, 对高频词和常见词有更好的表示能力</li>
+<li>缺点: 处理未登录词较难. 只能忽略或采用特殊处理. 多音字等形态复杂的词汇难以捕捉细粒度信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="bert-使用的是-transformer-里的-encoder-还是-decoder"><a class="markdownIt-Anchor" href="#bert-使用的是-transformer-里的-encoder-还是-decoder"></a> BERT 使用的是 Transformer 里的 Encoder 还是 Decoder</h3>
+<p>BERT 仅使用了 Transformer 里的 Encoder 部分, 对其进行了一些修改和自定义的预训练任务</p>
+<h3 id="bert-的-encoder-与-decoder-掩码有什么区别"><a class="markdownIt-Anchor" href="#bert-的-encoder-与-decoder-掩码有什么区别"></a> BERT 的 Encoder 与 Decoder 掩码有什么区别?</h3>
+<p>Encoder 使用自注意力掩码和填充掩码 (padding mask, 处理句子变长问题), 此外 Decoder 还要使用 Encoder-Decoder 注意力掩码来避免未来位置信息的泄露,</p>
+<blockquote>
+<p>查资料时看到一个讲 mask 挺好的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/572815558">博客</a><br />
+Transformer 的掩码主要分为三种</p>
+<ol>
+<li>序列掩码 Sequence Mask. BERT 使用 MLM 双向掩码训练, 此时要隐藏输入序列的某些部分</li>
+<li>前瞻掩码 Look-ahead Mask, 也称因果掩码或未来掩码. 自回归模型防止前面的 token 看到后面的 token, 即上三角掩码</li>
+<li>填充掩码, Padding Mask. 处理句子变长问题</li>
+</ol>
+</blockquote>
+<h3 id="bert-为什么要-mask-15-比例的词"><a class="markdownIt-Anchor" href="#bert-为什么要-mask-15-比例的词"></a> BERT 为什么要 mask 15% 比例的词?</h3>
+<p>经验尝试</p>
+<h3 id="为什么-bert-第一句前会加一个-cls-标志"><a class="markdownIt-Anchor" href="#为什么-bert-第一句前会加一个-cls-标志"></a> 为什么 BERT 第一句前会加一个 [CLS] 标志?</h3>
+<p>BERT 最后一层 [CLS] 对应向量可以作为整句话的语义表示, 从而用于下游的分类任务. 这个无语义信息的符号能更公平地融合文本中各个词的语义信息</p>
+<h3 id="bert-非线性的来源在哪里"><a class="markdownIt-Anchor" href="#bert-非线性的来源在哪里"></a> BERT 非线性的来源在哪里?</h3>
+<p>FeedForward Network 里的 GeLU 激活函数 和 Self-Attention 里的 softmax</p>
+<h3 id="bert-训练时使用的学习率-warm-up-策略是怎样的-为何要这样做"><a class="markdownIt-Anchor" href="#bert-训练时使用的学习率-warm-up-策略是怎样的-为何要这样做"></a> BERT 训练时使用的学习率 warm-up 策略是怎样的? 为何要这样做?</h3>
+<p>warm-up 策略: 学习率在训练初期从小增大, 提高训练的稳定性, 加快模型收敛. 方法来自 ResNet, 设置如 StepLP, MultiStepLR, ExponentialLR 等函数</p>
+<p>具体做法是, 在训练开始的若干个 step(也即一小部分训练数据的迭代次数) 内, 将学习率从一个较小的初始值增加到预定的最大学习率. 学习率线性变化.</p>
+<p>学习率 warm-up 解决了 BERT 训练初期的两个问题</p>
+<ol>
+<li>训练不稳定: 训练初期, 由于模型参数随机初始化和模型的复杂性, 模型处于不稳定状态, 难以收敛, 学习率较小模型训练较为稳定</li>
+<li>避免过拟合: BERT 模型需要较长的训练时间来获得高质量的表示, 早期使用较大的学习率可能导致模型在训练初期过度你和训练数据, 降低模型泛化性能</li>
+</ol>
+<h3 id="bert-应用中-如何解决长文本问题"><a class="markdownIt-Anchor" href="#bert-应用中-如何解决长文本问题"></a> BERT 应用中, 如何解决长文本问题?</h3>
+<ol>
+<li>截断与填充: BERT 输入为固定长度</li>
+<li>Sliding Window: 长文本分成多个短文本</li>
+<li>Hierarchical Model: 分层模型来处理长文本, 底层模型用于处理短文本, 不同片段的表示进行汇总或融合得到整个长文本表示</li>
+<li>Longformer, BigBird 等模型: 采用不同注意力机制以处理超长序列</li>
+<li>Document-Level Model: 更大的模型</li>
+</ol>
+<h2 id="mha-mqa-mga"><a class="markdownIt-Anchor" href="#mha-mqa-mga"></a> MHA &amp; MQA &amp; MGA</h2>
 
   </article>
 
