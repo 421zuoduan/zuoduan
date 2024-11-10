@@ -632,10 +632,10 @@ A fourth year undergraduate student at UESTC
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZUHGe5Ecg/?spm_id_from=333.999.0.0&amp;vd_source=ac32ad3a164f0885799c00267b582e94">CCL 2024 | 前沿技术讲习班 | 文本-语音大模型（第1部分）_哔哩哔哩_bilibili</a></p>
-<h1 id="文本-语音大模型"><a class="markdownIt-Anchor" href="#文本-语音大模型"></a> 文本-语音大模型</h1>
+<h1 id="文本-语音大模型">文本-语音大模型</h1>
 <p>东北大学-肖桐, 小牛翻译; 许晨, 哈工程</p>
 <p>传统 NLP 泛式是有监督学习模型, 参数较少, 为特定任务设计; 大模型实现多种任务的大一统</p>
-<h2 id="近期工作"><a class="markdownIt-Anchor" href="#近期工作"></a> 近期工作</h2>
+<h2 id="近期工作">近期工作</h2>
 <p>Wav2Vec, 参考 BERT 的 Mask, 提取通用的语音表征, 来自 Meta</p>
 <p>Whisper, 语音-&gt;文本, 来自 OpenAI</p>
 <p>USM, 对标 Whisper, 更大规模, 来自谷歌</p>
@@ -644,7 +644,7 @@ A fourth year undergraduate student at UESTC
 <p>SealessM4T 扩展, SeamlessExpressive, 实现翻译中的语音风格翻译 (比如多语言即时翻译)</p>
 <p>SpeechGen: Prompt 激发 LLM 激发能力, 支持多种语音生成任务</p>
 <p>Muzic: 音乐理解与生成</p>
-<h2 id="文本与语音的关系"><a class="markdownIt-Anchor" href="#文本与语音的关系"></a> 文本与语音的关系</h2>
+<h2 id="文本与语音的关系">文本与语音的关系</h2>
 <ol>
 <li>
 <p>文本是离散信号, 语音是连续信号</p>
@@ -670,7 +670,7 @@ A fourth year undergraduate student at UESTC
 <p>语音翻译的工作中, 文本模态辅助, 因为文本模型的多样性显著小于语音</p>
 </li>
 </ol>
-<h2 id="文本-语音大模型的挑战"><a class="markdownIt-Anchor" href="#文本-语音大模型的挑战"></a> 文本-语音大模型的挑战</h2>
+<h2 id="文本-语音大模型的挑战">文本-语音大模型的挑战</h2>
 <ol>
 <li>
 <p>语音特征提取</p>
@@ -688,8 +688,8 @@ A fourth year undergraduate student at UESTC
 <p>肖桐认为, 文本-语音的联合优化比文本-图像更难</p>
 </li>
 </ol>
-<h1 id="语音基础"><a class="markdownIt-Anchor" href="#语音基础"></a> 语音基础</h1>
-<h2 id="语音特征提取"><a class="markdownIt-Anchor" href="#语音特征提取"></a> 语音特征提取</h2>
+<h1 id="语音基础">语音基础</h1>
+<h2 id="语音特征提取">语音特征提取</h2>
 <ol>
 <li>
 <p>信号处理方法</p>
@@ -744,7 +744,7 @@ A fourth year undergraduate student at UESTC
 </blockquote>
 <p>于是参考 BERT, 诞生 Wav2vec, 实现了输入原始音频而非信号特征作为输入. 但是由于语音信号的连续表征特点, 语音不能简单 mask 操作 (不能 MLM 训练, 回归任务尤为明显)</p>
 <p>举个栗子, HuBERT 利用 K-means 聚类得到离散化音频表示, 每个簇认为是一个 token, 然后用 MLM 范式训练</p>
-<h2 id="语音建模"><a class="markdownIt-Anchor" href="#语音建模"></a> 语音建模</h2>
+<h2 id="语音建模">语音建模</h2>
 <p><strong>核心问题: 长序列问题</strong></p>
 <ol>
 <li>上下文信息依赖问题</li>

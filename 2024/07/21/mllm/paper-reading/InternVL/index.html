@@ -650,24 +650,24 @@ A fourth year undergraduate student at UESTC
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks"><a class="markdownIt-Anchor" href="#internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks"></a> InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks</h1>
-<h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
+    <h1 id="internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks">InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks</h1>
+<h2 id="introduction">Introduction</h2>
 <ol>
 <li>Vision Encoder 和 LLM 参数量相当</li>
 <li>多语言一致性表示 (就是简单使用 LLaMA 初始化)</li>
 <li>渐进式的模态对齐方法, 先通过对比学习 pretrain, 然后过渡到对不同细粒度数据的学习</li>
 </ol>
-<h2 id="related-work"><a class="markdownIt-Anchor" href="#related-work"></a> Related Work</h2>
+<h2 id="related-work">Related Work</h2>
 <p>目前的 Vision Encoder 来自 ImageNet 或 JFT 等纯视觉数据集, 或对比学习得到的 ViT, 而且 Vision Encoder 的规模较小.</p>
-<h2 id="proposed-method"><a class="markdownIt-Anchor" href="#proposed-method"></a> Proposed Method</h2>
-<h3 id="overall-architecture"><a class="markdownIt-Anchor" href="#overall-architecture"></a> Overall Architecture</h3>
+<h2 id="proposed-method">Proposed Method</h2>
+<h3 id="overall-architecture">Overall Architecture</h3>
 <p>InternVL 使用类似 LLaVA 的结构</p>
 <blockquote>
 <p>As depicted in Figure 3, unlike traditional vision-only backbones [57, 94, 148] and dual-encoder models [67, 117, 130], the proposed InternVL is designed with a vision encoder InternViT-6B and a language middleware QLLaMA.</p>
 </blockquote>
 <p>提出 QLLaMA 作为 projector</p>
 <p>引入了渐进式模态对齐策略</p>
-<h3 id="model-design"><a class="markdownIt-Anchor" href="#model-design"></a> Model Design</h3>
+<h3 id="model-design">Model Design</h3>
 <ol>
 <li>
 <p>Large-Scale Vision Encoder: InternViT-6B</p>
@@ -682,15 +682,15 @@ A fourth year undergraduate student at UESTC
 <p>灵活使用 InternViT-6B, QLLaMA 和 learnable queries, 可以完成各种任务</p>
 </li>
 </ol>
-<h3 id="alignment-strategy"><a class="markdownIt-Anchor" href="#alignment-strategy"></a> Alignment Strategy</h3>
+<h3 id="alignment-strategy">Alignment Strategy</h3>
 <ol>
 <li>对比学习, 将 InternViT 与 LLaMA-7B 对齐 (与CLIP 训练方法相同), 二者都训练</li>
 <li>使用生成式任务训练. 将 InternViT 与 QLLaMA (也即第一阶段中训练后的 LLaMA) 串联, 二者间加入 cross attention, 并使用 learnable queries (这里训练使用的任务都是同时使用 learnable queries 和 cross attention 的). 这里与 BLIP-2 的训练方法相似</li>
 <li>SFT. 将 InternViT 与 QLLaMA 与 LLM 通过 MLP 连接在一起, SFT 训练. 由于 QLLaMA 与 LLMs 原本就处于同一特征空间, 所以此时仅训练 LLMs 和 MLP 即可</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240721233221246.png" alt="InternVL 结构图" /></p>
-<h1 id="how-far-are-we-to-gpt-4v-closing-the-gap-to-commercial-multimodal-models-with-open-source-suites"><a class="markdownIt-Anchor" href="#how-far-are-we-to-gpt-4v-closing-the-gap-to-commercial-multimodal-models-with-open-source-suites"></a> How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites</h1>
-<h2 id="introduction-2"><a class="markdownIt-Anchor" href="#introduction-2"></a> Introduction</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240721233221246.png" alt="InternVL 结构图"></p>
+<h1 id="how-far-are-we-to-gpt-4v-closing-the-gap-to-commercial-multimodal-models-with-open-source-suites">How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites</h1>
+<h2 id="introduction">Introduction</h2>
 <p>优点:</p>
 <ol>
 <li>
@@ -705,19 +705,19 @@ A fourth year undergraduate student at UESTC
 <p>增强了 InternViT-6B 的视觉表示能力</p>
 </li>
 </ol>
-<h2 id="related-work-2"><a class="markdownIt-Anchor" href="#related-work-2"></a> Related Work</h2>
+<h2 id="related-work">Related Work</h2>
 <p>既有多模态大模型通常在较小的固定分辨率上训练, 这导致在不常见的长宽比或文档数据的图像上表现不佳. 为了解决以上问题, 常见的技术路线有</p>
 <ol>
 <li>双分支图像编码器</li>
 <li>高分辨率划分为多个低分辨率</li>
 </ol>
-<h2 id="internvl-15"><a class="markdownIt-Anchor" href="#internvl-15"></a> InternVL 1.5</h2>
-<h3 id="overall-architecture-2"><a class="markdownIt-Anchor" href="#overall-architecture-2"></a> Overall Architecture</h3>
+<h2 id="internvl-1-5">InternVL 1.5</h2>
+<h3 id="overall-architecture">Overall Architecture</h3>
 <p>结构与 LLaVA 类似, “InternViT-6B-MLP-InternLM2-20B”</p>
 <p>训练中将图片分别多个 448*448 的图像块, 为了进一步减少 vision token, 使用 pixelshuffle 减少 vision token 数量, 将 448*448 的图像块变为 256 vision tokens</p>
-<h3 id="strong-vision-encoder"><a class="markdownIt-Anchor" href="#strong-vision-encoder"></a> Strong Vision Encoder</h3>
+<h3 id="strong-vision-encoder">Strong Vision Encoder</h3>
 <p>丢弃了 InternViT-6B 的最后三层, 从 48 层减少到 45 层</p>
-<h3 id="dynamic-high-resolution"><a class="markdownIt-Anchor" href="#dynamic-high-resolution"></a> Dynamic High-Resolution</h3>
+<h3 id="dynamic-high-resolution">Dynamic High-Resolution</h3>
 <p>受到 UReader 的启发, 采用动态高分辨率训练方法</p>
 <ol>
 <li>
@@ -729,9 +729,9 @@ A fourth year undergraduate student at UESTC
 <p>确定适合的宽高比后, 图像大小被调整成响应的分辨率. 800*1300 -&gt; 896*1344 -&gt; 多个448*448. 再用一个大小为 448*448 的缩略图捕获全局上下文. 所以训练时一共有 256*(12+1)=3328 个 vision tokens, 测试时最多有 256*(40+1)=10496 个 vision tokens</p>
 </li>
 </ol>
-<h3 id="high-quality-bilingual-dataset"><a class="markdownIt-Anchor" href="#high-quality-bilingual-dataset"></a> High-Quality Bilingual Dataset</h3>
-<h2 id="experiments"><a class="markdownIt-Anchor" href="#experiments"></a> Experiments</h2>
-<h1 id="internvl2"><a class="markdownIt-Anchor" href="#internvl2"></a> InternVL2</h1>
+<h3 id="high-quality-bilingual-dataset">High-Quality Bilingual Dataset</h3>
+<h2 id="experiments">Experiments</h2>
+<h1 id="internvl2">InternVL2</h1>
 <p>技术报告待公布</p>
 
   </article>
