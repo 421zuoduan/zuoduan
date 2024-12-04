@@ -549,7 +549,7 @@ A fourth year undergraduate student at UESTC
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-12-02</time>
+              Edited: <time class="w-max">2024-12-03</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -564,7 +564,7 @@ A fourth year undergraduate student at UESTC
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>6.5k words, 29 min</span>
+              <span>6.6k words, 30 min</span>
             </span>
             <!-- Categories -->
             
@@ -863,6 +863,14 @@ D_{j_1, j_2} = \begin{cases}
 </li>
 </ol>
 <h1 id="self-correct"><a class="markdownIt-Anchor" href="#self-correct"></a> Self Correct</h1>
+<h2 id="iclr2024-poster-large-language-models-cannot-self-correct-reasoning-yet"><a class="markdownIt-Anchor" href="#iclr2024-poster-large-language-models-cannot-self-correct-reasoning-yet"></a> [ICLR2024 poster] Large Language Models Cannot Self-Correct Reasoning Yet</h2>
+<p>intrinsic self-correction: 不依靠外部反馈, 模型仅依靠其固有能力纠正初始回答</p>
+<p>作者提出, 既有 intrinsic self-correction 方法有效果得益于</p>
+<ol>
+<li>使用 oracle labels</li>
+<li>和 self-consistency 方法错误地比较</li>
+<li>未选择</li>
+</ol>
 <h2 id="emnlp2024-findings-think-twice-before-trusting-self-detection-for-large-language-models-through-comprehensive-answer-reflection"><a class="markdownIt-Anchor" href="#emnlp2024-findings-think-twice-before-trusting-self-detection-for-large-language-models-through-comprehensive-answer-reflection"></a> [EMNLP2024 Findings] Think Twice Before Trusting: Self-Detection for Large Language Models through Comprehensive Answer Reflection</h2>
 <p>Self Evaluation 的范式是将生成的多个答案重新输出模型让模型判断可信度, 是一种类似于 Model Ensemble 的方法. 本文在将模型生成的 Answer 重新输入模型进行判断前, 为每个答案生成 justification, 类似进行了 Joint Confidence Calibration, 再输出 GPT. 这种方法作者自称 Comprehensive Answer Reflection. 论文没有给代码</p>
 <p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20241127154215.png" alt="Think Twice Before Trusting" /></p>
@@ -880,6 +888,18 @@ D_{j_1, j_2} = \begin{cases}
     gap-2 text-[var(--c-50)]
   ">
     <div>
+      
+        <a href="/2024/12/04/tools/git-commands/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          git 命令速查
+        </a>
       
     </div>
     <div>
