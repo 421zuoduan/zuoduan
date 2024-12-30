@@ -632,23 +632,23 @@ A fourth year undergraduate student at UESTC
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p><a target="_blank" rel="noopener" href="https://github.com/InternLM/Tutorial">Tutorial</a></p>
-<h1 id="linux-常见命令及-ssh-端口转发"><a class="markdownIt-Anchor" href="#linux-常见命令及-ssh-端口转发"></a> Linux 常见命令及 SSH 端口转发</h1>
-<h2 id="internstudio"><a class="markdownIt-Anchor" href="#internstudio"></a> InternStudio</h2>
+<h1 id="linux-常见命令及-ssh-端口转发">Linux 常见命令及 SSH 端口转发</h1>
+<h2 id="internstudio">InternStudio</h2>
 <p>InternStudio 开发机由InternLM 开发,</p>
-<h1 id="ssh-及-端口映射"><a class="markdownIt-Anchor" href="#ssh-及-端口映射"></a> SSH 及 端口映射</h1>
-<h2 id="ssh-命令"><a class="markdownIt-Anchor" href="#ssh-命令"></a> SSH 命令</h2>
+<h1 id="ssh-及-端口映射">SSH 及 端口映射</h1>
+<h2 id="ssh-命令">SSH 命令</h2>
 <p>SSH 全称 Secure Shell, 由服务器和客户端组成. 命令示例如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 37367 user@ssh.intern-ai.org.cn -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null</span><br></pre></td></tr></table></figure>
 <p>这里 <code>-p</code> 是端口号, <code>-o</code> 指定 SSH 连接的特定行为, <code>StrictHostKeyChecking</code> 和 <code>UserKnownHostsFile</code> 添加以绕过指纹检查</p>
 <blockquote>
-<p><code>StrictHostKeyChecking no</code> 表示禁用严格的主机密钥检查<br />
-<code>UserKnownHostsFile /dev/null</code> 实质上是忽略了对已知主机密钥的记录和使用<br />
+<p><code>StrictHostKeyChecking no</code> 表示禁用严格的主机密钥检查<br>
+<code>UserKnownHostsFile /dev/null</code> 实质上是忽略了对已知主机密钥的记录和使用<br>
 一般的实践中, 不建议随意禁用检查</p>
 </blockquote>
-<h2 id="端口映射"><a class="markdownIt-Anchor" href="#端口映射"></a> 端口映射</h2>
+<h2 id="端口映射">端口映射</h2>
 <p>端口映射是将外网中的任意端口映射到内网中的相应端口, 实现内网与外网间的通信.</p>
 <p>后续课程要将模型部署到网页上, 此时直接访问开发机内的 http/https 服务可能会遇到代理问题, 外网链接的 UI 资源没有被加载完全. 为了解决这个问题, 我们需要对 web_demo 的连接进行端口映射, 将外网链接映射到本地主机, 使用本地连接.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20241107112046.png" alt="端口映射流程" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20241107112046.png" alt="端口映射流程"></p>
 
   </article>
 

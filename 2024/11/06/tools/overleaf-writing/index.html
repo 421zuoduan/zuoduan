@@ -586,25 +586,6 @@ A fourth year undergraduate student at UESTC
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/tags/tool/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        tool
-      </a>
-    
       <a href="/tags/note/" 
         class="
           tag
@@ -624,6 +605,25 @@ A fourth year undergraduate student at UESTC
         note
       </a>
     
+      <a href="/tags/tool/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        tool
+      </a>
+    
   
 </div>
       </div>
@@ -632,8 +632,8 @@ A fourth year undergraduate student at UESTC
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>最近在帮师兄写论文, 发现 Overleaf 的很多方法都不会, 决定简单记录一下, 有缘后续继续往博客里加点东西.</p>
-<h1 id="如何优雅地添加参考文献"><a class="markdownIt-Anchor" href="#如何优雅地添加参考文献"></a> 如何优雅地添加参考文献</h1>
-<h2 id="手动添加参考文献"><a class="markdownIt-Anchor" href="#手动添加参考文献"></a> 手动添加参考文献</h2>
+<h1 id="如何优雅地添加参考文献">如何优雅地添加参考文献</h1>
+<h2 id="手动添加参考文献">手动添加参考文献</h2>
 <p>在&quot;优雅&quot;之前, 首先要明白如何添加参考文献. 手动添加参考文献的过程是这样的</p>
 <ol>
 <li>
@@ -649,14 +649,14 @@ A fourth year undergraduate student at UESTC
 <p>文中引用为</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Chain-of-Thought \cite&#123;wei2022chain&#125; is increasingly being recognized by researchers, as a reliable reasoning process can produce trustworthy answers.</span><br></pre></td></tr></table></figure>
 <p>在 ICML 提交的模版上显示就是这样啦</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20241106170721.png" alt="ICML 模版成功引用" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20241106170721.png" alt="ICML 模版成功引用"></p>
 <p>(提醒自己, Ctrl+Alt+U 使用 PIcGo 上传 md 图片)</p>
 </li>
 </ol>
-<h2 id="优雅添加参考文献"><a class="markdownIt-Anchor" href="#优雅添加参考文献"></a> 优雅添加参考文献</h2>
+<h2 id="优雅添加参考文献">优雅添加参考文献</h2>
 <p>我使用 Zotero+VSCode+Overleaf 的流程. Zotero 上需要安装 <a target="_blank" rel="noopener" href="https://github.com/retorquere/zotero-better-bibtex"><code>BetterTex</code></a> 的插件, 这一插件可以将 Zotero 上某一分类内的文献打包成一个 .bib 文件.</p>
 <p>不做简单设置的话, 直接生成的 .bib 有很多不需要的内容, 这给阅读带来极大的干扰. 所以我们先做简单设置. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/458340252">参考博客1</a>, <a target="_blank" rel="noopener" href="https://gitcode.csdn.net/65e93a421a836825ed78e172.html#:~:text=zotero%2Bbetter%20bibtex%2Boverleaf%EF%BC%88latex%EF%BC%89%EF%BC%9A%E5%A6%82%E4%BD%95%E6%89%B9%E9%87%8F%E5%AF%BC%E5%87%BA%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE%201%201.%20%E4%B8%8B%E8%BD%BDbetter%20bibtex%20%E4%B8%8B%E8%BD%BDbetter%20bibtex%E6%8F%92%E4%BB%B6%E5%B9%B6%E5%AE%89%E8%A3%85%E5%88%B0zotero%E9%87%8C%EF%BC%8C%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4%E7%9C%81%E7%95%A5%EF%BC%8C%E5%8F%AF%E7%9C%8B%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5~,4.1%20%E5%AF%BC%E5%85%A5bib%E6%96%87%E4%BB%B6%E4%BA%8Eoverleaf%E4%B8%AD%20%E5%9C%A8.tex%E4%BB%A3%E7%A0%81%E7%9A%84%20%5C%20end%7Bdocument%7D%20%E5%89%8D%E5%8A%A0%E4%B8%8A%E8%BF%99%E4%B8%A4%E8%A1%8C%20%5Cbibliographystyle%7BIEEEtran.bst%7D%20">参考博客2</a></p>
-<h3 id="简单设置-bettertex"><a class="markdownIt-Anchor" href="#简单设置-bettertex"></a> 简单设置 BetterTex</h3>
+<h3 id="简单设置-bettertex">简单设置 BetterTex</h3>
 <ul>
 <li>打开 <code>编辑-首选项-Better BibTex-首选项-导出-字段</code>, 设置 <code>不导出的字段</code> 为 <code>abstract, note, file, keywords</code></li>
 <li>打开 <code>编辑-首选项-Better BibTex-首选项-导出-杂项</code>, 设置 <code>使用大括号括起首字母大写的单词以保持大小写格式</code> 为启用
@@ -666,7 +666,7 @@ A fourth year undergraduate student at UESTC
 </li>
 <li>打开 <code>编辑-首选项-导出</code>, 设置 <code>条目格式</code> 为 Better BibLatex, Better BibTex 或 Better BibTex Quick Copy: \cite{citation keys}. 这三个貌似没什么大区别, 我选择了第二个</li>
 </ul>
-<h3 id="优雅导出~~"><a class="markdownIt-Anchor" href="#优雅导出~~"></a> 优雅导出~~</h3>
+<h3 id="优雅导出">优雅导出~~</h3>
 <p>将参考文献放到一个分类下面, 然后右键分类选择 “导出分类”. 如果只想要一个分类下面的一部分文献, 可以选中文献后右键 “导出条目”. 以 “Better BibLatex” 格式导出就可以啦.</p>
 <p>如果向已设置好的参考文献中添加单独条目, 又不想重新导出所有条目, 可以选择 <code>Ctrl+Shift+C</code> 复制出某一条目的 bib 引用, 然后粘贴到 .bib 文件中.</p>
 

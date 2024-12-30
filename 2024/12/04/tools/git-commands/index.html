@@ -586,25 +586,6 @@ A fourth year undergraduate student at UESTC
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/tags/tool/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        tool
-      </a>
-    
       <a href="/tags/note/" 
         class="
           tag
@@ -624,6 +605,25 @@ A fourth year undergraduate student at UESTC
         note
       </a>
     
+      <a href="/tags/tool/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        tool
+      </a>
+    
   
 </div>
       </div>
@@ -632,15 +632,15 @@ A fourth year undergraduate student at UESTC
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>为什么会有这篇文章, 纯粹是摆烂摆久了都忘掉了, 总要拿回来看一看, 那不如水篇文章orz. 来自 deepseek</p>
-<h1 id="连接远程仓库并推送代码"><a class="markdownIt-Anchor" href="#连接远程仓库并推送代码"></a> 连接远程仓库并推送代码</h1>
+<h1 id="连接远程仓库并推送代码">连接远程仓库并推送代码</h1>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 初始化一个新的 Git 仓库</span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"># 克隆一个远程仓库到本地</span><br><span class="line">git clone &lt;repository_url&gt;</span><br><span class="line"></span><br><span class="line"># 查看远程仓库</span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"># 添加远程仓库</span><br><span class="line">git remote add origin &lt;repository_url&gt;</span><br><span class="line"></span><br><span class="line"># 推送本地分支到远程仓库</span><br><span class="line">git push origin &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 拉取远程仓库的更新</span><br><span class="line">git pull origin &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 从远程仓库获取更新但不合并</span><br><span class="line">git fetch origin</span><br></pre></td></tr></table></figure>
-<h1 id="分支操作"><a class="markdownIt-Anchor" href="#分支操作"></a> 分支操作</h1>
+<h1 id="分支操作">分支操作</h1>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 查看所有分支</span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"># 创建新分支</span><br><span class="line">git branch &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 切换分支</span><br><span class="line">git checkout &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 创建并切换到新分支</span><br><span class="line">git checkout -b &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 合并分支</span><br><span class="line">git merge &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 删除分支</span><br><span class="line">git branch -d &lt;branch_name&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
+<h1 id="基本操作">基本操作</h1>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"># 添加文件到暂存区</span><br><span class="line">git add &lt;file_name&gt;</span><br><span class="line"></span><br><span class="line"># 添加所有文件到暂存区</span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"># 提交暂存区的文件到仓库</span><br><span class="line">git commit -m &quot;Commit message&quot;</span><br><span class="line"></span><br><span class="line"># 查看提交历史</span><br><span class="line">git log</span><br><span class="line"></span><br><span class="line"># 查看简化的提交历史</span><br><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
-<h1 id="撤销操作"><a class="markdownIt-Anchor" href="#撤销操作"></a> 撤销操作</h1>
+<h1 id="撤销操作">撤销操作</h1>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 撤销工作区的修改</span><br><span class="line">git checkout -- &lt;file_name&gt;</span><br><span class="line"></span><br><span class="line"># 撤销暂存区的修改</span><br><span class="line">git reset HEAD &lt;file_name&gt;</span><br><span class="line"></span><br><span class="line"># 撤销最近的提交</span><br><span class="line">git reset --soft HEAD~1</span><br><span class="line"></span><br><span class="line"># 撤销最近的提交并丢弃更改</span><br><span class="line">git reset --hard HEAD~1</span><br></pre></td></tr></table></figure>
-<h1 id="服务器配置-git"><a class="markdownIt-Anchor" href="#服务器配置-git"></a> 服务器配置 git</h1>
+<h1 id="服务器配置-git">服务器配置 git</h1>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置用户名</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line"></span><br><span class="line"># 设置用户邮箱</span><br><span class="line">git config --global user.email &quot;your.email@example.com&quot;</span><br><span class="line"></span><br><span class="line"># 查看配置</span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
 
   </article>
