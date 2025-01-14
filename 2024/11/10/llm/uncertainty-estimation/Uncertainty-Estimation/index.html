@@ -549,7 +549,7 @@ A fourth year undergraduate student at UESTC
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2025-01-10</time>
+              Edited: <time class="w-max">2025-01-11</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -564,7 +564,7 @@ A fourth year undergraduate student at UESTC
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>8.1k words, 36 min</span>
+              <span>8.6k words, 38 min</span>
             </span>
             <!-- Categories -->
             
@@ -863,22 +863,42 @@ D_{j_1, j_2} = \begin{cases}
 </li>
 </ol>
 <h2 id="iclr2024-poster-can-llms-express-their-uncertainty-an-empirical-evaluation-of-confidence-elicitation-in-llms"><a class="markdownIt-Anchor" href="#iclr2024-poster-can-llms-express-their-uncertainty-an-empirical-evaluation-of-confidence-elicitation-in-llms"></a> [ICLR2024 poster] Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs</h2>
-<p>论文提出了包含提取置信度的 prompt 策略, 生成多个回答的采样策略, 计算一致性的聚合策略的系统框架.</p>
+<p>论文做了一些 rethinking 的工作, 用实验验证了既有的 prompt 策略在 uncertainty 中的作用. 对大模型不确定性的研究给了很多实验补充. 从 prompting, sampling 和 aggregation 三个不确定评估组成部分进行分析. 论文里的方法对所有方法都适用, 但是对 white box 模型研究有所不足.</p>
 <p>Contribution 如下:</p>
 <ol>
 <li>证明 LLM 往往会过度自信</li>
 <li>证明 LLM 模型校准与错误检测水平有限</li>
 <li>受人类启发的 prompt, 回答一致性和更好的聚合策略能帮忙缓解这种过度自信</li>
-<li>论文提出的方法比不上白盒方法, 但差距较小 (AUROC 从 0.522 到 0.605 很小吗?)</li>
+<li>论文提出的方法比不上白盒方法, 但差距较小 (AUROC 从 0.522 到 0.605 很小吗?). 这里的方法是将每个组件与其他部分的组件排列组合得到的</li>
 </ol>
 <p>置信度激发 (Confidence Elicitation) 指不进行模型微调或访问内部信息 (包含 token, logit 等等) 情况下估计 LLM 对回答的置信度的过程. 2205的文章《Teaching models to express their uncertainty in words》提出的这个概念. 作者给相关工作了给很多细致的分析, 在附录 C 里.</p>
-<p>既有的提示词策略可以分为</p>
+<p>既有的提示词 (Prompting) 策略可以分为</p>
 <ol>
 <li>Vanilla, 自己给答案和置信度, 朴实无华. “Read the question, provide your answer, and your confidence in this answer.”</li>
 <li>CoT, step by step 给出理由. “Read the question, analyze step by step, provide your answer and your confidence in this answer.”</li>
 <li>Self-Probing, 喂自己的QA对, 再给置信度, 这样能减小一次生成中的过度自信问题. “Question: […] Possible Answer: […] Q: How likely is the above answer to be correct? Analyze the possible answer, provide your reasoning concisely, and give your confidence in this answer.”</li>
 <li>Multi-Step, 分解推理过程, 得到每部分信息的平均值. “Read the question, break down the problem into K steps, think step by step, give your confidence in each step, and then derive your final answer and your confidence in this answer.”</li>
 <li>Top-K, 生成最自信的 K 个答案. “Provide your K best guesses and the probability that each is correct (0% to 100%) for the following question.”</li>
+</ol>
+<p>文章采用的采样 (Samping) 策略有</p>
+<ol>
+<li>Self-random. 即多次采样的随机性</li>
+<li>Prompting. 同一问题的多种表述</li>
+<li>Misleading. prompt 里给模型误导性的prompt, 用以评估误导信息对模型的作用</li>
+</ol>
+<p>文章采用的聚合 (Aggregation) 策略有</p>
+<ol>
+<li>Consistency. 多次采样回答间的一致性</li>
+<li>Avg-Conf. 在 consistency 上乘了语义置信度</li>
+<li>Pair-Rank. (卒)</li>
+</ol>
+<p>实验部分值得一看, consistency 要比让模型自己给出置信度更可靠, 符合直觉. 综合下来效果最好的方法是 Top-K prompt + Self-Random sampling + Avg-Conf/Pair-Rank. 聚合策略上, Avg-Conf 更适合检测错误, 预测置信度更适合用 Pair-Rank</p>
+<p>有一个观点很有趣: 作者认为, 目前白盒方法和黑盒方法差的不多. 白盒方法中 Length-Normalized Sequence Probability(长度归一化概率, len-norm-prob) 和 Key Token Probability(关键 token概率, token-prob) 效果最好, 但所有方法都有提升空间.</p>
+<p>附录里的实验结果表明:</p>
+<ol>
+<li>prompt 要求 LLM 自信或谨慎, 并不会显著影响结果</li>
+<li>prompt 要求 LLM 回答出自信度, 这种 verbalizing confidence 会比较高, 置信度普遍为 5 的倍数, 集中在 80% 到 100% 间. 即模型过度自信. 因此多次采样回答的一致性比模型自表达的置信度更可靠</li>
+<li>误导性 prompt 分为弱声明 (“我认为答案是…”), 强声明 (“我确信答案是…”), 外部声明 (“维基百科说…”). 弱误导性被纠正的可能性更大, 强声明和外部声明的影响会更大</li>
 </ol>
 <h1 id="self-correct"><a class="markdownIt-Anchor" href="#self-correct"></a> Self Correct</h1>
 <h2 id="iclr2024-poster-large-language-models-cannot-self-correct-reasoning-yet"><a class="markdownIt-Anchor" href="#iclr2024-poster-large-language-models-cannot-self-correct-reasoning-yet"></a> [ICLR2024 poster] Large Language Models Cannot Self-Correct Reasoning Yet</h2>
