@@ -631,30 +631,30 @@ A fourth year undergraduate student at UESTC
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="ai-绘图笔记"><a class="markdownIt-Anchor" href="#ai-绘图笔记"></a> AI 绘图笔记</h1>
-<h2 id="资源下载"><a class="markdownIt-Anchor" href="#资源下载"></a> 资源下载</h2>
-<h3 id="webui-资源整合包"><a class="markdownIt-Anchor" href="#webui-资源整合包"></a> WebUI 资源整合包</h3>
+    <h1 id="ai-绘图笔记">AI 绘图笔记</h1>
+<h2 id="资源下载">资源下载</h2>
+<h3 id="webui-资源整合包">WebUI 资源整合包</h3>
 <p>按照<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iM4y1y7oA/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ac32ad3a164f0885799c00267b582e94">b站视频</a>教程进行下载, 已经更新到 v4.7</p>
-<p>夸克网盘: <a target="_blank" rel="noopener" href="https://pan.quark.cn/s/2c832199b09b">链接</a><br />
+<p>夸克网盘: <a target="_blank" rel="noopener" href="https://pan.quark.cn/s/2c832199b09b">链接</a><br>
 百度网盘: <a target="_blank" rel="noopener" href="https://pan.quark.cn/s/1trvEUi64NZFGwTmAKya9Zw">链接</a> 提取码:672p</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22661198/">快速开始</a><br />
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22661198/">快速开始</a><br>
 <a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22159609/">教程</a></p>
-<h3 id="代理设置"><a class="markdownIt-Anchor" href="#代理设置"></a> 代理设置</h3>
+<h3 id="代理设置">代理设置</h3>
 <p>我选择使用代理暴力下载所有资源, 不使用国内镜像, 在设置中进行具体操作. 如果使用 Clash, 代理端口默认是 7890. 勾选所有 “将代理应用到xxx”, 取消勾选 “PyPI国内镜像”, “Git国内镜像”, “HuggingFace国内镜像”, “替换扩展列表链接”.</p>
-<h2 id="插件安装"><a class="markdownIt-Anchor" href="#插件安装"></a> 插件安装</h2>
+<h2 id="插件安装">插件安装</h2>
 <p>由于蓝桥杯的视频教程中用到了 roop 插件, 这里以 roop 为例进行安装.</p>
-<h3 id="roop-下载"><a class="markdownIt-Anchor" href="#roop-下载"></a> roop 下载</h3>
+<h3 id="roop-下载">roop 下载</h3>
 <p>感谢前人的<a target="_blank" rel="noopener" href="https://github.com/s0md3v/sd-webui-roop">馈赠</a></p>
 <ol>
 <li>将 repo 克隆到 extensions 文件夹中</li>
 <li>在整合包的 “高级选项-环境维护-重装单个 Python 组件” 中安装 ifnude 包 (只需输入安装包名称即可)</li>
 <li>根据教程, 如果有 Nonetype 的一个有关驱动的问题, 需要下载一个 onnx 文件并替换. 这里我没有这个问题,</li>
 </ol>
-<h2 id="魔法导论笔记来源"><a class="markdownIt-Anchor" href="#魔法导论笔记来源"></a> 魔法导论笔记来源</h2>
+<h2 id="魔法导论笔记来源">魔法导论笔记来源</h2>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22159609/">链接</a></p>
-<h2 id="文生图"><a class="markdownIt-Anchor" href="#文生图"></a> 文生图</h2>
-<h3 id="设置"><a class="markdownIt-Anchor" href="#设置"></a> 设置</h3>
-<h4 id="tag"><a class="markdownIt-Anchor" href="#tag"></a> Tag</h4>
+<h2 id="文生图">文生图</h2>
+<h3 id="设置">设置</h3>
+<h4 id="tag">Tag</h4>
 <p>常用正向 Tag: masterpiece, best quality</p>
 <p>常用反向 Tag: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry</p>
 <p>如果你不知道那些 Tag 好，可以使用<a target="_blank" rel="noopener" href="https://tags.novelai.dev/">标签超市</a></p>
@@ -664,17 +664,17 @@ A fourth year undergraduate student at UESTC
 <li>[girl] 减权重，一般用的少。减权重也一般就用下面的指定倍数。</li>
 <li>(girl:1.5) 指定倍数，这里是1.5倍的权重。还可以 (girl:0.9) 达到减权重的效果</li>
 </ul>
-<h4 id="cfg"><a class="markdownIt-Anchor" href="#cfg"></a> CFG</h4>
+<h4 id="cfg">CFG</h4>
 <p>分类器自由指导 Classifier-Free Guidance (CFG) 控制了 txt2img 和 img2img 中遵循 prompt 的程度. CFG 越大自由度越大, CFG 越小越严格遵循输入文本提示</p>
-<h3 id="放大图片"><a class="markdownIt-Anchor" href="#放大图片"></a> 放大图片</h3>
+<h3 id="放大图片">放大图片</h3>
 <p>AI 基本上无法生成超级大图，想要生成高清图片正确的做法是分辨率调小, 比如 512x768, 然后开启 “高清修复”. 作者的推荐</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/74521aafd205a243fa95f4d243a4e7d73a841943.png@1256w_340h_!web-article-pic.avif" alt="img" /></p>
-<h2 id="图生图"><a class="markdownIt-Anchor" href="#图生图"></a> 图生图</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/74521aafd205a243fa95f4d243a4e7d73a841943.png@1256w_340h_!web-article-pic.avif" alt="img"></p>
+<h2 id="图生图">图生图</h2>
 <p>可以全部修改, 部分修改, 指定颜色修改</p>
-<h2 id="查询图片参数"><a class="markdownIt-Anchor" href="#查询图片参数"></a> 查询图片参数</h2>
+<h2 id="查询图片参数">查询图片参数</h2>
 <p>AI 生成图片会自动保存全部参数到原图中, 在WebUI的 “图片信息” 一栏可通过解析原图看到</p>
-<h2 id="controlnet-精细控制画面"><a class="markdownIt-Anchor" href="#controlnet-精细控制画面"></a> ControlNet 精细控制画面</h2>
-<h3 id="预训练-模型介绍"><a class="markdownIt-Anchor" href="#预训练-模型介绍"></a> 预训练 + 模型介绍</h3>
+<h2 id="controlnet-精细控制画面">ControlNet 精细控制画面</h2>
+<h3 id="预训练-模型介绍">预训练 + 模型介绍</h3>
 <p>ControlNet 对文生图可以控制人物姿势/深度/线稿上色控制</p>
 <p>预处理器 + 模型</p>
 <ul>
@@ -683,70 +683,70 @@ A fourth year undergraduate student at UESTC
 </li>
 <li>
 <p>canny + control_canny模型, 边缘检测, 达到上色效果. 可以使用 lineart 和 lineart_anime 替换原来的 canny 模型</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104241159.png" alt="image-20240425104241159" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104241159.png" alt="image-20240425104241159"></p>
 </li>
 <li>
 <p>depth + control_depth模型, 深度图, 达到指定画面结构. 新版本可以用Leres++ 或 Zoe 预处理器, 再使用 Depth 模型</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104255422.png" alt="image-20240425104255422" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104255422.png" alt="image-20240425104255422"></p>
 </li>
 <li>
 <p>hed + contorl_head模型, 没有 canny 那么精准的控制, AI自由发挥更多</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104123719.png" alt="image-20240425104123719" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104123719.png" alt="image-20240425104123719"></p>
 </li>
 <li>
 <p>OpenPose+control_openpose模型, 人体动作控制</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104213716.png" alt="image-20240425104213716" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104213716.png" alt="image-20240425104213716"></p>
 </li>
 <li>
 <p>MLSD 线段图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104457206.png" alt="image-20240425104457206" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104457206.png" alt="image-20240425104457206"></p>
 </li>
 <li>
 <p>Scribble 手绘图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104514744.png" alt="image-20240425104514744" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425104514744.png" alt="image-20240425104514744"></p>
 </li>
 </ul>
-<h3 id="人设三视图"><a class="markdownIt-Anchor" href="#人设三视图"></a> 人设三视图</h3>
+<h3 id="人设三视图">人设三视图</h3>
 <p>lora使用, 在正向Tag里最后一行加入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;lora:charturnbetalora:0.2&gt;</span><br></pre></td></tr></table></figure>
 <p>这里使用 0.2-0.6 间的数字即可</p>
 <p>高清修复 (Denoising) 设置为 0.6</p>
-<h3 id="更新"><a class="markdownIt-Anchor" href="#更新"></a> 更新</h3>
+<h3 id="更新">更新</h3>
 <p>模型命名方式</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110232900.png" alt="image-20240425110232900" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110232900.png" alt="image-20240425110232900"></p>
 <p>Lineart 模型, 强大的线稿上色能力</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110637428.png" alt="image-20240425110637428" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110637428.png" alt="image-20240425110637428"></p>
 <p>Instruct Pix2Pix, 按照指令/tag 局部整体操纵图像程度的能力. eg. 变为夜晚. 效果不稳定</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110738814.png" alt="image-20240425110738814" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240425110738814.png" alt="image-20240425110738814"></p>
 <p>Tile 模型, 增加局部细节, 根据画面自动退段内容, 修复直接拉大分辨率导致的细节丢失. 如果局部内容与全局提示词不匹配, 则忽略掉提示词, 根据局部信息推断当前去雨内容</p>
 <p>Shuffle 打乱重建 / 风格迁移</p>
-<h2 id="更换模型"><a class="markdownIt-Anchor" href="#更换模型"></a> 更换模型</h2>
+<h2 id="更换模型">更换模型</h2>
 <p>常见模型: 大模型, Embedding 模型, Hypernet 模型, LoRA 模型. 常用的是大模型和 LoRA 模型</p>
-<h2 id="adetailer"><a class="markdownIt-Anchor" href="#adetailer"></a> ADetailer</h2>
+<h2 id="adetailer">ADetailer</h2>
 <p>[教程1](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yw411U72i/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ac32ad3a164f0885799c00267b582e94">拒绝脸崩 stable diffusion修脸大法 ADetailer脸部修复插件教程_哔哩哔哩_bilibili</a>), [教程2](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/631112570">【AI绘画】Stable Diffusion中级教程03——局部重绘(利用SD进行换脸) - 知乎 (zhihu.com)</a>)</p>
 <p>用于局部重绘, 尤其在远景镜头的人像崩掉的情况</p>
-<h3 id="人脸崩掉如何解决"><a class="markdownIt-Anchor" href="#人脸崩掉如何解决"></a> 人脸崩掉如何解决?</h3>
+<h3 id="人脸崩掉如何解决">人脸崩掉如何解决?</h3>
 <ol>
 <li>拉成近景, 不要全身像</li>
 <li>拉高分辨率, 提高对人脸的采样</li>
 <li>局部重绘: 一张人脸一张人脸重绘</li>
 <li>ADetailer: 群体人脸重绘</li>
 </ol>
-<h3 id="局部重绘"><a class="markdownIt-Anchor" href="#局部重绘"></a> 局部重绘</h3>
+<h3 id="局部重绘">局部重绘</h3>
 <ol>
 <li>输入进局部重绘</li>
 <li>画笔涂掉想要重画的区域 (即蒙版)</li>
 <li>Tag 中加入想重新生成的词</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240426010101176.png" alt="image-20240426010101176" /></p>
-<h4 id="缩放模式"><a class="markdownIt-Anchor" href="#缩放模式"></a> 缩放模式</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240426010101176.png" alt="image-20240426010101176"></p>
+<h4 id="缩放模式">缩放模式</h4>
 <p>参考图与重绘后的图片尺寸不一致时, 可以选择 “拉伸模式”, “裁剪模式”, “填充模式” 或 “调整大小模式” 来处理图片</p>
-<h4 id="蒙版边缘模糊度"><a class="markdownIt-Anchor" href="#蒙版边缘模糊度"></a> 蒙版边缘模糊度</h4>
+<h4 id="蒙版边缘模糊度">蒙版边缘模糊度</h4>
 <p>边缘无法准确选中, 使用蒙版模糊以羽化蒙版边缘, 使重绘部分与原图周围更加贴合. 0 最小, 最锐利</p>
 <p>人话: 画出来的边缘不那么锐利, 与原图有过渡</p>
-<h4 id="蒙版模式"><a class="markdownIt-Anchor" href="#蒙版模式"></a> 蒙版模式</h4>
+<h4 id="蒙版模式">蒙版模式</h4>
 <p>可以选择重绘蒙版内容或重绘非蒙版内容.</p>
-<h4 id="蒙版区域内容处理"><a class="markdownIt-Anchor" href="#蒙版区域内容处理"></a> 蒙版区域内容处理</h4>
+<h4 id="蒙版区域内容处理">蒙版区域内容处理</h4>
 <p>可选 “填充”, “原图”, “潜变量噪声”, “空白潜空间”</p>
 <ul>
 <li>填充: 先将蒙版内容模糊化, 再一步步去噪生成新图片</li>
@@ -755,24 +755,24 @@ A fourth year undergraduate student at UESTC
 <li>空白潜空间: 即潜变量噪声为 0, 相当于填充模式, 采用模糊化蒙版颜色后进行去噪的过程</li>
 </ul>
 <p>大部分情况下用原图, 因为修改非蒙版内容时要保留脸型</p>
-<h4 id="重绘区域"><a class="markdownIt-Anchor" href="#重绘区域"></a> 重绘区域</h4>
+<h4 id="重绘区域">重绘区域</h4>
 <p>可选 “全图重绘” 和 “仅蒙版区域”</p>
 <ul>
 <li>全图重绘: 蒙版的原图尺寸下, 重绘蒙版区域. 此时重绘区域分辨率与原图一致, 所以重绘内容与原图融合得更好, 缺点是不够细节</li>
 <li>仅蒙版区域: 先将蒙版区域放大到出图尺寸的大小, 再重绘蒙版区域. 这会生成更丰富的细节, 但细节太多会与原图融合得不好</li>
 </ul>
-<h4 id="柔和重绘"><a class="markdownIt-Anchor" href="#柔和重绘"></a> 柔和重绘</h4>
+<h4 id="柔和重绘">柔和重绘</h4>
 <p>根据蒙版不透明度, 将原始画面与重绘内容无缝融合. 推荐在高蒙版边缘模糊度下使用</p>
-<h3 id="adteiler"><a class="markdownIt-Anchor" href="#adteiler"></a> ADteiler</h3>
+<h3 id="adteiler">ADteiler</h3>
 <p>同时加载模型的数量等于使用单元的数量</p>
 <p>可以通过同时加载多个模型来同时修复多个人脸和手部图片</p>
 <p><strong>模型置信阈值</strong>: 降低以识别更多的人脸, 提高以更准确地识别人脸</p>
 <p>脸部修复推荐使用 <code>face_yolo8n_v2.pt</code>, 对二次元和真人都同时有效. <code>mediapipe</code> 开头的模型大多对真人有效. 若修复人脸, 在使用上面脸部修复模型的下方输入 “detail face”; 若换表情, 可以输入如 “laugh”, “cry”, “sad” 等词来改变表情</p>
-<h2 id="controlnet"><a class="markdownIt-Anchor" href="#controlnet"></a> ControlNet</h2>
+<h2 id="controlnet">ControlNet</h2>
 <p>[参考教程](<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ds4y1e7ZB/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ac32ad3a164f0885799c00267b582e94">30分钟零基础掌握ControlNet！绝对是你看过最好懂的控制网原理分析 | 基本操作、插件安装与5大模型应用 · Stable Diffusion教程_哔哩哔哩_bilibili</a>)</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240426013946493.png" alt="image-20240426013946493" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240426013946493.png" alt="image-20240426013946493"></p>
 <p>需要选中 “启用” 才会使用 ControlNet</p>
-<h3 id="基本控制参数"><a class="markdownIt-Anchor" href="#基本控制参数"></a> 基本控制参数</h3>
+<h3 id="基本控制参数">基本控制参数</h3>
 <ol>
 <li>完美像素模式 Pixel Perfect: 自动计算预处理器产出图像最合适的分辨率, 避免因为尺寸不合导致图像模糊变形</li>
 <li>允许预览Allow Preview: 增加预览器窗口, 展示信息图</li>
@@ -780,11 +780,11 @@ A fourth year undergraduate student at UESTC
 <li>引导介入时机Starting Control Step:图像扩散过程中开始加入 ControlNet 的时间. 更改会赋予模型更高的自由度</li>
 <li>引导终止时机Ending Control Step: 图像扩散过程中结束加入 ControlNet 的时间. 更改会赋予模型更高的自由度</li>
 </ol>
-<h3 id="控制模式"><a class="markdownIt-Anchor" href="#控制模式"></a> 控制模式</h3>
+<h3 id="控制模式">控制模式</h3>
 <p>可选 “均衡”, “更偏向提示词”, “更偏向 ControlNet”. 用以控制在提示词的影响和 ControlNet 的信息间更倾向于哪一个. 多数选择 “均衡”</p>
-<h3 id="缩放模式-2"><a class="markdownIt-Anchor" href="#缩放模式-2"></a> 缩放模式</h3>
+<h3 id="缩放模式">缩放模式</h3>
 <p>参考图与重绘后的图片尺寸不一致时, 可以选择 “仅调整大小”, “裁剪后缩放”, “缩放后填充空白” 来处理图片</p>
-<h3 id="预处理器参数"><a class="markdownIt-Anchor" href="#预处理器参数"></a> 预处理器参数</h3>
+<h3 id="预处理器参数">预处理器参数</h3>
 <p>选择好预处理器后, 下面根据预处理器的不同会有不同参数设置. 例如:</p>
 <ul>
 <li>控制权重</li>
@@ -792,13 +792,13 @@ A fourth year undergraduate student at UESTC
 <li>引导终止时机</li>
 <li>预处理器分辨率 Preprocessor Resolution: 一般不需要很大, 若预处理器为 Canny, Lineart, Depth 等需要很高精度的预处理器, 可以调大</li>
 </ul>
-<h3 id="常用控制模型"><a class="markdownIt-Anchor" href="#常用控制模型"></a> 常用控制模型</h3>
-<h4 id="openpose"><a class="markdownIt-Anchor" href="#openpose"></a> OpenPose</h4>
+<h3 id="常用控制模型">常用控制模型</h3>
+<h4 id="openpose">OpenPose</h4>
 <p>了解很多了, 过</p>
-<h4 id="depth"><a class="markdownIt-Anchor" href="#depth"></a> Depth</h4>
+<h4 id="depth">Depth</h4>
 <p>生成富有空间感的多层次场景</p>
 <p>四种预处理器, 以 depth_leres++ 效果最精细, 处理时间最长</p>
-<h4 id="canny"><a class="markdownIt-Anchor" href="#canny"></a> Canny</h4>
+<h4 id="canny">Canny</h4>
 <p>提取边缘特征并输入图像. Canny 可以保留一些需要精确表达的内容, 如文字和标识. 如果识别不到部分线条, 可以调低以下特定参数</p>
 <ul>
 <li>Canny Low Threshold: 低阈值, 识别暗部</li>
@@ -806,27 +806,27 @@ A fourth year undergraduate student at UESTC
 </ul>
 <p>可以用于线稿上色. 如果输入线稿是白底黑线的, 要将预处理器设置为 “invert”(反转). 这是因为线稿本身仅有边缘, Canny 再提取边缘会使本来清晰的边缘变模糊, 重复提取造成模糊.</p>
 <p>Lineart 是 Canny 的高级实现, 基于动漫风格的线稿实现上色功能的预处理器</p>
-<h4 id="soft-edge柔和边缘"><a class="markdownIt-Anchor" href="#soft-edge柔和边缘"></a> Soft Edge(柔和边缘)</h4>
+<h4 id="soft-edge-柔和边缘">Soft Edge(柔和边缘)</h4>
 <p>也称 HED (holistically-nested edge detection) 整体边缘线条检测, 作用与 Canny 类似, 但是线条边缘会更模糊一些</p>
 <p>模型上有 hed 的模型效果会比  Pidinet 好, safe是他们的精简版</p>
-<h4 id="scribble"><a class="markdownIt-Anchor" href="#scribble"></a> Scribble</h4>
+<h4 id="scribble">Scribble</h4>
 <p>比 Soft Edge 还要自由奔放</p>
-<h4 id="brightness"><a class="markdownIt-Anchor" href="#brightness"></a> Brightness</h4>
+<h4 id="brightness">Brightness</h4>
 <p>用于生成 3D 光影图片. 输入一张黑底白字的照片, 然后生成照片</p>
-<h2 id="采样器sampler"><a class="markdownIt-Anchor" href="#采样器sampler"></a> 采样器sampler</h2>
+<h2 id="采样器sampler">采样器sampler</h2>
 <p>[参考教程](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/690319301">救老命了！Stable Diffusion 入门之30+采样方法 (Sampler)详解 - 知乎 (zhihu.com)</a>)</p>
 <p>主要的采样方法可分为 “老式采样器”, “DPM采样器”, “新式采样器”</p>
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<h4 id="祖先采样器"><a class="markdownIt-Anchor" href="#祖先采样器"></a> 祖先采样器</h4>
+<h3 id="总结">总结</h3>
+<h4 id="祖先采样器">祖先采样器</h4>
 <ul>
 <li>“a”: 祖先采样器, 每一个采样步骤中向图像添加噪声, 采样结果有随机性. 缺点是图像不会收敛, 实现动画时避免使用</li>
 <li>“SDE”: 也是用了祖先采样, 生成图像不收敛</li>
 </ul>
-<h4 id="karras-采样器"><a class="markdownIt-Anchor" href="#karras-采样器"></a> Karras 采样器</h4>
+<h4 id="karras-采样器">Karras 采样器</h4>
 <ul>
 <li>“Karras”: 使用 [Karras 文章]([<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.00364">2206.00364] Elucidating the Design Space of Diffusion-Based Generative Models (arxiv.org)</a>)推荐的操作, 在噪声步长接近尾声时更小, 有助于提高图像质量</li>
 </ul>
-<h4 id="最终结论"><a class="markdownIt-Anchor" href="#最终结论"></a> 最终结论</h4>
+<h4 id="最终结论">最终结论</h4>
 <ol>
 <li>Euler, Euler a: 更快获得简单结果</li>
 <li><strong>DPM++ 2M Karras</strong>: 推荐算法, 速度快, 质量好, 推荐步数 20-30</li>
@@ -837,7 +837,7 @@ A fourth year undergraduate student at UESTC
 <li>UniPC, Restart: 更少的步数就能获得好的结果</li>
 <li>LCM: 配合专门的大模型使用, 6-10步可获得好结果, CFG 1-2</li>
 </ol>
-<h3 id="老式采样器"><a class="markdownIt-Anchor" href="#老式采样器"></a> 老式采样器</h3>
+<h3 id="老式采样器">老式采样器</h3>
 <p>不再使用:</p>
 <table>
 <thead>
@@ -880,7 +880,7 @@ A fourth year undergraduate student at UESTC
 </tr>
 </tbody>
 </table>
-<h3 id="dpm-采样器"><a class="markdownIt-Anchor" href="#dpm-采样器"></a> DPM 采样器</h3>
+<h3 id="dpm-采样器">DPM 采样器</h3>
 <table>
 <thead>
 <tr>
@@ -1020,7 +1020,7 @@ A fourth year undergraduate student at UESTC
 </tr>
 </tbody>
 </table>
-<h3 id="新式采样器"><a class="markdownIt-Anchor" href="#新式采样器"></a> 新式采样器</h3>
+<h3 id="新式采样器">新式采样器</h3>
 <table>
 <thead>
 <tr>
@@ -1039,14 +1039,14 @@ A fourth year undergraduate student at UESTC
 </tr>
 </tbody>
 </table>
-<h2 id="roop"><a class="markdownIt-Anchor" href="#roop"></a> Roop</h2>
-<p><strong>勾选 “启用”</strong></p>
+<h2 id="roop">Roop</h2>
+<p><strong>勾选 &quot;启用&quot;</strong></p>
 <p>逗号分隔的面部编号Comma separated face number(s): 指定替换第几张人脸, 从左往右从 0 开始数</p>
 <p>面部修复:可选 “none”, “CodeFormer”, “GFPGAN”, 后两者效果差不多</p>
-<h2 id="animatediff"><a class="markdownIt-Anchor" href="#animatediff"></a> AnimateDiff</h2>
+<h2 id="animatediff">AnimateDiff</h2>
 <p>Text2Video 的工具</p>
-<h3 id="参数"><a class="markdownIt-Anchor" href="#参数"></a> 参数</h3>
-<p><img src="https://pic2.zhimg.com/v2-a72ebec8b7b1bea0839af055c3feb111_r.png" alt="preview" /></p>
+<h3 id="参数">参数</h3>
+<p><img src="https://pic2.zhimg.com/v2-a72ebec8b7b1bea0839af055c3feb111_r.png" alt="preview"></p>
 <p>参数 (TODO: 这参数都写的什么玩意)</p>
 <ol>
 <li>运动模块 Motion module: 可选mm_sd_v14.ckpt 和 mm_sd_v15.ckpt, v14 好像会更好</li>
@@ -1059,7 +1059,7 @@ A fourth year undergraduate student at UESTC
 <li>显示循环数量 Display loop number: 动画重复几次, 0 则一直循环</li>
 <li>保存格式 Save format: 可选 “gif”, “mp4”, “webp”, “webm”, “png”, “txt”. 需要信息文本则选 “txt”, 信息文本与输出 gif 位于同一目录</li>
 </ol>
-<h4 id="闭环-closed-loop"><a class="markdownIt-Anchor" href="#闭环-closed-loop"></a> 闭环 Closed loop</h4>
+<h4 id="闭环-closed-loop">闭环 Closed loop</h4>
 <p>(copied from [link](<a target="_blank" rel="noopener" href="https://caovan.com/jingjiangstable-diffusion-webuideanimatediffdonghuachajian/.html/6#25E9259725AD25E7258E25AF25EF25BC2588Closed_loop25EF25BC2589">精讲stable diffusion webui的AnimateDiff动画插件 | 草凡博客 | 第 6 页 (caovan.com)</a>))</p>
 <p>意味着此扩展将尝试使最后一帧与第一帧相同。</p>
 <ul>
@@ -1073,7 +1073,7 @@ A fourth year undergraduate student at UESTC
 <li><code>R+P</code>意味着扩展将尝试减少闭环上下文的数量。提示行程（prompt traveling）将被插补为闭环。</li>
 <li><code>A</code>意味着扩展将积极尝试使最后一帧与第一帧相同。提示行程（prompt traveling）将被插补为闭环。</li>
 </ul>
-<h4 id="步幅-stride"><a class="markdownIt-Anchor" href="#步幅-stride"></a> 步幅 Stride</h4>
+<h4 id="步幅-stride">步幅 Stride</h4>
 <p>“步幅”（Stride）是最大运动步幅的设置，用 2 的幂表示（默认：1）。</p>
 <ol>
 <li>
@@ -1097,11 +1097,11 @@ A fourth year undergraduate student at UESTC
 </ul>
 </li>
 </ol>
-<h4 id="重叠-overlap"><a class="markdownIt-Anchor" href="#重叠-overlap"></a> 重叠 Overlap</h4>
+<h4 id="重叠-overlap">重叠 Overlap</h4>
 <p>上下文中重叠的帧数</p>
 <p>如果重叠为 -1（默认）：您的重叠将为<code>Context batch size</code>// 4</p>
 <p>由于无限上下文生成器的限制，该参数仅在<code>Number of frame</code>&gt;<code>Context batch size</code>时有效，包括当 ControlNet 启用且源视频帧数 &gt;<code>Context batch size</code>且<code>Number of frames</code>为 0 时有效。</p>
-<h3 id="提示穿梭-prompt-travelling"><a class="markdownIt-Anchor" href="#提示穿梭-prompt-travelling"></a> 提示穿梭 Prompt Travelling</h3>
+<h3 id="提示穿梭-prompt-travelling">提示穿梭 Prompt Travelling</h3>
 <p>精确控制特定时间帧内的具体细节</p>
 <ul>
 <li>头部提示: 确定生成的视频或 GIP 的整体外观</li>
@@ -1109,17 +1109,17 @@ A fourth year undergraduate student at UESTC
 <li>尾部提示: 动画结束时的内容</li>
 </ul>
 <p>举个例子:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240426231750100.png" alt="image-20240426231750100" /></p>
-<h2 id="画面分区-latent-couple-lora修饰限制-composable-lora"><a class="markdownIt-Anchor" href="#画面分区-latent-couple-lora修饰限制-composable-lora"></a> 画面分区 Latent Couple + Lora修饰限制 Composable Lora</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240426231750100.png" alt="image-20240426231750100"></p>
+<h2 id="画面分区-latent-couple-lora修饰限制-composable-lora">画面分区 Latent Couple + Lora修饰限制 Composable Lora</h2>
 <p>[参考教程](<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv23126263/">【NovelAI】教程：使用Latent Couple+Composable Lora+角色Lora绘制双人图吧！ - 哔哩哔哩 (bilibili.com)</a>)</p>
-<h3 id="画面分区-latent-couple"><a class="markdownIt-Anchor" href="#画面分区-latent-couple"></a> 画面分区 Latent Couple</h3>
+<h3 id="画面分区-latent-couple">画面分区 Latent Couple</h3>
 <p>作用: 对绘制进行分区, 对不同分区使用不同的 Lora</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240426235326043.png" alt="image-20240426235326043" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240426235326043.png" alt="image-20240426235326043"></p>
 <p>参数:</p>
 <ul>
 <li>
 <p>分区方式 Divisions: eg. “1:1, 1:2, 1:2”, “1:1” 表示整幅画面, “1:2” 表示一幅画分为一行两列. 同理 “1:1, 2:2, 2:2, 2:2, 2:2”</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/bf504b4c456ba8945d45ed56ff7b387f.png" alt="img" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/bf504b4c456ba8945d45ed56ff7b387f.png" alt="img"></p>
 </li>
 <li>
 <p>位置 Positions</p>
@@ -1131,11 +1131,11 @@ A fourth year undergraduate student at UESTC
 <p>以水平分区为例, 假设我们需要绘制n个人物，则Divisions中填写1:1,1:n,1:n,…,1:n（n,1:n），Positions中填写0:0,0:1,0:2,…,0:n-1，Weights中填写0.2,0.8,0.8,…0.8（n个0.8）</p>
 <p>正面 tag 要用特殊的方式写, 例如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">全局tag</span><br><span class="line"></span><br><span class="line">    AND 角色1tag</span><br><span class="line"></span><br><span class="line">    AND 角色2tag</span><br><span class="line"></span><br><span class="line">    AND 角色3tag</span><br></pre></td></tr></table></figure>
-<h3 id="lora修饰限制-composable-lora"><a class="markdownIt-Anchor" href="#lora修饰限制-composable-lora"></a> Lora修饰限制 Composable Lora</h3>
+<h3 id="lora修饰限制-composable-lora">Lora修饰限制 Composable Lora</h3>
 <p>作用: 避免不同 Lora 间的污染. 与上面的插件必须同时使用</p>
-<h3 id="实战"><a class="markdownIt-Anchor" href="#实战"></a> 实战</h3>
+<h3 id="实战">实战</h3>
 <p>可以进行竖直分区和水平分区. 以水平分区为例, 假设要绘制 N 个任务, 在 Divisions中填写</p>
-<p>什么玩意啊这是 😦</p>
+<p>什么玩意啊这是 :(</p>
 
   </article>
 
