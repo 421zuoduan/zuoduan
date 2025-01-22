@@ -650,31 +650,31 @@ A fourth year undergraduate student at UESTC
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h2 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h2>
-<h2 id="background"><a class="markdownIt-Anchor" href="#background"></a> Background</h2>
-<h3 id="model-architecture"><a class="markdownIt-Anchor" href="#model-architecture"></a> Model architecture</h3>
+    <h2 id="introduction">Introduction</h2>
+<h2 id="background">Background</h2>
+<h3 id="model-architecture">Model architecture</h3>
 <p>多模态大模型可以粗略的分为两类: cross-attention-based 和 auto-regressive-based</p>
-<h4 id="cross-attention-based-mllm"><a class="markdownIt-Anchor" href="#cross-attention-based-mllm"></a> cross-attention-based MLLM</h4>
+<h4 id="cross-attention-based-mllm">cross-attention-based MLLM</h4>
 <p>举例, Flamingo 和 Blip-2</p>
-<h4 id="auto-regressive-based"><a class="markdownIt-Anchor" href="#auto-regressive-based"></a> auto-regressive-based</h4>
+<h4 id="auto-regressive-based">auto-regressive-based</h4>
 <p>举例, Fuyu-8B, Palm-e, Llava, Openflamingo. 将 textual tokens 和 visual tokens concat在一起. 这也是本文主要关注的部分</p>
 <p>通常由 visiual encoder, LLM, projector 组成. projector 可以是 linear, mlp 或 TransformerBlocks</p>
-<h3 id="training-stages"><a class="markdownIt-Anchor" href="#training-stages"></a> Training stages</h3>
-<h4 id="projector-initialization"><a class="markdownIt-Anchor" href="#projector-initialization"></a> Projector initialization</h4>
+<h3 id="training-stages">Training stages</h3>
+<h4 id="projector-initialization">Projector initialization</h4>
 <p>随机初始化 projector, 冻结 LLM 和 visual encoder, 使用 image-caption 对训练</p>
-<h4 id="visual-language-pre-training"><a class="markdownIt-Anchor" href="#visual-language-pre-training"></a> visual language pre-training</h4>
+<h4 id="visual-language-pre-training">visual language pre-training</h4>
 <p>pre-training, 使用 visual language corpus (视觉语言语言库) 训练 LLM 和 projector. 主要使用交错图像文本语料库 (interleaved image-text corpus) 和图像文本对 (image-text pairs). 这一步参考了 Instructblip, Blip-2 和 Llava</p>
-<h5 id="交错图像文本语料库-interleaved-image-text-corpus"><a class="markdownIt-Anchor" href="#交错图像文本语料库-interleaved-image-text-corpus"></a> 交错图像文本语料库 (interleaved image-text corpus)</h5>
+<h5 id="交错图像文本语料库-interleaved-image-text-corpus">交错图像文本语料库 (interleaved image-text corpus)</h5>
 <p>举例 MMC4 (“An open, billion-scale corpus of images interleaved with text”)</p>
-<h5 id="image-text-pairs"><a class="markdownIt-Anchor" href="#image-text-pairs"></a> image-text pairs</h5>
+<h5 id="image-text-pairs">image-text pairs</h5>
 <p>举例 COYO (“Coyo-700m: Image-text pair dataset”), LAION (“Laion-5b: An open large-scale dataset for training next generation image-text models”)</p>
-<h4 id="visual-instruction-tuning"><a class="markdownIt-Anchor" href="#visual-instruction-tuning"></a> Visual instruction-tuning</h4>
+<h4 id="visual-instruction-tuning">Visual instruction-tuning</h4>
 <p>在预训练好的模型上使用 visual language instruction datasets 进行指令微调, 作者按照 Instructblip 论文的方法将现有的数据集转化为 FLAN 格式, 在补充材料里有说视觉指令数据的数据混合方式</p>
-<h3 id="evaluations"><a class="markdownIt-Anchor" href="#evaluations"></a> Evaluations</h3>
+<h3 id="evaluations">Evaluations</h3>
 <p>论文使用了四种评估方法: OKVQA, TextVQA 任务的 accuracy, COCO 和 Flickr 数据集的 CIDEr 分数. 在 zero-shot 和 4-short 任务上验证了模型的 ICL 能力</p>
-<h2 id="on-pre-training-for-visual-language-models"><a class="markdownIt-Anchor" href="#on-pre-training-for-visual-language-models"></a> On Pre-training for Visual Language Models</h2>
-<h3 id="updating-llm-is-essential"><a class="markdownIt-Anchor" href="#updating-llm-is-essential"></a> Updating LLM is Essential</h3>
-<h4 id="fine-tuning-vs-prompt-tuning"><a class="markdownIt-Anchor" href="#fine-tuning-vs-prompt-tuning"></a> Fine-tuning vs. prompt tuning</h4>
+<h2 id="on-pre-training-for-visual-language-models">On Pre-training for Visual Language Models</h2>
+<h3 id="updating-llm-is-essential">Updating LLM is Essential</h3>
+<h4 id="fine-tuning-vs-prompt-tuning">Fine-tuning vs. prompt tuning</h4>
 <p>两种使用 visual tokens 增强 LLM的方法:</p>
 <ol>
 <li>在 visual input tokens 上微调 LLMs. eg. Palm-e, Llava</li>
@@ -686,22 +686,22 @@ A fourth year undergraduate student at UESTC
 <li>预训练时冻结LLM 不会影响 zero-shot 能力, 但 ICL 能力下降, 表现为 4-shot 能力下降</li>
 <li>projector 使用 linear时, 效果会好一些. 这里作者推测是简单的projector 会使 LLM 更关注视觉信息, 但是没有给出更细节的验证</li>
 </ol>
-<h4 id="the-deep-embedding-alignment-hypothesis"><a class="markdownIt-Anchor" href="#the-deep-embedding-alignment-hypothesis"></a> The deep embedding alignment hypothesis</h4>
+<h4 id="the-deep-embedding-alignment-hypothesis">The deep embedding alignment hypothesis</h4>
 <p>针对上面 “微调 LLM 有益” 的结论, 作者假设对齐视觉和文本的 Embedding 分布很重要.</p>
 <p>验证: 计算 the Chamfer distance of visual and textual embedidings in different layers, 计算了倒角距离 (Chamfer distance / pairwise cosine similarity) 和成对余弦相似度 (pairwise cosine similarity), 证明了 ICL 能力与对齐的相关性.</p>
 <p>通过以上分析, 作者设置在 pre-training 和 instruction-tuning 两个阶段都微调 LLM</p>
-<h3 id="interleaved-visual-language-corpus-helps-pre-training"><a class="markdownIt-Anchor" href="#interleaved-visual-language-corpus-helps-pre-training"></a> Interleaved Visual Language Corpus Helps Pre-Training</h3>
+<h3 id="interleaved-visual-language-corpus-helps-pre-training">Interleaved Visual Language Corpus Helps Pre-Training</h3>
 <p>多模态大模型不是只关注视觉输入, 也要保存关注文本输入的能力. 所以数据混合是很有意义的</p>
-<h4 id="pre-training-dataset-options"><a class="markdownIt-Anchor" href="#pre-training-dataset-options"></a> Pre-training dataset options</h4>
+<h4 id="pre-training-dataset-options">Pre-training dataset options</h4>
 <p>没看懂. 不混合是指只用文本去初始化projector?</p>
 <p>大多数 VLM pre-training 都使用 image-text 对 (reason: wide availability and large diversity), 如 LAION (Laion-5b: An open large-scale dataset for training next generation image-text models), COYO (Coyo-700m: Image-text pair dataset)</p>
-<h4 id="interleaved-data-is-essential"><a class="markdownIt-Anchor" href="#interleaved-data-is-essential"></a> Interleaved data is essential</h4>
+<h4 id="interleaved-data-is-essential">Interleaved data is essential</h4>
 <p>没看懂</p>
-<h4 id="interleave-data-structure-matters-but-not-the-text-distribution"><a class="markdownIt-Anchor" href="#interleave-data-structure-matters-but-not-the-text-distribution"></a> Interleave data structure matters, but not the text distribution</h4>
-<h4 id="data-blending-improves-pre-training"><a class="markdownIt-Anchor" href="#data-blending-improves-pre-training"></a> Data blending improves pre-training</h4>
-<h3 id="recover-llm-degradation-with-joint-sft"><a class="markdownIt-Anchor" href="#recover-llm-degradation-with-joint-sft"></a> Recover LLM Degradation with Joint SFT</h3>
+<h4 id="interleave-data-structure-matters-but-not-the-text-distribution">Interleave data structure matters, but not the text distribution</h4>
+<h4 id="data-blending-improves-pre-training">Data blending improves pre-training</h4>
+<h3 id="recover-llm-degradation-with-joint-sft">Recover LLM Degradation with Joint SFT</h3>
 <p>在图像-文本数据集中混入纯文本数据能维持纯文本处理能力, 但依然会有准确度的下降. 既有的数据集存在不开源等等的问题, 所以作者提出了 “Joint SFT” 数据集. 作者认为, text-only 能力在混合的数据集训练后只是被隐藏了, 不是被遗忘或破坏了</p>
-<h4 id="joint-supervised-fine-tuning"><a class="markdownIt-Anchor" href="#joint-supervised-fine-tuning"></a> Joint supervised fine-tuning</h4>
+<h4 id="joint-supervised-fine-tuning">Joint supervised fine-tuning</h4>
 <p>Table 4 表明, 混入纯文本数据可以同时恢复模型在 text-only 条件下的准确率, 提高visual language accuracy. 作者从 FLAN 采样了 1M text-only 指令微调数据, 称为 “joint SFT”</p>
 
   </article>
