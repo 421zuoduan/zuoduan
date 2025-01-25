@@ -631,8 +631,8 @@ A fourth year undergraduate student at UESTC
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h2 id="arxiv240904057v1-self-harmonized-chain-of-thought"><a class="markdownIt-Anchor" href="#arxiv240904057v1-self-harmonized-chain-of-thought"></a> [arXiv:2409.04057v1] Self-Harmonized Chain of Thought</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250113114125.png" alt="ECHO 与 常见 CoT 方法对比" /></p>
+    <h2 id="arxiv-2409-04057v1-self-harmonized-chain-of-thought">[arXiv:2409.04057v1] Self-Harmonized Chain of Thought</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250113114125.png" alt="ECHO 与 常见 CoT 方法对比"></p>
 <p>这里 Demos 就是 prompt 里要给的示例. motivation 是 Few Shot 过程给的示例多样性可能不够好, 通过自优化 demos 来提升 prompt 质量. 也可以用到 Zero Shot, 将数据集分为指定数量demonstrations, 每个demonstrations 取一个典型问题, 解典型问题的 rationale (也就是思维链) 作为 demos.</p>
 <p>具体的优化过程是, 先用 Auto-CoT 方法生成典型问题的 Demos, 然后以一个典型问题作为真正的问题, 其余典型问题作为 Demos, 从而逐个优化问题的思维链, 得到高质量的 Demos.</p>
 
