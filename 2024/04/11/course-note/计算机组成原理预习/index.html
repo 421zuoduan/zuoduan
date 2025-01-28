@@ -564,7 +564,7 @@ A fourth year undergraduate student at UESTC
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>14.1k words, 50 min</span>
+              <span>14.2k words, 51 min</span>
             </span>
             <!-- Categories -->
             
@@ -632,7 +632,7 @@ A fourth year undergraduate student at UESTC
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>[TOC]</p>
-<h2 id="第1章-计算机系统概述"><a class="markdownIt-Anchor" href="#第1章-计算机系统概述"></a> 第1章 计算机系统概述</h2>
+<h2 id="第1章-计算机系统概述">第1章 计算机系统概述</h2>
 <ul>
 <li>
 <p>计算机发展历程</p>
@@ -645,7 +645,7 @@ A fourth year undergraduate student at UESTC
 </li>
 <li>
 <p>计算机系统性能评价</p>
-<h3 id="计算机的发展历程"><a class="markdownIt-Anchor" href="#计算机的发展历程"></a> 计算机的发展历程</h3>
+<h3 id="计算机的发展历程">计算机的发展历程</h3>
 </li>
 </ul>
 <p>第一代计算机：真空管计算机 十进制运算1946 ENIAC</p>
@@ -669,7 +669,7 @@ A fourth year undergraduate student at UESTC
 <p>​		内部以二进制表示指令和数据：指令（操作码指出操作类型，地址码指出操作地址），一串指令组成程序</p>
 <p>​		“存储程序”的工作方式</p>
 <p>​		IAS计算机是现代计算机的原型机（IAS 1946年设计的计算机）</p>
-<h3 id="计算机系统的组成"><a class="markdownIt-Anchor" href="#计算机系统的组成"></a> 计算机系统的组成</h3>
+<h3 id="计算机系统的组成">计算机系统的组成</h3>
 <ul>
 <li>计算机硬件：CPU+ MM +I/O</li>
 <li>计算机软件：系统软件+应用软件</li>
@@ -683,9 +683,9 @@ A fourth year undergraduate student at UESTC
 <li>控制器（控制）：对指令译码生成控制信号</li>
 </ul>
 <p>冯诺依曼结构计算机模型：</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609115147826.png" alt="image-20230609115147826" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609115147826.png" alt="image-20230609115147826"></p>
 <p>认识计算机中最基本的部件：</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609191357586.png" alt="image-20230609191357586" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609191357586.png" alt="image-20230609191357586"></p>
 <p>CPU：中央处理器  PC：程序计数器  MAR：存储器地址寄存器</p>
 <p>ALU：算术逻辑部件  IR：指令寄存器  MDR：存储器数据寄存器</p>
 <p>GPRs：通用寄存器组（若干通用寄存器组成，早期就是累加器）</p>
@@ -743,8 +743,8 @@ A fourth year undergraduate student at UESTC
 </ul>
 <p><strong>软件和硬件的界面：ISA</strong></p>
 <p>ISA处于硬件与软件的交界面，ISA是对硬件的抽象，所有软件功能建立在ISA之上</p>
-<h3 id="计算机系统的层次结构"><a class="markdownIt-Anchor" href="#计算机系统的层次结构"></a> 计算机系统的层次结构</h3>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609195949041.png" alt="image-20230609195949041" /></p>
+<h3 id="计算机系统的层次结构">计算机系统的层次结构</h3>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609195949041.png" alt="image-20230609195949041"></p>
 <p>任何高级语言程序最终通过执行若干条指令来完成</p>
 <p>程序执行结果取决于①算法程序编写 ②语言处理系统、操作系统、ISA、为体系结构</p>
 <p>计算机系统抽象层的功能转换：上层是下层的抽象，下层是上层的实现（底层为上层提供支撑环境）</p>
@@ -761,12 +761,12 @@ A fourth year undergraduate student at UESTC
 <p>ISA是计算机系统中必不可少的一个抽象层，ISA是计算机组成的抽象</p>
 <p>同一种ISA可以有不同的计算机组成，不同ISA规定的指令集不同，计算机组成要能够实现ISA规定的功能</p>
 <p>ISA和计算机组成（微结构）间的关系：</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609203254753.png" alt="image-20230609203254753" /></p>
-<h3 id="计算机系统的性能评价"><a class="markdownIt-Anchor" href="#计算机系统的性能评价"></a> 计算机系统的性能评价</h3>
-<h4 id="衡量计算机性能的基本指标"><a class="markdownIt-Anchor" href="#衡量计算机性能的基本指标"></a> 衡量计算机性能的基本指标</h4>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230609203254753.png" alt="image-20230609203254753"></p>
+<h3 id="计算机系统的性能评价">计算机系统的性能评价</h3>
+<h4 id="衡量计算机性能的基本指标">衡量计算机性能的基本指标</h4>
 <p>响应时间（执行时间、等待时间）：作业提交到作业完成的时间</p>
 <p>吞吐率：单位时间完成的工作量 某些场合也叫带宽</p>
-<h4 id="计算机性能测量执行时间"><a class="markdownIt-Anchor" href="#计算机性能测量执行时间"></a> 计算机性能测量：执行时间</h4>
+<h4 id="计算机性能测量：执行时间">计算机性能测量：执行时间</h4>
 <p>系统性能和CPU性能不等价，有一定区别，本章主要讨论CPU性能，即CPU执行时间——执行一个程序中全部指令所花的时间，它是计算机的基本性能评价指标</p>
 <p>CPU执行时间的计算有关时钟周期、时钟频率和CPI</p>
 <ul>
@@ -814,16 +814,16 @@ A fourth year undergraduate student at UESTC
 <p><strong>指令执行速度指标MIPS和MFLOPS</strong></p>
 <p>MIPS：每秒执行多少百万条指令（定点数指令）——MIPS总是一个平均值（不能反应性能的好坏）</p>
 <p>MIPS = 时钟频率/CPI × 1/10<sup>6</sup></p>
-<p>MFLOPS：每秒能执行多少百万次（10<sup>6</sup>）浮点数运算，反应机器对浮点数处理的速度</p>
+<p>MFLOPS：每秒能执行多少百万次（10^6^）浮点数运算，反应机器对浮点数处理的速度</p>
 <p><strong>性能评价程序——基准程序Benchmarks</strong></p>
 <p>公用的基准测试程序：SPEC</p>
 <p>基准程序中最好包含编译器，避免编译器产生的特殊作用</p>
 <p><strong>Amdahl阿姆达尔定律</strong></p>
 <p>基本思想：对系统中某部分（软件或硬件）更新带来的系统性能改进成都，取决于该部分被使用的频率或其执行时间占总执行时间的比例。</p>
 <p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>改进后的指令时间</mtext><mo>=</mo><mfrac><mtext>改进部分执行时间</mtext><mtext>改进部分的改进倍数</mtext></mfrac><mo>+</mo><mtext>未改进部分执行时间</mtext></mrow><annotation encoding="application/x-tex">改进后的指令时间 = \frac{改进部分执行时间}{改进部分的改进倍数} + 未改进部分执行时间</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">改</span><span class="mord cjk_fallback">进</span><span class="mord cjk_fallback">后</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">指</span><span class="mord cjk_fallback">令</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">间</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">的</span><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">倍</span><span class="mord cjk_fallback mtight">数</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">执</span><span class="mord cjk_fallback mtight">行</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">未</span><span class="mord cjk_fallback">改</span><span class="mord cjk_fallback">进</span><span class="mord cjk_fallback">部</span><span class="mord cjk_fallback">分</span><span class="mord cjk_fallback">执</span><span class="mord cjk_fallback">行</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">间</span></span></span></span> 或</p>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>整体改进倍数</mtext><mo>=</mo><mfrac><mn>1</mn><mrow><mtext>改进部分时间比例</mtext><mi mathvariant="normal">/</mi><mtext>改进部分的改进倍数</mtext><mo>+</mo><mtext>未改进部分时间比例</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">整体改进倍数 = \frac{1}{改进部分时间比例/改进部分的改进倍数+未改进部分时间比例}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">整</span><span class="mord cjk_fallback">体</span><span class="mord cjk_fallback">改</span><span class="mord cjk_fallback">进</span><span class="mord cjk_fallback">倍</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.365108em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span><span class="mord cjk_fallback mtight">比</span><span class="mord cjk_fallback mtight">例</span><span class="mord mtight">/</span><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">的</span><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">倍</span><span class="mord cjk_fallback mtight">数</span><span class="mbin mtight">+</span><span class="mord cjk_fallback mtight">未</span><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span><span class="mord cjk_fallback mtight">比</span><span class="mord cjk_fallback mtight">例</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>		可以表示为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>t</mi><mi mathvariant="normal">/</mi><mi>n</mi><mo>+</mo><mn>1</mn><mo>−</mo><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">p = \frac{1}{t/n+1-t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.365108em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">t</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
-<hr />
-<h2 id="第二章-数据的机器级表示"><a class="markdownIt-Anchor" href="#第二章-数据的机器级表示"></a> 第二章 数据的机器级表示</h2>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>整体改进倍数</mtext><mo>=</mo><mfrac><mn>1</mn><mrow><mtext>改进部分时间比例</mtext><mi mathvariant="normal">/</mi><mtext>改进部分的改进倍数</mtext><mo>+</mo><mtext>未改进部分时间比例</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">整体改进倍数 = \frac{1}{改进部分时间比例/改进部分的改进倍数+未改进部分时间比例}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">整</span><span class="mord cjk_fallback">体</span><span class="mord cjk_fallback">改</span><span class="mord cjk_fallback">进</span><span class="mord cjk_fallback">倍</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.365108em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span><span class="mord cjk_fallback mtight">比</span><span class="mord cjk_fallback mtight">例</span><span class="mord mtight">/</span><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">的</span><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">倍</span><span class="mord cjk_fallback mtight">数</span><span class="mbin mtight">+</span><span class="mord cjk_fallback mtight">未</span><span class="mord cjk_fallback mtight">改</span><span class="mord cjk_fallback mtight">进</span><span class="mord cjk_fallback mtight">部</span><span class="mord cjk_fallback mtight">分</span><span class="mord cjk_fallback mtight">时</span><span class="mord cjk_fallback mtight">间</span><span class="mord cjk_fallback mtight">比</span><span class="mord cjk_fallback mtight">例</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>		可以表示为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>t</mi><mi mathvariant="normal">/</mi><mi>n</mi><mo>+</mo><mn>1</mn><mo>−</mo><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">p = \frac{1}{t/n+1-t}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.365108em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mtight">/</span><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">t</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<hr>
+<h2 id="第二章-数据的机器级表示">第二章 数据的机器级表示</h2>
 <ul>
 <li>数值数据的表示</li>
 <li>非数值数据的表示</li>
@@ -831,22 +831,22 @@ A fourth year undergraduate student at UESTC
 <li>数据的存储和【排列顺序</li>
 <li>数据的检错与纠错</li>
 </ul>
-<h3 id="数值数据的表示"><a class="markdownIt-Anchor" href="#数值数据的表示"></a> 数值数据的表示</h3>
-<h4 id="定点数的表示"><a class="markdownIt-Anchor" href="#定点数的表示"></a> 定点数的表示</h4>
+<h3 id="数值数据的表示">数值数据的表示</h3>
+<h4 id="定点数的表示">定点数的表示</h4>
 <p>进位计数制</p>
 <p>定点数的二进制编码</p>
 <p>定点整数的表示——无符号整数、带符号整数</p>
-<h4 id="浮点数的表示"><a class="markdownIt-Anchor" href="#浮点数的表示"></a> 浮点数的表示</h4>
+<h4 id="浮点数的表示">浮点数的表示</h4>
 <p>浮点数格式和表示范围</p>
 <p>浮点数的规格化</p>
 <p>IEEE754浮点数标准——单精度浮点数 双精度浮点数 特殊数的表示形式</p>
-<h4 id="十进制数的表示"><a class="markdownIt-Anchor" href="#十进制数的表示"></a> 十进制数的表示</h4>
+<h4 id="十进制数的表示">十进制数的表示</h4>
 <p>ASCII码表示</p>
 <p>BCD码表示</p>
 <p><strong>信息的二进制编码</strong></p>
 <p>机器级数据——数值数据（无符号整数、带符号整数、浮点数、十进制数）、非数值数据（逻辑数、西文字符和汉字）</p>
 <p>机器数和真值</p>
-<h4 id="数值数据的表示方法"><a class="markdownIt-Anchor" href="#数值数据的表示方法"></a> 数值数据的表示方法</h4>
+<h4 id="数值数据的表示方法">数值数据的表示方法</h4>
 <ul>
 <li>
 <p>数值数据表示的三要素——进位计数制、定点/浮点、编码方式（源码、补码、反码、移码）</p>
@@ -856,7 +856,7 @@ A fourth year undergraduate student at UESTC
 </li>
 <li>
 <ul>
-<li>标准移码——编码位数n，bias = 2<sup>n-1</sup>——E<sub>移</sub> = E + 2<sup>3</sup>
+<li>标准移码——编码位数n，bias = 2^n-1^——E~移~ = E + 2^3^
 <ul>
 <li>主要用来表示浮点数的阶码——原因：便于浮点数加减运算时的对接操作（比较大小）</li>
 </ul>
@@ -895,20 +895,20 @@ A fourth year undergraduate student at UESTC
 <p>科学计数法与浮点数</p>
 <ul>
 <li>规格化形式：小数点前只有一位非0数</li>
-<li>对于二进制数：0.101 × 2<sup>-10</sup>   其中：0.101是尾数 2是基数 -10是阶码</li>
+<li>对于二进制数：0.101 × 2^-10^   其中：0.101是尾数 2是基数 -10是阶码</li>
 <li>基数采用默认值无需表示，对尾数和指数分别编码，就可以表示一个浮点数</li>
 </ul>
 </li>
 </ul>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610105607845.png" alt="image-20230610105607845" /></p>
-<h4 id="ieee754浮点数格式"><a class="markdownIt-Anchor" href="#ieee754浮点数格式"></a> IEEE754浮点数格式</h4>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610113723312.png" alt="image-20230610113723312" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610105607845.png" alt="image-20230610105607845"></p>
+<h4 id="ieee754浮点数格式">IEEE754浮点数格式</h4>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610113723312.png" alt="image-20230610113723312"></p>
 <p>S：0正1负</p>
-<p>规格化数：+/-1.xx…x ×2<sup>E</sup></p>
+<p>规格化数：+/-1.xx…x ×2^E^</p>
 <p>阶码/指数E——移码表示（非标准移码）</p>
 <ul>
 <li>
-<p>偏移值为：2<sup>7</sup>-1 = 127（单精度）		2<sup>10</sup>-1 = 1023（双精度）</p>
+<p>偏移值为：2^7^-1 = 127（单精度）		2^10^-1 = 1023（双精度）</p>
 </li>
 <li>
 <p>阶码取值范围：-127~128，移码为0000 0000 ~ 1111 1111</p>
@@ -924,9 +924,9 @@ A fourth year undergraduate student at UESTC
 <li>规格化尾数最高位总是1，被隐含表示，省了1位</li>
 <li>实际尾数位数：1+23 = 24bits（单精度）         1+52=53bits（双精度）</li>
 </ul>
-<p><strong>单精度：（-1）<sup>S</sup>×（1+M）× 2<sup>(E-127)</sup></strong></p>
-<p><strong>双精度：（-1）<sup>S</sup> ×（1+M）× 2<sup>(E-1023)</sup></strong></p>
-<h4 id="特殊数据表示阶码或尾数为全0或全1"><a class="markdownIt-Anchor" href="#特殊数据表示阶码或尾数为全0或全1"></a> 特殊数据表示（阶码或尾数为全0或全1）</h4>
+<p><strong>单精度：（-1）^S^×（1+M）× 2^(E-127)^</strong></p>
+<p><strong>双精度：（-1）^S^ ×（1+M）× 2^(E-1023)^</strong></p>
+<h4 id="特殊数据表示-阶码或尾数为全0或全1">特殊数据表示（阶码或尾数为全0或全1）</h4>
 <table>
 <thead>
 <tr>
@@ -971,32 +971,32 @@ A fourth year undergraduate student at UESTC
 <p>​		表示：指数全1，尾数全0</p>
 <p>非零NAN的表示</p>
 <p>​		指数全1，位数非0，常用于程序调试过程</p>
-<h4 id="非规格化数"><a class="markdownIt-Anchor" href="#非规格化数"></a> 非规格化数</h4>
-<p>​		大于0小于2<sup>-126</sup>的部分</p>
+<h4 id="非规格化数">非规格化数</h4>
+<p>​		大于0小于2^-126^的部分</p>
 <p>​		单精度非规格数的阶码为全0时，真值为-126，而非-127</p>
 <p>​		尾数表示中没有隐含的“1”，隐含的整数是“0”，即为一个纯小数</p>
-<h4 id="十进制数的表示-2"><a class="markdownIt-Anchor" href="#十进制数的表示-2"></a> 十进制数的表示</h4>
+<h4 id="十进制数的表示">十进制数的表示</h4>
 <p>​		①ASCII码表示      ②BCD码表示</p>
-<h4 id="ascii码表示十进制数"><a class="markdownIt-Anchor" href="#ascii码表示十进制数"></a> ASCII码表示十进制数</h4>
+<h4 id="ascii码表示十进制数">ASCII码表示十进制数</h4>
 <p>​		前分隔数字串：正负号用数字串前的一个字节表示，+ ——2BH，- ——2DH</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610145904886.png" alt="image-20230610145904886" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610145904886.png" alt="image-20230610145904886"></p>
 <p>​		后嵌入数字串：符号嵌入最低位数字的ASCII码高四位中，比“前分隔”节省一个字节</p>
 <p>​				嵌入方式：正数不变，负数高四位变为0111</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610150152967.png" alt="image-20230610150152967" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610150152967.png" alt="image-20230610150152967"></p>
 <p>​		ASCII码缺点：占空间大，需要转换成二进制数或BCD码才能计算</p>
-<h4 id="bcd码8421码表示十进制数"><a class="markdownIt-Anchor" href="#bcd码8421码表示十进制数"></a> BCD码（8421码）表示十进制数</h4>
+<h4 id="bcd码-8421码-表示十进制数">BCD码（8421码）表示十进制数</h4>
 <p>​		编码思想：每位十进制数用4位二进制数表示</p>
 <p>​		编码方案：0000~1001表示0~9</p>
 <p>​		符号表示：“+”——1100，“-”——1101</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610151920912.png" alt="image-20230610151920912" /></p>
-<hr />
-<h3 id="非数值数据表示"><a class="markdownIt-Anchor" href="#非数值数据表示"></a> 非数值数据表示</h3>
-<h4 id="逻辑数据的编码表示"><a class="markdownIt-Anchor" href="#逻辑数据的编码表示"></a> 逻辑数据的编码表示</h4>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610151920912.png" alt="image-20230610151920912"></p>
+<hr>
+<h3 id="非数值数据表示">非数值数据表示</h3>
+<h4 id="逻辑数据的编码表示">逻辑数据的编码表示</h4>
 <p>​		表示：N位二进制数表示N个逻辑数据</p>
 <p>​		运算：按位进行		eg.按位与，按位或，逻辑左移，逻辑右移</p>
 <p>​		识别：指令识别</p>
 <p>​		位串：表示若干个状态位或控制位</p>
-<h4 id="西文字符的编码表示"><a class="markdownIt-Anchor" href="#西文字符的编码表示"></a> 西文字符的编码表示</h4>
+<h4 id="西文字符的编码表示">西文字符的编码表示</h4>
 <p>​		特点：对有限个字母、数学符号和标点符号等字符编码</p>
 <p>​		表示（常用编码为7位ASCII码）：</p>
 <ul>
@@ -1006,26 +1006,26 @@ A fourth year undergraduate student at UESTC
 <li>控制符号33个</li>
 </ul>
 <p>​		操作：字符串操作，如传送、比较等</p>
-<h4 id="汉字及国际字符的编码表示"><a class="markdownIt-Anchor" href="#汉字及国际字符的编码表示"></a> 汉字及国际字符的编码表示</h4>
+<h4 id="汉字及国际字符的编码表示">汉字及国际字符的编码表示</h4>
 <p>​		编码形式：</p>
 <ul>
 <li>输入码：如键盘输入</li>
 <li>内码：系统中存储、查找、传送，至少两个字节才能表示一个汉字内码</li>
 <li>字模点阵或轮廓描述：描述图像和图形，用于显示/打印。直线向量轮廓、曲线轮廓。所有汉字字形预先存在机内，不同字体对应不同字库</li>
 </ul>
-<hr />
-<h3 id="数据的宽度"><a class="markdownIt-Anchor" href="#数据的宽度"></a> 数据的宽度</h3>
+<hr>
+<h3 id="数据的宽度">数据的宽度</h3>
 <p>比特、字节（位组）、字</p>
 <p>现代计算机中，存储器按字节编址，LSB表示最低有效字节，MSB表示最高有效字节</p>
 <p>字：被处理信息的单位，用来度量数据类型的宽度（字和字长的宽度可以相等，可以不等）</p>
 <p>字长：定点运算时数据通路的宽度			字长 = CPU内部总线的宽度，或运算器的位数，或通用寄存器的宽度</p>
 <p>数据通路：CPU内部进行数据运算、存储和传送的路径以及路径上的部件</p>
-<h4 id="数据量的度量单位"><a class="markdownIt-Anchor" href="#数据量的度量单位"></a> 数据量的度量单位</h4>
+<h4 id="数据量的度量单位">数据量的度量单位</h4>
 <p>b比特 B字节	MBps 兆字节/秒</p>
-<h4 id="程序中数据类型的宽度"><a class="markdownIt-Anchor" href="#程序中数据类型的宽度"></a> 程序中数据类型的宽度</h4>
+<h4 id="程序中数据类型的宽度">程序中数据类型的宽度</h4>
 <p>不同机器上表示的同一种类型的数据可能宽度不同</p>
 <p>各种类型数据分配的字节数随机器字长和编译器的不同而不同</p>
-<h3 id="数据的存储和排列顺序大小端和边界对齐"><a class="markdownIt-Anchor" href="#数据的存储和排列顺序大小端和边界对齐"></a> 数据的存储和排列顺序——大小端和边界对齐</h3>
+<h3 id="数据的存储和排列顺序-大小端和边界对齐">数据的存储和排列顺序——大小端和边界对齐</h3>
 <p>字的存放问题和字的边界对齐问题</p>
 <p>存放方式：</p>
 <ul>
@@ -1034,9 +1034,9 @@ A fourth year undergraduate student at UESTC
 </li>
 <li>
 <p>大端方式：MSB所在的地址是数的地址——高字节放低地址</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610164726061.png" alt="image-20230610164726061" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610164726061.png" alt="image-20230610164726061"></p>
 <p>例题：</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610165536966.png" alt="image-20230610165536966" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610165536966.png" alt="image-20230610165536966"></p>
 </li>
 </ul>
 <p>字节交换问题——不同系统间通信可能会发生问题</p>
@@ -1057,8 +1057,8 @@ A fourth year undergraduate student at UESTC
 </li>
 </ul>
 <p>举个栗子：</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610172417759.png" alt="image-20230610172417759" /></p>
-<h3 id="数据的检错与纠错"><a class="markdownIt-Anchor" href="#数据的检错与纠错"></a> 数据的检错与纠错</h3>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610172417759.png" alt="image-20230610172417759"></p>
+<h3 id="数据的检错与纠错">数据的检错与纠错</h3>
 <p>解决问题措施：</p>
 <ul>
 <li>计算机硬件的可靠性：eg.电路、电源、布线等各方面采取必要的措施，提高计算机的抗干扰能力</li>
@@ -1066,16 +1066,16 @@ A fourth year undergraduate student at UESTC
 </ul>
 <p>如何进行错误检测与校正：<strong>“冗余校验”</strong></p>
 <p>​		除原数据信息外，还增加若干位编码，称为校验位。数据检/纠错原理示意图：</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610172850154.png" alt="image-20230610172850154" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610172850154.png" alt="image-20230610172850154"></p>
 <ol>
 <li>没有检测到错误，得到的数据位直接传送</li>
 <li>检测到差错，可以纠正。数据位和比较结果一起送入纠错器，得到正确数据位并传送出去</li>
 <li>检测到错误，但无法确认哪位出错，因而不能纠错处理，报告出错情况</li>
 </ol>
 <p>​		常用校验码：奇偶校验吗、海明校验码、循环冗余校验码</p>
-<hr />
-<h2 id="第三章-运算方法和运算部件"><a class="markdownIt-Anchor" href="#第三章-运算方法和运算部件"></a> 第三章 运算方法和运算部件</h2>
-<h3 id="第三章第一讲-高级语言与机器语言涉及的运算及alu"><a class="markdownIt-Anchor" href="#第三章第一讲-高级语言与机器语言涉及的运算及alu"></a> 第三章第一讲 高级语言与机器语言涉及的运算及ALU</h3>
+<hr>
+<h2 id="第三章-运算方法和运算部件">第三章 运算方法和运算部件</h2>
+<h3 id="第三章第一讲-高级语言与机器语言涉及的运算及alu">第三章第一讲 高级语言与机器语言涉及的运算及ALU</h3>
 <p>高级语言程序中涉及的运算</p>
 <ul>
 <li>整数算术运算、浮点数算术运算</li>
@@ -1123,7 +1123,7 @@ A fourth year undergraduate student at UESTC
 <p>移位运算</p>
 <ul>
 <li>
-<p>用途：提取部分信息、扩大或缩小数值的2/4/8/2<sup>n</sup>倍</p>
+<p>用途：提取部分信息、扩大或缩小数值的2/4/8/2^n^倍</p>
 </li>
 <li>
 <p>操作：左移x&lt;&lt;k		右移x&gt;&gt;k</p>
@@ -1151,8 +1151,8 @@ A fourth year undergraduate student at UESTC
 </ul>
 </li>
 </ul>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610205333453.png" alt="image-20230610205333453" /></p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610205356394.png" alt="image-20230610205356394" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610205333453.png" alt="image-20230610205333453"></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610205356394.png" alt="image-20230610205356394"></p>
 <p>计算机如何实现高级语言程序中的运算</p>
 <ul>
 <li>将各类表达式编译为指令序列</li>
@@ -1167,25 +1167,25 @@ A fourth year undergraduate student at UESTC
 <p>​		MIPS浮点数传送指令			加/减/符号扩展/0扩展	还涉及定点操作：加/减（地址运算）</p>
 <p>​		MIPS浮点数比较和分支指令	比较操作（减法实现）	还涉及定点操作：加/减（地址运算）</p>
 <p>实现MIPS定点和浮点运算指令的思路：先实现一个能进行基本加减运算和基本逻辑运算，并生成基本条件码（ZF/OF/CF/NF）的ALU，再由ALU和移位器实现乘、除、浮点运算器</p>
-<hr />
-<h4 id="alu运算部件的核心"><a class="markdownIt-Anchor" href="#alu运算部件的核心"></a> ALU——运算部件的核心</h4>
+<hr>
+<h4 id="alu-运算部件的核心">ALU——运算部件的核心</h4>
 <p>ALU核心部分是加法器，可可进行基本的加减算术运算和逻辑运算。</p>
-<h5 id="串行进位加法器"><a class="markdownIt-Anchor" href="#串行进位加法器"></a> 串行进位加法器</h5>
+<h5 id="串行进位加法器">串行进位加法器</h5>
 <p>​		缺点：进位按串行方式传递，速度慢</p>
 <p>​		n位串行加法器从C0到Cn的延迟时间为：2n级门延迟		最后一位和数的延迟时间为：2（n-1）+3 = 2n+1级门延迟</p>
 <p>​		与/或门延迟为1ty，异或门3ty——Carryout延迟为2ty，Sum延迟为6ty</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610223301054.png" alt="image-20230610223301054" /></p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610223433014.png" alt="image-20230610223433014" /></p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610223251328.png" alt="image-20230610223251328" /></p>
-<h5 id="并行进位加法器cla加法器"><a class="markdownIt-Anchor" href="#并行进位加法器cla加法器"></a> 并行进位加法器（CLA加法器）</h5>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610223301054.png" alt="image-20230610223301054"></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610223433014.png" alt="image-20230610223433014"></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610223251328.png" alt="image-20230610223251328"></p>
+<h5 id="并行进位加法器-cla加法器">并行进位加法器（CLA加法器）</h5>
 <p>先行进位方式——串行进位加法器采用串行逐级传递进位，电路延迟与位数成正比关系，故采用先行进位方式</p>
 <p>如何产生先行进位：</p>
 <ul>
 <li>
-<p>定义辅助函数：G<sub>i</sub>=A<sub>i</sub>B<sub>i</sub>…进位生成函数		P<sub>i</sub>=A<sub>i</sub>+B<sub>i</sub>（1ty）进位传递函数（或P<sub>i</sub>=A<sub>i</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>B<sub>i</sub>，3ty）</p>
+<p>定义辅助函数：G~i~=A~i~B~i~…进位生成函数		P~i~=A~i~+B~i~（1ty）进位传递函数（或P~i~=A~i~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>B~i~，3ty）</p>
 <p>实现以上逻辑的电路称为进位生成/传递部件</p>
 <ul>
-<li>全加逻辑方程：S<sub>i</sub>=P<sub>i</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C<sub>i</sub>（仅P<sub>i</sub>=A<sub>i</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>B<sub>i</sub>，3ty）	C<sub>i+1</sub>=G<sub>i</sub>+P<sub>i</sub>C<sub>i</sub>（i=0,1,…n）（2ty）</li>
+<li>全加逻辑方程：S~i~=P~i~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C~i~（仅P~i~=A~i~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>B~i~，3ty）	C~i+1~=G~i~+P~i~C~i~（i=0,1,…n）（2ty）</li>
 <li>各进位之间无等待，相互独立并同时产生。实现上述逻辑的电路为4位CLA部件</li>
 <li>根据全加逻辑方程，并行求出各位和</li>
 </ul>
@@ -1194,11 +1194,11 @@ A fourth year undergraduate student at UESTC
 <p>CLA加法器由“进位生成/传递部件”、“CLA部件”和“求和部件”构成</p>
 <p><strong>全先行进位加法器</strong></p>
 <p>成本高</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610232052826.png" alt="image-20230610232052826" /></p>
-<p>上图和的总延迟：3+2+3=8ty（只能用P<sub>i</sub>=A<sub>i</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>B<sub>i</sub>），进位C<sub>8</sub>的延迟：1+2=3ty或3+2=5ty</p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610232052826.png" alt="image-20230610232052826"></p>
+<p>上图和的总延迟：3+2+3=8ty（只能用P~i~=A~i~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>B~i~），进位C~8~的延迟：1+2=3ty或3+2=5ty</p>
 <p><strong>局部先行进位加法器</strong>（单级先行进位加法器）</p>
 <p>用多个位数较少的n位全先行进位加法器进行串联</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610233519560.png" alt="image-20230610233519560" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610233519560.png" alt="image-20230610233519560"></p>
 <p>所有和数的延迟：3+2+2+5=12ty——其实就是最高的8位和的延迟：</p>
 <ul>
 <li>C8：3ty</li>
@@ -1209,9 +1209,9 @@ A fourth year undergraduate student at UESTC
 <p>单级先行进位加法器虽然比行波加法器延迟时间短，但高位组进位依赖低位组进位，仍有较长的时间延迟</p>
 <p><strong>多级先行进位加法器</strong></p>
 <p>引入组进位生成/传递函数实现“组内并行，组间串行”进位方式</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610235127673.png" alt="image-20230610235127673" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230610235127673.png" alt="image-20230610235127673"></p>
 <p>把实现以上逻辑的电路称为4位BCLA部件。举例：</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611001827654.png" alt="image-20230611001827654" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611001827654.png" alt="image-20230611001827654"></p>
 <p>关键路径长度——5+2+3=10ty</p>
 <ul>
 <li>5ty = CLA部件2ty+求和部件3ty——4位CLA加法器</li>
@@ -1219,7 +1219,7 @@ A fourth year undergraduate student at UESTC
 <li>3ty——4为CLA加法器的求和部件</li>
 </ul>
 <p>最终进位延迟——3+2=5ty</p>
-<h5 id="4-bit-alu"><a class="markdownIt-Anchor" href="#4-bit-alu"></a> 4-bit ALU</h5>
+<h5 id="4-bit-alu">4-bit ALU</h5>
 <p>通过MUX可以实现与、或和加的操作，其他运算操作可以通过增加逻辑电路来实现</p>
 <p>1-bit基本ALU：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611002925363.png" alt="image-20230611002925363" style="zoom: 33%;" />
@@ -1227,10 +1227,10 @@ A fourth year undergraduate student at UESTC
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611003051873.png" alt="image-20230611003051873" style="zoom:33%;" />
 <p>​		关键路径延迟长，速度慢，不能计算除法</p>
 <p>​		改进：使用并行加法器来构建ALU</p>
-<h4 id="第三章第一讲小结"><a class="markdownIt-Anchor" href="#第三章第一讲小结"></a> 第三章第一讲小结</h4>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611003504569.png" alt="image-20230611003504569" /></p>
-<hr />
-<h3 id="第三章第二讲-定点数运算及运算部件"><a class="markdownIt-Anchor" href="#第三章第二讲-定点数运算及运算部件"></a> 第三章第二讲 定点数运算及运算部件</h3>
+<h4 id="第三章第一讲小结">第三章第一讲小结</h4>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611003504569.png" alt="image-20230611003504569"></p>
+<hr>
+<h3 id="第三章第二讲-定点数运算及运算部件">第三章第二讲 定点数运算及运算部件</h3>
 <ul>
 <li>
 <p>加/减运算及其运算部件</p>
@@ -1250,25 +1250,25 @@ A fourth year undergraduate student at UESTC
 <p>定点运算器</p>
 </li>
 </ul>
-<h4 id="n位整数加减运算器的逻辑构成"><a class="markdownIt-Anchor" href="#n位整数加减运算器的逻辑构成"></a> n位整数加/减运算器的逻辑构成</h4>
-<p>复习：定点整数的机器数是补码形式，[x+y]<sub>补</sub> = [x]<sub>补</sub>+[y]<sub>补</sub>，[x-y] = [x]<sub>补</sub>+[-y]<sub>补</sub></p>
-<p>​		实现减法的主要工作：求[-y]<sub>补</sub>——[-y]<sub>补</sub> = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mrow><mo stretchy="false">[</mo><mi>y</mi><msub><mo stretchy="false">]</mo><mtext>补</mtext></msub></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{[y]_{补}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9500000000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">补</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.87em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span></span></span> + 1，这一过程也称为求补</p>
+<h4 id="n位整数加-减运算器的逻辑构成">n位整数加/减运算器的逻辑构成</h4>
+<p>复习：定点整数的机器数是补码形式，[x+y]~补~ = [x]~补~+[y]~补~，[x-y] = [x]~补~+[-y]~补~</p>
+<p>​		实现减法的主要工作：求[-y]~补~——[-y]~补~ = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mrow><mo stretchy="false">[</mo><mi>y</mi><msub><mo stretchy="false">]</mo><mtext>补</mtext></msub></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{[y]_{补}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2000000000000002em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9500000000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">补</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.87em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span></span></span> + 1，这一过程也称为求补</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611105806421.png" alt="image-20230611105806421" style="zoom: 33%;" />
-<p>有n位，是模2<sup>n</sup>运算系统</p>
+<p>有n位，是模2^n^运算系统</p>
 <p>当加/减运算电路的结果超出表示范围，即溢出时，结果是错误的——解决：带标志位的加/减运算电路</p>
-<h4 id="带标志位的加减运算电路"><a class="markdownIt-Anchor" href="#带标志位的加减运算电路"></a> 带标志位的加/减运算电路</h4>
+<h4 id="带标志位的加-减运算电路">带标志位的加/减运算电路</h4>
 <p>比较大小——在加法器中做减法实现，需要使用标志信息来判断大小。整数加/减运算部件（含标志位）：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611122137563.png" alt="image-20230611122137563" style="zoom: 33%;" />
 <p>无符号整数和带符号整数的加/减运算电路完全一样，这个运算电路称为整数加/减运算部件（含标志位）</p>
 <p>在整数加减运算部件基础上，加上寄存器、移位器和控制逻辑，就可实现ALU、乘除运算以及浮点运算</p>
 <p><strong>n位加法器的标志信息的产生</strong></p>
 <ul>
-<li>溢出标志OF：OF = C<sub>n</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C<sub>n-1</sub></li>
-<li>符号标志SF：SF = F<sub>n-1</sub></li>
+<li>溢出标志OF：OF = C~n~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C~n-1~</li>
+<li>符号标志SF：SF = F~n-1~</li>
 <li>零标志位ZF：ZF = 1当且仅当F=0</li>
-<li>进位/借位标志CF：CF = C<sub>out</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>SUB 或 CF = C<sub>out</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C<sub>in</sub></li>
+<li>进位/借位标志CF：CF = C~out~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>SUB 或 CF = C~out~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C~in~</li>
 </ul>
-<p>加法时为C<sub>out</sub>，减法时为C<sub>out</sub>取反</p>
+<p>加法时为C~out~，减法时为C~out~取反</p>
 <p><img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611111851479.png" alt="image-20230611111851479" style="zoom:50%;" /><img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611111859497.png" alt="image-20230611111859497" style="zoom: 50%;" /></p>
 <p>所有运算电路的核心：</p>
 <ul>
@@ -1287,16 +1287,16 @@ A fourth year undergraduate student at UESTC
 <p>核心电路——整数加/减运算部件</p>
 <p>有一个操作控制端（ALUop），用来决定ALU所执行的处理功能</p>
 <p>​		ALUop的位数k决定了操作的种类数</p>
-<p>​		eg. 当位数k为3时，ALU最多有2<sup>3</sup>=8种操作</p>
+<p>​		eg. 当位数k为3时，ALU最多有2^3^=8种操作</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611123629480.png" alt="image-20230611123629480" style="zoom: 67%;" />
-<h4 id="补码加减运算直接用整数加减部件实现"><a class="markdownIt-Anchor" href="#补码加减运算直接用整数加减部件实现"></a> 补码加/减运算——直接用整数加减部件实现</h4>
+<h4 id="补码加-减运算-直接用整数加减部件实现">补码加/减运算——直接用整数加减部件实现</h4>
 <p>发生溢出时会出现两个现象：</p>
 <ul>
-<li>最高位和次高位的进位不同			   OF = C<sub>n</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C<sub>n-1</sub></li>
-<li>和的符号位和加数的符号位不同		OF = X<sub>n-1</sub>Y<sub>n-1</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><msub><mi>F</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{F_{n-1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.091661em;vertical-align:-0.208331em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span> + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><msub><mi>X</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{X_{n-1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.091661em;vertical-align:-0.208331em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><msub><mi>Y</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{Y_{n-1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.091661em;vertical-align:-0.208331em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span>F<sub>n-1</sub></li>
+<li>最高位和次高位的进位不同			   OF = C~n~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>C~n-1~</li>
+<li>和的符号位和加数的符号位不同		OF = X~n-1~Y~n-1~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><msub><mi>F</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{F_{n-1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.091661em;vertical-align:-0.208331em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span> + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><msub><mi>X</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{X_{n-1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.091661em;vertical-align:-0.208331em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><msub><mi>Y</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{Y_{n-1}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.091661em;vertical-align:-0.208331em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span>F~n-1~</li>
 </ul>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611124601985.png" alt="image-20230611124601985" style="zoom: 33%;" />
-<h4 id="原码加减运算"><a class="markdownIt-Anchor" href="#原码加减运算"></a> 原码加/减运算</h4>
+<h4 id="原码加-减运算">原码加/减运算</h4>
 <p>用于浮点数尾数运算</p>
 <p>符号位和数值部分分开处理</p>
 <p>仅对数值部分进行加减运算，符号位起判断和控制作用</p>
@@ -1306,8 +1306,8 @@ A fourth year undergraduate student at UESTC
 <li>求和：数值位相加，和的符号取被加数（或被减数）的符号。若最高位进位，则溢出</li>
 <li>求差：加数（或减数）求补后与被加数（被减数）相加
 <ul>
-<li>a. 最高位产生进位（C<sub>out</sub>=1）则无借位（CF=0），表示够减，结果为正，结果即“差”的数值位原码</li>
-<li>b. 最高位无进位（C<sub>out</sub>）则CF=1，结果为负，是“差”的数值位的补码形式，需对结果求补，还原为原码形式的数值位</li>
+<li>a. 最高位产生进位（C~out~=1）则无借位（CF=0），表示够减，结果为正，结果即“差”的数值位原码</li>
+<li>b. 最高位无进位（C~out~）则CF=1，结果为负，是“差”的数值位的补码形式，需对结果求补，还原为原码形式的数值位</li>
 <li>差的符号位：
 <ul>
 <li>对于a.，符号位取被加数（被减数）的符号</li>
@@ -1319,32 +1319,32 @@ A fourth year undergraduate student at UESTC
 </ul>
 <p>举个栗子：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611130154920.png" alt="image-20230611130154920" style="zoom: 33%;" />
-<h4 id="移码加减运算"><a class="markdownIt-Anchor" href="#移码加减运算"></a> 移码加/减运算</h4>
+<h4 id="移码加-减运算">移码加/减运算</h4>
 <p>应用：浮点数的阶码运算</p>
 <p>符号位和数值部分可以一起处理</p>
 <p>用n位的ALU对两个移码表示的数进行加/减运算：</p>
 <ul>
 <li>
-<p>[E1]<sub>移</sub> + [E2]<sub>移</sub> = 2<sup>n-1</sup> + E1 + 2<sup>~</sup>n-1^ + E2 = 2<sup>n</sup> + E1 + E2 = [E1 + E2]<sub>补</sub></p>
+<p>[E1]~移~ + [E2]~移~ = 2^n-1^ + E1 + 2^~^n-1^ + E2 = 2^n^ + E1 + E2 = [E1 + E2]~补~</p>
 </li>
 <li>
-<p>[E1]<sub>移</sub> - [E2]<sub>移</sub> = [E1]<sub>移</sub> + [-[E2]<sub>移</sub>]<sub>补</sub> = 2<sub>n-1</sub> + E1 + 2<sup>n</sup> - [E2]<sub>移</sub> = 2<sup>n</sup> + E1 - E2 = [E1-E2]<sub>补</sub></p>
+<p>[E1]~移~ - [E2]~移~ = [E1]~移~ + [-[E2]~移~]~补~ = 2~n-1~ + E1 + 2^n^ - [E2]~移~ = 2^n^ + E1 - E2 = [E1-E2]~补~</p>
 <p>移码的和/差等于和/差的补码</p>
 <p>和/差的移码——符号位取反、数值位相同</p>
 </li>
 <li>
 <p>运算规则（针对标准移码）</p>
 <ul>
-<li>加法：[E1]<sub>移</sub>和[E2]<sub>移</sub>进行模2<sup>n</sup>加，然后对结果的符号取反</li>
-<li>减法：先将减数[E2]<sub>移</sub>求补（各位取反，末位加1），然后再与被减数[E1]<sub>移</sub>进行模2<sup>n</sup>相加，最后对结果的符号取反</li>
-<li>溢出判断：进行模2<sup>n</sup>相加时，如果两个加数的符号相同，并且与和数的符号也相同，则发生溢出（因为和是补码，加数是移码）</li>
+<li>加法：[E1]~移~和[E2]~移~进行模2^n^加，然后对结果的符号取反</li>
+<li>减法：先将减数[E2]~移~求补（各位取反，末位加1），然后再与被减数[E1]~移~进行模2^n^相加，最后对结果的符号取反</li>
+<li>溢出判断：进行模2^n^相加时，如果两个加数的符号相同，并且与和数的符号也相同，则发生溢出（因为和是补码，加数是移码）</li>
 </ul>
 </li>
 </ul>
 <p>举个栗子（n=4）：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611145520910.png" alt="image-20230611145520910" style="zoom:33%;" />
-<h4 id="无符号数的乘法运算"><a class="markdownIt-Anchor" href="#无符号数的乘法运算"></a> 无符号数的乘法运算</h4>
-<p>假定[X]<sub>原</sub> = x<sub>0</sub>x<sub>1</sub>…x<sub>n</sub>，[Y]<sub>原</sub>=y<sub>0</sub>y<sub>1</sub>…y<sub>n</sub>，求[X×Y]<sub>原</sub>			数值部分z<sub>1</sub>…z<sub>2n</sub> = (0.x<sub>1</sub>…x<sub>n</sub>) × (0.y<sub>1</sub>…y<sub>n</sub>)</p>
+<h4 id="无符号数的乘法运算">无符号数的乘法运算</h4>
+<p>假定[X]~原~ = x~0~x~1~…x~n~，[Y]~原~=y~0~y~1~…y~n~，求[X×Y]~原~			数值部分z~1~…z~2n~ = (0.x~1~…x~n~) × (0.y~1~…y~n~)</p>
 <p>小数点位置可以约定，则整数乘法与小数乘法原理相同</p>
 <p>手算过程——两种操作：左移，加法，因此可用ALU和移位器来实现乘法运算</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611151820988.png" alt="image-20230611151820988" style="zoom:33%;" />
@@ -1352,7 +1352,7 @@ A fourth year undergraduate student at UESTC
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611153956093.png" alt="image-20230611153956093" style="zoom:33%;" />
 <p>举个栗子：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611154033279.png" alt="image-20230611154033279" style="zoom:33%;" />
-<h4 id="原码乘法算法"><a class="markdownIt-Anchor" href="#原码乘法算法"></a> 原码乘法算法</h4>
+<h4 id="原码乘法算法">原码乘法算法</h4>
 <p>用于浮点数尾数乘法运算</p>
 <p>符号与数值分开处理：积符由异或得到，数值用无符号乘法运算</p>
 <p>举个栗子：</p>
@@ -1361,7 +1361,7 @@ A fourth year undergraduate student at UESTC
 <li>原码一位乘法：每次只取乘数的一位判断，需n次循环，速度慢</li>
 <li>原码两位乘法：每次取乘数两位判断，只需n/2次循环，快一倍</li>
 </ul>
-<h4 id="mips中乘数的乘除运算处理"><a class="markdownIt-Anchor" href="#mips中乘数的乘除运算处理"></a> MIPS中乘数的乘/除运算处理</h4>
+<h4 id="mips中乘数的乘-除运算处理">MIPS中乘数的乘/除运算处理</h4>
 <p>指令：mult，multu；div，divu</p>
 <p>MIPS中有一对32位寄存器Hi与Lo</p>
 <p>乘法和除法运算的硬件相同</p>
@@ -1386,7 +1386,7 @@ A fourth year undergraduate student at UESTC
 </li>
 </ul>
 <p>MIPS指令不处理“除数为0”，软件自行处理</p>
-<h4 id="定点运算部件"><a class="markdownIt-Anchor" href="#定点运算部件"></a> 定点运算部件</h4>
+<h4 id="定点运算部件">定点运算部件</h4>
 <p>所有运算可通过“加”和“移位”操作实现（ALU+移位器+若干寄存器+控制逻辑）</p>
 <p>运算部件通常指ALU、移位器、寄存器组，加上用于数据选择的多路选择器和实现数据传送的总线等构成的一个运算数据通路</p>
 <ul>
@@ -1394,10 +1394,10 @@ A fourth year undergraduate student at UESTC
 <li>运算部件和控制键都做在CPU中，CPU中有多个运算空间</li>
 </ul>
 <p>“运算器”、“运算部件”、“功能部件”、“执行部件”、“数据通路”含义上一样，只是侧重点不同</p>
-<h4 id="第三章第二讲小结"><a class="markdownIt-Anchor" href="#第三章第二讲小结"></a> 第三章第二讲小结</h4>
+<h4 id="第三章第二讲小结">第三章第二讲小结</h4>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611160442764.png" alt="image-20230611160442764" style="zoom:33%;" />
-<hr />
-<h3 id="第三章第三讲-浮点数运算"><a class="markdownIt-Anchor" href="#第三章第三讲-浮点数运算"></a> 第三章第三讲 浮点数运算</h3>
+<hr>
+<h3 id="第三章第三讲-浮点数运算">第三章第三讲 浮点数运算</h3>
 <ul>
 <li>浮点数加减运算</li>
 <li>浮点数乘除运算</li>
@@ -1405,22 +1405,22 @@ A fourth year undergraduate student at UESTC
 </ul>
 <p>对阶操作：使两数阶码相等</p>
 <ul>
-<li>原则：小阶向大阶看齐（0.560×10<sup>2</sup> -&gt;0.000560×10<sup>5</sup>）</li>
+<li>原则：小阶向大阶看齐（0.560×10^2^ -&gt;0.000560×10^5^）</li>
 <li>方法：阶小的数尾数右移，右移位数等于阶码差</li>
 <li>IEEE 754位数右移时，隐含的“1”移到小数部分，高位补0，移出的低位保留到特定的“附加位”上</li>
 </ul>
-<h4 id="浮点数加减运算"><a class="markdownIt-Anchor" href="#浮点数加减运算"></a> 浮点数加/减运算</h4>
-<p>如何对阶：通过计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi mathvariant="normal">Δ</mi><mi>E</mi><msub><mo stretchy="false">]</mo><mtext>补</mtext></msub></mrow><annotation encoding="application/x-tex">[\Delta E]_{补}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">补</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>来判断阶差</p>
+<h4 id="浮点数加-减运算">浮点数加/减运算</h4>
+<p>如何对阶：通过计算<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi mathvariant="normal">Δ</mi><mi>E</mi><msub><mo stretchy="false">]</mo><mtext>补</mtext></msub></mrow><annotation encoding="application/x-tex">[\Delta E]_{补}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">Δ</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">补</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>来判断阶差</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611161451896.png" alt="image-20230611161451896" style="zoom:33%;" />
-<p>何时无法判断阶差：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">\Delta E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>产生溢出时</p>
-<p>对IEEE754 SP格式来说，|<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">\Delta E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>|大于多少时，结果等于阶大的数：24</p>
+<p>何时无法判断阶差：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">\Delta E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span>产生溢出时</p>
+<p>对IEEE754 SP格式来说，|<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">\Delta E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span>|大于多少时，结果等于阶大的数：24</p>
 <p>​		1.xx…x -&gt; 0.00…01xx…x（SP的尾数长23位，右移24位后，尾数为0）</p>
 <p><strong>浮点数加减法的基本要点：</strong></p>
 <p>​		假定Mx、My分别是X和Y的尾数，Ex和Ey分别是X和Y的阶码</p>
 <ul>
 <li>求阶差：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>E = Ey - Ex（假定Ey&gt;Ex，则结果的阶码为Ey）</li>
-<li>对阶：Mx右移<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>E位，尾数变为Mx * 2<sup>Ex-Ey</sup>（保留右移部分：附加位）</li>
-<li>尾数加减：Mx * 2<sup>Ex-Ey</sup> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo></mrow><annotation encoding="application/x-tex">\pm</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span></span></span></span> My		注意：需要让隐含的位参加运算</li>
+<li>对阶：Mx右移<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>E位，尾数变为Mx * 2^Ex-Ey^（保留右移部分：附加位）</li>
+<li>尾数加减：Mx * 2^Ex-Ey^ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo></mrow><annotation encoding="application/x-tex">\pm</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span></span></span></span> My		注意：需要让隐含的位参加运算</li>
 <li>规格化：
 <ul>
 <li>尾数高位为0，需左规：尾数左移一位，阶码减1，直到MSB为1，每次阶码减1后要判断阶码是否下溢</li>
@@ -1436,7 +1436,7 @@ A fourth year undergraduate student at UESTC
 <p><strong>计算机内部执行浮点数加减运算的问题</strong></p>
 <ul>
 <li>如何表示——IEEE754标准</li>
-<li>如何判断阶码大小——求[<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>E]<sub>补</sub></li>
+<li>如何判断阶码大小——求[<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>E]~补~</li>
 <li>对阶时尾数右移隐含位1——右移到数值部分，高位补0，低位部分移出到附加位，附加位包括保护位、舍入位和粘位，共三位</li>
 <li>如何进行尾数加减——隐藏位还原后，按原码进行加减运算，附加位一起算</li>
 <li>何时/如何规格化——
@@ -1468,12 +1468,12 @@ A fourth year undergraduate student at UESTC
 <ul>
 <li>左规（阶码减1）时：判断阶码或阶码减1是否全为0，是则置阶码下溢</li>
 <li>右规（阶码加1）时：判断阶码或阶码加1是否全为0，是则置阶码上溢</li>
-<li>减1——[Z-1]<sub>移</sub> = Z<sub>移</sub> + 255</li>
+<li>减1——[Z-1]~移~ = Z~移~ + 255</li>
 </ul>
-<h4 id="浮点数乘除法基本要点"><a class="markdownIt-Anchor" href="#浮点数乘除法基本要点"></a> 浮点数乘/除法基本要点</h4>
+<h4 id="浮点数乘-除法基本要点">浮点数乘/除法基本要点</h4>
 <p>浮点数尾数采用原码乘/除运算</p>
-<p>浮点数乘法：x * y = (M<sub>x</sub> * M<sub>y</sub>) × 2<sup>Ex+Ey</sup> = M<sub>b</sub> × 2<sup>Eb</sup></p>
-<p>浮点数除法：x / y = (Mx / My) × 2<sup>Ex-Ey</sup> = M<sub>b</sub> × 2<sup>Eb</sup></p>
+<p>浮点数乘法：x * y = (M~x~ * M~y~) × 2^Ex+Ey^ = M~b~ × 2^Eb^</p>
+<p>浮点数除法：x / y = (Mx / My) × 2^Ex-Ey^ = M~b~ × 2^Eb^</p>
 <p>浮点数乘/除发步骤：</p>
 <ol>
 <li>
@@ -1503,37 +1503,37 @@ A fourth year undergraduate student at UESTC
 <ul>
 <li>乘法运算求阶码的和时：
 <ul>
-<li>若Ex和Ey最高位皆1，而结果E<sub>b</sub>的最高位是0或为全1，阶码上溢</li>
-<li>若Ex和Ey最高位皆0，而结果E<sub>b</sub>的最高位是1或为全0，阶码下溢</li>
+<li>若Ex和Ey最高位皆1，而结果E~b~的最高位是0或为全1，阶码上溢</li>
+<li>若Ex和Ey最高位皆0，而结果E~b~的最高位是1或为全0，阶码下溢</li>
 </ul>
 </li>
 <li>除法运算求阶码的差时：
 <ul>
-<li>若Ex的最高位是1，Ey的最高位是0，结果E<sub>b</sub>的最高位是0或为全1，阶码上溢</li>
-<li>若Ex的最高位是0，Ey的最高位是1，结果E<sub>b</sub>的最高位是1或为全0，阶码下溢</li>
+<li>若Ex的最高位是1，Ey的最高位是0，结果E~b~的最高位是0或为全1，阶码上溢</li>
+<li>若Ex的最高位是0，Ey的最高位是1，结果E~b~的最高位是1或为全0，阶码下溢</li>
 </ul>
 </li>
 </ul>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611194831719.png" alt="image-20230611194831719" style="zoom:33%;" />
-<h4 id="求阶码的和-差"><a class="markdownIt-Anchor" href="#求阶码的和-差"></a> 求阶码的和、差</h4>
+<h4 id="求阶码的和-差">求阶码的和、差</h4>
 <p>设Ex和Ey分别是两个操作数的阶码，Eb是结果的阶码：</p>
 <ul>
 <li>
-<p>阶码加法公式：E<sub>b</sub> = Ex + Ey + 129</p>
+<p>阶码加法公式：E~b~ = Ex + Ey + 129</p>
   <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611195431145.png" alt="image-20230611195431145" style="zoom:33%;" />
 </li>
 <li>
-<p>阶码减法公式：E<sub>b</sub> = Ex + [-Ey<sub>补</sub>] + 127</p>
+<p>阶码减法公式：E~b~ = Ex + [-Ey~补~] + 127</p>
   <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611195453144.png" alt="image-20230611195453144" style="zoom:33%;" />
 </li>
 </ul>
 <p>举个栗子：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611195612654.png" alt="image-20230611195612654" style="zoom:33%;" />
-<h4 id="第三章第三讲小结"><a class="markdownIt-Anchor" href="#第三章第三讲小结"></a> 第三章第三讲小结</h4>
+<h4 id="第三章第三讲小结">第三章第三讲小结</h4>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611195716262.png" alt="image-20230611195716262" style="zoom: 50%;" />
-<hr />
-<h2 id="第四章-指令系统"><a class="markdownIt-Anchor" href="#第四章-指令系统"></a> 第四章 指令系统</h2>
-<h3 id="第四章第一讲-指令系统的设计"><a class="markdownIt-Anchor" href="#第四章第一讲-指令系统的设计"></a> 第四章第一讲 指令系统的设计</h3>
+<hr>
+<h2 id="第四章-指令系统">第四章 指令系统</h2>
+<h3 id="第四章第一讲-指令系统的设计">第四章第一讲 指令系统的设计</h3>
 <p>指令：由操作码和操作数（或其地址码）组成</p>
 <ul>
 <li>操作码：定义操作的类型</li>
@@ -1546,24 +1546,24 @@ A fourth year undergraduate student at UESTC
 <li>结果的地址：产生的结果存放和粗（目的操作数）</li>
 <li>下一条指令地址：下条指令存放何处</li>
 </ul>
-<h4 id="指令的地址码字段"><a class="markdownIt-Anchor" href="#指令的地址码字段"></a> 指令的地址码字段</h4>
+<h4 id="指令的地址码字段">指令的地址码字段</h4>
 <p>​		不同机器系统不同，同一指令系统中不同指令也可能不同</p>
 <ul>
 <li>
 <p>零地址指令：无需操作数/操作数是默认位置</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222037566.png" alt="image-20230611222037566" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222037566.png" alt="image-20230611222037566"></p>
 </li>
 <li>
 <p>一地址指令：地址既是操作数的地址，也是结果的地址         单目/双目运算</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222050090.png" alt="image-20230611222050090" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222050090.png" alt="image-20230611222050090"></p>
 </li>
 <li>
 <p>二地址指令（CISC中最常用）：存放双目运算中两个操作数，一个地址作为结果的地址</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222103650.png" alt="image-20230611222103650" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222103650.png" alt="image-20230611222103650"></p>
 </li>
 <li>
 <p>三地址指令（RISC风格）：双目运算中两个源操作数的地址和一个结果的地址</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222116914.png" alt="image-20230611222116914" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611222116914.png" alt="image-20230611222116914"></p>
 </li>
 <li>
 <p>多地址指令：成批数据处理的指令</p>
@@ -1577,7 +1577,7 @@ A fourth year undergraduate student at UESTC
 <li>位、位串、字符和字符串：表示文本、声音和图像</li>
 <li>逻辑（布尔）数据：按位操作</li>
 </ul>
-<h4 id="寻址方式根据地址找到指令或操作数的方法"><a class="markdownIt-Anchor" href="#寻址方式根据地址找到指令或操作数的方法"></a> 寻址方式——根据地址找到指令或操作数的方法</h4>
+<h4 id="寻址方式-根据地址找到指令或操作数的方法">寻址方式——根据地址找到指令或操作数的方法</h4>
 <p>指令中的地址码编码由操作数的寻址方式决定</p>
 <p>地址码编码的三个原则：</p>
 <ul>
@@ -1631,7 +1631,7 @@ A fourth year undergraduate student at UESTC
   <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611224851084.png" alt="image-20230611224851084" style="zoom:33%;" />
 </li>
 </ul>
-<h4 id="操作码编码方式"><a class="markdownIt-Anchor" href="#操作码编码方式"></a> 操作码编码方式</h4>
+<h4 id="操作码编码方式">操作码编码方式</h4>
 <p>操作码编码方式：</p>
 <ul>
 <li>定长操作码编码</li>
@@ -1678,7 +1678,7 @@ A fourth year undergraduate student at UESTC
 </li>
 <li>
 <p>CF - 进位/错位</p>
-<p>借位生成：C<sub>out</sub><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>sub</p>
+<p>借位生成：C~out~<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⨁</mo></mrow><annotation encoding="application/x-tex">\bigoplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">⨁</span></span></span></span>sub</p>
 </li>
 <li>
 <p>ZF - zero</p>
@@ -1687,7 +1687,7 @@ A fourth year undergraduate student at UESTC
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611233248642.png" alt="image-20230611233248642" style="zoom:50%;" />
 <p>标志可存于标志寄存器（也叫条件码寄存器、状态寄存器、程序状态字寄存器），也可由指定的通用寄存器来存放标志位</p>
 <p>可以将两条指令合成一条指令，即：计算并转移</p>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611233351090.png" alt="image-20230611233351090" /></p>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230611233351090.png" alt="image-20230611233351090"></p>
 <p><strong>指令系统设计风格——不同操作数地址指定方式</strong></p>
 <ul>
 <li>累加器型：一个操作数（源操作数1）和目的操作数总在累加器中</li>
@@ -1729,9 +1729,9 @@ A fourth year undergraduate student at UESTC
 <p>采用优化的编译系统，支持高级语言程序</p>
 </li>
 </ol>
-<h4 id="第四章第一讲小结"><a class="markdownIt-Anchor" href="#第四章第一讲小结"></a> 第四章第一讲小结</h4>
+<h4 id="第四章第一讲小结">第四章第一讲小结</h4>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230611235836329.png" alt="image-20230611235836329" style="zoom:33%;" />
-<h3 id="第四章第二讲-程序的机器级表示以mips为例"><a class="markdownIt-Anchor" href="#第四章第二讲-程序的机器级表示以mips为例"></a> 第四章第二讲 程序的机器级表示——以MIPS为例</h3>
+<h3 id="第四章第二讲-程序的机器级表示-以mips为例">第四章第二讲 程序的机器级表示——以MIPS为例</h3>
 <ul>
 <li>
 <p>MIPS的指令格式</p>
@@ -1750,11 +1750,11 @@ A fourth year undergraduate student at UESTC
 <p>​		操作码的表示 寄存器的表示 存储器数据表示</p>
 </li>
 </ul>
-<h4 id="mips的指令格式"><a class="markdownIt-Anchor" href="#mips的指令格式"></a> MIPS的指令格式</h4>
+<h4 id="mips的指令格式">MIPS的指令格式</h4>
 <p>所有指令都是32位宽（字长），按字地址对齐存储，字地址为4的倍数</p>
 <p>R型、I型、J型</p>
-<h5 id="r型指令"><a class="markdownIt-Anchor" href="#r型指令"></a> R型指令</h5>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230612002249587.png" alt="image-20230612002249587" /></p>
+<h5 id="r型指令">R型指令</h5>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230612002249587.png" alt="image-20230612002249587"></p>
 <ul>
 <li>参与运算的操作数和结果都在寄存器，R型指令的寻址方式只有<strong>寄存器寻址</strong>一种</li>
 <li>R型指令的op全为0，具体功能由func部分确定</li>
@@ -1766,8 +1766,8 @@ A fourth year undergraduate student at UESTC
 <p>举个栗子：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612002824470.png" alt="image-20230612002824470" style="zoom:33%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612003003566.png" alt="image-20230612003003566" style="zoom:33%;" />
-<h5 id="i型指令"><a class="markdownIt-Anchor" href="#i型指令"></a> I型指令</h5>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230612003142802.png" alt="image-20230612003142802" /></p>
+<h5 id="i型指令">I型指令</h5>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230612003142802.png" alt="image-20230612003142802"></p>
 <ul>
 <li>指令中包含了一个立即数，故称I型指令</li>
 <li>op：确定指令的功能</li>
@@ -1783,8 +1783,8 @@ A fourth year undergraduate student at UESTC
 </ul>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612003545045.png" alt="image-20230612003545045" style="zoom:33%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612003629348.png" alt="image-20230612003629348" style="zoom:33%;" />
-<h5 id="j型指令"><a class="markdownIt-Anchor" href="#j型指令"></a> J型指令</h5>
-<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230612003710396.png" alt="image-20230612003710396" /></p>
+<h5 id="j型指令">J型指令</h5>
+<p><img src="C:%5CUsers%5Ccrc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230612003710396.png" alt="image-20230612003710396"></p>
 <ul>
 <li>op：确定指令功能</li>
 <li>address：转移地址</li>
@@ -1814,7 +1814,7 @@ A fourth year undergraduate student at UESTC
 </tbody>
 </table>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612004107708.png" alt="image-20230612004107708" style="zoom:33%;" />
-<h4 id="mips的通用寄存器"><a class="markdownIt-Anchor" href="#mips的通用寄存器"></a> MIPS的通用寄存器</h4>
+<h4 id="mips的通用寄存器">MIPS的通用寄存器</h4>
 <p>MIPS有32个长度为32位的通用寄存器（整数寄存器）:</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612004226730.png" alt="image-20230612004226730" style="zoom:33%;" />
 <p>说明：</p>
@@ -1839,15 +1839,15 @@ A fourth year undergraduate student at UESTC
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612011207580.png" alt="image-20230612011207580" style="zoom:33%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612011227449.png" alt="image-20230612011227449" style="zoom:33%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612011254484.png" alt="image-20230612011254484" style="zoom:33%;" />
-<h4 id="第四章第二讲小结"><a class="markdownIt-Anchor" href="#第四章第二讲小结"></a> 第四章第二讲小结</h4>
+<h4 id="第四章第二讲小结">第四章第二讲小结</h4>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612011808731.png" alt="image-20230612011808731" style="zoom:33%;" />
-<h3 id="第四章总结"><a class="markdownIt-Anchor" href="#第四章总结"></a> 第四章总结</h3>
+<h3 id="第四章总结">第四章总结</h3>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612011831721.png" alt="image-20230612011831721" style="zoom:33%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612011848444.png" alt="image-20230612011848444" style="zoom:33%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612011901976.png" alt="image-20230612011901976" style="zoom:33%;" />
-<hr />
-<h2 id="第五章-中央处理器数据通路和控制器"><a class="markdownIt-Anchor" href="#第五章-中央处理器数据通路和控制器"></a> 第五章 中央处理器：数据通路和控制器</h2>
-<h3 id="第五章第一讲-cpu的基本功能和基本组成"><a class="markdownIt-Anchor" href="#第五章第一讲-cpu的基本功能和基本组成"></a> 第五章第一讲 CPU的基本功能和基本组成</h3>
+<hr>
+<h2 id="第五章-中央处理器：数据通路和控制器">第五章 中央处理器：数据通路和控制器</h2>
+<h3 id="第五章第一讲-cpu的基本功能和基本组成">第五章第一讲 CPU的基本功能和基本组成</h3>
 <ul>
 <li>CPU的功能及其与计算机性能的关系</li>
 <li>指令的四个基本功能</li>
@@ -1860,7 +1860,7 @@ A fourth year undergraduate student at UESTC
 <li>数据通路的时序控制</li>
 <li>总线结构数据通路中四种基本功能的实现</li>
 </ul>
-<h4 id="cpu及其与计算机性能的关系"><a class="markdownIt-Anchor" href="#cpu及其与计算机性能的关系"></a> CPU及其与计算机性能的关系</h4>
+<h4 id="cpu及其与计算机性能的关系">CPU及其与计算机性能的关系</h4>
 <p>CPU的实现与计算机性能的关系：</p>
 <p>​		计算机性能（程序执行时间）由三个关键因素决定：指令数目、CPI、时钟周期</p>
 <p>​		指令数由编译器和ISA决定</p>
@@ -1882,7 +1882,7 @@ A fourth year undergraduate student at UESTC
 <p>举个栗子：</p>
 <p>R[$8]←M[R[$9]+4]的含义是：将寄存器9的内容加4得到的内存地址单元的内容送寄存器$8中</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612094206770.png" alt="image-20230612094206770" style="zoom:33%;" />
-<h4 id="数据通路"><a class="markdownIt-Anchor" href="#数据通路"></a> 数据通路</h4>
+<h4 id="数据通路">数据通路</h4>
 <p>计算机的五大组成结构：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612094301758.png" alt="image-20230612094301758" style="zoom:33%;" />
 <p>数据通路：指令执行过程中，数据经过的路径，以及路径上的部件（完整定义：由操作元件和存储元件通过总线方式或分散方式连接而成的进行数据传送、处理和存储的路径。 ）</p>
@@ -1936,7 +1936,7 @@ A fourth year undergraduate student at UESTC
 <p>Address：读写共用一个32位地址</p>
 <p>读操作（组合逻辑操作）：地址Address有效，经过一个取数时间&quot;AccessTime&quot;，DataOut数据有效</p>
 <p>写操作（时序逻辑操作）：写使能为1，时钟Clk有效边沿到来时，Data In传来的值开始被写入Address指定的存储单元中</p>
-<h4 id="数据通路与时序控制"><a class="markdownIt-Anchor" href="#数据通路与时序控制"></a> 数据通路与时序控制</h4>
+<h4 id="数据通路与时序控制">数据通路与时序控制</h4>
 <p>同步系统：所有动作由专门时序信号来定时 ，时序信号规定何时发出什么动作</p>
 <p>指令周期：读取并执行一条指令的时间</p>
 <p>现代计算机的时钟周期：</p>
@@ -1949,7 +1949,7 @@ A fourth year undergraduate student at UESTC
 <p>​		时钟周期 = Latch Prop + Longest Delay Path + Setup + Clock Skew（时钟偏移）</p>
 <p>约束条件：（Latch Prop + Shortest Delay Path - Clock Skew）&gt; Hold Time</p>
 <p>​		即：操作元件输出有效信号最快必须在下一级状态元件的输入保持时间之后出现</p>
-<h4 id="总线结构数据通路"><a class="markdownIt-Anchor" href="#总线结构数据通路"></a> 总线结构数据通路</h4>
+<h4 id="总线结构数据通路">总线结构数据通路</h4>
 <p>四种基本操作的时序：</p>
 <ul>
 <li>
@@ -1981,7 +1981,7 @@ A fourth year undergraduate student at UESTC
 <li>现在：先Cache后MM，“同步”方式，无需应答信息</li>
 </ul>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612111452593.png" alt="image-20230612111452593" style="zoom:33%;" />
-<h4 id="三总线数据通路"><a class="markdownIt-Anchor" href="#三总线数据通路"></a> 三总线数据通路</h4>
+<h4 id="三总线数据通路">三总线数据通路</h4>
 <p>多总线方式，在多个总线上传送不同数据，提高效率</p>
 <p>举个栗子：</p>
 <p>​		总线AB分分别传送两个源操作数，总线C传送结果</p>
@@ -1991,13 +1991,13 @@ A fourth year undergraduate student at UESTC
 <p>​				R1outA，R2outB，op，R3inC</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612111712734.png" alt="image-20230612111712734" style="zoom:50%;" />
 <p>目前大都采用流水线方式执行指令，单总线或三总线的总线式数据通路很难实现指令流水执行</p>
-<h4 id="第五章第一讲小结"><a class="markdownIt-Anchor" href="#第五章第一讲小结"></a> 第五章第一讲小结</h4>
+<h4 id="第五章第一讲小结">第五章第一讲小结</h4>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612112102569.png" alt="image-20230612112102569" style="zoom: 33%;" />
-<h3 id="第五章第二讲-单周期mips处理器的设计"><a class="markdownIt-Anchor" href="#第五章第二讲-单周期mips处理器的设计"></a> 第五章第二讲 单周期MIPS处理器的设计</h3>
+<h3 id="第五章第二讲-单周期mips处理器的设计">第五章第二讲 单周期MIPS处理器的设计</h3>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612112224369.png" alt="image-20230612112224369" style="zoom:33%;" />
 <p>处理器设计涉及到数据通路的设计和控制器的设计</p>
 <p>数据通路中有两种元件：由组合逻辑电路实现的操作元件、由时序逻辑电路实现的存储（状态）元件</p>
-<h4 id="取指令公共操作及其部件"><a class="markdownIt-Anchor" href="#取指令公共操作及其部件"></a> 取指令公共操作及其部件</h4>
+<h4 id="取指令公共操作及其部件">取指令公共操作及其部件</h4>
 <p>每条指令都有公共操作：</p>
 <ul>
 <li>取指令：M[PC]</li>
@@ -2006,7 +2006,7 @@ A fourth year undergraduate student at UESTC
 <p>转移时，PC内容要再次被更新为“转移目标地址”。单周期CPU的时钟周期以下降开始，在本时钟周期中PC不变</p>
 <p>两个操作的顺序：先取指令，再改PC值</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612113839360.png" alt="image-20230612113839360" style="zoom:33%;" />
-<h4 id="加法和减法指令r-type类型"><a class="markdownIt-Anchor" href="#加法和减法指令r-type类型"></a> 加法和减法指令（R-type类型）</h4>
+<h4 id="加法和减法指令-r-type类型">加法和减法指令（R-type类型）</h4>
 <p>R型指令：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612114836180.png" alt="image-20230612114836180" style="zoom: 50%;" />
 <p><strong>add rd, rs, rt</strong>的RTL描述</p>
@@ -2022,7 +2022,7 @@ A fourth year undergraduate student at UESTC
 <li>PC←PC + 4                                           PC加4，使PC指向下一条指令</li>
 </ul>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612115420129.png" alt="image-20230612115420129" style="zoom: 33%;" />
-<h4 id="带立即数的逻辑指令ori指令"><a class="markdownIt-Anchor" href="#带立即数的逻辑指令ori指令"></a> 带立即数的逻辑指令（ori指令）</h4>
+<h4 id="带立即数的逻辑指令-ori指令">带立即数的逻辑指令（ori指令）</h4>
 <p>I型指令：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612121513077.png" alt="image-20230612121513077" style="zoom: 33%;" />
 <p>作为I-Type指令和逻辑运算指令的代表</p>
@@ -2035,7 +2035,7 @@ A fourth year undergraduate student at UESTC
 <p>零扩展 ZeroExt(imm6)</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612121601413.png" alt="image-20230612121601413" style="zoom:50%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612121708062.png" alt="image-20230612121708062" style="zoom:33%;" />
-<h4 id="访存指令中的输入指令lw指令"><a class="markdownIt-Anchor" href="#访存指令中的输入指令lw指令"></a> 访存指令中的输入指令（lw指令）</h4>
+<h4 id="访存指令中的输入指令-lw指令">访存指令中的输入指令（lw指令）</h4>
 <p>还是I型指令</p>
 <p><strong>lw rt, ts, imm16</strong>的RTL描述：</p>
 <ul>
@@ -2047,7 +2047,7 @@ A fourth year undergraduate student at UESTC
 <p>符号位扩展SignExt(imm16)</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612130228646.png" alt="image-20230612130228646" style="zoom:33%;" />
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612130305979.png" alt="image-20230612130305979" style="zoom:33%;" />
-<h4 id="访存指令中的存数指令sw"><a class="markdownIt-Anchor" href="#访存指令中的存数指令sw"></a> 访存指令中的存数指令（sw）</h4>
+<h4 id="访存指令中的存数指令-sw">访存指令中的存数指令（sw）</h4>
 <p>I型指令</p>
 <p><strong>sw rt, rs, imm16</strong>的RTL描述：</p>
 <ul>
@@ -2057,7 +2057,7 @@ A fourth year undergraduate student at UESTC
 <li>PC←PC + 4                                                         计算下地址（公共操作，取指部件完成）</li>
 </ul>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612131158383.png" alt="image-20230612131158383" style="zoom:33%;" />
-<h4 id="分支条件转移指令相等转移beq"><a class="markdownIt-Anchor" href="#分支条件转移指令相等转移beq"></a> 分支（条件转移）指令（相等转移：beq）</h4>
+<h4 id="分支-条件转移-指令-相等转移：beq">分支（条件转移）指令（相等转移：beq）</h4>
 <p>I型指令</p>
 <p><strong>beq rs, rt, imm16</strong>的RTL描述：</p>
 <ul>
@@ -2081,7 +2081,7 @@ A fourth year undergraduate student at UESTC
 <li>转移执行：PC&lt;31:2&gt; = PC&lt;31:2&gt; + 1 +SignExt[imm16]        （SignExt扩展成30位）</li>
 <li>取指令时：指令地址 = PC&lt;31:2&gt;串接“00”</li>
 </ul>
-<h4 id="无条件转移指令"><a class="markdownIt-Anchor" href="#无条件转移指令"></a> 无条件转移指令</h4>
+<h4 id="无条件转移指令">无条件转移指令</h4>
 <p>Jump指令（无条件转移指令的代表）</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612133040894.png" alt="image-20230612133040894" style="zoom:50%;" />
 <p><strong>j target</strong>的RTL描述：</p>
@@ -2089,13 +2089,13 @@ A fourth year undergraduate student at UESTC
 <li>M[PC]                                                                     取指令（公共操作，取指部件完成）</li>
 <li>PC&lt;31:2&gt;←PC&lt;31:28&gt;串接target&lt;25:0&gt;              计算目标地址</li>
 </ul>
-<p>跳转指令是绝对寻址，转移范围是j指令所在的2<sup>28</sup>=256MB页面内，页面号与j指令相同PC&lt;31:28&gt;</p>
+<p>跳转指令是绝对寻址，转移范围是j指令所在的2^28^=256MB页面内，页面号与j指令相同PC&lt;31:28&gt;</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612144815621.png" alt="image-20230612144815621" style="zoom: 33%;" />
 <p>取指令部件（修改后电路）：</p>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612144959111.png" alt="image-20230612144959111" style="zoom:33%;" />
-<h4 id="实现7条mips指令的单周期处理器的数据通路"><a class="markdownIt-Anchor" href="#实现7条mips指令的单周期处理器的数据通路"></a> 实现7条MIPS指令的单周期处理器的数据通路</h4>
+<h4 id="实现7条mips指令的单周期处理器的数据通路">实现7条MIPS指令的单周期处理器的数据通路</h4>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612150058156.png" alt="image-20230612150058156" style="zoom:33%;" />
-<h4 id="数据通路-中关键路径load操作花费的时间"><a class="markdownIt-Anchor" href="#数据通路-中关键路径load操作花费的时间"></a> 数据通路 中关键路径（Load）操作花费的时间</h4>
+<h4 id="数据通路-中关键路径-load-操作花费的时间">数据通路 中关键路径（Load）操作花费的时间</h4>
 <p>Load操作：R[rt]←M[R[rs]+imm16]</p>
 <p>寄存器组和理想存储器的定时方式：</p>
 <ul>
@@ -2109,9 +2109,9 @@ A fourth year undergraduate student at UESTC
 </li>
 </ul>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612151105775.png" alt="image-20230612151105775" style="zoom:33%;" />
-<h4 id="数据通路设计小结"><a class="markdownIt-Anchor" href="#数据通路设计小结"></a> 数据通路设计小结</h4>
+<h4 id="数据通路设计小结">数据通路设计小结</h4>
 <img src="C:\Users\crc\AppData\Roaming\Typora\typora-user-images\image-20230612152628513.png" alt="image-20230612152628513" style="zoom:33%;" />
-<h4 id="单周期数据通路的控制器设计"><a class="markdownIt-Anchor" href="#单周期数据通路的控制器设计"></a> 单周期数据通路的控制器设计：</h4>
+<h4 id="单周期数据通路的控制器设计：">单周期数据通路的控制器设计：</h4>
 <p>妈的 爷不写了</p>
 
   </article>
