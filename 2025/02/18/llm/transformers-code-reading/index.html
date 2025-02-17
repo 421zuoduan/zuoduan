@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-cn,en,default">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="崔若晨 Ruochen Cui">
+
+
+  <meta name="subtitle" content="崔若晨">
+
+
+  <meta name="description" content="电子科技大学四年级本科生
+
+A fourth year undergraduate student at UESTC
+">
+
+
+  <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence">
+
+
+<title>transformers 源码阅读 | Ruochen Cui</title>
+
+
+
+<link rel="icon" href="/web_ico.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+      Ruochen Cui
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+      
+      
+      
+      
+      
+      
+      <a href="/./archives" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:inbox-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Posts</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./publications" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:science-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Publications</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./about" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:user-info-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>About</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./categories" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-2-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Categories</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./tags" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Tags</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/./index" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:home-2-fill" width="22">
+        </iconify-icon>
+        
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center">
+
+      <!-- TODO: Add search icon here -->
+
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]" width="24" id="theme-icon">
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex p-1 mx-1 sm:hidden">
+        <a class="w-5 h-5" aria-hidden="true" id="open-menu">
+          <iconify-icon width="24" icon="mingcute:menu-fill" class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+          </iconify-icon>
+        </a>
+        <a class="w-5 h-5 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon width="24" icon="mingcute:close-circle-fill" class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content" class="
+        flex
+        flex-row
+        justify-center
+        items-center
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+    
+    
+    
+    <a href="/./archives" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:inbox-fill" width="22">
+      </iconify-icon>
+      <p>
+        posts
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./publications" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:science-fill" width="22">
+      </iconify-icon>
+      <p>
+        publications
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./about" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:user-info-fill" width="22">
+      </iconify-icon>
+      <p>
+        about
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./categories" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:classify-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        categories
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./tags" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:tag-fill" width="22">
+      </iconify-icon>
+      <p>
+        tags
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/./index" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:home-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        home
+      </p>
+    </a>
+    
+    
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">transformers 源码阅读</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2025-02-18</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2025-02-18</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>3k words, 17 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/research/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        research
+      </a>
+    
+      <a href="/tags/llm/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        llm
+      </a>
+    
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br></pre></td><td class="code"><pre><span class="line">def generate(</span><br><span class="line">    self,</span><br><span class="line">    inputs: Optional[torch.Tensor] = None,</span><br><span class="line">        # 有两种输入方法, 一种是输入序列input_ids传入inputs, 一种是input_ids和attention_mask以字典的形式传入**kwargs</span><br><span class="line">    generation_config: Optional[GenerationConfig] = None,</span><br><span class="line">        # 解码超参数, 如top_k, top_p, max_length等, 可以加载GenerationConfig类创建对象来配置参数, 类似解码超参数的**kwargs; 也可以在model.generate()中直接传入参数</span><br><span class="line">    logits_processor: Optional[LogitsProcessorList] = None,</span><br><span class="line">        # 解码超参数会将不同的策略函数放到一个处理器中, 貌似是用于加载自定义解码超参数的</span><br><span class="line">    stopping_criteria: Optional[StoppingCriteriaList] = None,</span><br><span class="line">        # 停止条件, 用于控制生成的长度, 例如max_length, max_time等</span><br><span class="line">    prefix_allowed_tokens_fn: Optional[Callable[[int, torch.Tensor], List[int]]] = None,</span><br><span class="line">        # 前缀抑制token方程, 也与解码策略有关</span><br><span class="line">    synced_gpus: Optional[bool] = None,</span><br><span class="line">        # 不同GPU之间的同步, 用于多GPU环境下, 避免某个GPU提前完成生成导致其他GPU阻塞</span><br><span class="line">    assistant_model: Optional[&quot;PreTrainedModel&quot;] = None,</span><br><span class="line">        # 用于投机解码, 小模型辅助大模型生成</span><br><span class="line">    streamer: Optional[&quot;BaseStreamer&quot;] = None,</span><br><span class="line">        # 流式处理, 用于处理生成的token, 例如将token写入文件</span><br><span class="line">    negative_prompt_ids: Optional[torch.Tensor] = None,</span><br><span class="line">        # 负面提示, 一些前沿研究算法会用到, 下同</span><br><span class="line">    negative_prompt_attention_mask: Optional[torch.Tensor] = None,</span><br><span class="line">    **kwargs,</span><br><span class="line">) -&gt; Union[GenerateOutput, torch.LongTensor]:</span><br><span class="line">    r&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    Generates sequences of token ids for models with a language modeling head.</span><br><span class="line"></span><br><span class="line">    &lt;Tip warning=&#123;true&#125;&gt;</span><br><span class="line"></span><br><span class="line">    Most generation-controlling parameters are set in `generation_config` which, if not passed, will be set to the</span><br><span class="line">    model&#x27;s default generation configuration. You can override any `generation_config` by passing the corresponding</span><br><span class="line">    parameters to generate(), e.g. `.generate(inputs, num_beams=4, do_sample=True)`.</span><br><span class="line"></span><br><span class="line">    For an overview of generation strategies and code examples, check out the [following</span><br><span class="line">    guide](../generation_strategies).</span><br><span class="line"></span><br><span class="line">    &lt;/Tip&gt;</span><br><span class="line"></span><br><span class="line">    Parameters:</span><br><span class="line">        inputs (`torch.Tensor` of varying shape depending on the modality, *optional*):</span><br><span class="line">            The sequence used as a prompt for the generation or as model inputs to the encoder. If `None` the</span><br><span class="line">            method initializes it with `bos_token_id` and a batch size of 1. For decoder-only models `inputs`</span><br><span class="line">            should of in the format of `input_ids`. For encoder-decoder models *inputs* can represent any of</span><br><span class="line">            `input_ids`, `input_values`, `input_features`, or `pixel_values`.</span><br><span class="line">        generation_config (`~generation.GenerationConfig`, *optional*):</span><br><span class="line">            The generation configuration to be used as base parametrization for the generation call. `**kwargs`</span><br><span class="line">            passed to generate matching the attributes of `generation_config` will override them. If</span><br><span class="line">            `generation_config` is not provided, the default will be used, which had the following loading</span><br><span class="line">            priority: 1) from the `generation_config.json` model file, if it exists; 2) from the model</span><br><span class="line">            configuration. Please note that unspecified parameters will inherit [`~generation.GenerationConfig`]&#x27;s</span><br><span class="line">            default values, whose documentation should be checked to parameterize generation.</span><br><span class="line">        logits_processor (`LogitsProcessorList`, *optional*):</span><br><span class="line">            Custom logits processors that complement the default logits processors built from arguments and</span><br><span class="line">            generation config. If a logit processor is passed that is already created with the arguments or a</span><br><span class="line">            generation config an error is thrown. This feature is intended for advanced users.</span><br><span class="line">        stopping_criteria (`StoppingCriteriaList`, *optional*):</span><br><span class="line">            Custom stopping criteria that complement the default stopping criteria built from arguments and a</span><br><span class="line">            generation config. If a stopping criteria is passed that is already created with the arguments or a</span><br><span class="line">            generation config an error is thrown. If your stopping criteria depends on the `scores` input, make</span><br><span class="line">            sure you pass `return_dict_in_generate=True, output_scores=True` to `generate`. This feature is</span><br><span class="line">            intended for advanced users.</span><br><span class="line">        prefix_allowed_tokens_fn (`Callable[[int, torch.Tensor], List[int]]`, *optional*):</span><br><span class="line">            If provided, this function constraints the beam search to allowed tokens only at each step. If not</span><br><span class="line">            provided no constraint is applied. This function takes 2 arguments: the batch ID `batch_id` and</span><br><span class="line">            `input_ids`. It has to return a list with the allowed tokens for the next generation step conditioned</span><br><span class="line">            on the batch ID `batch_id` and the previously generated tokens `inputs_ids`. This argument is useful</span><br><span class="line">            for constrained generation conditioned on the prefix, as described in [Autoregressive Entity</span><br><span class="line">            Retrieval](https://arxiv.org/abs/2010.00904).</span><br><span class="line">        synced_gpus (`bool`, *optional*):</span><br><span class="line">            Whether to continue running the while loop until max_length. Unless overridden this flag will be set to</span><br><span class="line">            `True` under DeepSpeed ZeRO Stage 3 multiple GPUs environment to avoid hanging if one GPU finished</span><br><span class="line">            generating before other GPUs. Otherwise it&#x27;ll be set to `False`.</span><br><span class="line">        assistant_model (`PreTrainedModel`, *optional*):</span><br><span class="line">            An assistant model that can be used to accelerate generation. The assistant model must have the exact</span><br><span class="line">            same tokenizer. The acceleration is achieved when forecasting candidate tokens with the assistent model</span><br><span class="line">            is much faster than running generation with the model you&#x27;re calling generate from. As such, the</span><br><span class="line">            assistant model should be much smaller.</span><br><span class="line">        streamer (`BaseStreamer`, *optional*):</span><br><span class="line">            Streamer object that will be used to stream the generated sequences. Generated tokens are passed</span><br><span class="line">            through `streamer.put(token_ids)` and the streamer is responsible for any further processing.</span><br><span class="line">        negative_prompt_ids (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*):</span><br><span class="line">            The negative prompt needed for some processors such as CFG. The batch size must match the input batch</span><br><span class="line">            size. This is an experimental feature, subject to breaking API changes in future versions.</span><br><span class="line">        negative_prompt_attention_mask (`torch.LongTensor` of shape `(batch_size, sequence_length)`, *optional*):</span><br><span class="line">            Attention_mask for `negative_prompt_ids`.</span><br><span class="line">        kwargs (`Dict[str, Any]`, *optional*):</span><br><span class="line">            Ad hoc parametrization of `generate_config` and/or additional model-specific kwargs that will be</span><br><span class="line">            forwarded to the `forward` function of the model. If the model is an encoder-decoder model, encoder</span><br><span class="line">            specific kwargs should not be prefixed and decoder specific kwargs should be prefixed with *decoder_*.</span><br><span class="line"></span><br><span class="line">    Return:</span><br><span class="line">        [`~utils.ModelOutput`] or `torch.LongTensor`: A [`~utils.ModelOutput`] (if `return_dict_in_generate=True`</span><br><span class="line">        or when `config.return_dict_in_generate=True`) or a `torch.FloatTensor`.</span><br><span class="line"></span><br><span class="line">            If the model is *not* an encoder-decoder model (`model.config.is_encoder_decoder=False`), the possible</span><br><span class="line">            [`~utils.ModelOutput`] types are:</span><br><span class="line"></span><br><span class="line">                - [`~generation.GenerateDecoderOnlyOutput`],</span><br><span class="line">                - [`~generation.GenerateBeamDecoderOnlyOutput`]</span><br><span class="line"></span><br><span class="line">            If the model is an encoder-decoder model (`model.config.is_encoder_decoder=True`), the possible</span><br><span class="line">            [`~utils.ModelOutput`] types are:</span><br><span class="line"></span><br><span class="line">                - [`~generation.GenerateEncoderDecoderOutput`],</span><br><span class="line">                - [`~generation.GenerateBeamEncoderDecoderOutput`]</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">        # 模型参数分到多个GPU上, 需要同步多个GPU, 防止某个GPU生成EOS结束生成, 其他GPU阻塞. FSDP或ZERO3会涉及模型参数分片</span><br><span class="line">    if synced_gpus is None:</span><br><span class="line">        if is_deepspeed_zero3_enabled() and dist.get_world_size() &gt; 1:</span><br><span class="line">            synced_gpus = True</span><br><span class="line">        else:</span><br><span class="line">            synced_gpus = False</span><br><span class="line"></span><br><span class="line">    # 1. Handle `generation_config` and kwargs that might update it, and validate the `.generate()` call</span><br><span class="line">        # 整合了传入的 generation_config (对象) 和 kwargs 中的参数, 并对传入的参数进行验证</span><br><span class="line">    self._validate_model_class()</span><br><span class="line">        # 看当前任务是否支持使用 GenerationMixin 下的 generate 函数</span><br><span class="line"></span><br><span class="line">    # priority: `generation_config` argument &gt; `model.generation_config` (the default generation config)</span><br><span class="line">        # 优先级: 传入的 generation_config 参数 &gt; model.generation_config, 即在 generation_config 参数中设置的参数会覆盖 model.generation_config 中的参数, 如果前者没有传入就去找后者, 如若两者不相同报 Warning</span><br><span class="line">    if generation_config is None:</span><br><span class="line">        # legacy: users may modify the model configuration to control generation. To trigger this legacy behavior,</span><br><span class="line">        # three conditions must be met</span><br><span class="line">        # 1) the generation config must have been created from the model config (`_from_model_config` field);</span><br><span class="line">        # 2) the generation config must have seen no modification since its creation (the hash is the same);</span><br><span class="line">        # 3) the user must have set generation parameters in the model config.</span><br><span class="line">        if (</span><br><span class="line">            self.generation_config._from_model_config</span><br><span class="line">            and self.generation_config._original_object_hash == hash(self.generation_config)</span><br><span class="line">            and self.config._has_non_default_generation_parameters()</span><br><span class="line">        ):</span><br><span class="line">            new_generation_config = GenerationConfig.from_model_config(self.config)</span><br><span class="line">            if new_generation_config != self.generation_config:</span><br><span class="line">                warnings.warn(</span><br><span class="line">                    &quot;You have modified the pretrained model configuration to control generation. This is a&quot;</span><br><span class="line">                    &quot; deprecated strategy to control generation and will be removed soon, in a future version.&quot;</span><br><span class="line">                    &quot; Please use and modify the model generation configuration (see&quot;</span><br><span class="line">                    &quot; https://huggingface.co/docs/transformers/generation_strategies#default-text-generation-configuration )&quot;</span><br><span class="line">                )</span><br><span class="line">                self.generation_config = new_generation_config</span><br><span class="line">        generation_config = self.generation_config</span><br><span class="line"></span><br><span class="line">        ## 将 kwargs 中的参数更新到 generation_config 中, 这里的generate_config.update是GenerationMixin类中的方法, 不是python字典的update</span><br><span class="line">    generation_config = copy.deepcopy(generation_config)</span><br><span class="line">    model_kwargs = generation_config.update(**kwargs)  # All unused kwargs must be model kwargs</span><br><span class="line">    generation_config.validate()</span><br><span class="line">    self._validate_model_kwargs(model_kwargs.copy())</span><br><span class="line"></span><br><span class="line">    # 2. Set generation parameters if not already defined</span><br><span class="line">    logits_processor = logits_processor if logits_processor is not None else LogitsProcessorList()</span><br><span class="line">        # 解码处理器列表, 用于处理logits</span><br><span class="line">    stopping_criteria = stopping_criteria if stopping_criteria is not None else StoppingCriteriaList()</span><br><span class="line">        # 停止条件列表, 用于控制生成的长度</span><br><span class="line"></span><br><span class="line">    if generation_config.pad_token_id is None and generation_config.eos_token_id is not None:</span><br><span class="line">        if model_kwargs.get(&quot;attention_mask&quot;, None) is None:</span><br><span class="line">            logger.warning(</span><br><span class="line">                &quot;The attention mask and the pad token id were not set. As a consequence, you may observe &quot;</span><br><span class="line">                &quot;unexpected behavior. Please pass your input&#x27;s `attention_mask` to obtain reliable results.&quot;</span><br><span class="line">            )</span><br><span class="line">        eos_token_id = generation_config.eos_token_id</span><br><span class="line">        if isinstance(eos_token_id, list):</span><br><span class="line">            eos_token_id = eos_token_id[0]</span><br><span class="line">        logger.warning(f&quot;Setting `pad_token_id` to `eos_token_id`:&#123;eos_token_id&#125; for open-end generation.&quot;)</span><br><span class="line">        generation_config.pad_token_id = eos_token_id</span><br><span class="line"></span><br><span class="line">    # 3. Define model inputs</span><br><span class="line">    # inputs_tensor has to be defined</span><br><span class="line">    # model_input_name is defined if model-specific keyword input is passed</span><br><span class="line">    # otherwise model_input_name is None</span><br><span class="line">    # all model-specific keyword inputs are removed from `model_kwargs`</span><br><span class="line">    inputs_tensor, model_input_name, model_kwargs = self._prepare_model_inputs(</span><br><span class="line">        inputs, generation_config.bos_token_id, model_kwargs</span><br><span class="line">    )</span><br><span class="line">    batch_size = inputs_tensor.shape[0]</span><br><span class="line"></span><br><span class="line">    # 4. Define other model kwargs</span><br><span class="line">    model_kwargs[&quot;output_attentions&quot;] = generation_config.output_attentions</span><br><span class="line">    model_kwargs[&quot;output_hidden_states&quot;] = generation_config.output_hidden_states</span><br><span class="line">    # decoder-only models with inputs_embeds forwarding must use caching (otherwise we can&#x27;t detect whether we are</span><br><span class="line">    # generating the first new token or not, and we only want to use the embeddings for the first new token)</span><br><span class="line">    if not self.config.is_encoder_decoder and model_input_name == &quot;inputs_embeds&quot;:</span><br><span class="line">        model_kwargs[&quot;use_cache&quot;] = True</span><br><span class="line">    else:</span><br><span class="line">        model_kwargs[&quot;use_cache&quot;] = generation_config.use_cache</span><br><span class="line"></span><br><span class="line">    accepts_attention_mask = &quot;attention_mask&quot; in set(inspect.signature(self.forward).parameters.keys())</span><br><span class="line">    requires_attention_mask = &quot;encoder_outputs&quot; not in model_kwargs</span><br><span class="line"></span><br><span class="line">    if model_kwargs.get(&quot;attention_mask&quot;, None) is None and requires_attention_mask and accepts_attention_mask:</span><br><span class="line">        model_kwargs[&quot;attention_mask&quot;] = self._prepare_attention_mask_for_generation(</span><br><span class="line">            inputs_tensor, generation_config.pad_token_id, generation_config.eos_token_id</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    # decoder-only models should use left-padding for generation</span><br><span class="line">    if not self.config.is_encoder_decoder:</span><br><span class="line">        # If `input_ids` was given, check if the last id in any sequence is `pad_token_id`</span><br><span class="line">        # Note: If using, `inputs_embeds` this check does not work, because we want to be more hands-off.</span><br><span class="line">        if (</span><br><span class="line">            generation_config.pad_token_id is not None</span><br><span class="line">            and len(inputs_tensor.shape) == 2</span><br><span class="line">            and torch.sum(inputs_tensor[:, -1] == generation_config.pad_token_id) &gt; 0</span><br><span class="line">        ):</span><br><span class="line">            logger.warning(</span><br><span class="line">                &quot;A decoder-only architecture is being used, but right-padding was detected! For correct &quot;</span><br><span class="line">                &quot;generation results, please set `padding_side=&#x27;left&#x27;` when initializing the tokenizer.&quot;</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    if self.config.is_encoder_decoder and &quot;encoder_outputs&quot; not in model_kwargs:</span><br><span class="line">        # if model is encoder decoder encoder_outputs are created</span><br><span class="line">        # and added to `model_kwargs`</span><br><span class="line">        model_kwargs = self._prepare_encoder_decoder_kwargs_for_generation(</span><br><span class="line">            inputs_tensor, model_kwargs, model_input_name</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    # 5. Prepare `input_ids` which will be used for auto-regressive generation</span><br><span class="line">    if self.config.is_encoder_decoder:</span><br><span class="line">        input_ids, model_kwargs = self._prepare_decoder_input_ids_for_generation(</span><br><span class="line">            batch_size=batch_size,</span><br><span class="line">            model_input_name=model_input_name,</span><br><span class="line">            model_kwargs=model_kwargs,</span><br><span class="line">            decoder_start_token_id=generation_config.decoder_start_token_id,</span><br><span class="line">            bos_token_id=generation_config.bos_token_id,</span><br><span class="line">            device=inputs_tensor.device,</span><br><span class="line">        )</span><br><span class="line">    else:</span><br><span class="line">        input_ids = inputs_tensor if model_input_name == &quot;input_ids&quot; else model_kwargs.pop(&quot;input_ids&quot;)</span><br><span class="line"></span><br><span class="line">    if streamer is not None:</span><br><span class="line">        streamer.put(input_ids.cpu())</span><br><span class="line"></span><br><span class="line">    # 6. Prepare `max_length` depending on other stopping criteria.</span><br><span class="line">    input_ids_length = input_ids.shape[-1]</span><br><span class="line">    has_default_max_length = kwargs.get(&quot;max_length&quot;) is None and generation_config.max_length is not None</span><br><span class="line">    if generation_config.max_new_tokens is not None:</span><br><span class="line">        if not has_default_max_length and generation_config.max_length is not None:</span><br><span class="line">            logger.warning(</span><br><span class="line">                f&quot;Both `max_new_tokens` (=&#123;generation_config.max_new_tokens&#125;) and `max_length`(=&quot;</span><br><span class="line">                f&quot;&#123;generation_config.max_length&#125;) seem to have been set. `max_new_tokens` will take precedence. &quot;</span><br><span class="line">                &quot;Please refer to the documentation for more information. &quot;</span><br><span class="line">                &quot;(https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)&quot;</span><br><span class="line">            )</span><br><span class="line">        generation_config.max_length = generation_config.max_new_tokens + input_ids_length</span><br><span class="line">    self._validate_generated_length(generation_config, input_ids_length, has_default_max_length)</span><br><span class="line"></span><br><span class="line">    # 7. determine generation mode</span><br><span class="line">    generation_mode = self._get_generation_mode(generation_config, assistant_model)</span><br><span class="line"></span><br><span class="line">    if streamer is not None and (generation_config.num_beams &gt; 1):</span><br><span class="line">        raise ValueError(</span><br><span class="line">            &quot;`streamer` cannot be used with beam search (yet!). Make sure that `num_beams` is set to 1.&quot;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    if self.device.type != input_ids.device.type:</span><br><span class="line">        warnings.warn(</span><br><span class="line">            &quot;You are calling .generate() with the `input_ids` being on a device type different&quot;</span><br><span class="line">            f&quot; than your model&#x27;s device. `input_ids` is on &#123;input_ids.device.type&#125;, whereas the model&quot;</span><br><span class="line">            f&quot; is on &#123;self.device.type&#125;. You may experience unexpected behaviors or slower generation.&quot;</span><br><span class="line">            &quot; Please make sure that you have put `input_ids` to the&quot;</span><br><span class="line">            f&quot; correct device by calling for example input_ids = input_ids.to(&#x27;&#123;self.device.type&#125;&#x27;) before&quot;</span><br><span class="line">            &quot; running `.generate()`.&quot;,</span><br><span class="line">            UserWarning,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    # 8. prepare distribution pre_processing samplers</span><br><span class="line">    prepared_logits_processor = self._get_logits_processor(</span><br><span class="line">        generation_config=generation_config,</span><br><span class="line">        input_ids_seq_length=input_ids_length,</span><br><span class="line">        encoder_input_ids=inputs_tensor,</span><br><span class="line">        prefix_allowed_tokens_fn=prefix_allowed_tokens_fn,</span><br><span class="line">        logits_processor=logits_processor,</span><br><span class="line">        model_kwargs=model_kwargs,</span><br><span class="line">        negative_prompt_ids=negative_prompt_ids,</span><br><span class="line">        negative_prompt_attention_mask=negative_prompt_attention_mask,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    # 9. prepare stopping criteria</span><br><span class="line">    prepared_stopping_criteria = self._get_stopping_criteria(</span><br><span class="line">        generation_config=generation_config, stopping_criteria=stopping_criteria</span><br><span class="line">    )</span><br><span class="line">    # 10. go into different generation modes</span><br><span class="line">    if generation_mode == GenerationMode.ASSISTED_GENERATION:</span><br><span class="line">        if generation_config.num_return_sequences &gt; 1:</span><br><span class="line">            raise ValueError(</span><br><span class="line">                &quot;num_return_sequences has to be 1 when doing assisted generate, &quot;</span><br><span class="line">                f&quot;but is &#123;generation_config.num_return_sequences&#125;.&quot;</span><br><span class="line">            )</span><br><span class="line">        if batch_size &gt; 1:</span><br><span class="line">            raise ValueError(&quot;assisted generate is only supported for batch_size = 1&quot;)</span><br><span class="line">        if not model_kwargs[&quot;use_cache&quot;]:</span><br><span class="line">            raise ValueError(&quot;assisted generate requires `use_cache=True`&quot;)</span><br><span class="line"></span><br><span class="line">        # 11. Get the candidate generator, given the parameterization</span><br><span class="line">        candidate_generator = self._get_candidate_generator(</span><br><span class="line">            generation_config=generation_config,</span><br><span class="line">            input_ids=input_ids,</span><br><span class="line">            inputs_tensor=inputs_tensor,</span><br><span class="line">            assistant_model=assistant_model,</span><br><span class="line">            logits_processor=logits_processor,</span><br><span class="line">            model_kwargs=model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        # 12. run assisted generate</span><br><span class="line">        return self.assisted_decoding(</span><br><span class="line">            input_ids,</span><br><span class="line">            candidate_generator=candidate_generator,</span><br><span class="line">            do_sample=generation_config.do_sample,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            logits_warper=self._get_logits_warper(generation_config) if generation_config.do_sample else None,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            streamer=streamer,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line">    if generation_mode == GenerationMode.GREEDY_SEARCH:</span><br><span class="line">        # 11. run greedy search</span><br><span class="line">        return self.greedy_search(</span><br><span class="line">            input_ids,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            streamer=streamer,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    elif generation_mode == GenerationMode.CONTRASTIVE_SEARCH:</span><br><span class="line">        if not model_kwargs[&quot;use_cache&quot;]:</span><br><span class="line">            raise ValueError(&quot;Contrastive search requires `use_cache=True`&quot;)</span><br><span class="line"></span><br><span class="line">        return self.contrastive_search(</span><br><span class="line">            input_ids,</span><br><span class="line">            top_k=generation_config.top_k,</span><br><span class="line">            penalty_alpha=generation_config.penalty_alpha,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            streamer=streamer,</span><br><span class="line">            sequential=generation_config.low_memory,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    elif generation_mode == GenerationMode.SAMPLE:</span><br><span class="line">        # 11. prepare logits warper</span><br><span class="line">        logits_warper = self._get_logits_warper(generation_config)</span><br><span class="line"></span><br><span class="line">        # 12. expand input_ids with `num_return_sequences` additional sequences per batch</span><br><span class="line">        input_ids, model_kwargs = self._expand_inputs_for_generation(</span><br><span class="line">            input_ids=input_ids,</span><br><span class="line">            expand_size=generation_config.num_return_sequences,</span><br><span class="line">            is_encoder_decoder=self.config.is_encoder_decoder,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        # 13. run sample</span><br><span class="line">        return self.sample(</span><br><span class="line">            input_ids,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            logits_warper=logits_warper,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            streamer=streamer,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    elif generation_mode == GenerationMode.BEAM_SEARCH:</span><br><span class="line">        # 11. prepare beam search scorer</span><br><span class="line">        beam_scorer = BeamSearchScorer(</span><br><span class="line">            batch_size=batch_size,</span><br><span class="line">            num_beams=generation_config.num_beams,</span><br><span class="line">            device=inputs_tensor.device,</span><br><span class="line">            length_penalty=generation_config.length_penalty,</span><br><span class="line">            do_early_stopping=generation_config.early_stopping,</span><br><span class="line">            num_beam_hyps_to_keep=generation_config.num_return_sequences,</span><br><span class="line">            max_length=generation_config.max_length,</span><br><span class="line">        )</span><br><span class="line">        # 12. interleave input_ids with `num_beams` additional sequences per batch</span><br><span class="line">        input_ids, model_kwargs = self._expand_inputs_for_generation(</span><br><span class="line">            input_ids=input_ids,</span><br><span class="line">            expand_size=generation_config.num_beams,</span><br><span class="line">            is_encoder_decoder=self.config.is_encoder_decoder,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line">        # 13. run beam search</span><br><span class="line">        return self.beam_search(</span><br><span class="line">            input_ids,</span><br><span class="line">            beam_scorer,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    elif generation_mode == GenerationMode.BEAM_SAMPLE:</span><br><span class="line">        # 11. prepare logits warper</span><br><span class="line">        logits_warper = self._get_logits_warper(generation_config)</span><br><span class="line"></span><br><span class="line">        # 12. prepare beam search scorer</span><br><span class="line">        beam_scorer = BeamSearchScorer(</span><br><span class="line">            batch_size=batch_size,</span><br><span class="line">            num_beams=generation_config.num_beams,</span><br><span class="line">            device=inputs_tensor.device,</span><br><span class="line">            length_penalty=generation_config.length_penalty,</span><br><span class="line">            do_early_stopping=generation_config.early_stopping,</span><br><span class="line">            num_beam_hyps_to_keep=generation_config.num_return_sequences,</span><br><span class="line">            max_length=generation_config.max_length,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        # 13. interleave input_ids with `num_beams` additional sequences per batch</span><br><span class="line">        input_ids, model_kwargs = self._expand_inputs_for_generation(</span><br><span class="line">            input_ids=input_ids,</span><br><span class="line">            expand_size=generation_config.num_beams,</span><br><span class="line">            is_encoder_decoder=self.config.is_encoder_decoder,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        # 14. run beam sample</span><br><span class="line">        return self.beam_sample(</span><br><span class="line">            input_ids,</span><br><span class="line">            beam_scorer,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            logits_warper=logits_warper,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    elif generation_mode == GenerationMode.GROUP_BEAM_SEARCH:</span><br><span class="line">        # 11. prepare beam search scorer</span><br><span class="line">        beam_scorer = BeamSearchScorer(</span><br><span class="line">            batch_size=batch_size,</span><br><span class="line">            num_beams=generation_config.num_beams,</span><br><span class="line">            device=inputs_tensor.device,</span><br><span class="line">            length_penalty=generation_config.length_penalty,</span><br><span class="line">            do_early_stopping=generation_config.early_stopping,</span><br><span class="line">            num_beam_hyps_to_keep=generation_config.num_return_sequences,</span><br><span class="line">            num_beam_groups=generation_config.num_beam_groups,</span><br><span class="line">            max_length=generation_config.max_length,</span><br><span class="line">        )</span><br><span class="line">        # 12. interleave input_ids with `num_beams` additional sequences per batch</span><br><span class="line">        input_ids, model_kwargs = self._expand_inputs_for_generation(</span><br><span class="line">            input_ids=input_ids,</span><br><span class="line">            expand_size=generation_config.num_beams,</span><br><span class="line">            is_encoder_decoder=self.config.is_encoder_decoder,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line">        # 13. run beam search</span><br><span class="line">        return self.group_beam_search(</span><br><span class="line">            input_ids,</span><br><span class="line">            beam_scorer,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    elif generation_mode == GenerationMode.CONSTRAINED_BEAM_SEARCH:</span><br><span class="line">        final_constraints = []</span><br><span class="line">        if generation_config.constraints is not None:</span><br><span class="line">            final_constraints = generation_config.constraints</span><br><span class="line"></span><br><span class="line">        if generation_config.force_words_ids is not None:</span><br><span class="line"></span><br><span class="line">            def typeerror():</span><br><span class="line">                raise ValueError(</span><br><span class="line">                    &quot;`force_words_ids` has to either be a `List[List[List[int]]]` or `List[List[int]]` &quot;</span><br><span class="line">                    f&quot;of positive integers, but is &#123;generation_config.force_words_ids&#125;.&quot;</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">            if (</span><br><span class="line">                not isinstance(generation_config.force_words_ids, list)</span><br><span class="line">                or len(generation_config.force_words_ids) == 0</span><br><span class="line">            ):</span><br><span class="line">                typeerror()</span><br><span class="line"></span><br><span class="line">            for word_ids in generation_config.force_words_ids:</span><br><span class="line">                if isinstance(word_ids[0], list):</span><br><span class="line">                    if not isinstance(word_ids, list) or len(word_ids) == 0:</span><br><span class="line">                        typeerror()</span><br><span class="line">                    if any(not isinstance(token_ids, list) for token_ids in word_ids):</span><br><span class="line">                        typeerror()</span><br><span class="line">                    if any(</span><br><span class="line">                        any((not isinstance(token_id, int) or token_id &lt; 0) for token_id in token_ids)</span><br><span class="line">                        for token_ids in word_ids</span><br><span class="line">                    ):</span><br><span class="line">                        typeerror()</span><br><span class="line"></span><br><span class="line">                    constraint = DisjunctiveConstraint(word_ids)</span><br><span class="line">                else:</span><br><span class="line">                    if not isinstance(word_ids, list) or len(word_ids) == 0:</span><br><span class="line">                        typeerror()</span><br><span class="line">                    if any((not isinstance(token_id, int) or token_id &lt; 0) for token_id in word_ids):</span><br><span class="line">                        typeerror()</span><br><span class="line"></span><br><span class="line">                    constraint = PhrasalConstraint(word_ids)</span><br><span class="line">                final_constraints.append(constraint)</span><br><span class="line"></span><br><span class="line">        # 11. prepare beam search scorer</span><br><span class="line">        constrained_beam_scorer = ConstrainedBeamSearchScorer(</span><br><span class="line">            constraints=final_constraints,</span><br><span class="line">            batch_size=batch_size,</span><br><span class="line">            num_beams=generation_config.num_beams,</span><br><span class="line">            device=inputs_tensor.device,</span><br><span class="line">            length_penalty=generation_config.length_penalty,</span><br><span class="line">            do_early_stopping=generation_config.early_stopping,</span><br><span class="line">            num_beam_hyps_to_keep=generation_config.num_return_sequences,</span><br><span class="line">            max_length=generation_config.max_length,</span><br><span class="line">        )</span><br><span class="line">        # 12. interleave input_ids with `num_beams` additional sequences per batch</span><br><span class="line">        input_ids, model_kwargs = self._expand_inputs_for_generation(</span><br><span class="line">            input_ids=input_ids,</span><br><span class="line">            expand_size=generation_config.num_beams,</span><br><span class="line">            is_encoder_decoder=self.config.is_encoder_decoder,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br><span class="line">        # 13. run beam search</span><br><span class="line">        return self.constrained_beam_search(</span><br><span class="line">            input_ids,</span><br><span class="line">            constrained_beam_scorer=constrained_beam_scorer,</span><br><span class="line">            logits_processor=prepared_logits_processor,</span><br><span class="line">            stopping_criteria=prepared_stopping_criteria,</span><br><span class="line">            pad_token_id=generation_config.pad_token_id,</span><br><span class="line">            eos_token_id=generation_config.eos_token_id,</span><br><span class="line">            output_scores=generation_config.output_scores,</span><br><span class="line">            return_dict_in_generate=generation_config.return_dict_in_generate,</span><br><span class="line">            synced_gpus=synced_gpus,</span><br><span class="line">            **model_kwargs,</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/2025/02/14/tools/obs-instruction/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          OBS Studio 使用
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+  <script src="https://giscus.app/client.js"
+  data-repo="421zuoduan/blog-giscus-discussion"
+  data-repo-id="R_kgDONKEKag"
+  data-category="Announcements"
+  data-category-id="DIC_kwDONKEKas4Cj9R8"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="1"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+</script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">
+            <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
+        </a>
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="ZhiHu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">
+            <iconify-icon width="28" icon="ri:zhihu-line"></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>
