@@ -650,7 +650,7 @@ A fourth year undergraduate student at UESTC
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h1>
+    <h1 id="introduction">Introduction</h1>
 <p>在vision-language任务中, 经常能看到视觉与文本的对齐.</p>
 <p>典型的模型有MIniGPT-4, LLaVA, LLaVA-1.5</p>
 <p>视觉幻觉的三个类别: 对象, 属性和关系</p>
@@ -669,8 +669,8 @@ A fourth year undergraduate student at UESTC
 <li>refinement of various modules within LVLMs</li>
 <li>post-processing of generated outputs</li>
 </ol>
-<h1 id="hallucination-in-the-era-of-lvlm"><a class="markdownIt-Anchor" href="#hallucination-in-the-era-of-lvlm"></a> Hallucination in the Era of LVLM</h1>
-<h2 id="large-vision-language-models"><a class="markdownIt-Anchor" href="#large-vision-language-models"></a> Large Vision-Language Models</h2>
+<h1 id="hallucination-in-the-era-of-lvlm">Hallucination in the Era of LVLM</h1>
+<h2 id="large-vision-language-models">Large Vision-Language Models</h2>
 <p>LVLM通常包括三个组成部分</p>
 <ol>
 <li>
@@ -689,115 +689,115 @@ A fourth year undergraduate student at UESTC
 <li>pre-training, LVLMs从aligned image-text pairs获取vision-language信息</li>
 <li>instruction-tuning, LVLMs根据human instructions在各种任务数据集上tuning</li>
 </ol>
-<h2 id="hallucination-in-lvlms"><a class="markdownIt-Anchor" href="#hallucination-in-lvlms"></a> Hallucination in LVLMs</h2>
+<h2 id="hallucination-in-lvlms">Hallucination in LVLMs</h2>
 <p>“Hallucination in LVLMs refer to contradictions between the visual input (taken as ‘fact’) and the textual output of a LVLM”</p>
-<h2 id="unique-challenges-regarding-hallucination-in-lvlms"><a class="markdownIt-Anchor" href="#unique-challenges-regarding-hallucination-in-lvlms"></a> Unique Challenges regarding Hallucination in LVLMs</h2>
-<h3 id="hallucination-detection-difficulties-幻觉检测困难"><a class="markdownIt-Anchor" href="#hallucination-detection-difficulties-幻觉检测困难"></a> Hallucination Detection Difficulties 幻觉检测困难</h3>
-<h3 id="intertwined-causes"><a class="markdownIt-Anchor" href="#intertwined-causes"></a> Intertwined Causes</h3>
+<h2 id="unique-challenges-regarding-hallucination-in-lvlms">Unique Challenges regarding Hallucination in LVLMs</h2>
+<h3 id="hallucination-detection-difficulties-幻觉检测困难">Hallucination Detection Difficulties 幻觉检测困难</h3>
+<h3 id="intertwined-causes">Intertwined Causes</h3>
 <p>图片质量可能影响文本先验和statistical biaes</p>
-<h3 id="compound-mitigation-motheds"><a class="markdownIt-Anchor" href="#compound-mitigation-motheds"></a> Compound MItigation Motheds</h3>
+<h3 id="compound-mitigation-motheds">Compound MItigation Motheds</h3>
 <p>Vision Encoder扩大scale, LLMs扩大scale都能减少幻觉</p>
-<h1 id="evaluation-methods-and-benchmarks"><a class="markdownIt-Anchor" href="#evaluation-methods-and-benchmarks"></a> Evaluation Methods and Benchmarks</h1>
+<h1 id="evaluation-methods-and-benchmarks">Evaluation Methods and Benchmarks</h1>
 <p>当前评估方法主要分为两种</p>
 <ol>
 <li>评估模型生成没有幻觉的内容的方法. generative</li>
 <li>评估模型辨别幻觉的能力. discriminative</li>
 </ol>
-<h2 id="evaluation-on-non-hallucinatory-generation"><a class="markdownIt-Anchor" href="#evaluation-on-non-hallucinatory-generation"></a> Evaluation on Non-Hallucinatory Generation</h2>
-<h3 id="handcrafted-pipeline"><a class="markdownIt-Anchor" href="#handcrafted-pipeline"></a> handcrafted pipeline</h3>
+<h2 id="evaluation-on-non-hallucinatory-generation">Evaluation on Non-Hallucinatory Generation</h2>
+<h3 id="handcrafted-pipeline">handcrafted pipeline</h3>
 <p>手动设计pipeline具有更强的可解释性</p>
 <p>CCEval在应用CHAIR前应用GPT4实现多模态对齐</p>
 <p>FAITHSCORE提供了一个细粒度的方法评估幻觉是否产生</p>
-<h3 id="model-based-end-to-end-methods"><a class="markdownIt-Anchor" href="#model-based-end-to-end-methods"></a> Model-based End-to-End Methods</h3>
+<h3 id="model-based-end-to-end-methods">Model-based End-to-End Methods</h3>
 <p>End-to-End的方法直接评估模型结果</p>
-<h4 id="llm-based-evaluation"><a class="markdownIt-Anchor" href="#llm-based-evaluation"></a> LLM-based evaluation</h4>
+<h4 id="llm-based-evaluation">LLM-based evaluation</h4>
 <p>使用LLM对LVLM生成的结果进行评级</p>
-<h4 id="hallucination-data-driven-model-evaluation"><a class="markdownIt-Anchor" href="#hallucination-data-driven-model-evaluation"></a> hallucination data driven model evaluation</h4>
+<h4 id="hallucination-data-driven-model-evaluation">hallucination data driven model evaluation</h4>
 <p>构建带标签的幻觉数据集, 用于微调模型以检测幻觉</p>
-<h2 id="evaluation-on-hallucination-discrimination"><a class="markdownIt-Anchor" href="#evaluation-on-hallucination-discrimination"></a> Evaluation on Hallucination Discrimination</h2>
+<h2 id="evaluation-on-hallucination-discrimination">Evaluation on Hallucination Discrimination</h2>
 <p>通常采用QA形式, 询问LVLM图像是否符合给定的文本描述</p>
 <p>POPE: 仅回答Yes or No, 提问的内容以随机, 经常出现, 与经常出现的object同时出现的object三种方式确定</p>
 <p>CIEM: 类似POPE, 但是通过提示ChatGPT来自动选择对象</p>
 <p>NOPE</p>
-<h2 id="evaluation-benchmarks"><a class="markdownIt-Anchor" href="#evaluation-benchmarks"></a> Evaluation Benchmarks</h2>
-<h2 id="discriminative-benchmarks"><a class="markdownIt-Anchor" href="#discriminative-benchmarks"></a> Discriminative Benchmarks</h2>
+<h2 id="evaluation-benchmarks">Evaluation Benchmarks</h2>
+<h2 id="discriminative-benchmarks">Discriminative Benchmarks</h2>
 <p>POPE(size 3000), CIEM(size 17983), NOPE(size 72941)</p>
 <p>提问object是否存在于图中, 使用准确率作为metric</p>
 <p>discriminative只是在object层面上进行幻觉的判断, 无法对attribute和relation无法进行判断</p>
-<h3 id="generative-benchmarks"><a class="markdownIt-Anchor" href="#generative-benchmarks"></a> Generative Benchmarks</h3>
+<h3 id="generative-benchmarks">Generative Benchmarks</h3>
 <p>可以对object, attribute和relation进行幻觉的判断</p>
 <p>AMBER: 结合了generative和discriminative tasks</p>
 <p>Generative benchmarks的metric更复杂和多变, 通常具体到幻觉的种类去设计metric</p>
-<h1 id="causes-of-lvlm-hallucinations"><a class="markdownIt-Anchor" href="#causes-of-lvlm-hallucinations"></a> Causes of LVLM Hallucinations</h1>
-<h2 id="hallucinations-from-data-数据"><a class="markdownIt-Anchor" href="#hallucinations-from-data-数据"></a> Hallucinations from Data 数据</h2>
-<h3 id="data-bias"><a class="markdownIt-Anchor" href="#data-bias"></a> Data Bias</h3>
+<h1 id="causes-of-lvlm-hallucinations">Causes of LVLM Hallucinations</h1>
+<h2 id="hallucinations-from-data-数据">Hallucinations from Data 数据</h2>
+<h3 id="data-bias">Data Bias</h3>
 <ul>
 <li>distribution imbalance(数据分布不平衡): 在factual judgment QA pairs里, 大多数回答都是Yes, 这导致LVLM可能更容易回答Yes</li>
 <li>data homogeneity(数据同质性): 导致模型更容易回答某方面的问题, 如MiniGPT-4因缺乏instruction tuning更倾向于描述图像而不是回答用户的具体问题, LLaVA不能准确地描述local visual relation</li>
 </ul>
-<h3 id="annotation-irrelevance标签与图像内容不相关"><a class="markdownIt-Anchor" href="#annotation-irrelevance标签与图像内容不相关"></a> Annotation Irrelevance(标签与图像内容不相关)</h3>
+<h3 id="annotation-irrelevance-标签与图像内容不相关">Annotation Irrelevance(标签与图像内容不相关)</h3>
 <p>许多instruction data是由LLMs生成的, 生成的instruction可能与图像的对象, 属性和关系在细粒度上不对应</p>
-<h2 id="hallucinations-from-vision-encoder-视觉编码器"><a class="markdownIt-Anchor" href="#hallucinations-from-vision-encoder-视觉编码器"></a> Hallucinations from Vision Encoder 视觉编码器</h2>
+<h2 id="hallucinations-from-vision-encoder-视觉编码器">Hallucinations from Vision Encoder 视觉编码器</h2>
 <p>目前Vision Encoder主要由CLIP衍生</p>
-<h3 id="limited-visual-resolution"><a class="markdownIt-Anchor" href="#limited-visual-resolution"></a> Limited Visual Resolution</h3>
+<h3 id="limited-visual-resolution">Limited Visual Resolution</h3>
 <p>更高的图像分辨率可以使Vision Encoder在识别时更准确, 从而减少幻觉. 现有模型通常使用较少的图像分辨率, 如LLaVA和LLaVA-15分别采用224*224和336*336像素</p>
-<h3 id="fine-grained-visual-semantics"><a class="markdownIt-Anchor" href="#fine-grained-visual-semantics"></a> Fine-grained  Visual Semantics</h3>
+<h3 id="fine-grained-visual-semantics">Fine-grained  Visual Semantics</h3>
 <p>CLIP主要关注对象的存在, 对图像的细粒度关注不够, 如背景描述, 对象计数和对象关系</p>
-<h2 id="hallucinations-from-modality-aligning-模态对齐"><a class="markdownIt-Anchor" href="#hallucinations-from-modality-aligning-模态对齐"></a> Hallucinations from Modality Aligning 模态对齐</h2>
-<h3 id="connection-module-simplicity"><a class="markdownIt-Anchor" href="#connection-module-simplicity"></a> Connection Module Simplicity</h3>
+<h2 id="hallucinations-from-modality-aligning-模态对齐">Hallucinations from Modality Aligning 模态对齐</h2>
+<h3 id="connection-module-simplicity">Connection Module Simplicity</h3>
 <p>既有的connection module常用全连接层</p>
-<h3 id="limited-token-constraints"><a class="markdownIt-Anchor" href="#limited-token-constraints"></a> Limited Token Constraints</h3>
+<h3 id="limited-token-constraints">Limited Token Constraints</h3>
 <p>Q-Former将预定数量的随机初始化token编码为与文本对齐的视觉特征. 但token数量有限, 无法在对齐过程中对图像中存在的所有信息进行编码</p>
-<h2 id="hallucinations-from-llm-大语言模型"><a class="markdownIt-Anchor" href="#hallucinations-from-llm-大语言模型"></a> Hallucinations from LLM 大语言模型</h2>
-<h3 id="insufficient-context-attention"><a class="markdownIt-Anchor" href="#insufficient-context-attention"></a> Insufficient Context Attention</h3>
+<h2 id="hallucinations-from-llm-大语言模型">Hallucinations from LLM 大语言模型</h2>
+<h3 id="insufficient-context-attention">Insufficient Context Attention</h3>
 <p>关注生成文本, 而非更关注图像信息</p>
-<h3 id="stochastic-sampling-decoding-随机采样解码"><a class="markdownIt-Anchor" href="#stochastic-sampling-decoding-随机采样解码"></a> Stochastic Sampling Decoding 随机采样解码</h3>
+<h3 id="stochastic-sampling-decoding-随机采样解码">Stochastic Sampling Decoding 随机采样解码</h3>
 <p>将随机性引入解码过程, 有助于防止生成与目标文本编码相似的低质量文本, 生成丰富内容. 但随机性会放大产生幻觉的风险</p>
-<h3 id="capability-misalignment"><a class="markdownIt-Anchor" href="#capability-misalignment"></a> Capability Misalignment</h3>
+<h3 id="capability-misalignment">Capability Misalignment</h3>
 <p>指令微调时的扩展要求与模型固有能力有较大差异, 更可能产生幻觉</p>
-<h1 id="mitigation-of-lvlm-hallucination"><a class="markdownIt-Anchor" href="#mitigation-of-lvlm-hallucination"></a> Mitigation of LVLM Hallucination</h1>
-<h2 id="mitigation-for-data"><a class="markdownIt-Anchor" href="#mitigation-for-data"></a> Mitigation for Data</h2>
-<h3 id="bias-mitigation"><a class="markdownIt-Anchor" href="#bias-mitigation"></a> Bias Mitigation</h3>
+<h1 id="mitigation-of-lvlm-hallucination">Mitigation of LVLM Hallucination</h1>
+<h2 id="mitigation-for-data">Mitigation for Data</h2>
+<h3 id="bias-mitigation">Bias Mitigation</h3>
 <p>CIEM, 生成对比问题答案对</p>
 <p>Ferret提出用类似的假信息替换原始负样本</p>
-<h3 id="annotation-enrichment-解释更丰富"><a class="markdownIt-Anchor" href="#annotation-enrichment-解释更丰富"></a> Annotation Enrichment 解释更丰富</h3>
+<h3 id="annotation-enrichment-解释更丰富">Annotation Enrichment 解释更丰富</h3>
 <p>M-HalDetect, 由来自COCO的4000个图像描述对组成, 标记有对象存在, 相对位置和属性</p>
 <p>GRIT有110万个样本, with refer-and-ground instructions over hierarchical spatial knowledge</p>
-<h2 id="mitigation-for-vision-encoder"><a class="markdownIt-Anchor" href="#mitigation-for-vision-encoder"></a> Mitigation for Vision Encoder</h2>
-<h3 id="scaling-up-vision-resolution"><a class="markdownIt-Anchor" href="#scaling-up-vision-resolution"></a> Scaling-up Vision Resolution</h3>
+<h2 id="mitigation-for-vision-encoder">Mitigation for Vision Encoder</h2>
+<h3 id="scaling-up-vision-resolution">Scaling-up Vision Resolution</h3>
 <p>MONKEY将大图分成小图分别输入LVLM</p>
 <p>InternVL处理大图</p>
-<h3 id="perceptual-enhancement"><a class="markdownIt-Anchor" href="#perceptual-enhancement"></a> Perceptual Enhancement</h3>
+<h3 id="perceptual-enhancement">Perceptual Enhancement</h3>
 <p>大多数LVLM采用CLIP的ViT作为Vision Encoder, 关注显着物体salient objects(位于前景), 忽视一部分视觉信息. 为了增强对象级感知能力, VCoder使用额外的感知模式, 如segmentation map, depth map作为额外Vision Encoder的输入.</p>
 <p>引入额外的预训练模型来获取控件位置信息和场景图细节, 用于增强空间感知能力, 引导LVLM解决问题</p>
-<h2 id="mitigation-for-connection-module"><a class="markdownIt-Anchor" href="#mitigation-for-connection-module"></a> Mitigation for Connection Module</h2>
-<h3 id="connection-modules-enhancing"><a class="markdownIt-Anchor" href="#connection-modules-enhancing"></a> Connection Modules Enhancing</h3>
+<h2 id="mitigation-for-connection-module">Mitigation for Connection Module</h2>
+<h3 id="connection-modules-enhancing">Connection Modules Enhancing</h3>
 <p>LLaVA-1.5将linear改为MLP</p>
 <p>InterVL基于LLaMA2构建QLLaMA, 改进了Q-Former</p>
-<h3 id="alignment-training-optimizing"><a class="markdownIt-Anchor" href="#alignment-training-optimizing"></a> Alignment Training Optimizing</h3>
+<h3 id="alignment-training-optimizing">Alignment Training Optimizing</h3>
 <p>visual token和text token间添加新的学习目标使二者更接近.</p>
 <p>采用Reinforcement Learning from Human Feedback(RLHF)协调多模态</p>
-<h2 id="mitigation-for-llm"><a class="markdownIt-Anchor" href="#mitigation-for-llm"></a> Mitigation for LLM</h2>
-<h3 id="decoding-optimization"><a class="markdownIt-Anchor" href="#decoding-optimization"></a> Decoding Optimization</h3>
+<h2 id="mitigation-for-llm">Mitigation for LLM</h2>
+<h3 id="decoding-optimization">Decoding Optimization</h3>
 <p>使模型在解码过程中关注适当的上下文, 不同的解码策略</p>
-<h3 id="aligning-with-human"><a class="markdownIt-Anchor" href="#aligning-with-human"></a> Aligning with Human</h3>
+<h3 id="aligning-with-human">Aligning with Human</h3>
 <p>训练LVLM以满足人类偏好, 利用RLHF, DPO, HA-DPO, FDPO等等与人类对齐</p>
-<h2 id="mitigation-via-post-processing"><a class="markdownIt-Anchor" href="#mitigation-via-post-processing"></a> Mitigation via Post-processing</h2>
+<h2 id="mitigation-via-post-processing">Mitigation via Post-processing</h2>
 <p>post-processing方法输入visual data, user instructions和LVLM response, 输出refined response</p>
 <p>LURE: 利用幻觉的产生原因来训练</p>
 <p>Woodpecher: 纠正错误, 整合知识库中的整局来完善生成内容</p>
-<h1 id="future-directions"><a class="markdownIt-Anchor" href="#future-directions"></a> Future Directions</h1>
-<h2 id="supervision-objective"><a class="markdownIt-Anchor" href="#supervision-objective"></a> Supervision Objective</h2>
+<h1 id="future-directions">Future Directions</h1>
+<h2 id="supervision-objective">Supervision Objective</h2>
 <p>细致的监督目标很重要. 当前LVLM主要采用coarse-grained(粗粒度, 如图像标题), 这限制了理解复杂视觉信息的能力</p>
 <p>空间感知监督, 如object masked language modeling</p>
-<h2 id="enriching-modalities"><a class="markdownIt-Anchor" href="#enriching-modalities"></a> Enriching Modalities</h2>
+<h2 id="enriching-modalities">Enriching Modalities</h2>
 <p>多模态集成还增强了在单模态上的性能</p>
-<h2 id="lvlms-as-agent-智能体"><a class="markdownIt-Anchor" href="#lvlms-as-agent-智能体"></a> LVLMs as Agent 智能体</h2>
+<h2 id="lvlms-as-agent-智能体">LVLMs as Agent 智能体</h2>
 <p>让LVLM使用视觉工具(如检测和分割模型), LVLM的输出作推理</p>
-<h2 id="delving-into-interpretability"><a class="markdownIt-Anchor" href="#delving-into-interpretability"></a> Delving into Interpretability</h2>
+<h2 id="delving-into-interpretability">Delving into Interpretability</h2>
 <p>LVLM内部的幻觉机制及其解决方案有待研究</p>
-<h1 id="其他论文研读"><a class="markdownIt-Anchor" href="#其他论文研读"></a> 其他论文研读</h1>
-<h2 id="blip-2"><a class="markdownIt-Anchor" href="#blip-2"></a> BLIP-2</h2>
+<h1 id="其他论文研读">其他论文研读</h1>
+<h2 id="blip-2">BLIP-2</h2>
 <p>两阶段预训练</p>
 <ol>
 <li>
@@ -808,20 +808,20 @@ A fourth year undergraduate student at UESTC
 <p>二阶段: 学习一个全连接层, 使Q-Former的输出映射为LLM的输出</p>
 </li>
 </ol>
-<h2 id="monkey"><a class="markdownIt-Anchor" href="#monkey"></a> Monkey</h2>
+<h2 id="monkey">Monkey</h2>
 <p>只使用BLIP2生成overall caption, CC3M生成原始标注作为补充</p>
 <p>Region Proposal and Caption, 使用GRIT+PROCR生成物体框和object的名称和详细描述, 并提取图像中的文本框坐标和文本内容</p>
 <p>Segmentation and Caption: 使用SAM+BLIP2分割物体并生成对应描述</p>
 <p>Filter: 使用BLIP2对图像区域, 对象及其描述性文本的一致性评估并过滤低分匹配</p>
 <p>ChatGPT Summary: 将overall caption, 过滤后的区域框和对应描述, 过滤后的分割图和对应描述及其坐标输入ChatGPT中总结, 让ChatGPT考虑各个物体间的位置关系及其相互关联</p>
-<h2 id="lureanalyzing-and-mitigating-object-hallucination-in-large-vision-language-models"><a class="markdownIt-Anchor" href="#lureanalyzing-and-mitigating-object-hallucination-in-large-vision-language-models"></a> LURE	ANALYZING AND MITIGATING OBJECT HALLUCINATION IN LARGE VISION-LANGUAGE MODELS</h2>
+<h2 id="lure-analyzing-and-mitigating-object-hallucination-in-large-vision-language-models">LURE	ANALYZING AND MITIGATING OBJECT HALLUCINATION IN LARGE VISION-LANGUAGE MODELS</h2>
 <p>文章认为, 物体幻觉出现的三种形式为</p>
 <ul>
 <li>co-occurrence: 物体共同出现</li>
 <li>uncertainty: 不确定性</li>
 <li>position: 位置</li>
 </ul>
-<h2 id="internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks"><a class="markdownIt-Anchor" href="#internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks"></a> InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks</h2>
+<h2 id="internvl-scaling-up-vision-foundation-models-and-aligning-for-generic-visual-linguistic-tasks">InternVL: Scaling up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks</h2>
 <p>既有的connector如QFormer和linear projection都存在问题</p>
 <ol>
 <li>
@@ -851,7 +851,7 @@ A fourth year undergraduate student at UESTC
   ">
     <div>
       
-        <a href="/2024/04/10/llm/summary-reading/CoT(Chain-of-Thought)/"
+        <a href="/2024/04/10/mllm/summary-reading/MoE(Mixture%20of%20Experts)/"
           class="
             transition-all
             flex justify-center
@@ -860,13 +860,13 @@ A fourth year undergraduate student at UESTC
           ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          CoT in LLMs 笔记
+          MoE in MLLMs and LLMs 笔记
         </a>
       
     </div>
     <div>
       
-        <a href="/2024/04/10/mllm/summary-reading/MoE(Mixture%20of%20Experts)/"
+        <a href="/2024/04/10/mllm/summary-reading/%E5%A4%9A%E6%A8%A1%E6%80%81MLLM(Multimodal-Large-Language%20Models)/"
           class="
             flex 
             justify-center
@@ -875,7 +875,7 @@ A fourth year undergraduate student at UESTC
             hover:text-[var(--c-100)]
           "
         >
-          MoE in MLLMs and LLMs 笔记
+          MLLMs 笔记
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       

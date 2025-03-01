@@ -650,7 +650,7 @@ A fourth year undergraduate student at UESTC
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="多模态mllmmultimodal-large-language-models"><a class="markdownIt-Anchor" href="#多模态mllmmultimodal-large-language-models"></a> 多模态MLLM(Multimodal-Large-Language Models)</h1>
+    <h1 id="多模态mllm-multimodal-large-language-models">多模态MLLM(Multimodal-Large-Language Models)</h1>
 <p>多模态的两个挑战:</p>
 <ol>
 <li>数据对齐: 视觉和文本数据间的正确对齐</li>
@@ -678,37 +678,37 @@ A fourth year undergraduate student at UESTC
 </ul>
 </li>
 </ol>
-<h2 id="mllm的常用技术和架构"><a class="markdownIt-Anchor" href="#mllm的常用技术和架构"></a> MLLM的常用技术和架构</h2>
-<h3 id="常见技术与架构"><a class="markdownIt-Anchor" href="#常见技术与架构"></a> 常见技术与架构</h3>
-<h4 id="1-clip-对比语言-图像预训练"><a class="markdownIt-Anchor" href="#1-clip-对比语言-图像预训练"></a> 1. CLIP, 对比语言-图像预训练</h4>
+<h2 id="mllm的常用技术和架构">MLLM的常用技术和架构</h2>
+<h3 id="常见技术与架构">常见技术与架构</h3>
+<h4 id="1-clip-对比语言-图像预训练">1. CLIP, 对比语言-图像预训练</h4>
 <ul>
 <li>架构：使用文本Transformer和图像 ResNet/ViT。</li>
 <li>融合策略：后期融合，重点是学习联合嵌入空间。</li>
 <li>对齐方法：使用对比学习进行训练，其中图像-文本对在共享嵌入空间中对齐。</li>
 </ul>
-<h4 id="2-dall-e"><a class="markdownIt-Anchor" href="#2-dall-e"></a> 2. DALL-E</h4>
+<h4 id="2-dall-e">2. DALL-E</h4>
 <ul>
 <li>架构：基于 GPT-3 架构，适用于处理文本和图像标记。</li>
 <li>融合策略：早期到中期融合，其中文本和图像特征以交织的方式进行处理。</li>
 <li>对齐方法：使用自回归模型，以顺序方式理解文本和图像特征。</li>
 </ul>
-<h4 id="3-visualbert"><a class="markdownIt-Anchor" href="#3-visualbert"></a> 3. VisualBERT</h4>
+<h4 id="3-visualbert">3. VisualBERT</h4>
 <ul>
 <li>架构：类似 BERT 的模型，可处理视觉和文本信息。</li>
 <li>融合策略：与跨模式注意机制的中间融合。</li>
 <li>对齐方法：在变压器框架内使用注意力对齐文本和图像特征。</li>
 </ul>
-<h4 id="4-lxmert-learning-cross-modality-encoder-representations-from-transformers"><a class="markdownIt-Anchor" href="#4-lxmert-learning-cross-modality-encoder-representations-from-transformers"></a> 4. LXMERT (Learning Cross-Modality Encoder Representations from Transformers)：</h4>
+<h4 id="4-lxmert-learning-cross-modality-encoder-representations-from-transformers-：">4. LXMERT (Learning Cross-Modality Encoder Representations from Transformers)：</h4>
 <ul>
 <li>架构：使用单独的语言和视觉编码器，然后是跨模态编码器。</li>
 <li>融合策略：使用专用的跨模态编码器进行中间融合。</li>
 <li>对齐方法：在语言和视觉编码器之间采用跨模式注意力。</li>
 </ul>
-<h3 id="代表性项目"><a class="markdownIt-Anchor" href="#代表性项目"></a> 代表性项目</h3>
-<h4 id="1-gpt4v"><a class="markdownIt-Anchor" href="#1-gpt4v"></a> 1. GPT4V</h4>
-<h4 id="2-llava"><a class="markdownIt-Anchor" href="#2-llava"></a> 2. LLaVA</h4>
+<h3 id="代表性项目">代表性项目</h3>
+<h4 id="1-gpt4v">1. GPT4V</h4>
+<h4 id="2-llava">2. LLaVA</h4>
 <p>爱来自微软, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/669723892">Visual Instruction Tuning</a>, LLaVA是对LLaMA的改进.</p>
-<h4 id="llama-open-and-efficient-foundation-language-models"><a class="markdownIt-Anchor" href="#llama-open-and-efficient-foundation-language-models"></a> <a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2302.13971.pdf">LLaMA: Open and Efficient Foundation Language Models</a></h4>
+<h4 id="llama-open-and-efficient-foundation-language-models"><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2302.13971.pdf">LLaMA: Open and Efficient Foundation Language Models</a></h4>
 <p>motivation: Hoffmann的缩放定律: 给定计算预算, 最佳性能由更多数据训练的较小模型实现, 而非最大的模型. 来自<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2001.08361">Scaling Laws for Neural Language Models</a>, 也称大模型的缩放定律</p>
 <p>LLaMA是开源的, 所用数据集均为公开可得的数据集. 技术要点有:</p>
 <ol>
@@ -717,21 +717,21 @@ A fourth year undergraduate student at UESTC
 <li>LayerNorm --&gt; RMSNorm</li>
 <li>GeLU --&gt; SwiGLU</li>
 </ol>
-<h4 id="llava"><a class="markdownIt-Anchor" href="#llava"></a> LLaVa</h4>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-f569f515e6ef896c4f0480cc89ea7a36_1440w.webp" alt="img" /></p>
-<h5 id="结构"><a class="markdownIt-Anchor" href="#结构"></a> 结构:</h5>
+<h4 id="llava">LLaVa</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-f569f515e6ef896c4f0480cc89ea7a36_1440w.webp" alt="img"></p>
+<h5 id="结构">结构:</h5>
 <p>Vision Encoder来自预训练的CLIP的ViT-L/14, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">X</mi><mi mathvariant="bold">v</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{X_v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83611em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.161108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathbf mtight" style="margin-right:0.01597em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>经过编码器和投影后得到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">H</mi><mi mathvariant="monospace">v</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{H_{\mathtt{v}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83611em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathtt mtight">v</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, 图片的处理方式考虑到了轻量级, 成本低的特点</p>
-<h5 id="训练"><a class="markdownIt-Anchor" href="#训练"></a> 训练:</h5>
+<h5 id="训练">训练:</h5>
 <ol>
 <li>特征对齐Pre-training. 在图像-文本对只有投影矩阵是需要更新的</li>
 <li>Fine-tuning End-to-End. End-to-End端到端的学习: 特征提取的任务也交给模型去做, 直接输入原始数据. 这里使用Visual Chat和Science QA两个数据集训练. 仅保持CLIP冻结</li>
 </ol>
-<h5 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试:</h5>
+<h5 id="测试">测试:</h5>
 <p>使用数据集通过GPT-4生成, 数据集里包括30张图片的caption和目标检测信息, 每张图片对应三个问题, 共90个样本.</p>
 <p>作者本人认为LLaVA取得的效果来自data quality. 这里数据集构建的一个创新点在于使用GPT4构造language-image instruction数据集.</p>
-<h4 id="clipcontrastive-language-image-pre-training"><a class="markdownIt-Anchor" href="#clipcontrastive-language-image-pre-training"></a> CLIP(Contrastive Language-Image Pre-training)</h4>
+<h4 id="clip-contrastive-language-image-pre-training">CLIP(Contrastive Language-Image Pre-training)</h4>
 <p>爱来自OpenAI, 用于结合图像和文本的多模态模型. CLIP是用文本作为来训练可迁移的视觉模型, 同时期的DALL-E是基于文本生成</p>
-<h2 id="llm和mllm的差异"><a class="markdownIt-Anchor" href="#llm和mllm的差异"></a> LLM和MLLM的差异</h2>
+<h2 id="llm和mllm的差异">LLM和MLLM的差异</h2>
 <ol>
 <li>
 <p>输入方式</p>
@@ -746,29 +746,29 @@ A fourth year undergraduate student at UESTC
 <p>VLM设计两种模态, 更复杂</p>
 </li>
 </ol>
-<h2 id="综述a-survey-on-multimodal-large-language-models"><a class="markdownIt-Anchor" href="#综述a-survey-on-multimodal-large-language-models"></a> 综述<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2306.13549.pdf">A Survey on Multimodal Large Language Models</a></h2>
-<p>来自中科大和腾讯, [github仓库](<a target="_blank" rel="noopener" href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">BradyFU/Awesome-Multimodal-Large-Language-Models: ✨✨Latest Papers and Datasets on Multimodal Large Language Models, and Their Evaluation. (github.com)</a>)</p>
-<h3 id="mllm的三个关键技术和一个应用"><a class="markdownIt-Anchor" href="#mllm的三个关键技术和一个应用"></a> MLLM的三个关键技术和一个应用</h3>
+<h2 id="综述a-survey-on-multimodal-large-language-models">综述<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2306.13549.pdf">A Survey on Multimodal Large Language Models</a></h2>
+<p>来自中科大和腾讯, [github仓库](<a target="_blank" rel="noopener" href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">BradyFU/Awesome-Multimodal-Large-Language-Models: :sparkles::sparkles:Latest Papers and Datasets on Multimodal Large Language Models, and Their Evaluation. (github.com)</a>)</p>
+<h3 id="mllm的三个关键技术和一个应用">MLLM的三个关键技术和一个应用</h3>
 <ol>
 <li>指令微调Multimodal Instruction Tuning, M-IT</li>
 <li>上下文学习Multimodal In-Context Learning, M-ICL</li>
 <li>思维链Multimodal Chain of Thought, M-CoT</li>
 <li>LLM辅助的视觉推理LLM-Aided Visual Reasoning, LAVR</li>
 </ol>
-<h3 id="指令微调m-it"><a class="markdownIt-Anchor" href="#指令微调m-it"></a> 指令微调M-IT</h3>
+<h3 id="指令微调m-it">指令微调M-IT</h3>
 <p>Instruction, 指对任务的描述, M-IT是一种通过指令格式的数据来微调预训练MLLM的技术</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-202103894a034219608fd515d023b520_1440w.webp" alt="img" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-202103894a034219608fd515d023b520_1440w.webp" alt="img"></p>
 <p>多模态指令数据的基本形式<Instruction><Input><Response>, 指令的设计分为手工设计与GPT设计. M-IT从数据, 模态桥接和评测三个方面总结</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-be330710b015d786df7cee7014d3f532_1440w.webp" alt="img" /></p>
-<h3 id="上下文学习m-icl"><a class="markdownIt-Anchor" href="#上下文学习m-icl"></a> 上下文学习M-ICL</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-be330710b015d786df7cee7014d3f532_1440w.webp" alt="img"></p>
+<h3 id="上下文学习m-icl">上下文学习M-ICL</h3>
 <p>In-Context-Learning指给定少量样例作为Prompt输入, 激发模型潜在能力并规范化模型的输出</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-35cdff5cc101263dab4883cd0e70ea0d_1440w.webp" alt="img" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-35cdff5cc101263dab4883cd0e70ea0d_1440w.webp" alt="img"></p>
 <p>这方面的研究工作相对较少, 以Flamingo为代表</p>
 <p>MLLM的ICL能力比较依赖训练, 目前仍缺乏对样例选择和样例顺序等方面的深入研究</p>
-<h3 id="多模态思维链m-cot"><a class="markdownIt-Anchor" href="#多模态思维链m-cot"></a> 多模态思维链M-CoT</h3>
+<h3 id="多模态思维链m-cot">多模态思维链M-CoT</h3>
 <p>从模态桥接, 学习范式, 思维链配置和生成模式四个方面总结:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131162040880.png" alt="image-20240131162040880" /></p>
-<h3 id="llm辅助的视觉推理lavr"><a class="markdownIt-Anchor" href="#llm辅助的视觉推理lavr"></a> LLM辅助的视觉推理LAVR</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131162040880.png" alt="image-20240131162040880"></p>
+<h3 id="llm辅助的视觉推理lavr">LLM辅助的视觉推理LAVR</h3>
 <p>特点</p>
 <ol>
 <li>强大的zero/few-shot泛化能力</li>
@@ -776,8 +776,8 @@ A fourth year undergraduate student at UESTC
 <li>更好的互动性和可控性</li>
 </ol>
 <p>从训练范式, LLM扮演的角色和评测三个部分总结</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131165736786.png" alt="image-20240131165736786" /></p>
-<h3 id="挑战和未来方向"><a class="markdownIt-Anchor" href="#挑战和未来方向"></a> 挑战和未来方向</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131165736786.png" alt="image-20240131165736786"></p>
+<h3 id="挑战和未来方向">挑战和未来方向</h3>
 <p>MLLM存在的问题</p>
 <ol>
 <li>MLLM感知能力受限. 视觉信息获取有限, 信息容量和计算负担间有妥协</li>
@@ -786,8 +786,8 @@ A fourth year undergraduate student at UESTC
 <li>物体幻视问题. MLLM可能编造物体</li>
 <li>高效参数训练. MLLM模型容量较大</li>
 </ol>
-<h2 id="文章总结"><a class="markdownIt-Anchor" href="#文章总结"></a> 文章总结</h2>
-<h3 id="1-eyes-wide-shut-exploring-the-visual-shortcomings-of-multimodal-llms"><a class="markdownIt-Anchor" href="#1-eyes-wide-shut-exploring-the-visual-shortcomings-of-multimodal-llms"></a> 1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.06209">Eyes Wide Shut? Exploring the Visual Shortcomings of Multimodal LLMs</a></h3>
+<h2 id="文章总结">文章总结</h2>
+<h3 id="1-eyes-wide-shut-exploring-the-visual-shortcomings-of-multimodal-llms">1. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.06209">Eyes Wide Shut? Exploring the Visual Shortcomings of Multimodal LLMs</a></h3>
 <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/s89eaZ3um1Yl2qBGHNlCdQ">LLM存在重大缺陷？这篇论文团队成员堪称「豪华」！！！</a></p>
 <p><strong>motivation</strong>: 视觉方面, 模型往往只基于实例级别的对比语言-图像预训练(CLIP), CLIP的embedding中识别不准确主要来源于那些视觉上不同但编码相似的图像. 在特殊场景上, 不如随机猜测</p>
 <p><strong>method</strong>: 某些系统性的视觉模式容易产生误解. 参考MMVP基准测试中的问题和选项, 将这些视觉模式转换为语言描述. 容易产生误解的九种视觉模式如下:</p>
@@ -806,7 +806,7 @@ A fourth year undergraduate student at UESTC
 <p>过去有关CLIP在MVP基准测试的研究表明, 扩大CLIP规模无助于解决视觉模式问题, 仅在&quot;颜色和外观&quot;与&quot;状态和条件&quot;两种视觉模式上有帮助. 实验表明, CLIP在特定视觉模式上表现不佳时, MLLM也会显示出相似的不足.</p>
 <p><strong>全新特征混合(MoF)方法</strong></p>
 <p>MoF方法将视觉的自监督学习特征(DINOv2)和CLIP特征结合在一起, 在LLaVA上实验</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131203820049.png" alt="image-20240131203820049" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131203820049.png" alt="image-20240131203820049"></p>
 <ul>
 <li>标准MLLM使用既有CLIP预训练视觉编码器</li>
 <li>加性特征混合(A-MoF MLLM)大语言模型. Adapter前CLIP和DINOv2特征进行线性混合</li>
@@ -828,7 +828,7 @@ A fourth year undergraduate student at UESTC
 </ul>
 </li>
 </ol>
-<h3 id="2-vila-on-pre-training-for-visual-language-models"><a class="markdownIt-Anchor" href="#2-vila-on-pre-training-for-visual-language-models"></a> 2. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2312.07533.pdf">VILA: On Pre-training for Visual Language Models</a></h3>
+<h3 id="2-vila-on-pre-training-for-visual-language-models">2. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2312.07533.pdf">VILA: On Pre-training for Visual Language Models</a></h3>
 <p><strong>motivation and method</strong></p>
 <p>MLLMs的框架分为两类</p>
 <ol>
@@ -837,7 +837,7 @@ A fourth year undergraduate student at UESTC
 </li>
 <li>
 <p>基于自回归, 视觉和文本tokens拼接到一起作为输入, 如Fuyu, PaLM-E, LLaVA</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/FpNegicE8tU4IYGvynEiaZxgrW8ibMtS5MbVlf90yQh1KXpLqfF2l9u8boLDFoiarrkrxo5dyzxn4HSCKhiaffS7PyA/640?wx_fmt=png&amp;from=appmsg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/FpNegicE8tU4IYGvynEiaZxgrW8ibMtS5MbVlf90yQh1KXpLqfF2l9u8boLDFoiarrkrxo5dyzxn4HSCKhiaffS7PyA/640?wx_fmt=png&amp;from=appmsg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p>
 <p>自回归MLLMs包括Visual Encoder(VE), LLM和连接两个模态的Projector, Projector可以是Linear(LLaVA)或TransfomerBlock(InstructBLIP, OpenFlamingo)</p>
 <ul>
 <li>Step0: Project init. 图片-文本对训练projector, 如InsructBlip, BLIP-2, LLaVA</li>
@@ -852,7 +852,7 @@ A fourth year undergraduate student at UESTC
 <li>fine-tuning: 训projector和LLM</li>
 </ol>
 <p>结论看出, 容量更大的TransformerBlock作为project, LLM微调的收益更明显, 只训projector性能很差; 容量较小的linear作为project, 只训projector能得到更好的效果. Step1预训练期间冻结LLM会导致few-shot性能变差, 也即会影响泛化性. ---- 调整LLM会为视觉和文本的embedding提供更好的对齐, 证据如下</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131223531725.png" alt="image-20240131223531725" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240131223531725.png" alt="image-20240131223531725"></p>
 <p>图文交织数据很重要</p>
 <ul>
 <li>图文样本对数据. 图片和文本一一对应, 如COYO</li>
@@ -868,7 +868,7 @@ A fourth year undergraduate student at UESTC
 <li>图文交织数据比图片-文本对数据效果好</li>
 <li>指令微调可以恢复LLM的能力</li>
 </ol>
-<h3 id="3-benchlmm-benchmarking-cross-style-visual-capability-of-large-multimodal-models"><a class="markdownIt-Anchor" href="#3-benchlmm-benchmarking-cross-style-visual-capability-of-large-multimodal-models"></a> 3. <a target="_blank" rel="noopener" href="https://aifeg.github.io/BenchLMM/">BenchLMM: Benchmarking Cross-style Visual Capability of Large Multimodal Models</a></h3>
+<h3 id="3-benchlmm-benchmarking-cross-style-visual-capability-of-large-multimodal-models">3. <a target="_blank" rel="noopener" href="https://aifeg.github.io/BenchLMM/">BenchLMM: Benchmarking Cross-style Visual Capability of Large Multimodal Models</a></h3>
 <p><strong>motivation</strong></p>
 <p>BenchLMM 测试集专为评估大型多模态模型在处理不同视觉风格时的能力而设计, 包括艺术风格, 传感器风格和应用风格三个维度</p>
 <ul>
@@ -879,7 +879,7 @@ A fourth year undergraduate student at UESTC
 <p><strong>method and conclusion</strong></p>
 <p>风格提示增强Style Prompt Enhancement(简称SPE). 模型自行判断图像风格, 再进行问题解答, 这一过程不需要对模型进行额外的训练或改造, 利用模型本身提升其在多样化视觉环境中的表现.</p>
 <p>模型的错误反思能力. 如GPT-4V能识别并解释其错误答案的原因, 还能在错误反思过程中提供详细的推理链条</p>
-<h3 id="4-prompting-large-vision-language-models-for-compositional-reasoning"><a class="markdownIt-Anchor" href="#4-prompting-large-vision-language-models-for-compositional-reasoning"></a> 4. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2401.11337.pdf">Prompting Large Vision-Language Models for Compositional Reasoning</a></h3>
+<h3 id="4-prompting-large-vision-language-models-for-compositional-reasoning">4. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2401.11337.pdf">Prompting Large Vision-Language Models for Compositional Reasoning</a></h3>
 <p><strong>motivation</strong></p>
 <p>CLIP是图像和文本在embedding上对齐, 在视觉语言组合性上具有局限性, 探究原因如下:</p>
 <ol>
@@ -892,7 +892,7 @@ A fourth year undergraduate student at UESTC
 <li>使用预训练的VLM为图像生成文本描述. 通过使用关键词K来引导图像描述的生成, 以确保VLM专注于图像细节, 以便于图像-文本匹配</li>
 <li>LLM推理与解释. 鉴于LLM展示出令人印象深刻的zero-shot推理能力，我们提示LLM对生成的图像描述和给定的字幕进行推理，并为Winoground任务选择答案。</li>
 </ol>
-<h3 id="5-cocot-contrastive-chain-of-thought-prompting-for-large-multimodal-models-with-multiple-image-inputs"><a class="markdownIt-Anchor" href="#5-cocot-contrastive-chain-of-thought-prompting-for-large-multimodal-models-with-multiple-image-inputs"></a> 5. <a href="%5Barxiv.org/pdf/2401.02582.pdf%5D(https://arxiv.org/pdf/2401.02582.pdf)">CoCoT: Contrastive Chain-of-Thought Prompting for Large Multimodal Models with Multiple Image Inputs</a></h3>
+<h3 id="5-cocot-contrastive-chain-of-thought-prompting-for-large-multimodal-models-with-multiple-image-inputs">5. <a href="%5Barxiv.org/pdf/2401.02582.pdf%5D(https://arxiv.org/pdf/2401.02582.pdf)">CoCoT: Contrastive Chain-of-Thought Prompting for Large Multimodal Models with Multiple Image Inputs</a></h3>
 <p><strong>motivation</strong></p>
 <p>在多图像输入时的问题:</p>
 <ol>
@@ -911,7 +911,7 @@ A fourth year undergraduate student at UESTC
   ">
     <div>
       
-        <a href="/2024/04/10/mllm/summary-reading/MoE(Mixture%20of%20Experts)/"
+        <a href="/2024/04/10/mllm/summary-reading/LVLMs%E5%B9%BB%E8%A7%89%E7%BB%BC%E8%BF%B0/"
           class="
             transition-all
             flex justify-center
@@ -920,7 +920,7 @@ A fourth year undergraduate student at UESTC
           ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          MoE in MLLMs and LLMs 笔记
+          A Survey on Hallucination in Large Vision-Language Models 阅读
         </a>
       
     </div>

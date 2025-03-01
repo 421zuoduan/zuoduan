@@ -669,7 +669,7 @@ A fourth year undergraduate student at UESTC
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="速通"><a class="markdownIt-Anchor" href="#速通"></a> 速通</h1>
+    <h1 id="速通">速通</h1>
 <p>操作系统的基本特征包括:</p>
 <ul>
 <li>并发: 两个或多个事件在同一时间间隔内发生</li>
@@ -698,7 +698,7 @@ A fourth year undergraduate student at UESTC
 </ul>
 </li>
 </ul>
-<h1 id="绪论"><a class="markdownIt-Anchor" href="#绪论"></a> 绪论</h1>
+<h1 id="绪论">绪论</h1>
 <p>操作系统的功能:</p>
 <ol>
 <li>处理机管理</li>
@@ -810,7 +810,7 @@ A fourth year undergraduate student at UESTC
 <li>请求并保持</li>
 <li>循环等待</li>
 </ol>
-<h1 id="进程"><a class="markdownIt-Anchor" href="#进程"></a> 进程</h1>
+<h1 id="进程">进程</h1>
 <p>进程: 具有独立功能的程序在一个数据集合上的一次动态执行过程</p>
 <ol>
 <li>动态性</li>
@@ -827,7 +827,7 @@ A fourth year undergraduate student at UESTC
 <li>PCB(进程控制块)</li>
 </ul>
 <p>进程状态图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/%60F@DN8W3VT@7WZIYGAFO1QP.png" alt="进程状态图" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/%60F@DN8W3VT@7WZIYGAFO1QP.png" alt="进程状态图"></p>
 <p>操作系统的功能</p>
 <ol>
 <li>
@@ -840,7 +840,7 @@ A fourth year undergraduate student at UESTC
 </li>
 </ol>
 <p>进程控制块</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240706152004647.png" alt="进程控制块 PCB" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/image-20240706152004647.png" alt="进程控制块 PCB"></p>
 <p>模式切换: 系统模式和用户模式间的相互转换</p>
 <ul>
 <li>模式切换的原因: 系统调用或中断</li>
@@ -892,11 +892,11 @@ A fourth year undergraduate student at UESTC
 <p>决定就绪队列中哪个获得处理器</p>
 </li>
 </ol>
-<h1 id="io-管理与磁盘调度"><a class="markdownIt-Anchor" href="#io-管理与磁盘调度"></a> IO 管理与磁盘调度</h1>
-<h2 id="虚拟内存技术"><a class="markdownIt-Anchor" href="#虚拟内存技术"></a> 虚拟内存技术</h2>
+<h1 id="io-管理与磁盘调度">IO 管理与磁盘调度</h1>
+<h2 id="虚拟内存技术">虚拟内存技术</h2>
 <p>讲作业分多次调入内存, 可以使用分页式, 分段式, 段页式存储管理</p>
-<h3 id="页表的三种形式"><a class="markdownIt-Anchor" href="#页表的三种形式"></a> 页表的三种形式</h3>
-<h4 id="分页式"><a class="markdownIt-Anchor" href="#分页式"></a> 分页式</h4>
+<h3 id="页表的三种形式">页表的三种形式</h3>
+<h4 id="分页式">分页式</h4>
 <p>内存分为若干个物理块, 由一个页表来维护映射关系</p>
 <ul>
 <li>优点
@@ -912,7 +912,7 @@ A fourth year undergraduate student at UESTC
 </ol>
 </li>
 </ul>
-<h4 id="分段式"><a class="markdownIt-Anchor" href="#分段式"></a> 分段式</h4>
+<h4 id="分段式">分段式</h4>
 <p>地址空间被分为若干个段, 每个段的长度不同, 可以动态改变</p>
 <ul>
 <li>优点
@@ -927,7 +927,7 @@ A fourth year undergraduate student at UESTC
 </ul>
 </li>
 </ul>
-<h4 id="段页式"><a class="markdownIt-Anchor" href="#段页式"></a> 段页式</h4>
+<h4 id="段页式">段页式</h4>
 <p>作业地址空间先分为几个几个逻辑段, 每个段有自己的段号, 每段分成若干固定大小的页</p>
 <p>高级语言的源代码转化为进程的 3 个基本步骤</p>
 <ol>
@@ -935,36 +935,36 @@ A fourth year undergraduate student at UESTC
 <li>链接: 链接程序将编译后的目标模块链接一起形成装入模块</li>
 <li>装入: 装入程序将装入模块装入物理内存</li>
 </ol>
-<h3 id="页面置换算法"><a class="markdownIt-Anchor" href="#页面置换算法"></a> 页面置换算法</h3>
+<h3 id="页面置换算法">页面置换算法</h3>
 <ol>
 <li>OPT 最优置换算法:理想情况, 换出未来最长时间不再用的页面</li>
 <li>FIFO 先进先出算法</li>
 <li>LRU 最近最久未使用算法: 换出历史最长时间不再用的页面</li>
 <li>简单 Clock 算法</li>
 </ol>
-<h2 id="内存分配技术"><a class="markdownIt-Anchor" href="#内存分配技术"></a> 内存分配技术</h2>
+<h2 id="内存分配技术">内存分配技术</h2>
 <ul>
 <li>单一连续分配</li>
 <li>固定分区分配</li>
 <li>动态分区分配</li>
 <li>可重定位分区分配</li>
 </ul>
-<h3 id="单一连续分配"><a class="markdownIt-Anchor" href="#单一连续分配"></a> 单一连续分配</h3>
+<h3 id="单一连续分配">单一连续分配</h3>
 <p>内存空间分成系统区和用户区, 用户区分配给一个进程</p>
-<h3 id="分区管理"><a class="markdownIt-Anchor" href="#分区管理"></a> 分区管理</h3>
+<h3 id="分区管理">分区管理</h3>
 <p>将内存微分大小相等或不等的分区, 每个应用进程占用一个分区</p>
-<h4 id="固定分区"><a class="markdownIt-Anchor" href="#固定分区"></a> 固定分区</h4>
-<h4 id="动态分区"><a class="markdownIt-Anchor" href="#动态分区"></a> 动态分区</h4>
-<h4 id="内存分配算法"><a class="markdownIt-Anchor" href="#内存分配算法"></a> 内存分配算法</h4>
-<h5 id="最先适配算法-ff"><a class="markdownIt-Anchor" href="#最先适配算法-ff"></a> 最先适配算法 (FF)</h5>
+<h4 id="固定分区">固定分区</h4>
+<h4 id="动态分区">动态分区</h4>
+<h4 id="内存分配算法">内存分配算法</h4>
+<h5 id="最先适配算法-ff">最先适配算法 (FF)</h5>
 <p>按分区地址排序, 从头查找, 找到符合要求的第一个分区</p>
-<h5 id="循环最先适配法"><a class="markdownIt-Anchor" href="#循环最先适配法"></a> 循环最先适配法</h5>
+<h5 id="循环最先适配法">循环最先适配法</h5>
 <p>从上次分配的分区起中查找</p>
-<h5 id="最佳适配算法"><a class="markdownIt-Anchor" href="#最佳适配算法"></a> 最佳适配算法</h5>
+<h5 id="最佳适配算法">最佳适配算法</h5>
 <p>找能放下的最小分区</p>
-<h5 id="最差适配算法"><a class="markdownIt-Anchor" href="#最差适配算法"></a> 最差适配算法</h5>
+<h5 id="最差适配算法">最差适配算法</h5>
 <p>找能放下的最大分区</p>
-<h1 id="文件系统"><a class="markdownIt-Anchor" href="#文件系统"></a> 文件系统</h1>
+<h1 id="文件系统">文件系统</h1>
 
   </article>
 
