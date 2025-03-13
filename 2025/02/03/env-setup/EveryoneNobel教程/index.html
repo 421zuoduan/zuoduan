@@ -613,12 +613,12 @@ A fourth year undergraduate student at UESTC
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>github 上的教程实在是过于简略了, 对于ComfyUI毫无基础的我实在是少了太多东西, 梳理下应该怎么做. <a target="_blank" rel="noopener" href="https://github.com/16131zzzzzzzz/EveryoneNobel">EveryoneNobel Github Link</a></p>
-<h2 id="环境安装"><a class="markdownIt-Anchor" href="#环境安装"></a> 环境安装</h2>
+<h2 id="环境安装">环境安装</h2>
 <p>首先 clone 项目文件夹</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/16131zzzzzzzz/EveryoneNobel.git</span><br></pre></td></tr></table></figure>
 <p>配环境</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n everyonenobel python=3.10</span><br><span class="line">conda activate everyonenobel</span><br><span class="line">npm install</span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-<h2 id="comfyui-下载及配置"><a class="markdownIt-Anchor" href="#comfyui-下载及配置"></a> ComfyUI 下载及配置</h2>
+<h2 id="comfyui-下载及配置">ComfyUI 下载及配置</h2>
 <p>ComfyUI 是画图工作流的 UI 界面, 是本项目运行的基础.</p>
 <ol>
 <li><strong>手动安装 <a target="_blank" rel="noopener" href="https://github.com/comfyanonymous/ComfyUI">ComfyUI</a></strong>, 里面有一项 Direct Links to download, 下载压缩包, 解压后就是 ComfyUI 的项目文件夹. 后续操作均在该文件夹下进行.</li>
@@ -628,7 +628,7 @@ A fourth year undergraduate student at UESTC
 <li><strong>安装缺失节点</strong>. 在 ComfyUI 界面上点击 Load, 加载 EveryoneNobel 项目文件夹 <code>resources\workflow\nobel_workflow_for_install.json</code>, 然后点击 Manager, 选择 Install Missing Custom Nodes, 安装完成后点击下方 Restart 以重启, 重启过程较慢. 由于我是先打开 ComfyUI 的 <code>run_nvidia_gpu.bat</code> 加载节点下载的, 也不知道问题出在哪里了, 有好多问题.</li>
 <li><strong>指定 ComfyUI 工作流中的模型</strong>, 参考<a target="_blank" rel="noopener" href="https://github.com/16131zzzzzzzz/EveryoneNobel/blob/main/README_model.md">指南</a>第二步, 我这里不用动</li>
 </ol>
-<h2 id="problem"><a class="markdownIt-Anchor" href="#problem"></a> Problem</h2>
+<h2 id="problem">Problem</h2>
 <ol>
 <li>
 <p>在上述第4步运行 ComfyUI 时, LCM_Inpaint_Outpaint_Comfy 节点导入失败 <code>No module named 'diffusers.models.unet_2d_blocks'</code>, 原因是节点更新后文件路径改变了, <a target="_blank" rel="noopener" href="https://www.zmthome.com/%e8%bf%90%e8%90%a5%e6%8a%80%e5%b7%a7/7653.html/">解决方法</a></p>
@@ -647,15 +647,15 @@ A fourth year undergraduate student at UESTC
 </li>
 </ol>
 <p>我更新 ComfyUI 到最新版后 LCM 总是有问题, 回退到v0.2.6后把 LCM 卸载后就能用了, amazing</p>
-<h2 id="运行指令"><a class="markdownIt-Anchor" href="#运行指令"></a> 运行指令</h2>
+<h2 id="运行指令">运行指令</h2>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\CS\EveryoneNobel\ComfyUI_windows_portable_nvidia\ComfyUI_windows_portable\python_embeded\python.exe main.py --port 6006 --listen 127.0.0.1</span><br></pre></td></tr></table></figure>
-<h2 id="效果图"><a class="markdownIt-Anchor" href="#效果图"></a> 效果图</h2>
+<h2 id="效果图">效果图</h2>
 <p>作者给的 young people 权重出来效果显老, 我调到2.5了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/459fc55c54b8f7c302e3e60dd38851aa.png" alt="马斯克效果图" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/459fc55c54b8f7c302e3e60dd38851aa.png" alt="马斯克效果图"></p>
 <p>作者的 lora 训出来感觉效果一般, 不过训练样本本身很少也是了, 我弄了半天也没弄出几张一眼看出来是本人的图片, 照片出来的感觉都像是欧美人</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/ComfyUI_temp_kolnp_00005_.png" alt="效果图1" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/ComfyUI_temp_stooh_00001_.png" alt="效果图2" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/ComfyUI_temp_pyogc_00004_.png" alt="效果图3" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/ComfyUI_temp_kolnp_00005_.png" alt="效果图1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/ComfyUI_temp_stooh_00001_.png" alt="效果图2"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/ComfyUI_temp_pyogc_00004_.png" alt="效果图3"></p>
 
   </article>
 
