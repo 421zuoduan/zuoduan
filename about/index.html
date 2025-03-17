@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-cn,en,default">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="崔若晨 Ruochen Cui">
+
+
+  <meta name="subtitle" content="崔若晨">
+
+
+  <meta name="description" content="电子科技大学四年级本科生
+
+A fourth year undergraduate student at UESTC
+">
+
+
+  <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence">
+
+
+<title>About Me | Ruochen Cui</title>
+
+
+
+<link rel="icon" href="/zuoduan/web_ico.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/zuoduan/css/main.css">
+
+
+<link rel="stylesheet" href="/zuoduan/css/search.css">
+
+
+
+<script src="/zuoduan/lib/jquery.min.js"></script>
+
+
+<script src="/zuoduan/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a href="/zuoduan/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+      Ruochen Cui
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/archives" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:inbox-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Posts</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/publications" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:science-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Publications</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/about" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:user-info-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>About</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/categories" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-2-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Categories</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/tags" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Tags</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./index" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:home-2-fill" width="22">
+        </iconify-icon>
+        
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center">
+
+      <!-- TODO: Add search icon here -->
+
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]" width="24" id="theme-icon">
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex p-1 mx-1 sm:hidden">
+        <a class="w-5 h-5" aria-hidden="true" id="open-menu">
+          <iconify-icon width="24" icon="mingcute:menu-fill" class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+          </iconify-icon>
+        </a>
+        <a class="w-5 h-5 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon width="24" icon="mingcute:close-circle-fill" class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content" class="
+        flex
+        flex-row
+        justify-center
+        items-center
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/archives" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:inbox-fill" width="22">
+      </iconify-icon>
+      <p>
+        posts
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/publications" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:science-fill" width="22">
+      </iconify-icon>
+      <p>
+        publications
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/about" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:user-info-fill" width="22">
+      </iconify-icon>
+      <p>
+        about
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/categories" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:classify-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        categories
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/tags" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:tag-fill" width="22">
+      </iconify-icon>
+      <p>
+        tags
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./index" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:home-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        home
+      </p>
+    </a>
+    
+    
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/zuoduan/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/zuoduan/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">About Me</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-04-10</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2025-02-03</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>509 words, 2 min</span>
+            </span>
+            <!-- Categories -->
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <img src="../images/portrait_everyonenobel.png" alt="Portrait of Ruochen Cui"/>
+<p><iconify-icon icon="mingcute:world-2-fill"></iconify-icon> <a href="#Chinese-Version-%E4%B8%AD%E6%96%87%E7%89%88%E6%9C%AC">中文</a></p>
+<p><iconify-icon icon="mingcute:link-fill"></iconify-icon> Social links:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=HmQORb8AAAAJ&amp;hl=zh-CN&amp;oi=ao">Google Scholar</a></li>
+</ul>
+<!-- - [X (Twitter)](https://www.twitter.com/DonnyChan123) -->
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://space.bilibili.com/2051636097?spm_id_from=333.1007.0.0">B站</a></li>
+</ul>
+<p><iconify-icon icon="mingcute:mail-fill"></iconify-icon> Email:</p>
+<ul>
+<li><a href="mailto:ruochencui421@gmail.com">ruochencui421@gmail.com</a></li>
+<li><a href="mailto:ruochencui421@foxmail.com">ruochencui421@foxmail.com</a></li>
+</ul>
+<hr />
+<p>你好, hello, hey!</p>
+<p>My name is Ruochen Cui (崔若晨).</p>
+<p>I’m a 4th year undergraduate student at the <a target="_blank" rel="noopener" href="https://www.uestc.edu.cn/">University of Electronic Science and Technology of China</a>(UESTC), advised by <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?hl=zh-CN&amp;user=-bk1CrcAAAAJ">Xiaofeng Zhu</a>, <a target="_blank" rel="noopener" href="https://feinanshan.github.io/">Ping Hu</a> and <a target="_blank" rel="noopener" href="https://zongqianwu.github.io/">Zongqian Wu</a> Before that, I was advised by <a target="_blank" rel="noopener" href="https://liangjiandeng.github.io/">Liangjian Deng</a>, <a href="XiaoXiao-Woo.github.io">Xiao Wu</a> and <a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=JZag1WIAAAAJ&amp;hl=zh-CN&amp;oi=ao">Shangqi Deng</a></p>
+<p>In the future, I will be pursuing my studies at <a target="_blank" rel="noopener" href="http://www.iie.cas.cn/">Institute of Information Engineering, Chinese Academy of Science</a>(IIE, CAS), where I will be conducting research under the guidance of <a target="_blank" rel="noopener" href="https://qmhuang-ucas.github.io/">Qingming Huang</a> and <a target="_blank" rel="noopener" href="https://qianqianxu010.github.io/">Qianqian Xu</a>, there is so much to learn!</p>
+<p><a href="/pdf/cv.pdf">📄 My resume (last updated: August, 2024)</a></p>
+<h2 id="education"><a class="markdownIt-Anchor" href="#education"></a> Education</h2>
+<hr />
+<p><strong>B.E. in Artificial Intelligence (人工智能)</strong></p>
+<div align="right">Sep 2021 - Now</div>
+<p>UESTC, China</p>
+<!-- *Research direction: image restoration, large language models*
+
+*Advisor: Prof. Liangjian Deng* -->
+<hr />
+<p><strong>General Studies in Natural Science (Studiespesialisering med realfag)</strong></p>
+<div align="right">
+Sep 2018 - Jun 2021
+</div>
+<p>Hengshui High School, China</p>
+<hr />
+<h2 id="personal-background"><a class="markdownIt-Anchor" href="#personal-background"></a> Personal Background</h2>
+<p>I am from Hebei province in China, but I grew up in Beijing. I attended Hengshui High School in Hebei. Now I am an undergraduate student at UESTC (University of Electronic Science and Technology of China).</p>
+<h2 id="interests"><a class="markdownIt-Anchor" href="#interests"></a> Interests</h2>
+<p>🎵 Music: Post Rock, Metal, Neo-Classicism, Shoegaze, J-pop</p>
+<p>🎮 Entertainment: Music, video games, art exhibition, anime, read, etc.</p>
+<hr />
+<blockquote>
+<p>Below is the Chinese version of this text, no need to read it if you understand the above text already.</p>
+</blockquote>
+<h2 id="chinese-version"><a class="markdownIt-Anchor" href="#chinese-version"></a> Chinese Version</h2>
+<p>我叫崔若晨。</p>
+<p>我是<a target="_blank" rel="noopener" href="https://www.uestc.edu.cn/">电子科技大学</a>的四年级本科生，现在我在<a target="_blank" rel="noopener" href="https://scholar.google.com/citations?hl=zh-CN&amp;user=-bk1CrcAAAAJ">朱晓峰</a>老师、<a target="_blank" rel="noopener" href="https://feinanshan.github.io/">胡平</a>老师、<a target="_blank" rel="noopener" href="https://zongqianwu.github.io/">吴宗谦</a>博士的指导下进行科研工作。此前，我曾在<a target="_blank" rel="noopener" href="https://liangjiandeng.github.io/">邓良剑</a>老师、<a href="XiaoXiao-Woo.github.io">吴潇</a>博士、<a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=JZag1WIAAAAJ&amp;hl=zh-CN&amp;oi=ao">邓尚琦</a>博士的指导下进行科研工作。</p>
+<p>我刚刚开始学术生涯，未来我将前往<a target="_blank" rel="noopener" href="http://www.iie.cas.cn/">中科院信工所</a>学习，在<a target="_blank" rel="noopener" href="https://qmhuang-ucas.github.io/">黄庆明</a>老师和<a target="_blank" rel="noopener" href="https://qianqianxu010.github.io/">许倩倩</a>老师的指导下从事科研工作，还有很多要学习！</p>
+<!-- [📃 我的简历（最后更新：2022年12月）](/pdf/cv.pdf) -->
+<p><a href="/pdf/cv.pdf">📄 我的简历 (最近更新: August, 2024)</a></p>
+<h3 id="教育背景"><a class="markdownIt-Anchor" href="#教育背景"></a> 教育背景</h3>
+<ul>
+<li>
+<p><strong>本科：计算机科学与技术</strong></p>
+<p>电子科技大学，中国</p>
+<p>2021年9月 - 现在</p>
+</li>
+<li>
+<p><strong>高中：自然科学通识教育</strong></p>
+<p>衡水中学，中国河北</p>
+<p>2018年9月 - 2021年6月</p>
+</li>
+</ul>
+<h3 id="个人背景"><a class="markdownIt-Anchor" href="#个人背景"></a> 个人背景</h3>
+<p>我是河北人，在北京长大，高中就读于河北衡水中学。现在我是电子科技大学（University of Electronic Science and Technology of China）的本科生。</p>
+<h3 id="兴趣爱好"><a class="markdownIt-Anchor" href="#兴趣爱好"></a> 兴趣爱好</h3>
+<p>🎵 音乐：后摇、金属、新古典、盯鞋、J-pop</p>
+<p>🎮 娱乐：音乐、电子游戏、艺术展览、动漫、阅读等</p>
+<h3 id="友情链接"><a class="markdownIt-Anchor" href="#友情链接"></a> 友情链接</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://baoduoxu.github.io/">Baoduo Xu</a></li>
+<li><a target="_blank" rel="noopener" href="https://zongqianwu.github.io/">Zongqian Wu</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.zbwer.work">Bowen Zhang</a></li>
+<li><a target="_blank" rel="noopener" href="https://sakee.cn/">SAKE</a></li>
+</ul>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+    </div>
+    <div>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+  <script src="https://giscus.app/client.js"
+  data-repo="421zuoduan/blog-giscus-discussion"
+  data-repo-id="R_kgDONKEKag"
+  data-category="Announcements"
+  data-category-id="DIC_kwDONKEKas4Cj9R8"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="1"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+</script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/zuoduan/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/zuoduan/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/zuoduan/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">
+            <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
+        </a>
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="ZhiHu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">
+            <iconify-icon width="28" icon="ri:zhihu-line"></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/zuoduan/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

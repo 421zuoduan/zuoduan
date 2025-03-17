@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="zh-cn,en,default">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="崔若晨 Ruochen Cui">
+
+
+  <meta name="subtitle" content="崔若晨">
+
+
+  <meta name="description" content="电子科技大学四年级本科生
+
+A fourth year undergraduate student at UESTC
+">
+
+
+  <meta name="keywords" content="Ruochen Cui,崔若晨,Artificial Intelligence">
+
+
+<title>基于 HA-DPO 和 LLaVA 的代码库进行训练和测试 | Ruochen Cui</title>
+
+
+
+<link rel="icon" href="/zuoduan/web_ico.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/zuoduan/css/main.css">
+
+
+<link rel="stylesheet" href="/zuoduan/css/search.css">
+
+
+
+<script src="/zuoduan/lib/jquery.min.js"></script>
+
+
+<script src="/zuoduan/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a href="/zuoduan/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+      Ruochen Cui
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/archives" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:inbox-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Posts</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/publications" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:science-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Publications</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/about" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:user-info-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>About</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/categories" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-2-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Categories</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./zuoduan/tags" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Tags</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./index" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:home-2-fill" width="22">
+        </iconify-icon>
+        
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center">
+
+      <!-- TODO: Add search icon here -->
+
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]" width="24" id="theme-icon">
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex p-1 mx-1 sm:hidden">
+        <a class="w-5 h-5" aria-hidden="true" id="open-menu">
+          <iconify-icon width="24" icon="mingcute:menu-fill" class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+          </iconify-icon>
+        </a>
+        <a class="w-5 h-5 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon width="24" icon="mingcute:close-circle-fill" class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content" class="
+        flex
+        flex-row
+        justify-center
+        items-center
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/archives" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:inbox-fill" width="22">
+      </iconify-icon>
+      <p>
+        posts
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/publications" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:science-fill" width="22">
+      </iconify-icon>
+      <p>
+        publications
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/about" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:user-info-fill" width="22">
+      </iconify-icon>
+      <p>
+        about
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/categories" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:classify-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        categories
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./zuoduan/tags" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:tag-fill" width="22">
+      </iconify-icon>
+      <p>
+        tags
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./index" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:home-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        home
+      </p>
+    </a>
+    
+    
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/zuoduan/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/zuoduan/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">基于 HA-DPO 和 LLaVA 的代码库进行训练和测试</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-03-25</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-10-14</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>9.9k words, 45 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/zuoduan/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/zuoduan/tags/research/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        research
+      </a>
+    
+      <a href="/zuoduan/tags/note/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        note
+      </a>
+    
+      <a href="/zuoduan/tags/mllm/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        mllm
+      </a>
+    
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <h1 id="基于ha-dpo和llava的代码库进行训练和测试"><a class="markdownIt-Anchor" href="#基于ha-dpo和llava的代码库进行训练和测试"></a> 基于HA-DPO和LLaVA的代码库进行训练和测试</h1>
+<h2 id="对-github-repo-的理解"><a class="markdownIt-Anchor" href="#对-github-repo-的理解"></a> 对 github repo 的理解</h2>
+<p><code>MODEL_ZOO</code>: 包含了各种预训练的机器学习模型的权重和配置</p>
+<p><code>Demo</code>: 可使用图形界面或命令行进行推理, 测试模型效果</p>
+<p><code>Gradio Web UI</code>: 基于 Gradio 库构建的Web用户界面</p>
+<ul>
+<li>controller: 控制器, 管理 Gradio 应用程序的状态和行为. 接收用户请求, 处理用户输入, 调用响应函数执行请求的操作</li>
+<li>Web Server: Web 服务器, 接收用户的 HTTP 请求并传递给控制器</li>
+<li>Gradio Web Server: Gradio Web 服务器, 与 Web 服务器相似, 专门用于托管 Gradio Web 应用程序. 通过调用 Gradio 库中的函数来启动 Web 服务器</li>
+<li>SGLang Worker: SGLang 工作器, 用于定义模型和界面间通信的语言</li>
+<li>Model Worker: 模型工作器, 是一个独立的进程或线程，负责加载、运行和管理模型, 启动模型工作器后可以接收输入并产生输出</li>
+</ul>
+<p><code>CLI Inference</code>: CLI Inference是指通过命令行界面 (CLI)进行推断 (Inference) 的过程</p>
+<p><code>legacy model</code>: 旧有的模型</p>
+<h2 id="linux-和-vscode-的使用"><a class="markdownIt-Anchor" href="#linux-和-vscode-的使用"></a> linux 和 vscode 的使用</h2>
+<h3 id="linux-常用命令"><a class="markdownIt-Anchor" href="#linux-常用命令"></a> linux 常用命令</h3>
+<p><code>cd</code>, <code>ls</code></p>
+<p><code>cd ~</code>: 进入 home 目录</p>
+<p><code>pwd</code>: 查看当前目录</p>
+<p><code>echo $PATH</code>: 查看当前环境配置</p>
+<p><code>du -ah</code>: 显示文件夹内文件及其子文件夹的大小</p>
+<p><code>df -h</code>: 查看磁盘使用情况</p>
+<p><code>ps -ef</code>: 显示当前运行的所有进程</p>
+<p><code>nvidia-smi</code>: 显示当前时刻 GPU 使用情况</p>
+<p><code>nvitop</code>: 实时显示 GPU 使用情况 (服务器未安装)</p>
+<p><code>top</code>: CPU 实时使用情况, 按 I 显示每个进程占用总资源的百分比</p>
+<p><code>kill PID</code>: 杀死进程</p>
+<p><code>ls -l file name</code>: 查看上次文件的修改日期和修改人</p>
+<h3 id="vscode-的使用"><a class="markdownIt-Anchor" href="#vscode-的使用"></a> vscode 的使用</h3>
+<ol>
+<li>
+<p>在服务器上安装 python extension 后, 使用 <code>ctrl + left mouse</code> 可以跳转至变量/函数上一次使用处或定义处</p>
+</li>
+<li>
+<p>快速预览 <code>ctrl + shift + v</code></p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://3.md">3.md</a> 快速链接文档内位置, 使用 <code>语法解读](#train_dpopy-语法解读)</code>, 加粗和 “.” 直接忽略, 空格用 “-” 代替, 任意级标题均用一个 #</p>
+<ol start="4">
+<li>
+<p>安装 vscode-fileheader 插件, 使用 <code>Ctrl + Alt + I</code> 在文件头部加入作者和日期信息</p>
+</li>
+<li>
+<p>安装 nvitop 命令, <code>pip install nvitop</code></p>
+</li>
+</ol>
+<h2 id="hadpo-conda环境搭建"><a class="markdownIt-Anchor" href="#hadpo-conda环境搭建"></a> hadpo-conda环境搭建</h2>
+<p>参考<a href="/home/cuiruochen/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">环境配置</a>完成conda环境搭建与配置, 使用以下代码使用环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate hadpo</span><br></pre></td></tr></table></figure>
+<h2 id="git版本管理"><a class="markdownIt-Anchor" href="#git版本管理"></a> git版本管理</h2>
+<p><strong><em>step1.</em></strong> vscode 安装 git 相关插件</p>
+<p><strong><em>step2.</em></strong> 用户登录 github 账号</p>
+<ol>
+<li>用户账号的主目录下生成 ssh 密钥对</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
+<p>打开生成的公钥文件, 它的默认位置是 <code>~/.ssh/id_rsa.pub</code>, 复制公钥内容. 然后登录 GitHub, 转到 “Settings” -&gt; “SSH and GPG keys” -&gt; “New SSH key”, 将公钥粘贴到 “Key” 文本框中, 然后点击 “Add SSH key”</p>
+<ol start="2">
+<li>在项目文件夹路径下登录账号 (<strong>note</strong>: 这里没有使用–global, 使用的后果未知)</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;your_email@example.com&quot;</span><br><span class="line">git config --global core.sshCommand &quot;ssh -i /home/user1/.ssh/id_rsa&quot;</span><br></pre></td></tr></table></figure>
+<p>确保将 <code>/home/user1/.ssh/id_rsa</code> 替换为你生成的私钥的路径</p>
+<ol start="3">
+<li>尝试连接github</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>确认连接后, 会提示 “You’ve successfully authenticated”, 表示登陆成功</p>
+<p><strong><em>step3.</em></strong> 将服务器仓库与远程仓库关联</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/421zuoduan/Deep-Learning-for-MLLMs.git</span><br></pre></td></tr></table></figure>
+<p>如果已经与远程仓库关联, 使用以下指令查看当前关联的远程仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>与原有远程仓库删除关联</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote remove origin</span><br></pre></td></tr></table></figure>
+<p>此时再执行前述关联新仓库的指令</p>
+<p><strong><em>step4.</em></strong> 设置.gitignore</p>
+<p><code>.gitignore</code> 文件用以设置哪些文件夹和文件不需要上传, 具体格式详见该文件</p>
+<p><strong><em>step4.</em></strong> git push</p>
+<p>创建测试环境分支 <code>dev</code>, 并在服务器上切换为该分支</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
+<p>由于本地是 git clone 自HA-DPO仓库并进行了修改, 这里不进行 git pull 操作, 强制 push</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;init&quot;</span><br><span class="line">git push origin dev --force</span><br></pre></td></tr></table></figure>
+<p>push 过程中经常出现网络连接问题, 尝试使用以下代码取消代理. 如果依然出现 fatal 报错, 等一会再push</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+<p>经常出现的报错有:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/user/project.git/&#x27;: GnuTLS recv error (-110): The TLS connection was non-properly terminated.</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/user/project.git/&#x27;: Failed to connect to github.com port 443 after 131081 ms: Connection timed out</span><br></pre></td></tr></table></figure>
+<p><strong><em>step5.</em></strong> commit 的撤销与删除</p>
+<p>commit时如果发现有时间过长或大文件没有gitignore, 可以使用插件<code>Git Graph</code>撤销commit</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">是否删除对代码的修改</th>
+<th style="text-align:center">是否删除commit记录</th>
+<th style="text-align:center">是否新增commit记录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Undo Commit</td>
+<td style="text-align:center">不会</td>
+<td style="text-align:center">未Push会, 已Push不会</td>
+<td style="text-align:center">不会</td>
+</tr>
+<tr>
+<td style="text-align:center">Revert Commit</td>
+<td style="text-align:center">会</td>
+<td style="text-align:center">不会</td>
+<td style="text-align:center">会</td>
+</tr>
+<tr>
+<td style="text-align:center">Drop Commit</td>
+<td style="text-align:center">会</td>
+<td style="text-align:center">未Push会, 已Push不会</td>
+<td style="text-align:center">不会</td>
+</tr>
+</tbody>
+</table>
+<p>按下<code>Ctrl + Shift + P</code>, 然后搜索<code>Git: Undo Last Commit</code>, 即可撤销上一次的commit</p>
+<p><strong><em>step6.</em></strong> 大文件 push 后无法解决之究极方法–删除 repo 和 .git 文件</p>
+<ol>
+<li>
+<p>删repo</p>
+</li>
+<li>
+<p>打开vscode的 <code>File-Preferences-Setting</code>, 搜索 <code>Exclude</code>, 删除 <code>**/.git</code>, 即可显示 <code>.git</code> 文件夹, 删除 .git</p>
+</li>
+<li>
+<p>从用户登录处重新操作</p>
+</li>
+</ol>
+<h2 id="数据集与代码准备"><a class="markdownIt-Anchor" href="#数据集与代码准备"></a> 数据集与代码准备</h2>
+<h3 id="数据集路径"><a class="markdownIt-Anchor" href="#数据集路径"></a> 数据集路径</h3>
+<p>TODO: 将 hadpo 的路径改为 post decoder</p>
+<p>HA-DPO 的代码框架没有将 llava 原始的 trainer 加入进来, 所以我手动增加了数据</p>
+<p><strong>HA-DPO</strong></p>
+<p>HA-DPO 的数据集在 <code>ha_dpo/data</code>, 代码 <code>ha_dpo/models/llava-v1_5/train_dpo_post.py</code>, trainer <code>ha_dpo/trainer/llava_dpo_trainer_post.py</code></p>
+<p><strong>Llava</strong></p>
+<p>TODO: 后续将 playground 数据集改过来</p>
+<p>Llava 数据集在 <code>/home/cuiruochen/LLaVA/playground/data</code>, 代码 <code>ha_dpo/models/llava-v1_5/train_llava_post.py</code>, trainer <code>ha_dpo/trainer/llava_trainer.py</code></p>
+<h3 id="数据集准备"><a class="markdownIt-Anchor" href="#数据集准备"></a> 数据集准备</h3>
+<h4 id="ha-dpo"><a class="markdownIt-Anchor" href="#ha-dpo"></a> HA-DPO</h4>
+<p>依照 <a href="ha_dpo/data/data_preparation.md">data preparation</a> 进行数据集和测试集的准备</p>
+<p>数据集结构如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ha_dpo/data</span><br><span class="line">├── coco2014</span><br><span class="line">│   └── val2014</span><br><span class="line">│       └── ...</span><br><span class="line">├── hadpo</span><br><span class="line">│   └── llava-v1.5</span><br><span class="line">│       ├── desc_data.json</span><br><span class="line">|       └── pope_data.json</span><br><span class="line">├── POPE</span><br><span class="line">│   └── ...</span><br><span class="line">├── shr</span><br><span class="line">│   ├── shr_factual_part1.jsonl</span><br><span class="line">│   ├── shr_factual_part2.jsonl</span><br><span class="line">│   └── val_images_final.json</span><br><span class="line">└── VG</span><br><span class="line">    ├── image_data.json+</span><br><span class="line">    ├── region_descriptions.json</span><br><span class="line">    ├── VG_100K</span><br><span class="line">        └── ...</span><br><span class="line">    └── VG_100K_2</span><br><span class="line">        └── ...</span><br></pre></td></tr></table></figure>
+<h4 id="llava"><a class="markdownIt-Anchor" href="#llava"></a> Llava</h4>
+<p>根据 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Data.md">官方文档</a> 准备数据集</p>
+<p>注意 ocr_vqa 文件夹是 OCR_VQA_200K 数据集, 论文提供的下载方式是脚本, 需要手动运行给出的 python 文件来下载数据集. 这个数据集含有 .jpg 和 .gif, 根据 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/issues/593">issue</a>, 可以将所有 .gif 文件改后缀为 .jpg. <code>/home/cuiruochen/LLaVA/playground/data/ocr_vqa</code> 路径下的 <code>check_prefix.py</code> 和 <code>revise_gif_to_jpg.py</code> 文件可用于检查和修改后缀 (自己写的)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├── coco</span><br><span class="line">│   └── train2017</span><br><span class="line">├── gqa</span><br><span class="line">│   └── images</span><br><span class="line">├── ocr_vqa</span><br><span class="line">│   └── images</span><br><span class="line">├── textvqa</span><br><span class="line">│   └── train_images</span><br><span class="line">└── vg</span><br><span class="line">    ├── VG_100K</span><br><span class="line">    └── VG_100K_2</span><br></pre></td></tr></table></figure>
+<h2 id="llava-15训练"><a class="markdownIt-Anchor" href="#llava-15训练"></a> LLaVA-1.5训练</h2>
+<h3 id="源码更新"><a class="markdownIt-Anchor" href="#源码更新"></a> 源码更新</h3>
+<h4 id="更新-evaluation-代码"><a class="markdownIt-Anchor" href="#更新-evaluation-代码"></a> 更新 Evaluation 代码</h4>
+<p>由于部分 Evaluation 代码已经更新, 需要手动下载 <a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1atZSBBrAX54yYpxtVVW33zFvcnaHeFPy/view?usp=sharing">eval.zip</a> 放到 <code>ha_dpo/models/llava-v1_5/playground/data/eval</code> 路径, 压缩包内的十一个文件夹用作不同测试集.</p>
+<h4 id="更新pope代码"><a class="markdownIt-Anchor" href="#更新pope代码"></a> 更新POPE代码</h4>
+<p>根据 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/issues/626">LLaVA-issue-626</a>, repo 内 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md#pope">POPE的教程</a> 是对POPE旧版本的指导, 但是代码内已经修改为新版本. LLavA在 <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md#scripts">Scripts教程</a> 内给出 <code>eval.zip</code>, 压缩包内含有新版POPE的评估代码与测试集. 按照<a href="%E6%9B%B4%E6%96%B0Evaluation%E4%BB%A3%E7%A0%81">此处</a>更新测试集和代码即可.</p>
+<h3 id="deepspeed-指令解读与更新"><a class="markdownIt-Anchor" href="#deepspeed-指令解读与更新"></a> deepspeed 指令解读与更新</h3>
+<h4 id="deepspeed-库介绍"><a class="markdownIt-Anchor" href="#deepspeed-库介绍"></a> DeepSpeed 库介绍</h4>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010751000/article/details/123516433">博客介绍</a></p>
+<p><a target="_blank" rel="noopener" href="https://deepspeed.readthedocs.io/en/latest/">官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.deepspeed.ai/docs/config-json/">配置参数文档</a></p>
+<p>pytorch, tensorflow, keras 等框架在面向大规模模型编程时不是很方便. 以 pytorch 为例, pytorch 的分布式并行计算框架 (Distributed Data Parallel, 简称 DDP), 仅能使数据并行, 即模型大于显卡显存时, 除非将模型参数拆开到各个 GPU 上, 否则无法使用.</p>
+<p>DeepSpeed 是微软开源的框架, 能实现拆散功能, 将模型参数拆散到各个 GPU 上, 实现大模型的计算, 使我们用更少的 GPU 训练更大的模型而不受限于显存. 但是 DeepSpeed 的文档写的不好 (我证明! 沟槽的文档). 载入模型和编写模型的代码基本相同, DeepSpeed 通过输入参数来启动训练, 使用argparse解析参数</p>
+<h4 id="hadpo-的-deepspeed-指令解读"><a class="markdownIt-Anchor" href="#hadpo-的-deepspeed-指令解读"></a> hadpo 的 deepspeed 指令解读</h4>
+<p>根据<a target="_blank" rel="noopener" href="https://github.com/opendatalab/HA-DPO/blob/main/ha_dpo/models/llava-v1_5/README.md#model-training">文档</a>给出的下述训练指令, 找到 <code>ha_dpo/models/llava-v1_5/train_dpo.py</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">deepspeed ha_dpo/models/llava-v1_5/train_dpo.py \</span><br><span class="line">    --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 0 \</span><br><span class="line">    --deepspeed ha_dpo/models/llava-v1_5/scripts/zero3.json \</span><br><span class="line">    --model_name_or_path liuhaotian/llava-v1.5-7b \</span><br><span class="line">    --version v1 \</span><br><span class="line">    --vg_path ha_dpo/data/VG \</span><br><span class="line">    --desc_data_path ha_dpo/data/hadpo/llava-v1.5/desc_data.json \</span><br><span class="line">    --pope_data_path ha_dpo/data/hadpo/llava-v1.5/pope_data.json \</span><br><span class="line">    --vision_tower openai/clip-vit-large-patch14-336 \</span><br><span class="line">    --mm_projector_type mlp2x_gelu \</span><br><span class="line">    --mm_vision_select_layer -2 \</span><br><span class="line">    --mm_use_im_start_end False \</span><br><span class="line">    --mm_use_im_patch_token False \</span><br><span class="line">    --image_aspect_ratio pad \</span><br><span class="line">    --group_by_modality_length True \</span><br><span class="line">    --bf16 True \</span><br><span class="line">    --output_dir ha_dpo/models/llava-v1_5/checkpoints/&#123;model_name&#125; \</span><br><span class="line">    --num_train_epochs 1 \</span><br><span class="line">    --per_device_train_batch_size 16 \</span><br><span class="line">    --per_device_eval_batch_size 4 \</span><br><span class="line">    --gradient_accumulation_steps 1 \</span><br><span class="line">    --evaluation_strategy &quot;no&quot; \</span><br><span class="line">    --save_strategy &quot;steps&quot; \</span><br><span class="line">    --save_steps 50000 \</span><br><span class="line">    --save_total_limit 1 \</span><br><span class="line">    --learning_rate 2e-6 \</span><br><span class="line">    --weight_decay 0. \</span><br><span class="line">    --warmup_steps 0 \</span><br><span class="line">    --lr_scheduler_type &quot;cosine&quot; \</span><br><span class="line">    --logging_steps 1 \</span><br><span class="line">    --tf32 True \</span><br><span class="line">    --model_max_length 2048 \</span><br><span class="line">    --gradient_checkpointing True \</span><br><span class="line">    --dataloader_num_workers 4 \</span><br><span class="line">    --lazy_preprocess True \</span><br><span class="line">    --report_to wandb \</span><br><span class="line">    --run_name &quot;llava-v1.5&quot; \</span><br><span class="line">    --beta 0.1</span><br></pre></td></tr></table></figure>
+<p><code>deepspeed</code> 指令后的参数与 <code>train_dpo.py</code> 中的 <code>ScriptArguments</code>, <code>DataArguments</code>, <code>ModelArguments</code> 有关, 这里我摘取部分重要参数作解释:</p>
+<p><strong>1. script</strong></p>
+<ul>
+<li><strong>lora_enable</strong>: 是否使用 lora 进行训练</li>
+<li><strong>deepspeed</strong>: deepspeed configuration path</li>
+<li><strong>bf16</strong>: default=False, bf16 是对 fp32 单精度浮点数截断数据. 8bit 表示指数，7bit 表示小数</li>
+<li><strong>fp16</strong>: default=False, 是否使用 fp16 权重, 5bit 表示指数，10bit 表示小数. fp16 是半精度浮点数, fp32 是单精度浮点数. fp16 计算更快但精准度更低</li>
+<li><strong>output_dir</strong>: 训练 checkpoint 保存路径</li>
+<li><strong>num_train_epochs</strong>: 训练 epoch 次数</li>
+<li><strong>per_device_train_batch_size</strong>: 每个 device 训练的 batch</li>
+<li><strong>per_device_eval_batch_size</strong>: 每个 device 测试的 batch</li>
+<li><strong>gradient_accumulation_steps</strong>: default=4, 梯度累积的steps, 每 N 个batch更新一次参数, 实现类似于相同显存扩大 batch_size 的效果. 这是一种时间换空间的处理方法. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/595716023">参考博客</a></li>
+<li><strong>evaluation_strategy</strong>: default=no, 训练期间采用的评估策略, 可选 ‘no’, ‘steps’, ‘epoch’</li>
+<li><strong>save_strategy</strong>: 保存策略, default=steps</li>
+<li><strong>save_steps</strong>: 保存参数的频率, default=-1</li>
+<li><strong>save_total_limit</strong>: default=1, 被保存的模型的参数的数量</li>
+<li><strong>learning_rate</strong>: 学习率</li>
+<li><strong>weight_decay</strong>: 指定权重衰减的值, 应用在 AdamW 优化器的除了偏置 (bias) 和 Layer Normalization 层 (LayerNorm) 的所有层权重上. 权重衰减是一种正则化手段, 通过向损失函数添加一个额外的项来惩罚较大的权重值, 有助于防止模型过拟合训练数据</li>
+<li><strong>warmup_steps</strong>: 指定线性热身的步骤数, 这个参数会覆盖warmup_ratio, 如果设置了 warmup_steps, 将会忽略 warmup_ratio. 开始训练时以很小的学习率进行训练，使得网络熟悉数据. <a target="_blank" rel="noopener" href="https://blog.csdn.net/comway_Li/article/details/105016725">参考博客</a></li>
+<li><strong>lr_scheduler_type</strong>: 学习率优化器的种类</li>
+<li><strong>logging_steps</strong>: 记录日志的频率</li>
+<li><strong>tf32</strong>: 是否使用 tf32</li>
+<li><strong>model_max_length</strong>: 句子的最大长度, 少pad多截断</li>
+<li><strong>gradient_checkpointing</strong>: 是否使用梯度保存点. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/602473031">博客</a>, 不保存中间节点的梯度, 在反向传播时重新计算这部分节点的梯度, 是一种用时间换空间的方法.</li>
+<li><strong>dataloader_num_workers</strong>: dataloader 的 worker 进程数量, 经验设置值是自己电脑/服务器的CPU核心数. worker 用来将 batch 取到 RAM 中, 数量为0时 RAM 直接找和取 batch. <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28057379/article/details/115427052">博客</a></li>
+<li><strong>report_to</strong>: default=wandb, 用于指定要将训练结果和日志报告到的不同日志集成平台</li>
+<li><strong>run_name</strong>: 跑的模型的名字, 这里要改成自己命名的模型</li>
+<li><strong>beta</strong>: DPO loss的 beta 值</li>
+</ul>
+<p><strong>2. model</strong></p>
+<ul>
+<li><strong>model_name_or_path</strong>: 模型名称/路径, 指向参数文件路径</li>
+<li><strong>version</strong>: default=v0, 代码内仅区分v0, v5与其他</li>
+<li><strong>vision_tower</strong>: 属于 linear 层, 在 HA-DPO 代码中要训练</li>
+<li><strong>mm_projector_type</strong>: projector default linear, llava 里使用 mlp</li>
+<li><strong>mm_vision_select_layer</strong>: default=-1 for the last layer, 作用是取 CLIP 的 ViT 直到倒数第二层</li>
+<li><strong>mm_use_im_start_end</strong>: instruction tune 时设置为 False, TODO</li>
+<li><strong>mm_use_im_patch_token</strong>: instruction tune 时设置为 False</li>
+</ul>
+<p><strong>3. data</strong></p>
+<ul>
+<li><strong>vg_path</strong>: VG数据集路径</li>
+<li><strong>desc_data_path</strong>: desc_data.json 文件路径</li>
+<li><strong>pope_data_path</strong>: pope_data.json 文件路径</li>
+<li><strong>image_aspect_ratio</strong>: default=square, his pads the non-square images to square, instead of cropping them; it slightly reduces hallucination</li>
+<li><strong>group_by_modality_length</strong>: default=False, this should only be used when your instruction tuning dataset contains both language (e.g. ShareGPT) and multimodal (e.g. LLaVA-Instruct). It makes the training sampler only sample a single modality (either image or language) during training, which we observe to speed up training by ~25%, and does not affect the final outcome.</li>
+<li><strong>lazy_preprocess</strong>: TODO</li>
+</ul>
+<h4 id="hadpo-的-deepspeed-指令更新-dev"><a class="markdownIt-Anchor" href="#hadpo-的-deepspeed-指令更新-dev"></a> hadpo 的 deepspeed 指令更新 (dev)</h4>
+<p><a target="_blank" rel="noopener" href="https://github.com/microsoft/DeepSpeed/issues/662">官方</a> 不建议使用 <code>CUDA_VISIBLE_DEVICES=1 python -m</code>, 建议在 deepspeed 阶段使用 <code>deepspeed --include localhost:1</code> 来指定显卡</p>
+<p>需要注意的是, HA-DPO 和 LLaVA 都有使用 lora 训练的教程, 但是没有什么微调 head 的教程, 我的实验需要在 backbone 和 head 间加入模块训练. 所以我们作出以下调整:</p>
+<p><strong>stage 1</strong></p>
+<ul>
+<li>lora_enable = False</li>
+<li>freeze_backbone True</li>
+<li>tune_mm_mlp_adapter False</li>
+<li>tune_post_decoder True</li>
+<li>tune_lm_head False</li>
+</ul>
+<p><strong>stage 2</strong></p>
+<ul>
+<li>lora_enable = False</li>
+<li>freeze_backbone True</li>
+<li>tune_mm_mlp_adapter False</li>
+<li>tune_post_decoder True</li>
+<li>tune_lm_head True</li>
+</ul>
+<h3 id="代码解读"><a class="markdownIt-Anchor" href="#代码解读"></a> 代码解读</h3>
+<h4 id="model-文件夹结构"><a class="markdownIt-Anchor" href="#model-文件夹结构"></a> model 文件夹结构</h4>
+<p><code>ha_dpo/models/llava-v1_5/llava/model</code> 路径下, 可以看到有 <code>language_model</code>, <code>multimodal_encoder</code>, <code>multimodal_projector</code> 三个文件夹. 经检查, ‘language_model’ 通过继承 <code>llava_arch.py</code> 中的类, 调用了 <code>multimodal_encoder</code> 和 <code>multimodal_encoder</code> 的方法.</p>
+<p>检查发现, 与 <code>train_dpo.py</code> 在 <code>ha_dpo/models/llava-v1_5/llava/train/train.py</code> (也即 llava 训练源码) 基础上完成, 前者引用了后者的一部分方法</p>
+<h5 id="language_model-文件夹"><a class="markdownIt-Anchor" href="#language_model-文件夹"></a> language_model 文件夹</h5>
+<p><code>llava_llama.py</code> 中含有 llava 代码与 head 代码. <code>LlavaLlamaForCausalLM</code> 类是 llava, 类中 <code>self.lm_head</code> 是 head, head 被定义为一个无偏 linear</p>
+<p>文件夹下 <code>mpt/</code> 和<code>llava_mpt.py</code> 是使用 MPT 作为 LLM 进行微调的代码, 这里我们不需要使用</p>
+<h5 id="multimodal_encoder-文件夹"><a class="markdownIt-Anchor" href="#multimodal_encoder-文件夹"></a> multimodal_encoder 文件夹</h5>
+<p>内有 <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a> 和 clip_encoder.py 两个文件. 使用前者的 <code>build_vision_tower</code> 建立 vision encoder 的模型. 后者只包括 CLIPVisionTower 类</p>
+<p>CLIPVisionTower 类内包括:</p>
+<ol>
+<li><strong>init</strong> 初始化方法</li>
+<li>load_model 加载模型方法 (使用 .from_pretrained)</li>
+<li>feature_select 方法</li>
+<li>forward 方法得到 vision encoder 的输出</li>
+</ol>
+<p>clip_encoder.py <a target="_blank" rel="noopener" href="https://blog.csdn.net/Afree_learnC/article/details/135651147">解读</a></p>
+<h5 id="multimodal_projector-文件夹"><a class="markdownIt-Anchor" href="#multimodal_projector-文件夹"></a> multimodal_projector 文件夹</h5>
+<p>内有 <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a> 一个文件. 包括 IdentityMap, SimpleResBlock 两个类和 build_vision_projector 一个方法. 返回一个 Sequential</p>
+<h5 id="llava_archpy"><a class="markdownIt-Anchor" href="#llava_archpy"></a> llava_arch.py</h5>
+<p>该文件在 <code>model</code> 文件夹中, 定义的 LlavaMetaModel 和 LlavaMetaForCausalLM 被 llava_llama.py 作为父类被引用</p>
+<p><strong>LlavaMetaModel 类</strong></p>
+<ol>
+<li><code>__init__</code>: 使用 build_vision_tower 定义 self.vision_tower, 使用build_vision_projector 定义 self.mm_projector</li>
+<li><code>get_vision_tower</code>: 从 config 中得到 vision_tower 的值</li>
+<li><code>initialize_vision_modules</code>: 定义 vision_tower 和 mm_projector, 加载相关参数</li>
+</ol>
+<p><strong>LlvaMeta_ForCausalLM 类</strong></p>
+<p>继承自 ABC 类, 使用了 <code>@abstractmethod</code> 装饰器, 可以参考 <a href="#train_dpopy-%E8%AF%AD%E6%B3%95%E8%A7%A3%E8%AF%BB">语法解读</a></p>
+<ol>
+<li><code>get_model</code>: 空方法, 要子类给出</li>
+<li><code>get_vision_tower</code>: 利用 get_model 和 get_vision_tower 方法得到 vision_tower</li>
+<li><code>encode_images</code>: 将 vision_tower 和 mm_projector 分别作为 images 和 image_features 编码至 image_features 并输出</li>
+<li><code>prepare_inputs_labels_for_multimodal</code>: 很复杂的函数, 没有为 ha-dpo 作特别修改 (TODO: 应该?). 最终输出新的 label</li>
+<li><code>initialize_vision_tokenizer</code>: 与 deepspeed 设置中 mm_use_im_patch_token 和 mm_use_im_start_end 参数有关, 其值为 True 时发挥作用, 没细读</li>
+</ol>
+<h5 id="builderpy"><a class="markdownIt-Anchor" href="#builderpy"></a> <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></h5>
+<p>只有 load_pretrained_model 一个函数, 在 <code>model_vqa.py</code>, <code>pope_eval.py</code> 中被调用, 在 Evaluation 过程中使用</p>
+<ol>
+<li>
+<p>以特定 bit 加载模型</p>
+</li>
+<li>
+<p>如果 model_name 中有 ‘llava’, 加载 llava 模型; 否则加载AutoModelForCausalLM 类.</p>
+<ul>
+<li>
+<p>加载 llava, 如果名字中有 ‘lora’ 且未提供 model_base 参数, warning 要提供 model_base 参数; 若提供了则从 model_base 中加载 llava, 这里加载 LlavaLlamaForCausalLM 类. 然后加载 llava 模型中额外的参数, 若有则加载 non_lora_trainables.bin 文件, 否则从 huggingface 加载文件.</p>
+</li>
+<li>
+<p>加载 llava, 如果名字中没有 lora, 提供 model_base 参数, 从 llava 中加载参数; 若有 mpt 参数, 加载 LlavaMPTForCausalLM 类, 否则加载 LlavaLlamaForCausalLM 类; 再加载 mm_projector 参数. 若没有提供 model_base 参数, 重复上述操作, 但是不加载 mm_projector</p>
+</li>
+<li>
+<p>不加载 llava, 若提供 model_base 参数, 加载 AutoModelForCausalLM 类, 加载 lora 参数; 否则重复上述操作, 但是不加载 lora 参数</p>
+</li>
+</ul>
+</li>
+<li>
+<p>若使用 llava, 加载 vision_tower</p>
+</li>
+<li>
+<p>返回 tokenizer, model, image_processor, context_len</p>
+</li>
+</ol>
+<h4 id="train_dpopy"><a class="markdownIt-Anchor" href="#train_dpopy"></a> train_dpo.py</h4>
+<h5 id="train_dpopy-语法解读"><a class="markdownIt-Anchor" href="#train_dpopy-语法解读"></a> train_dpo.py 语法解读</h5>
+<p>deepspeed 库的代码偏向工程, 这里写一些 Python 里的用法</p>
+<ol>
+<li>
+<p><code>os.environ</code> 的使用</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/happyjacob/article/details/109279118">参考博客</a></p>
+<p><code>os.environ</code> 是一个环境变量的字典. 使用以下代码创建自己的环境变量:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.environ[&quot;WANDB_PROJECT&quot;]=&quot;ha-dpo&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>local_rank</code> 指定使用哪个 GPU</p>
+</li>
+<li>
+<p><code>@dataclass</code> 修饰器</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59657729">参考博客1</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59658598">参考博客2</a></p>
+<p>本质是装饰器, 可以给函数动态地增加功能. 以下是 dataclass 装饰器带来的变化：</p>
+<ul>
+<li>
+<p>无需定义__init__, 将值赋给self，dataclass负责处理它</p>
+</li>
+<li>
+<p>以更加易读的方式预先定义了成员属性和类型提示. 例如, 能轻松知道 val 是 int 类型</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>*args</code> 和 <code>**kwargs</code>的用法</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/GODSuner/article/details/117961990">参考博客</a>, 详见博客</p>
+<p>*args 表示任何多个无名参数, 本质是一个 tuple</p>
+<p>**kwargs 表示关键字参数, 本质是一个 dict</p>
+<p>同时使用时必须要求 *args 参数列要在 **kwargs 前面 (因为位置参数在关键字参数的前面)</p>
+</li>
+<li>
+<p><code>@property</code> 的用法</p>
+<p>把一个方法变成属性. 可以让调用者写出简短的代码，同时保证对参数进行必要的检查</p>
+</li>
+<li>
+<p><code>__len__</code> 魔法方法</p>
+<p>加入 <code>def __len__(self)</code> 方法后, 可以直接使用 <code>len(class_name)</code> 来获取一个字符串/列表/…的长度, 返回值取决于该方法的返回值</p>
+</li>
+<li>
+<p><code>__getitem__</code> 魔法方法</p>
+<p><code>def __getitem__(self, key)</code> 方法返回所给键对应的值 (当成列表用)</p>
+</li>
+<li>
+<p><code>isinstance()</code> 函数</p>
+<p>isinstance(a, str). 如果 a 是 str, 返回 True, 例如 a=2 则返回 False</p>
+</li>
+<li>
+<p><code>__call__</code> 方法</p>
+<p>为了将一个类实例当做函数调用, 我们需要在类中实现 <code>__call__()</code> 方法. 也就是要在类中实现如下方法: <code>def __call__(self, *args)</code>. 这个方法接受一定数量的变量作为输入</p>
+</li>
+<li>
+<p><code>ABC 抽象类</code></p>
+<p>ABC 是 abc 模块中的一个类，用于定义抽象基类 (Abstract Base Class). ABC 是 abc 模块的一个核心类, 它是所有抽象基类的基类. 抽象基类是一种特殊的类, 它只包含抽象方法和抽象属性的定义, 而没有具体的实现. 抽象基类主要用于定义接口和约束子类的行为, 而不是提供具体的实现. 通过抽象基类, 可以强制子类实现特定的方法和属性, 从而确保子类的一致性和兼容性.</p>
+<p>要定义一个抽象基类, 可以继承 ABC 类, 并使用 @abstractmethod 装饰器声明抽象方法. 子类必须实现抽象基类中的所有抽象方法, 否则在实例化子类时会引发 TypeError 异常</p>
+</li>
+<li>
+<p><code>@abstractmethod</code></p>
+<p><code>@abstractmethod</code> 是 Python 中的一个装饰器, 用于声明抽象方法. 抽象方法是一个在抽象类中定义的方法, 它只有方法签名而没有具体实现. 在 Python 中, 抽象方法是通过 abc 模块中的 ABC 基类和 abstractmethod 装饰器来定义的. 使用 <code>@abstractmethod</code> 装饰器修饰的方法必须在包含该装饰器的类的子类中进行实现. 如果子类没有实现被装饰的方法, 那么在实例化子类时会抛出 TypeError 异常</p>
+</li>
+</ol>
+<h5 id="train_dpopy-代码解读"><a class="markdownIt-Anchor" href="#train_dpopy-代码解读"></a> train_dpo.py 代码解读</h5>
+<p><strong>如有必要, 请读源码</strong></p>
+<ol>
+<li>
+<p><code>ModelArguments</code>, <code>DataArguments</code>, <code>ScriptArguments</code> 三个类用来接受 deepspeed 指令的参数</p>
+</li>
+<li>
+<p><code>LazySupervisedDataset</code> 类用以 supervised fine-tuning</p>
+</li>
+<li>
+<p><code>DataCollatorForSupervisedDataset</code> 类为 supervised fine-tuning 提供示例</p>
+</li>
+<li>
+<p><code>find_all_linear_names</code> 函数用以找到模型中所有的 linear 层</p>
+</li>
+<li>
+<p><code>make_supervised_data_module</code> 函数整合 <code>LazySupervisedDataset</code> 和 <code>DataCollatorForSupervisedDataset</code> 两个类</p>
+</li>
+<li>
+<p><code>maybe_zero_3</code> 函数</p>
+</li>
+<li>
+<p><code>get_peft_state_maybe_zero_3</code> 函数</p>
+</li>
+<li>
+<p><code>get_peft_state_non_lora_maybe_zero_3</code> 函数</p>
+</li>
+<li>
+<p><code>SaverCallBack</code> 用以在训练结束时打印出 message 并保存模型参数</p>
+<p>继承自 TrainerCallack, 只有一个新定义方法 on_train_end. 先使用 get_peft_state_non_lora_maybe_zero_3 方法获取 non_lora_state_dict, 然后使用以下代码保存参数</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.save(non_lora_state_dict, os.path.join(args.output_dir, &#x27;non_lora_trainables.bin&#x27;))</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>setup_llava_model</code> 方法用以设定 LLaVA 训练时的相关参数, 如是否使用 lora, 是否冻结 backbone.</p>
+<ul>
+<li>若在 <code>os.environ</code> 环境中没有设置 <code>LOCAL_RANK</code>, 设置为默认序号的显卡, 并指定 cuda.</li>
+<li>设置好 compute_type 和 bits, 即计算精度和位宽</li>
+<li>根据 vision_tower,  加载模型配置, 参数既可以为模型名称, 也可以为具体文件. 此处加载与 model_args.model_name_or_path 有关, 调用 <code>LlavaLlamaForCausalLM</code> 类定义 model</li>
+<li>vision_tower 决定调用 LlavaLlamaForCausalLM 类, 使用方法 LlavaLlamaForCausalLM.from_pretrained 加载 llava 的 backbone 和 head, , tune_mm_mlp_adapter 决定是否训练 mm_projector</li>
+<li>根据 freeze_backbone, 设置 backbone, 也即前面得到的 model.model 没有梯度</li>
+<li>设置 bits, 设置是否使用梯度累积, 设置是否使用 lora 微调</li>
+<li>使用 transformers.AutoTokenizer.from_pretrained 自动分词</li>
+<li>根据 model_args.version 设置不同的 pad_token 方法</li>
+<li>vison_tower 决定使用 model.get_vision_tower() 方法加载 vison_tower. <code>tune_mm_mlp_adapter</code> 参数决定了是否微调 变量 mm_projector, 代码如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if model_args.tune_mm_mlp_adapter:</span><br><span class="line">    model.requires_grad_(False)</span><br><span class="line">    for p in model.get_model().mm_projector.parameters():</span><br><span class="line">        p.requires_grad = True</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后设置一些 args, 返回 model 和 tokenizer</li>
+</ul>
+</li>
+<li>
+<p><code>main</code> 函数为主函数</p>
+<ul>
+<li>使用 parser 聚合所有 arguments, 得到 script_args, model_args, data_args 三个设置变量</li>
+<li>使用 setup_llava_model 建立模型, 得到 llava_policy 和 tokenizer. 然后 freeze reference model, 设置 llava_ref_model 内的参数没有梯度</li>
+<li>使用 make_supervised_data_module 获取数据集</li>
+<li>使用 TrainingArguments 初始化训练参数, 使用 LlavaDPOTrainer 初始化 DPO 训练器</li>
+<li>使用 <code>dpo_trainer.train()</code> 开始训练</li>
+</ul>
+</li>
+</ol>
+<h4 id="llava_archpy-2"><a class="markdownIt-Anchor" href="#llava_archpy-2"></a> llava_arch.py</h4>
+<p>BERT里的类似设置</p>
+<ul>
+<li>input_ids：经过 tokenizer 分词后的 subword 对应的下标列表</li>
+<li>attention_mask：在 self-attention 过程中, 这一块 mask 用于标记 subword 所处句子和 padding 的区别, 将 padding 部分填充为 0</li>
+<li>position_ids： 标记当前词所在句子的位置下标</li>
+<li>inputs_embeds： 如果提供了, 那就不需要 input_ids, 跨过 embedding lookup 过程直接作为 Embedding 进入 Encoder 计算</li>
+<li>hidden_states： decoder部分将执行 cross-attention 而不是 self-attention</li>
+<li>past_key_values：这个参数貌似是把预先计算好的K-V乘积传入，以降低 cross-attention 的开销（因为原本这部分是重复计算）</li>
+<li>use_cache： 将保存上一个参数并传回，加速 decoding</li>
+<li>output_attentions：是否返回中间每层的 attention 输出</li>
+<li>output_hidden_states：是否返回中间每层的输出</li>
+<li>return_dict：是否按键值对的形式（ModelOutput 类，也可以当作 tuple 用）返回输出，默认为真</li>
+</ul>
+<h3 id="修改代码-dev"><a class="markdownIt-Anchor" href="#修改代码-dev"></a> 修改代码 (dev)</h3>
+<h4 id="train_dpo_postpy"><a class="markdownIt-Anchor" href="#train_dpo_postpy"></a> train_dpo_post.py</h4>
+<p><strong>训练参数</strong></p>
+<ol>
+<li>增加了 <code>tune_lm_head</code>, ‘tune_post_decoder’ 参数和相关的梯度调整</li>
+<li>修改了 <code>freeze_backbone</code>, <code>freeze_mm_mlp_adapter</code>, <code>tune_mm_mlp_adapter</code>, 参数相关的梯度调整代码</li>
+</ol>
+<p><strong>保存参数</strong></p>
+<ol>
+<li>(TODO) SaverCallBack: 改变 if 判断条件</li>
+</ol>
+<h4 id="base_dpo_trainer_postpy"><a class="markdownIt-Anchor" href="#base_dpo_trainer_postpy"></a> base_dpo_trainer_post.py</h4>
+<p>(TODO) 修改 reference model 相关的代码</p>
+<ol>
+<li>
+<p><s>BasedDPOTrainer 类初始化函数中删除 is_peft_model 和 self.ref_model 定义的代码, 将使用 self.ref_model 的地方改为使用 policy_model 的输出</s></p>
+</li>
+<li>
+<p><s>(TODO: check) policy_model 是 <code>ha_dpo/models/llava-v1_5/llava/model/language_model/llava_llama.py</code> 的 <code>LlavaLlamaForCausalLM</code> 实例, 该实例中有 <code>get_model</code> 函数, 使用该方法可以得到 reference model 的模型 (因为没有使用lora)</s></p>
+</li>
+</ol>
+<h4 id="llava_llamapy-dev"><a class="markdownIt-Anchor" href="#llava_llamapy-dev"></a> llava_llama.py (dev)</h4>
+<p><strong>LlavaLlamaModel 类</strong></p>
+<p><code>LlavaLlamaModel</code> 类定义了 llava 的 backbone, 继承自 <code>LlavaMetaModel</code> 和 <code>LlamaModel</code>, 父类是 <code>ha_dpo/models/llava-v1_5/llava/model/llava_arch.py</code> 定义的类.</p>
+<p><code>LlavaLlamaForCausalLM</code> 类继承自 <code>LlamaForCausalLM</code> 和 <code>LlavaMetaForCausalLM</code>, 该类的初始化与其父类 <code>LlamaForCausalLM</code> 相同, 父类是 transformers 库中 llama 的模块.</p>
+<p><strong>修改:</strong></p>
+<ol>
+<li>[llava_arch_with_post_decoder.py √] 修改 <code>encoder_images</code>: 返回 vision_tower_features 和 image_features</li>
+</ol>
+<p><code>llava_arch.py</code> 的 <code>LlavaMetaForCausalLM</code> 类的 <code>prepare_inputs_labels_for_multimodal</code> 方法使用 <code>encode_images</code> 方法获得 image_features, 这里的 image_features 是 vision encoder 和 adapter 的输出.</p>
+<ol start="2">
+<li>[llava_arch_with_post_decoder.py √]修改 <code>prepare_inputs_labels_for_multimodal</code> 类: 添加返回值 vision_tower_image_features</li>
+</ol>
+<p><code>prepare_inputs_labels_for_multimodal</code> 在 <code>llava_dpo_trainer.py</code> 中被调用, 返回的 image_features 在后续代码 <code>model.forward</code> 传入 model</p>
+<ol start="3">
+<li>
+<p>[llava_llama_post.py √] 修改 <code>LlavaLlamaForCausalLM</code> 的 <code>forward</code> 函数</p>
+<ul>
+<li>添加传入参数 <code>image_features</code>: 传入的该参数可以输入进 post_decoder 中!!!</li>
+<li>添加 <code>prepare_inputs_labels_for_multimodal</code> 函数的返回值 <code>image_features_with_inputs_embeds</code>: 该函数在 <code>LlavaLlamaForCausalLM</code> 类和 trainer 文件中都用到了, trainer 中得到了 <code>input_embeds</code> 则不需再重复使用该函数</li>
+<li>更新 <code>image_features</code>: 若 <code>input_embeds</code> 为空, 更新 <code>image_features</code> 为 <code>image_features_with_inputs_embeds</code></li>
+<li>添加 <code>super.forward</code> 父类方法的参数 <code>image_features</code>: 传入的该参数可以输入进 post_decoder 中!!!</li>
+</ul>
+</li>
+<li>
+<p>[llava_llama_post.py √] 参考 <code>modeling_llama.py</code> 的 <code>LlamaForCausalLM</code> 创建新类, 作为新父类</p>
+<ul>
+<li>添加父类 <code>LlamaForCausalLM</code> 的 <code>forward</code> 函数参数 <code>image_features</code>: 传入的该参数可以输入进 post_decoder 中!!!</li>
+<li>添加 post_decoder 的代码: 在调用 self.model 后添加 post_decoder 模块</li>
+</ul>
+</li>
+<li>
+<p>[llava_dpo_trainer_post.py √] 添加 <code>llava_dpo_trainer.py</code> 调用 <code>prepare_inputs_labels_for_multimodal</code> 时的参数, 添加 <code>model.forward</code> 代码的传入参数</p>
+</li>
+</ol>
+<h4 id="增加文件夹-multimodal_post_decoder-dev"><a class="markdownIt-Anchor" href="#增加文件夹-multimodal_post_decoder-dev"></a> 增加文件夹 multimodal_post_decoder (dev)</h4>
+<p>文件夹内有 <code>builder.py</code>, <code>configuration_post_decoder.py</code>, ‘modelling_post_decoder.py’, ‘post_decoder.py’</p>
+<p>没有 causal attention mask, 也没有 padding mask</p>
+<p><strong><a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></strong></p>
+<p>没有用到, 借鉴 CLIP 的 <a target="_blank" rel="noopener" href="http://builder.py">builder.py</a></p>
+<p><strong>configuration_post_decoder.py</strong></p>
+<p>借鉴 CLIP 的 CLIPVisionConfig, CLIPTextConfig 和 CLIPConfig, 写出 PostDecoderBackboneConfig, PostDecoderVisionConfig, PostDecoderConfig</p>
+<p><strong>modeling_post_decoder.py</strong></p>
+<p>斗胆扒源码, 写一下 transformers 库 QAQ</p>
+<p>TODO list:</p>
+<ol>
+<li>
+<ul>
+<li>[ ] 记得找个女朋友</li>
+</ul>
+</li>
+<li>llava_llama.py
+<ol>
+<li>
+<ul>
+<li>[ ] LlavaMetaModel.initialize_vision_modules 需要加上 Post Decoder 的初始化</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[ ] LlavaMetaModel 加上 get_post_decoder 方法</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>llava_llama.py</strong>
+<ol>
+<li>
+<ul>
+<li>[ ] double check: LlavaLlamaForCausalLM 类在 forward 函数中调用 super().forward, 从而调用 transformers.modeling.llama 也即父类 LlamaForCausalLM 的 forward, 这里的 forward 调用了 LlamaModel 和 self.lm_head. 所以应该修改 LlavaLlamaForCausalLM 类的 forward 函数!</li>
+</ul>
+</li>
+<li>创建新类, 继承 modeling_llama.py 的 LlamaForCausalLM, 重写其 forward 函数; 改写 LlavaLlamaForCausalLM, 其父类改为前面创建的新类, 调用父类的 forward 创建 model</li>
+</ol>
+</li>
+<li>modeling_llama.py -&gt; 建议继承 modeling_llama.py, 在 modeling_post_decoder.py 中添加子类
+<ol>
+<li>
+<ul>
+<li>[√] LlamaForCausalLM 增加 get_post_decoder 方法</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>train_dpo_post.py
+<ol>
+<li>
+<ul>
+<li>[√] 修改 from llava.model import *</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>llava_arch_post.py
+<ol>
+<li>
+<ul>
+<li>[√] LlavaMetaForCausalLM 增加 get_post_decoder 方法</li>
+</ul>
+</li>
+</ol>
+</li>
+<li></li>
+</ol>
+<p>&quot;<br />
+在Python中，super().forward()会调用父类的forward()函数，但它所使用的self是子类的实例。这意味着，当你在子类的forward()函数中使用super().forward()调用父类的方法时，父类的forward()函数中使用的self.model将引用子类中的model。</p>
+<p>因此，如果子类和父类都定义了self.model，而在子类的forward()函数中调用了super().forward()，那么父类的forward()函数中使用的self.model将是子类中定义的model。&quot;</p>
+<h5 id="post_decoderpy"><a class="markdownIt-Anchor" href="#post_decoderpy"></a> post_decoder.py</h5>
+<p>密 QWQ</p>
+<h3 id="测试中的发现"><a class="markdownIt-Anchor" href="#测试中的发现"></a> 测试中的发现</h3>
+<h4 id="savercallback-保存参数过程"><a class="markdownIt-Anchor" href="#savercallback-保存参数过程"></a> SaverCallBack 保存参数过程</h4>
+<ol>
+<li>将 SaverCallBack 中的 on_train_end 方法 (经检测, **kwargs 继承了 TrainerCallback 的初始化参数)拿出来测试</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">non_lora_state_dict = get_peft_state_non_lora_maybe_zero_3(</span><br><span class="line">    llava_policy_model.named_parameters()</span><br><span class="line">)</span><br><span class="line">torch.save(non_lora_state_dict, os.path.join(args.output_dir, &#x27;non_lora_trainables.bin&#x27;))</span><br></pre></td></tr></table></figure>
+<p>得到结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">non_lora_state_dict &#123;&#x27;lm_head.weight&#x27;: tensor([.....])&#125;</span><br></pre></td></tr></table></figure>
+<p>检测结果发现, non_lora_state_dict 保存了 lora 以外的被训练的参数. on_train_end 函数中会保存所有调整过的参数</p>
+<ol start="2">
+<li>
+<p>llava_policy_model is not PeftModelForCausalLM, 这在 on_train_end 函数中可能有用</p>
+</li>
+<li>
+<p>on_train_end 函数传入的参数中, args 即 TrainingArguments; state 是 TrainerState, 输出如下</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TrainerState(epoch=0.9936305732484076, global_step=39, max_steps=39, num_train_epochs=1, total_flos=0.0, log_history=[&#123;&#x27;loss&#x27;: 0.6931, &#x27;learning_rate&#x27;: 1e-06, &#x27;rewards/chosen&#x27;: 0.0, &#x27;rewards/rejected&#x27;: 0.0, &#x27;rewards/accuracies&#x27;: 0.0, &#x27;rewards/margins&#x27;: 0.0, &#x27;policy_logps/rejected&#x27;: -84.550048828125, &#x27;policy_logps/chosen&#x27;: -124.45401000976562, &#x27;referece_logps/rejected&#x27;: -84.550048828125, &#x27;referece_logps/chosen&#x27;: -124.45401000976562, &#x27;logits/rejected&#x27;: 0.51363205909729, &#x27;logits/chosen&#x27;: 0.37404561042785645, &#x27;epoch&#x27;: 0.03, &#x27;step&#x27;: 1&#125;, ..., &#123;&#x27;loss&#x27;: 0.6725, &#x27;learning_rate&#x27;: 0.0, &#x27;rewards/chosen&#x27;: -0.0008349898271262646, &#x27;rewards/rejected&#x27;: -0.033970028162002563, &#x27;rewards/accuracies&#x27;: 0.8125, &#x27;rewards/margins&#x27;: 0.03313504159450531, &#x27;policy_logps/rejected&#x27;: -108.51647186279297, &#x27;policy_logps/chosen&#x27;: -132.4811248779297, &#x27;referece_logps/rejected&#x27;: -108.1767578125, &#x27;referece_logps/chosen&#x27;: -132.4727783203125, &#x27;logits/rejected&#x27;: 0.3725810647010803, &#x27;logits/chosen&#x27;: 0.2791193127632141, &#x27;epoch&#x27;: 0.99, &#x27;step&#x27;: 39&#125;, &#123;&#x27;train_runtime&#x27;: 1678.4614, &#x27;train_samples_per_second&#x27;: 2.987, &#x27;train_steps_per_second&#x27;: 0.023, &#x27;total_flos&#x27;: 0.0, &#x27;train_loss&#x27;: 0.6816164560807056, &#x27;epoch&#x27;: 0.99, &#x27;step&#x27;: 39&#125;], best_metric=None, best_model_checkpoint=None, is_local_process_zero=True, is_world_process_zero=True, is_hyper_param_search=False, trial_name=None, trial_params=None)</span><br></pre></td></tr></table></figure>
+<p>control 是 TrainerControl, 输出如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TrainerControl(should_training_stop=True, should_epoch_stop=False, should_save=False, should_evaluate=False, should_log=False)</span><br></pre></td></tr></table></figure>
+<p>kwargs 如下, 基本包括 model, tokenizer, optimizer, lr_scheduler, train_dataloader 和 eval_dataloader. model 是 LlavaLlamaForCausalLM 的 value, 包括 embed_tokens, layers, norm, vision_tower, mm_projector, lm_head</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">Key: model, Value: LlavaLlamaForCausalLM(</span><br><span class="line">  (model): LlavaLlamaModel(</span><br><span class="line">    (embed_tokens): Embedding(32000, 4096, padding_idx=0)</span><br><span class="line">    (layers): ModuleList(</span><br><span class="line">      (0-31): 32 x LlamaDecoderLayer(</span><br><span class="line">        (self_attn): LlamaAttention(</span><br><span class="line">          (q_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">          (k_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">          (v_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">          (o_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">          (rotary_emb): LlamaRotaryEmbedding()</span><br><span class="line">        )</span><br><span class="line">        (mlp): LlamaMLP(</span><br><span class="line">          (gate_proj): Linear(in_features=4096, out_features=11008, bias=False)</span><br><span class="line">          (up_proj): Linear(in_features=4096, out_features=11008, bias=False)</span><br><span class="line">          (down_proj): Linear(in_features=11008, out_features=4096, bias=False)</span><br><span class="line">          (act_fn): SiLUActivation()</span><br><span class="line">        )</span><br><span class="line">        (input_layernorm): LlamaRMSNorm()</span><br><span class="line">        (post_attention_layernorm): LlamaRMSNorm()</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">    (norm): LlamaRMSNorm()</span><br><span class="line">    (vision_tower): CLIPVisionTower(</span><br><span class="line">      (vision_tower): CLIPVisionModel(</span><br><span class="line">        (vision_model): CLIPVisionTransformer(</span><br><span class="line">          (embeddings): CLIPVisionEmbeddings(</span><br><span class="line">            (patch_embedding): Conv2d(3, 1024, kernel_size=(14, 14), stride=(14, 14), bias=False)</span><br><span class="line">            (position_embedding): Embedding(577, 1024)</span><br><span class="line">          )</span><br><span class="line">          (pre_layrnorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">          (encoder): CLIPEncoder(</span><br><span class="line">            (layers): ModuleList(</span><br><span class="line">              (0-23): 24 x CLIPEncoderLayer(</span><br><span class="line">                (self_attn): CLIPAttention(</span><br><span class="line">                  (k_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                  (v_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                  (q_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                  (out_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                )</span><br><span class="line">                (layer_norm1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">                (mlp): CLIPMLP(</span><br><span class="line">                  (activation_fn): QuickGELUActivation()</span><br><span class="line">                  (fc1): Linear(in_features=1024, out_features=4096, bias=True)</span><br><span class="line">                  (fc2): Linear(in_features=4096, out_features=1024, bias=True)</span><br><span class="line">                )</span><br><span class="line">                (layer_norm2): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">              )</span><br><span class="line">            )</span><br><span class="line">          )</span><br><span class="line">          (post_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">    (mm_projector): Sequential(</span><br><span class="line">      (0): Linear(in_features=1024, out_features=4096, bias=True)</span><br><span class="line">      (1): GELU(approximate=&#x27;none&#x27;)</span><br><span class="line">      (2): Linear(in_features=4096, out_features=4096, bias=True)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (lm_head): Linear(in_features=4096, out_features=32000, bias=False)</span><br><span class="line">)</span><br><span class="line">Key: tokenizer, Value: LlamaTokenizer(name_or_path=&#x27;/home/cuiruochen/model/llava-v1.5-7b&#x27;, vocab_size=32000, model_max_length=2048, is_fast=False, padding_side=&#x27;right&#x27;, truncation_side=&#x27;right&#x27;, special_tokens=&#123;&#x27;bos_token&#x27;: AddedToken(&quot;&lt;s&gt;&quot;, rstrip=False, lstrip=False, single_word=False, normalized=False), &#x27;eos_token&#x27;: AddedToken(&quot;&lt;/s&gt;&quot;, rstrip=False, lstrip=False, single_word=False, normalized=False), &#x27;unk_token&#x27;: AddedToken(&quot;&lt;unk&gt;&quot;, rstrip=False, lstrip=False, single_word=False, normalized=False), &#x27;pad_token&#x27;: &#x27;&lt;unk&gt;&#x27;&#125;, clean_up_tokenization_spaces=False)</span><br><span class="line">Key: optimizer, Value: DeepSpeedOptimizerWrapper (</span><br><span class="line">Parameter Group 0</span><br><span class="line">    amsgrad: False</span><br><span class="line">    betas: (0.9, 0.999)</span><br><span class="line">    capturable: False</span><br><span class="line">    differentiable: False</span><br><span class="line">    eps: 1e-08</span><br><span class="line">    foreach: None</span><br><span class="line">    fused: None</span><br><span class="line">    initial_lr: 2e-06</span><br><span class="line">    lr: 0.0</span><br><span class="line">    maximize: False</span><br><span class="line">    weight_decay: 0.0</span><br><span class="line">)</span><br><span class="line">Key: lr_scheduler, Value: &lt;torch.optim.lr_scheduler.LambdaLR object at 0x7fbeddca3550&gt;</span><br><span class="line">Key: train_dataloader, Value: &lt;accelerate.data_loader.DataLoaderShard object at 0x7fbeddca3a30&gt;</span><br><span class="line">Key: eval_dataloader, Value: None</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>
+<p>检查 on_train_end 的 if isinstance(kwargs[‘model’], PeftModelForCausalLM):</p>
+<p>transformers 库内的 <a target="_blank" rel="noopener" href="http://trainer.py">trainer.py</a> 没有在 def _inner_training_loop 方法中 调用 on_train_end</p>
+</li>
+</ol>
+<h4 id="模型结构代码"><a class="markdownIt-Anchor" href="#模型结构代码"></a> 模型结构代码</h4>
+<ol>
+<li>在 modeling_llama.py 源码中, LlamaForCausalLM 类的 forward 方法调用 self.model 前输出 self.model, self.model 包括了 vision_tower 和 mm_projector</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">LlavaLlamaModel(</span><br><span class="line">  (embed_tokens): Embedding(32000, 4096, padding_idx=0)</span><br><span class="line">  (layers): ModuleList(</span><br><span class="line">    (0-31): 32 x LlamaDecoderLayer(</span><br><span class="line">      (self_attn): LlamaAttention(</span><br><span class="line">        (q_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (k_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (v_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (o_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (rotary_emb): LlamaRotaryEmbedding()</span><br><span class="line">      )</span><br><span class="line">      (mlp): LlamaMLP(</span><br><span class="line">        (gate_proj): Linear(in_features=4096, out_features=11008, bias=False)</span><br><span class="line">        (up_proj): Linear(in_features=4096, out_features=11008, bias=False)</span><br><span class="line">        (down_proj): Linear(in_features=11008, out_features=4096, bias=False)</span><br><span class="line">        (act_fn): SiLUActivation()</span><br><span class="line">      )</span><br><span class="line">      (input_layernorm): LlamaRMSNorm()</span><br><span class="line">      (post_attention_layernorm): LlamaRMSNorm()</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (norm): LlamaRMSNorm()</span><br><span class="line">  (vision_tower): CLIPVisionTower(</span><br><span class="line">    (vision_tower): CLIPVisionModel(</span><br><span class="line">      (vision_model): CLIPVisionTransformer(</span><br><span class="line">        (embeddings): CLIPVisionEmbeddings(</span><br><span class="line">          (patch_embedding): Conv2d(3, 1024, kernel_size=(14, 14), stride=(14, 14), bias=False)</span><br><span class="line">          (position_embedding): Embedding(577, 1024)</span><br><span class="line">        )</span><br><span class="line">        (pre_layrnorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">        (encoder): CLIPEncoder(</span><br><span class="line">          (layers): ModuleList(</span><br><span class="line">            (0-23): 24 x CLIPEncoderLayer(</span><br><span class="line">              (self_attn): CLIPAttention(</span><br><span class="line">                (k_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                (v_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                (q_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                (out_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">              )</span><br><span class="line">              (layer_norm1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">              (mlp): CLIPMLP(</span><br><span class="line">                (activation_fn): QuickGELUActivation()</span><br><span class="line">                (fc1): Linear(in_features=1024, out_features=4096, bias=True)</span><br><span class="line">                (fc2): Linear(in_features=4096, out_features=1024, bias=True)</span><br><span class="line">              )</span><br><span class="line">              (layer_norm2): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">            )</span><br><span class="line">          )</span><br><span class="line">        )</span><br><span class="line">        (post_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (mm_projector): Sequential(</span><br><span class="line">    (0): Linear(in_features=1024, out_features=4096, bias=True)</span><br><span class="line">    (1): GELU(approximate=&#x27;none&#x27;)</span><br><span class="line">    (2): Linear(in_features=4096, out_features=4096, bias=True)</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在源码 modeling_llama.py 文件中的 LlamaForCausalLM 类 forward 方法中得到 self.model.get_vision_tower 的值如下</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;bound method LlavaMetaModel.get_vision_tower of LlavaLlamaModel(</span><br><span class="line">  (embed_tokens): Embedding(32000, 4096, padding_idx=0)</span><br><span class="line">  (layers): ModuleList(</span><br><span class="line">    (0-31): 32 x LlamaDecoderLayer(</span><br><span class="line">      (self_attn): LlamaAttention(</span><br><span class="line">        (q_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (k_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (v_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (o_proj): Linear(in_features=4096, out_features=4096, bias=False)</span><br><span class="line">        (rotary_emb): LlamaRotaryEmbedding()</span><br><span class="line">      )</span><br><span class="line">      (mlp): LlamaMLP(</span><br><span class="line">        (gate_proj): Linear(in_features=4096, out_features=11008, bias=False)</span><br><span class="line">        (up_proj): Linear(in_features=4096, out_features=11008, bias=False)</span><br><span class="line">        (down_proj): Linear(in_features=11008, out_features=4096, bias=False)</span><br><span class="line">        (act_fn): SiLUActivation()</span><br><span class="line">      )</span><br><span class="line">      (input_layernorm): LlamaRMSNorm()</span><br><span class="line">      (post_attention_layernorm): LlamaRMSNorm()</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (norm): LlamaRMSNorm()</span><br><span class="line">  (vision_tower): CLIPVisionTower(</span><br><span class="line">    (vision_tower): CLIPVisionModel(</span><br><span class="line">      (vision_model): CLIPVisionTransformer(</span><br><span class="line">        (embeddings): CLIPVisionEmbeddings(</span><br><span class="line">          (patch_embedding): Conv2d(3, 1024, kernel_size=(14, 14), stride=(14, 14), bias=False)</span><br><span class="line">          (position_embedding): Embedding(577, 1024)</span><br><span class="line">        )</span><br><span class="line">        (pre_layrnorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">        (encoder): CLIPEncoder(</span><br><span class="line">          (layers): ModuleList(</span><br><span class="line">            (0-23): 24 x CLIPEncoderLayer(</span><br><span class="line">              (self_attn): CLIPAttention(</span><br><span class="line">                (k_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                (v_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                (q_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">                (out_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">              )</span><br><span class="line">              (layer_norm1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">              (mlp): CLIPMLP(</span><br><span class="line">                (activation_fn): QuickGELUActivation()</span><br><span class="line">                (fc1): Linear(in_features=1024, out_features=4096, bias=True)</span><br><span class="line">                (fc2): Linear(in_features=4096, out_features=1024, bias=True)</span><br><span class="line">              )</span><br><span class="line">              (layer_norm2): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">            )</span><br><span class="line">          )</span><br><span class="line">        )</span><br><span class="line">        (post_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (mm_projector): Sequential(</span><br><span class="line">    (0): Linear(in_features=1024, out_features=4096, bias=True)</span><br><span class="line">    (1): GELU(approximate=&#x27;none&#x27;)</span><br><span class="line">    (2): Linear(in_features=4096, out_features=4096, bias=True)</span><br><span class="line">  )</span><br><span class="line">)&gt;</span><br></pre></td></tr></table></figure>
+<p>self.get_output_embeddings() 的值为 <code>Embedding(32000, 4096, padding_idx=0)</code>, self.get_output_embeddings() 的值为 <code>Linear(in_features=4096, out_features=32000, bias=False)</code>, self.model.vision_tower 为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">CLIPVisionTower(</span><br><span class="line">  (vision_tower): CLIPVisionModel(</span><br><span class="line">    (vision_model): CLIPVisionTransformer(</span><br><span class="line">      (embeddings): CLIPVisionEmbeddings(</span><br><span class="line">        (patch_embedding): Conv2d(3, 1024, kernel_size=(14, 14), stride=(14, 14), bias=False)</span><br><span class="line">        (position_embedding): Embedding(577, 1024)</span><br><span class="line">      )</span><br><span class="line">      (pre_layrnorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">      (encoder): CLIPEncoder(</span><br><span class="line">        (layers): ModuleList(</span><br><span class="line">          (0-23): 24 x CLIPEncoderLayer(</span><br><span class="line">            (self_attn): CLIPAttention(</span><br><span class="line">              (k_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">              (v_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">              (q_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">              (out_proj): Linear(in_features=1024, out_features=1024, bias=True)</span><br><span class="line">            )</span><br><span class="line">            (layer_norm1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">            (mlp): CLIPMLP(</span><br><span class="line">              (activation_fn): QuickGELUActivation()</span><br><span class="line">              (fc1): Linear(in_features=1024, out_features=4096, bias=True)</span><br><span class="line">              (fc2): Linear(in_features=4096, out_features=1024, bias=True)</span><br><span class="line">            )</span><br><span class="line">            (layer_norm2): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">          )</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">      (post_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>
+<p><code>llava_arch_post.py</code> 的 <code>encode_images</code> 里可以获得 vision_tower 和 projector 的输出, 得到 vision_tower 输出 shape [<em>, 576, 1024], image_features 输出 shape [</em>, 576, 4096]</p>
+</li>
+<li>
+<p>测试时有关 input_ids = 1 的测试</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">测试时:</span><br><span class="line">image_features.shape: torch.Size([1, 576, 1024])</span><br><span class="line">hidden_states.shape: torch.Size([1, 628, 4096])</span><br><span class="line">input_ids is None</span><br><span class="line">position_ids.shape: torch.Size([1, 628])</span><br><span class="line">attention_mask.shape: torch.Size([1, 628])</span><br><span class="line">past_key_values is None</span><br><span class="line">inputs_embeds.shape: torch.Size([1, 628, 4096])</span><br><span class="line">image_features.size(1): 576</span><br><span class="line">hidden_states.size(1): 628</span><br><span class="line"></span><br><span class="line">----------------------------------------------- before mulimodal ------------------------------------------------------</span><br><span class="line">input_ids.shape: torch.Size([1, 1])</span><br><span class="line">position_ids.shape: torch.Size([1, 1])</span><br><span class="line">attention_mask.shape: torch.Size([1, 53])</span><br><span class="line">past_key_values.shape: 32</span><br><span class="line">inputs_embeds is None</span><br><span class="line">----------------------------------------------- after mulimodal ------------------------------------------------------</span><br><span class="line">input_ids.shape: torch.Size([1, 1])</span><br><span class="line">position_ids.shape: torch.Size([1, 1])</span><br><span class="line">attention_mask.shape: torch.Size([1, 628])</span><br><span class="line">past_key_values.shape: 32</span><br><span class="line">inputs_embeds is None</span><br><span class="line">----------------------------------------------- post decoder -----------------------------------------------------</span><br><span class="line">image_features.shape: torch.Size([1, 576, 1024])</span><br><span class="line">hidden_states.shape: torch.Size([1, 1, 4096])</span><br><span class="line">input_ids.shape: torch.Size([1, 1])</span><br><span class="line">position_ids.shape: torch.Size([1, 1])</span><br><span class="line">attention_mask.shape: torch.Size([1, 628])</span><br><span class="line">past_key_values.shape: 32</span><br><span class="line">inputs_embeds is None</span><br><span class="line">image_features.size(1): 576</span><br><span class="line">hidden_states.size(1): 1</span><br></pre></td></tr></table></figure>
+<p>可以发现, 当 past_key_values 存在时, 传入 input_ids 形状为 [1, 1], 这一部分操作来自 <code>llava_llama.py</code> 的 prepare_inputs_for_generation 函数</p>
+<h3 id="替换-bin-文件"><a class="markdownIt-Anchor" href="#替换-bin-文件"></a> 替换 bin 文件</h3>
+<p>若仅替换 head, 可以修改 <code>ha_dpo/models/llava-v1_5/replace_head_bin.py</code> 的 <code>model_name_or_path</code> 参数; 若要多阶段训练, 可以使用 <code>ha_dpo/models/llava-v1_5/replace_head_bin.py</code>, 需要指定 stage 和路径, 示例如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python ha_dpo/models/llava-v1_5/replace_bin.py --tune_stage 1 \</span><br><span class="line">    --path_model_state_dict $&#123;target_folder1&#125;/pytorch_model-00002-of-00002.bin \</span><br><span class="line">    --path_non_lora_state_dict $&#123;output_dir1&#125;/non_lora_trainables.bin</span><br></pre></td></tr></table></figure>
+<p>| tune_stage | add_post_decoder | replace_head | replace_post_decoder |<br />
+|:–😐:–😐:–😐:–😐:–😐:–😐:–😐:–😐<br />
+| 0 (default) | True | True | True |<br />
+| 1 | True | False | True |<br />
+| 2 | False | True | True |</p>
+<h3 id="训练日志中的问题"><a class="markdownIt-Anchor" href="#训练日志中的问题"></a> 训练日志中的问题</h3>
+<ol>
+<li>
+<p>Could not estimate the number of tokens of the input, floating-point operations will not be computed</p>
+<p>huggingface 上的<a target="_blank" rel="noopener" href="https://discuss.huggingface.co/t/get-warning-could-not-estimate-the-number-of-tokens-of-the-input-floating-point-operations-will-not-be-computed-when-use-a-customize-trainer-and-customize-data-collator/18517">讨论</a></p>
+</li>
+<li>
+<p>warnings.warn(<br />
+/home/cuiruochen/HA-DPO/ha_dpo/trainer/llava_dpo_trainer_origin.py:135: UserWarning: compute_loss is only implemented for DPODataCollatorWithPadding, and you passed a datacollator that is different than DPODataCollatorWithPadding - you might see unexpected behavior. Alternatively, you can implement your own prediction_step method if you are using a custom data collator</p>
+</li>
+<li>
+<p>[WARNING] [<a target="_blank" rel="noopener" href="http://comm.py:152">comm.py:152</a>:init_deepspeed_backend] NCCL backend in DeepSpeed not yet implemented</p>
+</li>
+</ol>
+<p>TODO:</p>
+<ol start="4">
+<li>
+<p>[WARNING] [<a target="_blank" rel="noopener" href="http://stage3.py:1850">stage3.py:1850</a>:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time</p>
+</li>
+<li>
+<p>[INFO] [<a target="_blank" rel="noopener" href="http://logging.py:96">logging.py:96</a>:log_dist] [Rank 0] DeepSpeed info: version=0.9.5, git-hash=unknown, git-branch=unknown</p>
+</li>
+<li>
+<p>/home/cuiruochen/anaconda/envs/hadpo/lib/python3.9/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None</p>
+</li>
+<li>
+<p>You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.</p>
+</li>
+<li>
+<p>aten/src/ATen/native/cuda/Indexing.cu:1146: indexSelectLargeIndex: block: [488,0,0], thread: [0,0,0] Assertion <code>srcIndex &lt; srcSelectDimSize</code> failed. CSDN</p>
+</li>
+<li>
+<p>RuntimeError: CUDA error: device-side assert triggered<br />
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.<br />
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.<br />
+Compile with <code>TORCH_USE_CUDA_DSA</code> to enable device-side assertions.</p>
+</li>
+<li>
+<p>…/aten/src/ATen/native/cuda/Indexing.cu…/aten/src/ATen/native/cuda/Indexing.cu:1146:1146: indexSelectLargeIndex: indexSelectLargeIndex: block: [464: block: [492,0,0,0,0], thread: [84], thread: [108,0,0,0,0] Assertion <code>srcIndex &lt; srcSelectDimSize] Assertion </code>srcIndex &lt; srcSelectDimSize<code>failed.</code> failed.</p>
+</li>
+<li>
+<p>RuntimeError: CUDA error: device-side assert triggered<br />
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.<br />
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.</p>
+</li>
+<li>
+<p>Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.</p>
+</li>
+<li>
+<p>calling `cublasGemmStridedBatchedExFix( handle, opa, opb, m, n, k, (void*)(&amp;falpha), a, CUDA_R_16F, lda, stridea, b, CUDA_R_16F, ldb, strideb, (void*)(&amp;fbeta), c, CUDA_R_16F, ldc, stridec, num_batches, CUDA_R_32F, CUBLAS_GEMM_DEFAULT_TENSOR_OP)</p>
+</li>
+</ol>
+<h2 id="测试-evaluation"><a class="markdownIt-Anchor" href="#测试-evaluation"></a> 测试 Evaluation</h2>
+<p>根据 HA-DPO 给出<a href="ha_dpo/models/llava-v1_5/README.md">教程</a>, 进行 Evaluation</p>
+<h3 id="pope-evaluation"><a class="markdownIt-Anchor" href="#pope-evaluation"></a> POPE Evaluation</h3>
+<p><strong><em>step 1.</em></strong> 输入以下指令,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">torchrun --nproc_per_node 1 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval.py \</span><br><span class="line">    --coco_path ha_dpo/data/coco2014 \</span><br><span class="line">    --pope_path ha_dpo/data/POPE \</span><br><span class="line">    --model-path /home/cuiruochen/model/llava-v1.5-7b \</span><br><span class="line">    --model-base liuhaotian/llava-v1.5-7b \</span><br><span class="line">    --set &#123;random/popular/adv&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>--set</code>: validation sets in POPE, choose <code>random/popular/adv</code>. After inference, the answer file will be generated under the folder of LLaVA.</li>
+<li><code>--model-path</code>: path to the the trained adapter weights.</li>
+<li><code>--model-base</code>: 使用LLaVA-baseline时, 不设置此项, 同时设置<code>--model-path</code>为<code>liuhaotian/llava-v1.5-7b</code></li>
+<li><code>--nproc_per_node</code>: 代表使用几张卡. 详见<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012605037/article/details/115294898">博客</a></li>
+</ol>
+<p>在服务器上我使用的指令为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torchrun --nproc_per_node 8 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval.py \</span><br><span class="line">    --coco_path ha_dpo/data/coco2014 \</span><br><span class="line">    --pope_path ha_dpo/data/POPE \</span><br><span class="line">    --model-path /home/cuiruochen/model/llava-v1.5-7b \</span><br><span class="line">    --set popular</span><br></pre></td></tr></table></figure>
+<p>若替换了训练后的参数, 可以使用以下命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval_post.py \</span><br><span class="line">    --coco_path ha_dpo/data/coco2014 \</span><br><span class="line">    --pope_path ha_dpo/data/POPE \</span><br><span class="line">    --model-path /home/cuiruochen/model/llava-v1.5-7b-train_postv1-20240331-bs-1-1-16 \</span><br><span class="line">    --set popular</span><br></pre></td></tr></table></figure>
+<p><strong>note:</strong> 在 LLaVA 给出的 python==3.10 环境中, 在 torchrun 过程中会报错, 应该是模型名称均为 ‘llava’ 导致的</p>
+<p><strong>单机多卡</strong></p>
+<ol>
+<li>
+<p>可以使用<code>CUDA_VISIBLE_DEVICES</code>指定使用哪几张显卡. 不使用该指令同时指定<code>nproc_per_node</code>大于1, 会默认使用序号为 0 到 nproc_per_node-1 的显卡</p>
+</li>
+<li>
+<p>(官方推荐, 可拓展到多机多卡) 在命令指定的 <code>pope_eval.py</code> 文件中可以修改来指定使用哪几张显卡. 值得注意的是, 分布式运行指令 <code>torch.distributed.launch</code> 已经被遗弃, 现在都使用torchrun, 详情见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/elastic/run.html">官方文档</a>. “Note that --use-env is set by default in torchrun. If your script expects <code>--local-rank</code> argument to be set, please change it to read from <code>os.environ['LOCAL_RANK']</code> instead. See <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/distributed.html#launch-utility">https://pytorch.org/docs/stable/distributed.html#launch-utility</a> for further instructions”.</p>
+</li>
+</ol>
+<p>使用1.的代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=3,4,5,6 torchrun --nproc_per_node 4 --master_port $RANDOM ha_dpo/models/llava-v1_5/pope_eval.py \</span><br><span class="line">    --coco_path ha_dpo/data/coco2014 \</span><br><span class="line">    --pope_path ha_dpo/data/POPE \</span><br><span class="line">    --model-path /home/cuiruochen/model/llava-v1.5-7b \</span><br><span class="line">    --set random</span><br></pre></td></tr></table></figure>
+<p><strong><em>step2.</em></strong> 修改answer和label的路径</p>
+<p>将 <code>ha_dpo/data/POPE/evaluate.py</code> 中的 <code>ans_file</code> 设置为第一问中产生回答文件的地址, 一般为 <code>ha_dpo/models/llava-v1_5</code> 路径下的某个jsonl文件. <code>label_file</code> 设置为 <code>ha_dpo/data/POPE/output/coco</code> 下的文件</p>
+<p><strong><em>step 3.</em></strong> 进行测试</p>
+<p>运行以下代码获取POPE结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python ha_dpo/data/POPE/evaluate.py</span><br></pre></td></tr></table></figure>
+<p>使用 8 卡 3090, 仅训练 head, 自定义 ref_model, 得到结果:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Model</th>
+<th style="text-align:center">method</th>
+<th style="text-align:center">HA-DPO</th>
+<th style="text-align:center">train</th>
+<th style="text-align:center">lr</th>
+<th style="text-align:center">epoch</th>
+<th style="text-align:center">Accuracy</th>
+<th style="text-align:center">Precision</th>
+<th style="text-align:center">Recall</th>
+<th style="text-align:center">F1 Score</th>
+<th style="text-align:center">Yes Ratio (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">popular</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">86.23</td>
+<td style="text-align:center">83.28</td>
+<td style="text-align:center">90.67</td>
+<td style="text-align:center">86.82</td>
+<td style="text-align:center">54.43</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">popular</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">head</td>
+<td style="text-align:center">2e-6</td>
+<td style="text-align:center">87.03</td>
+<td style="text-align:center">85.45</td>
+<td style="text-align:center">89.27</td>
+<td style="text-align:center">87.32</td>
+<td style="text-align:center">52.23</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">random</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">89.67</td>
+<td style="text-align:center">88.89</td>
+<td style="text-align:center">90.67</td>
+<td style="text-align:center">89.77</td>
+<td style="text-align:center">51.00</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">random</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">head</td>
+<td style="text-align:center">2e-6</td>
+<td style="text-align:center">90.10</td>
+<td style="text-align:center">90.78</td>
+<td style="text-align:center">89.27</td>
+<td style="text-align:center">90.02</td>
+<td style="text-align:center">49.17</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">adversarial</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">79.73</td>
+<td style="text-align:center">74.40</td>
+<td style="text-align:center">90.67</td>
+<td style="text-align:center">81.73</td>
+<td style="text-align:center">60.93</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">adversarial</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">head</td>
+<td style="text-align:center">2e-6</td>
+<td style="text-align:center">80.80</td>
+<td style="text-align:center">76.34</td>
+<td style="text-align:center">89.27</td>
+<td style="text-align:center">82.30</td>
+<td style="text-align:center">58.47</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>使用 4 卡 3090, 训练 post decoder:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Model</th>
+<th style="text-align:center">method</th>
+<th style="text-align:center">HA-DPO</th>
+<th style="text-align:center">train</th>
+<th style="text-align:center">lr</th>
+<th style="text-align:center">epoch</th>
+<th style="text-align:center">Accuracy</th>
+<th style="text-align:center">Precision</th>
+<th style="text-align:center">Recall</th>
+<th style="text-align:center">F1 Score</th>
+<th style="text-align:center">Yes Ratio (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">popular</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">86.23</td>
+<td style="text-align:center">83.28</td>
+<td style="text-align:center">90.67</td>
+<td style="text-align:center">86.82</td>
+<td style="text-align:center">54.43</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">popular</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">post decoder</td>
+<td style="text-align:center">2e-6</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">84.00</td>
+<td style="text-align:center">97.31</td>
+<td style="text-align:center">69.93</td>
+<td style="text-align:center">81.38</td>
+<td style="text-align:center">35.93</td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">popular</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">post decoder</td>
+<td style="text-align:center">5e-7</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">87.20</td>
+<td style="text-align:center">85.86</td>
+<td style="text-align:center">89.07</td>
+<td style="text-align:center">87.43</td>
+<td style="text-align:center">51.87</td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">random</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">89.67</td>
+<td style="text-align:center">88.89</td>
+<td style="text-align:center">90.67</td>
+<td style="text-align:center">89.77</td>
+<td style="text-align:center">51.00</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">random</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">post decoder</td>
+<td style="text-align:center">2e-6</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">adversarial</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">79.73</td>
+<td style="text-align:center">74.40</td>
+<td style="text-align:center">90.67</td>
+<td style="text-align:center">81.73</td>
+<td style="text-align:center">60.93</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">LLaVA-1.5-7B</td>
+<td style="text-align:center">adversarial</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">post decoder</td>
+<td style="text-align:center">2e-6</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="todo"><a class="markdownIt-Anchor" href="#todo"></a> TODO</h2>
+<ol>
+<li>
+<ul>
+<li>[ ] 记得找个女朋友 QWQ</li>
+</ul>
+</li>
+<li>了解代码结构
+<ol>
+<li>
+<ul>
+<li>[] - deepspeed 的 mm_use_im_start_end, mm_use_im_patch_token, lazy_preprocess 参数意义?</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[] prepare_inputs_labels_for_multimodal 在 hadpo 没有做出特殊的处理?</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>修改代码结构
+<ol>
+<li>
+<ul>
+<li>[] SaverCallBack 保存条件修改</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[] reference model 不放在显存上</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[] LlavaMetaModel.initialize_vision_modules 需要加上 Post Decoder 的初始化</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>将 hadpo 的路径改为 post decoder</li>
+<li>ZeRO_offload 为什么会报错?</li>
+<li>后续将 playground 数据集剪切过来</li>
+<li>
+<ul>
+<li>[ ] 学习使用 wandb, 删除不成功的训练日志, 灵活改变保存条件</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>[ ] 查看 LLaVA 的原生 MODEL_ZOO</li>
+</ul>
+</li>
+</ol>
+<h2 id="maybe-useful"><a class="markdownIt-Anchor" href="#maybe-useful"></a> maybe useful</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/issues/948">mm_projector issue</a></p>
+<h2 id="几个问题"><a class="markdownIt-Anchor" href="#几个问题"></a> 几个问题</h2>
+<ol>
+<li>
+<p>flash-attn 和 xformers</p>
+<p>flash-attn 适合 A100 服务器使用, xformers 适合 RTX4090 使用? 需要寻找资料</p>
+</li>
+<li>
+<p>ZeRO2, ZeRO3, ZeRo_offload</p>
+<p>时间换空间的策略. ZeRO-1是将优化器分片, ZeRO-2是在ZeRO-1的基础上将梯度分片, ZeRO-3是在ZeRO-2的基础上将权重分配训练. 速度 1&gt;2&gt;3&gt;offload. 为什么 ZeRO_offload 会报错?</p>
+</li>
+<li>
+<p>服务器问题</p>
+<p>时间不准, 服务器没有 <code>tree</code> 环境指令</p>
+</li>
+<li>
+<p>以下 Warning 未解决</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[WARNING] [comm.py:152:init_deepspeed_backend] NCCL backend in DeepSpeed not yet implemented</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模型量化策略 quantization strategies</p>
+<p>模型量化 (Quantization) 是一种用于通过修改权重的精度来减小大型神经网络 (包括大型语言模型) 大小的技术, 尝试从 16-bit 变为  4-bit/8-bit training. <a target="_blank" rel="noopener" href="https://github.com/haotian-liu/LLaVA/issues/1041">official implement</a></p>
+<p>根据 LLaVA official scripts, 使用 4-bits 进行 inference 的指令为:</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m llava.serve.model_worker --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000 --model-path /home/cuiruochen/model/llava-v1.5-7b</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>估计模型参数, <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44292902/article/details/133767448">博客</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">dtype</th>
+<th style="text-align:center">每10亿参数 (1B) 需要占用显存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">float32</td>
+<td style="text-align:center">4G</td>
+</tr>
+<tr>
+<td style="text-align:center">fp16 / bf16</td>
+<td style="text-align:center">2G</td>
+</tr>
+<tr>
+<td style="text-align:center">int8</td>
+<td style="text-align:center">1G</td>
+</tr>
+<tr>
+<td style="text-align:center">int4</td>
+<td style="text-align:center">0.5G</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>PEFT 的使用</p>
+<p>.get_base_model(), 用于从 PEFT 实例中得到具体的模型, 实例中包括了优化器, 微调策略等等</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from peft import PEFTModel</span><br><span class="line"># 实例化 PEFT 模型对象</span><br><span class="line">peft_model = PEFTModel()</span><br><span class="line"># 获取基础模型</span><br><span class="line">base_model = peft_model.get_base_model()</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Tensor Parallel</p>
+<p>对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi><mo>=</mo><mi>X</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">Y = XA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mord mathnormal">A</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 的形状分别为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(b, c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span>, 有两种切分方式进行分块计算:</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span> 沿着第二维切分为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 份, 每一份的形状为 <span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \split at position 14: (b ,c_{\text{\̲s̲p̲l̲i̲t̲}})'>(b ,c_{\text{\split}})</span>, 每一份放在一个 GPU 上与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> 相乘, 得到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><msub><mi>c</mi><mtext>split</mtext></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, c_{\text{split}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">split</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, 最后将各个 GPU 上的结果按照第二维进行顺序拼接 (all_gather 通信操作), 得到最终结果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span></span></li>
+</ul>
+</li>
+<li>
+<p>数据精度</p>
+<ol>
+<li>FP32: 4 bytes (32 bits), 也即数据类型 float
+<ol>
+<li>符号位 S, 1 bits</li>
+<li>指数偏移值 E, 8 bits (幂值)</li>
+<li>分数值 M, 23 bits, 表示浮点数的数值大小</li>
+<li>浮点数的值 $ (-1)^{\text{s}} \times \text{M} \text 2^{\text{k}} $</li>
+</ol>
+</li>
+<li>TF32: A100 中 TF32 的峰值计算速度是 FP32 的 8 倍
+<ol>
+<li>深度学习中对浮点数的表示范围看中, 有效数字没有那么重要</li>
+<li>TF32 将 FP32 中23个分数值截短为 10bits, 指数位不变, 总长度为 19=1+8+10, 这里保留 10bits是因为 FP16 只有 10 bits 表示分数值</li>
+</ol>
+</li>
+<li>BF16: Google 在 TensorFlow 中引入的数据类型, 可以认为是将 FP32 的前16位截取获得的</li>
+<li>符号位 S, 指数偏移位 E, 分数值 M, FP32-1-8-32, TF32-1-8-10, FP16-1-5-10, BF1-8-7</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/v2-a90125ad6dc18102767b3b8ac02a405b_1440w.image" alt="图示" /></p>
+</li>
+</ol>
+<h2 id="acknowledge"><a class="markdownIt-Anchor" href="#acknowledge"></a> Acknowledge</h2>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/zuoduan/2024/04/10/mllm/summary-reading/%E5%A4%9A%E6%A8%A1%E6%80%81MLLM(Multimodal-Large-Language%20Models)/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          MLLMs 笔记
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/zuoduan/2024/01/25/Article/memories-in-HengShui-High-School/%E5%86%99%E4%BF%A1/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          写信
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+  <script src="https://giscus.app/client.js"
+  data-repo="421zuoduan/blog-giscus-discussion"
+  data-repo-id="R_kgDONKEKag"
+  data-category="Announcements"
+  data-category-id="DIC_kwDONKEKas4Cj9R8"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="1"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+</script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/zuoduan/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/zuoduan/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/zuoduan/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">
+            <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
+        </a>
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="ZhiHu" target="_blank" rel="noopener" href="https://www.zhihu.com/people/ren-jian-lan-xue">
+            <iconify-icon width="28" icon="ri:zhihu-line"></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/zuoduan/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>
