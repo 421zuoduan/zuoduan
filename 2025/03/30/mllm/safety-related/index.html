@@ -22,7 +22,7 @@
   <meta name="keywords" content="佐渡安">
 
 
-<title> PPT/文档制作笔记 | 佐渡安</title>
+<title>多模态幻觉/安全相关论文阅读 | 佐渡安</title>
 
 
 
@@ -533,7 +533,7 @@
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4"> PPT/文档制作笔记</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">多模态幻觉/安全相关论文阅读</p>
       </div>
       <!-- Meta data -->
       <div>
@@ -543,11 +543,11 @@
             <!-- Dates -->
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
-              Created: <time class="w-max">2024-04-17</time>
+              Created: <time class="w-max">2025-03-30</time>
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-10-14</time>
+              Edited: <time class="w-max">2025-03-31</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>109 words, 1 min</span>
+              <span>603 words, 2 min</span>
             </span>
             <!-- Categories -->
             
@@ -572,7 +572,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/zuoduan/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+                <a class="article-category-link" href="/zuoduan/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
               </span>
             
           </div>
@@ -584,7 +584,7 @@
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/zuoduan/tags/note/" 
+      <a href="/zuoduan/tags/research/" 
         class="
           tag
           text-sm
@@ -600,10 +600,10 @@
           hover:text-[var(--c-0)]
           dark:hover:text-[var(--c-theme-2)]
         ">
-        note
+        research
       </a>
     
-      <a href="/zuoduan/tags/tool/" 
+      <a href="/zuoduan/tags/paper/" 
         class="
           tag
           text-sm
@@ -619,7 +619,26 @@
           hover:text-[var(--c-0)]
           dark:hover:text-[var(--c-theme-2)]
         ">
-        tool
+        paper
+      </a>
+    
+      <a href="/zuoduan/tags/mllm/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        mllm
       </a>
     
   
@@ -629,13 +648,19 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="ppt"><a class="markdownIt-Anchor" href="#ppt"></a> PPT</h1>
-<h2 id="衬线字与非衬线字"><a class="markdownIt-Anchor" href="#衬线字与非衬线字"></a> 衬线字与非衬线字</h2>
-<p>PPT 中推荐使用非衬线字体, 非衬线字体每一笔划粗细相同, 阅读性更好. 微软雅黑部署于免费可商用的字体, 可以使用<em>思源黑体</em>替代</p>
-<p>字体嵌入: PowerPoint 可在 “文件-选项-保存-将字体嵌入文件” 中设置</p>
-<h2 id="字体大小"><a class="markdownIt-Anchor" href="#字体大小"></a> 字体大小</h2>
-<p>可以保持主标题 24号字, 正文 14 号字</p>
-<h1 id="保研申请"><a class="markdownIt-Anchor" href="#保研申请"></a> 保研申请</h1>
+    <h2 id="eccv2024-poster-the-first-to-know-how-token-distributions-reveal-hidden-knowledge-in-large-vision-language-models"><a class="markdownIt-Anchor" href="#eccv2024-poster-the-first-to-know-how-token-distributions-reveal-hidden-knowledge-in-large-vision-language-models"></a> [ECCV2024 poster] The First to Know: How Token Distributions  Reveal Hidden Knowledge in Large Vision-Language Models?</h2>
+<p>很有趣的工作. 生成的第一个 token 其 embedding 具有丰富的信息量来判断是否正在生成不安全的内容. 这篇文章是多模态领域的, 但 NLP 也有类似的观察了. 作者拿输出层的第一个 token 的 logit 作为特征向量, 用特征向量训练一个线性分类器以预测行为的性质. 在不同 prompts 上都有鲁棒性, 而且使用后面 token 的 logit 效果不如前面 token 的效果</p>
+<p>在数学问题, 幻觉问题, 图像分类问题上实验都有不错的效果, 微调后的效果不如线性探测, 而且微调后的线性探测能力会减弱</p>
+<blockquote>
+<p>Linear Probing:</p>
+<p>For a specific task, we have a train set and a test set. Each sample is an imagetext pair, e.g., an image of a dog and a question regarding the color of the dog. We feed the training samples into an LVLM and extract the logit distribution corresponding to each output token, and train a linear classifier model Pθ with learnable parameters θ on the logits. Then, we evaluate Pθ on the test set.</p>
+<p>In experiments, we evaluate seven different LVLMs in three tasks with varying prompt designs. We will demonstrate that the logit distribution of the very first token proves to be highly beneficial across a variety of tasks, including recognizing unanswerable visual questions, defending against multi-modal jailbreaking attacks, and identifying deceptive questions. The usefulness of the “first logits” will be validated across different models, tasks and prompts.</p>
+</blockquote>
+<p>后续生成 token 用来线性探测效果不好, 原因是模型对其生成变得更加自信, logit 包含的信息较少. 但是用最后一个 token 的 logit 也有不错的效果, 原因是最后一个 token 是 <E>, 需要整合问题和答案中的信息来决定何时结束回答. 使用 embedding 在生成多个 token 后才能实现与第一个 token logit 相似的效果. 作者也用 CLIP 做了类似的实验, 也有很不错的效果, 不过 LVLM 上效果更好.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250331125439.png" alt="使用不同位置 token 与第一个位置 token 在实验结果上的差距" /></p>
+<p>基于以上发现, 作者改变了解码过程, 生成第一个 token 后将 logit 输入训练好的线性分类器中, 如果检测结果为有害, 则使用设定好的模板答案来替换原始的第一个 token, 然后继续生成答案.</p>
+<p>训练完线性分类器后, 增加的推理成本可忽略不计. 缺点在于, 作者定义的线性分类器是 task-specific 的, 比较僵硬, 没有那么优雅</p>
+<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
 
   </article>
 
@@ -646,22 +671,10 @@
   ">
     <div>
       
-        <a href="/zuoduan/2024/04/21/Article/2024/21_birth_talk/"
-          class="
-            transition-all
-            flex justify-center
-            hover:-translate-x-1
-            hover:text-[var(--c-80)]
-          ">
-          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
-          </iconify-icon>
-          21 × 365 + 5
-        </a>
-      
     </div>
     <div>
       
-        <a href="/zuoduan/2024/04/12/env-setup/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+        <a href="/zuoduan/2025/03/30/Article/2025/%E6%9C%89%E5%85%B3%E8%BF%91%E5%86%B5%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5-20250330/"
           class="
             flex 
             justify-center
@@ -670,7 +683,7 @@
             hover:text-[var(--c-100)]
           "
         >
-          服务器环境配置
+          有关近况的碎碎念-20250330
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       

@@ -547,7 +547,7 @@
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2025-03-29</time>
+              Edited: <time class="w-max">2025-03-30</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>2.2k words, 8 min</span>
+              <span>2.3k words, 9 min</span>
             </span>
             <!-- Categories -->
             
@@ -714,9 +714,13 @@ c-4-3.333-8.333-7.667-13 -13l-13-13l77-155 77-156c66 199.333 139 419.667
 <h2 id="iclr2024-poster-boosting-of-thoughts-trial-and-error-problem-solving-with-large-language-models"><a class="markdownIt-Anchor" href="#iclr2024-poster-boosting-of-thoughts-trial-and-error-problem-solving-with-large-language-models"></a> [ICLR2024 poster] Boosting of Thoughts: Trial-and-Error Problem Solving with Large Language Models</h2>
 <p>迭代多个 trees-of-thoughts, boosting 实现</p>
 <p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250329161133.png" alt="BoT" /></p>
-<h2 id="icml2024-toward-adaptive-reasoning-in-large-language-models-with-thought-rollback"><a class="markdownIt-Anchor" href="#icml2024-toward-adaptive-reasoning-in-large-language-models-with-thought-rollback"></a> [ICML2024] Toward Adaptive Reasoning in Large Language Models with Thought Rollback</h2>
+<h2 id="icml2024-poster-toward-adaptive-reasoning-in-large-language-models-with-thought-rollback"><a class="markdownIt-Anchor" href="#icml2024-poster-toward-adaptive-reasoning-in-large-language-models-with-thought-rollback"></a> [ICML2024 poster] Toward Adaptive Reasoning in Large Language Models with Thought Rollback</h2>
+<p>用 LLM 分析思维链中错误链的索引, 然后从该位置的前一个时间步重新生成, 达到回溯的效果</p>
 <p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250329162416.png" alt="CoT+Thought Rollback(TR)" /></p>
-<p>和 BoT 是同一个作者, 同一个代码框架, 加新数据集都很困难 😃.</p>
+<p>和 BoT 是同一个作者, 同一个代码框架, 加新数据集都很困难 😦. 看上去回溯的方法很直接有效, 但是回溯后是通过 prmopt enhancer 来增强推理的, 这样的话不如直接最开始就使用增强后的 prompt? 代价上比没增强的应该没多多少, 还可能要更少.</p>
+<h2 id="acl2024-active-prompting-with-chain-of-thought-for-large-language-models"><a class="markdownIt-Anchor" href="#acl2024-active-prompting-with-chain-of-thought-for-large-language-models"></a> [ACL2024] Active Prompting with Chain-of-Thought for Large Language Models</h2>
+<p>将 unlabeled question 多次回答后计算 disagreement 或熵, 手动回答不确定性最高的问题, 将其作为 demos. 原始到不像是2024的工作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250330153459.png" alt="Active Prompting" /></p>
 
   </article>
 
