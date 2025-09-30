@@ -648,7 +648,7 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h2 id="eccv2024-poster-the-first-to-know-how-token-distributions-reveal-hidden-knowledge-in-large-vision-language-models"><a class="markdownIt-Anchor" href="#eccv2024-poster-the-first-to-know-how-token-distributions-reveal-hidden-knowledge-in-large-vision-language-models"></a> [ECCV2024 poster] The First to Know: How Token Distributions  Reveal Hidden Knowledge in Large Vision-Language Models?</h2>
+    <h2 id="eccv2024-poster-the-first-to-know-how-token-distributions-reveal-hidden-knowledge-in-large-vision-language-models">[ECCV2024 poster] The First to Know: How Token Distributions  Reveal Hidden Knowledge in Large Vision-Language Models?</h2>
 <p>很有趣的工作. 生成的第一个 token 其 embedding 具有丰富的信息量来判断是否正在生成不安全的内容. 这篇文章是多模态领域的, 但 NLP 也有类似的观察了. 作者拿输出层的第一个 token 的 logit 作为特征向量, 用特征向量训练一个线性分类器以预测行为的性质. 在不同 prompts 上都有鲁棒性, 而且使用后面 token 的 logit 效果不如前面 token 的效果</p>
 <p>在数学问题, 幻觉问题, 图像分类问题上实验都有不错的效果, 微调后的效果不如线性探测, 而且微调后的线性探测能力会减弱</p>
 <blockquote>
@@ -657,10 +657,10 @@
 <p>In experiments, we evaluate seven different LVLMs in three tasks with varying prompt designs. We will demonstrate that the logit distribution of the very first token proves to be highly beneficial across a variety of tasks, including recognizing unanswerable visual questions, defending against multi-modal jailbreaking attacks, and identifying deceptive questions. The usefulness of the “first logits” will be validated across different models, tasks and prompts.</p>
 </blockquote>
 <p>后续生成 token 用来线性探测效果不好, 原因是模型对其生成变得更加自信, logit 包含的信息较少. 但是用最后一个 token 的 logit 也有不错的效果, 原因是最后一个 token 是 <E>, 需要整合问题和答案中的信息来决定何时结束回答. 使用 embedding 在生成多个 token 后才能实现与第一个 token logit 相似的效果. 作者也用 CLIP 做了类似的实验, 也有很不错的效果, 不过 LVLM 上效果更好.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250331125439.png" alt="使用不同位置 token 与第一个位置 token 在实验结果上的差距" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20250331125439.png" alt="使用不同位置 token 与第一个位置 token 在实验结果上的差距"></p>
 <p>基于以上发现, 作者改变了解码过程, 生成第一个 token 后将 logit 输入训练好的线性分类器中, 如果检测结果为有害, 则使用设定好的模板答案来替换原始的第一个 token, 然后继续生成答案.</p>
 <p>训练完线性分类器后, 增加的推理成本可忽略不计. 缺点在于, 作者定义的线性分类器是 task-specific 的, 比较僵硬, 没有那么优雅</p>
-<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
+<h2 id="none"></h2>
 
   </article>
 
