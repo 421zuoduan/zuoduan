@@ -584,25 +584,6 @@
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/zuoduan/tags/setup/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        setup
-      </a>
-    
       <a href="/zuoduan/tags/server/" 
         class="
           tag
@@ -622,6 +603,25 @@
         server
       </a>
     
+      <a href="/zuoduan/tags/setup/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        setup
+      </a>
+    
   
 </div>
       </div>
@@ -629,10 +629,10 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h3 id="查看端口是否占用">查看端口是否占用</h3>
+    <h3 id="查看端口是否占用"><a class="markdownIt-Anchor" href="#查看端口是否占用"></a> 查看端口是否占用</h3>
 <p>linux: <code>lsof -i :7996</code></p>
 <p>windows cmd: <code>netstat -ano | findstr 7996</code></p>
-<h3 id="本地服务器设置">本地服务器设置</h3>
+<h3 id="本地服务器设置"><a class="markdownIt-Anchor" href="#本地服务器设置"></a> 本地服务器设置</h3>
 <ol>
 <li>启动本地代理</li>
 </ol>
@@ -650,7 +650,7 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -x socks5h://127.0.0.1:7996 https://api.ipify.org</span><br></pre></td></tr></table></figure>
 <p>能返回本地公网 ip 说明代理可用</p>
-<h3 id="远程服务器设置">远程服务器设置</h3>
+<h3 id="远程服务器设置"><a class="markdownIt-Anchor" href="#远程服务器设置"></a> 远程服务器设置</h3>
 <ol>
 <li>设置 vscode 插件代理</li>
 </ol>
@@ -667,7 +667,7 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -x http://127.0.0.1:1080 https://api.ipify.org</span><br></pre></td></tr></table></figure>
 <p>输出为本地公网 ip 说明连接成功</p>
-<h3 id="一键运行脚本">一键运行脚本</h3>
+<h3 id="一键运行脚本"><a class="markdownIt-Anchor" href="#一键运行脚本"></a> 一键运行脚本</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 配置</span><br><span class="line">$LocalSocksPort = 7796</span><br><span class="line">$RemoteUser = &quot;remote_user&quot;</span><br><span class="line">$RemoteHost = &quot;remote_server_ip&quot;</span><br><span class="line"></span><br><span class="line"># 启动本地 SOCKS5 代理</span><br><span class="line">Start-Process ssh -ArgumentList &quot;-N -D $LocalSocksPort user@localhost&quot; -NoNewWindow</span><br><span class="line"></span><br><span class="line"># 建立远程反向端口转发</span><br><span class="line">Start-Process ssh -ArgumentList &quot;-N -R $LocalSocksPort:127.0.0.1:$LocalSocksPort $RemoteUser@$RemoteHost&quot; -NoNewWindow</span><br><span class="line"></span><br><span class="line">Write-Host &quot;本地 SOCKS5 代理启动，远程端口转发已建立&quot;</span><br></pre></td></tr></table></figure>
 <!-- $LocalSocksPort = 7796
 $RemoteUser = "shilong"
