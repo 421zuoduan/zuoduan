@@ -610,25 +610,25 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h2 id="wiztree-查看磁盘空间占用">WizTree 查看磁盘空间占用</h2>
+    <h2 id="wiztree-查看磁盘空间占用"><a class="markdownIt-Anchor" href="#wiztree-查看磁盘空间占用"></a> WizTree 查看磁盘空间占用</h2>
 <p>哪个文件大就查哪个的攻略</p>
-<h2 id="杀毒软件自带清理工具">杀毒软件自带清理工具</h2>
+<h2 id="杀毒软件自带清理工具"><a class="markdownIt-Anchor" href="#杀毒软件自带清理工具"></a> 杀毒软件自带清理工具</h2>
 <p>我使用的火绒</p>
-<h2 id="系统清理">系统清理</h2>
+<h2 id="系统清理"><a class="markdownIt-Anchor" href="#系统清理"></a> 系统清理</h2>
 <ol>
 <li>驱动更新: <code>ImDisk Virtual Disk Driver</code></li>
 <li>设置-系统清理</li>
 <li>取消系统休眠</li>
 <li>Zotero 文件夹转移</li>
 </ol>
-<h2 id="cs-文件夹清理">CS 文件夹清理</h2>
-<h3 id="pip-文件夹">pip 文件夹</h3>
+<h2 id="cs-文件夹清理"><a class="markdownIt-Anchor" href="#cs-文件夹清理"></a> CS 文件夹清理</h2>
+<h3 id="pip-文件夹"><a class="markdownIt-Anchor" href="#pip-文件夹"></a> pip 文件夹</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip cache purge</span><br><span class="line">rmdir /s /q &quot;%LocalAppData%\pip\Cache&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="缓存文件夹">缓存文件夹</h3>
+<h3 id="缓存文件夹"><a class="markdownIt-Anchor" href="#缓存文件夹"></a> 缓存文件夹</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Remove-Item &quot;$env:USERPROFILE\.cache\*&quot; -Recurse -Force</span><br></pre></td></tr></table></figure>
-<h3 id="代码缓存文件夹">代码缓存文件夹</h3>
+<h3 id="代码缓存文件夹"><a class="markdownIt-Anchor" href="#代码缓存文件夹"></a> 代码缓存文件夹</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda clean --all</span><br><span class="line">Remove-Item &quot;$env:USERPROFILE\.keras&quot; -Recurse -Force</span><br></pre></td></tr></table></figure>
-<h3 id="wsl-系统">wsl 系统</h3>
+<h3 id="wsl-系统"><a class="markdownIt-Anchor" href="#wsl-系统"></a> wsl 系统</h3>
 
   </article>
 
