@@ -22,7 +22,7 @@
   <meta name="keywords" content="佐渡安">
 
 
-<title>大模型幻觉研究 logit based | 佐渡安</title>
+<title>claude code 断外网服务器配置 | 佐渡安</title>
 
 
 
@@ -533,7 +533,7 @@
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">大模型幻觉研究 logit based</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">claude code 断外网服务器配置</p>
       </div>
       <!-- Meta data -->
       <div>
@@ -543,11 +543,11 @@
             <!-- Dates -->
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
-              Created: <time class="w-max">2025-09-30</time>
+              Created: <time class="w-max">2025-10-30</time>
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2025-09-30</time>
+              Edited: <time class="w-max">2025-10-30</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>0 words, 1 min</span>
+              <span>457 words, 2 min</span>
             </span>
             <!-- Categories -->
             
@@ -572,7 +572,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/zuoduan/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
+                <a class="article-category-link" href="/zuoduan/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
               </span>
             
           </div>
@@ -584,7 +584,7 @@
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/zuoduan/tags/research/" 
+      <a href="/zuoduan/tags/server/" 
         class="
           tag
           text-sm
@@ -600,45 +600,7 @@
           hover:text-[var(--c-0)]
           dark:hover:text-[var(--c-theme-2)]
         ">
-        research
-      </a>
-    
-      <a href="/zuoduan/tags/llm/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        llm
-      </a>
-    
-      <a href="/zuoduan/tags/note/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-          dark:hover:text-[var(--c-theme-2)]
-        ">
-        note
+        server
       </a>
     
   
@@ -648,8 +610,30 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h3 id=""><a class="markdownIt-Anchor" href="#"></a> </h3>
-
+    <p>目的是在断外网的服务器上配置 claude code, 在 claude code 上使用 GLM4.6. 可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1957370685748938170">网址1</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1957902739917997776">网址2</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1933624323849032925">网址3</a>, <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52136627/article/details/149719262">网址4</a></p>
+<h2 id="安装-claude-code"><a class="markdownIt-Anchor" href="#安装-claude-code"></a> 安装 Claude Code</h2>
+<h3 id="安装-npm"><a class="markdownIt-Anchor" href="#安装-npm"></a> 安装 npm</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash</span><br><span class="line">source ~/.bashrc</span><br><span class="line">nvm install node</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>如果 <code>curl</code> 不可用, 使用 <code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash </code>. 输出版本表示下载完成</p>
+<h3 id="安装-claude-code-2"><a class="markdownIt-Anchor" href="#安装-claude-code-2"></a> 安装 claude code</h3>
+<p>设置淘宝镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmmirror.com</span><br><span class="line">npm install -g openai</span><br><span class="line">npm install -g @anthropic-ai/claude-code</span><br></pre></td></tr></table></figure>
+<h3 id="配置-claude-code"><a class="markdownIt-Anchor" href="#配置-claude-code"></a> 配置 claude code</h3>
+<p>在 <code>~/.claude/settings.json</code> 文件中写入以下内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;env&quot;: &#123;</span><br><span class="line">    &quot;ANTHROPIC_AUTH_TOKEN&quot;: &quot;yourkey here&quot;,</span><br><span class="line">    &quot;API_TIMEOUT_MS&quot;: &quot;3000000&quot;,</span><br><span class="line">    &quot;ANTHROPIC_BASE_URL&quot;: &quot;https://open.bigmodel.cn/api/anthropic&quot;,</span><br><span class="line">    &quot;MCP_TOOL_TIMEOUT&quot;: &quot;30000&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;permissions&quot;: &#123;</span><br><span class="line">    &quot;defaultMode&quot;: &quot;bypassPermissions&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;alwaysThinkingEnabled&quot;: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 claude code 看来, 我们仍然在使用 sonnet 模型, 不过再细问他他会说他是智谱转发的, 所以配置正确</p>
+<h3 id="mcp-配置"><a class="markdownIt-Anchor" href="#mcp-配置"></a> MCP 配置</h3>
+<p>联网搜索和多模态功能均为 Pro 及以上套餐提供. 使用 <code>claude mcp add</code> 命令时, 要加 <code>--scope user</code> 才能全局安装. <code>claude mcp list</code> 查看 MCP 列表</p>
+<p><strong>联网搜索</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude mcp add-json web-search-prime  &#x27;&#123;&quot;type&quot;:&quot;http&quot;, &quot;url&quot;:&quot;https://open.bigmodel.cn/api/mcp/web_search_prime/mcp&quot;,&quot;headers&quot;:&#123;&quot;Authorization&quot;:&quot;Bearer &lt;你的 GLM API Key&gt;&quot;&#125;&#125;&#x27;   --scope user</span><br></pre></td></tr></table></figure>
+<p><strong>图像/视频理解</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude mcp add-json zai-mcp-server  &#x27;&#123;&quot;type&quot;:&quot;stdio&quot;,&quot;command&quot;:&quot;cmd&quot;,&quot;args&quot;:[&quot;/c&quot;,&quot;npx&quot;,&quot;-y&quot;,&quot;@z_ai/mcp-server&quot;],&quot;env&quot;:&#123;&quot;Z_AI_API_KEY&quot;:&quot;&lt;你的 GLM API Key&gt;&quot;&#125;&#125;&#x27;  --scope user</span><br></pre></td></tr></table></figure>
+<p><strong>文件系统管理</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude mcp add filesystem -s user -- npx -y @modelcontextprotocol/server-filesystem ~/Documents ~/Projects ~/Desktop</span><br></pre></td></tr></table></figure>
+<p><strong>思维链</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude mcp add thinking -s user -- npx -y @modelcontextprotocol/server-sequential-thinking</span><br></pre></td></tr></table></figure>
+<p><strong>内存管理(用于跨对话保存信息)</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude mcp add memory -s user -- npx -y @modelcontextprotocol/server-memory</span><br></pre></td></tr></table></figure>
   </article>
 
   <!-- prev and next -->
@@ -659,7 +643,7 @@
   ">
     <div>
       
-        <a href="/zuoduan/2025/10/27/tools/codex-cli/"
+        <a href="/zuoduan/2025/11/28/course-note/%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E6%9C%9F%E6%9C%AB%E9%A2%84%E4%B9%A0/"
           class="
             transition-all
             flex justify-center
@@ -668,13 +652,13 @@
           ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          codex cli 断外网服务器配置
+          2025-2026春季学期矩阵分析期末预习笔记
         </a>
       
     </div>
     <div>
       
-        <a href="/zuoduan/2025/09/30/paper_reading/hallucination/attn_matrix_based/"
+        <a href="/zuoduan/2025/10/27/tools/codex-cli/"
           class="
             flex 
             justify-center
@@ -683,7 +667,7 @@
             hover:text-[var(--c-100)]
           "
         >
-          大模型幻觉研究 attn matrix based
+          codex cli 断外网服务器配置
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
