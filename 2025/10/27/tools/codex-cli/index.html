@@ -610,7 +610,7 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h2 id="配置端口转发"><a class="markdownIt-Anchor" href="#配置端口转发"></a> 配置端口转发</h2>
+    <h2 id="配置端口转发">配置端口转发</h2>
 <p>首先确认端口是否被占用, linux使用以下三种方法</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :&lt;端口号&gt;</span><br><span class="line">ss -tulnp | grep &lt;端口号&gt;</span><br><span class="line">netstat -tulnp | grep &lt;端口号&gt;</span><br></pre></td></tr></table></figure>
 <p>windows使用以下方法:</p>
@@ -634,42 +634,42 @@
 <li>使用端口转发后, pip 的流量走的也是本地, 所以频繁配环境时建议建立一个不使用代理的连接</li>
 </ol>
 </blockquote>
-<h2 id="安装-npm"><a class="markdownIt-Anchor" href="#安装-npm"></a> 安装 npm</h2>
+<h2 id="安装-npm">安装 npm</h2>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash</span><br><span class="line">source ~/.bashrc</span><br><span class="line">nvm install node</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 <p>如果 <code>curl</code> 不可用, 使用 <code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash </code>. 输出版本表示下载完成</p>
-<h2 id="安装-codex-cli"><a class="markdownIt-Anchor" href="#安装-codex-cli"></a> 安装 codex-cli</h2>
+<h2 id="安装-codex-cli">安装 codex-cli</h2>
 <p>设置淘宝镜像</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmmirror.com</span><br><span class="line">npm install -g openai</span><br><span class="line">npm install -g @openai/codex</span><br></pre></td></tr></table></figure>
-<h2 id="运行-codex-cli"><a class="markdownIt-Anchor" href="#运行-codex-cli"></a> 运行 codex-cli</h2>
+<h2 id="运行-codex-cli">运行 codex-cli</h2>
 <p>npm 安装 codex 的环境中输入 <code>codex</code></p>
-<h2 id="codex-使用指北"><a class="markdownIt-Anchor" href="#codex-使用指北"></a> codex 使用指北</h2>
-<h3 id="指令"><a class="markdownIt-Anchor" href="#指令"></a> 指令</h3>
-<p><code>/model</code>: 选模型<br />
-<code>/approval</code>: 文件夹内可读还是可编辑, full access 还可以联网读取文件夹外的功能<br />
-<code>/new</code>: 开启新对话<br />
-<code>/init</code>: 创建 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a><br />
-<code>/compact</code>: 压缩上下文<br />
-<code>/diff</code>: 查看文件修改, 基于 git<br />
-<code>/mention</code>: 提到某个文件<br />
-<code>status</code>: 查看当前项目的状态<br />
-<code>/mcp</code>: 查看安装的 mcp<br />
-<code>/logout</code>:<br />
+<h2 id="codex-使用指北">codex 使用指北</h2>
+<h3 id="指令">指令</h3>
+<p><code>/model</code>: 选模型<br>
+<code>/approval</code>: 文件夹内可读还是可编辑, full access 还可以联网读取文件夹外的功能<br>
+<code>/new</code>: 开启新对话<br>
+<code>/init</code>: 创建 <a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a><br>
+<code>/compact</code>: 压缩上下文<br>
+<code>/diff</code>: 查看文件修改, 基于 git<br>
+<code>/mention</code>: 提到某个文件<br>
+<code>status</code>: 查看当前项目的状态<br>
+<code>/mcp</code>: 查看安装的 mcp<br>
+<code>/logout</code>:<br>
 <code>/quit</code>:</p>
 <p>tips: 进入 codex 后先让他介绍一下项目</p>
 <p><code>code exec &quot;使用chrome-mcp关闭所有社交网络页面&quot;</code></p>
-<h3 id="agentmd"><a class="markdownIt-Anchor" href="#agentmd"></a> <a target="_blank" rel="noopener" href="http://AGENT.md">AGENT.md</a></h3>
+<h3 id="agent-md"><a target="_blank" rel="noopener" href="http://AGENT.md">AGENT.md</a></h3>
 <p>一个比较好的<a target="_blank" rel="noopener" href="https://cactusli.net/tutorials/tools/aicoding/OpenAICodex.html">资源网站</a></p>
-<h3 id="mcp-配置"><a class="markdownIt-Anchor" href="#mcp-配置"></a> MCP 配置</h3>
+<h3 id="mcp-配置">MCP 配置</h3>
 <p>在 <code>/home/user/.codex/config.toml</code> 中添加以下配置</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"># 1. Context7 —— 抓取项目依赖的最新库文档/示例（减少旧接口/幻觉）</span><br><span class="line">[mcp_servers.context7]</span><br><span class="line">command = &quot;npx&quot;</span><br><span class="line">args = [&quot;-y&quot;, &quot;@upstash/context7-mcp&quot;]</span><br><span class="line">env = &#123;&#125;  # 无需 API 密钥，直接使用</span><br><span class="line">startup_timeout_ms = 20000  # 可选：延长启动超时（适合网络较慢场景）</span><br><span class="line"></span><br><span class="line"># 2. DeepWiki —— GitHub 仓库问答&amp;结构化知识（支持开源仓库索引）</span><br><span class="line">[mcp_servers.mcp-deepwiki]</span><br><span class="line">command = &quot;npx&quot;</span><br><span class="line">args = [&quot;-y&quot;, &quot;mcp-deepwiki@latest&quot;]</span><br><span class="line">env = &#123;&#125;  # 免费免登录，可提交自有仓库到官方索引</span><br><span class="line">startup_timeout_ms = 20000</span><br><span class="line"></span><br><span class="line"># 3. Playwright —— 浏览器自动化（E2E 测试、页面交互、可视化检查）</span><br><span class="line">[mcp_servers.playwright]</span><br><span class="line">command = &quot;npx&quot;</span><br><span class="line">args = [&quot;@playwright/mcp@latest&quot;]</span><br><span class="line">env = &#123;&#125;  # 官方维护，活跃更新</span><br><span class="line">startup_timeout_ms = 25000  # 浏览器启动较慢，建议延长超时</span><br><span class="line"></span><br><span class="line"># 5. Spec-Workflow —— 规格驱动开发流水线（需求→设计→任务→实现，支持多人协作）</span><br><span class="line">[mcp_servers.spec-workflow]</span><br><span class="line">command = &quot;npx&quot;</span><br><span class="line">args = [&quot;-y&quot;, &quot;@pimzino/spec-workflow-mcp@latest&quot;]</span><br><span class="line">env = &#123;&#125;  # 含实时仪表盘与 VSCode 扩展，一键配置</span><br><span class="line">startup_timeout_ms = 20000</span><br><span class="line"></span><br><span class="line"># 6. Sequential-Thinking —— 复杂问题结构化拆解（多路径推理、可回溯步骤）</span><br><span class="line">[mcp_servers.sequential-thinking]</span><br><span class="line">command = &quot;npx&quot;</span><br><span class="line">args = [&quot;-y&quot;, &quot;@modelcontextprotocol/server-sequential-thinking&quot;]</span><br><span class="line">env = &#123;&#125;  # 支持动态“想法”数量，适合可解释性任务</span><br><span class="line">startup_timeout_ms = 15000</span><br><span class="line"></span><br><span class="line"># 8. Serena —— 代码语义检索+符号级编辑（开源，支持多语言大仓重构）</span><br><span class="line">[mcp_servers.serena]</span><br><span class="line">command = &quot;uvx&quot;  # 注意：Serena 使用 uvx 启动（非 npx）</span><br><span class="line">args = [&quot;--from&quot;, &quot;git+https://github.com/oraios/serena&quot;, &quot;serena&quot;, &quot;start-mcp-server&quot;]</span><br><span class="line">env = &#123;&#125;  # 基于 LSP 语义理解，适合精准改码</span><br><span class="line">startup_timeout_ms = 25000  # 仓库加载较慢，建议延长超时</span><br><span class="line"></span><br><span class="line"># 10. Open-Web-Search —— 跨搜索引擎检索（支持 DuckDuckGo/Bing/Brave，可切换传输模式）</span><br><span class="line">[mcp_servers.open-websearch]</span><br><span class="line">command = &quot;npx&quot;</span><br><span class="line">args = [&quot;-y&quot;, &quot;open-websearch@latest&quot;]</span><br><span class="line">env = &#123;&quot;MODE&quot; = &quot;stdio&quot;, &quot;DEFAULT_SEARCH_ENGINE&quot; = &quot;duckduckgo&quot;, &quot;ALLOWED_SEARCH_ENGINES&quot; = &quot;duckduckgo,bing,brave&quot;&#125;</span><br><span class="line">startup_timeout_ms = 15000</span><br></pre></td></tr></table></figure>
 <p>添加以后重启 codex, <code>/mcp</code> 指令能看到添加的 MCP 就成功了, MCP 本身的文件在初次调用时会自行下载. 如果一直 re-connecting, 可能是 MCP 网络问题</p>
 <blockquote>
 <p>note: MCP 这里好像没调试好</p>
 </blockquote>
-<h3 id="对话恢复"><a class="markdownIt-Anchor" href="#对话恢复"></a> 对话恢复</h3>
+<h3 id="对话恢复">对话恢复</h3>
 <p>codex 对话历史保存在 <code>~/.codex/sessions</code>. 手动回复指定对话列表, 继续上次对话的指令:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">codex --resume</span><br><span class="line">codex --continue</span><br></pre></td></tr></table></figure>
-<h3 id="agentmd-2"><a class="markdownIt-Anchor" href="#agentmd-2"></a> <a target="_blank" rel="noopener" href="http://AGENT.md">AGENT.md</a></h3>
+<h3 id="agent-md"><a target="_blank" rel="noopener" href="http://AGENT.md">AGENT.md</a></h3>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 是 Codex 引入的特殊文档文件，作为项目的&quot;AI 指南&quot;，让 Codex 理解你的项目特有的编码标准、架构模式和最佳实践。通过提供上下文特定的信息，Codex 可以生成与团队规范高度一致的代码。层级结构与优先级</p>
 </blockquote>
@@ -699,7 +699,7 @@
     </div>
     <div>
       
-        <a href="/zuoduan/2025/09/30/paper_reading/hallucination/logit_based/"
+        <a href="/zuoduan/2025/09/30/paper_reading/hallucination/attn_matrix_based/"
           class="
             flex 
             justify-center
@@ -708,7 +708,7 @@
             hover:text-[var(--c-100)]
           "
         >
-          大模型幻觉研究 logit based
+          大模型幻觉研究 attn matrix based
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
