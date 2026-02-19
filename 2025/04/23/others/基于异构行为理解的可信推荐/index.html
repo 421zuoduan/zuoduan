@@ -558,7 +558,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>1k words, 4 min</span>
+              <span>1k words, 3 min</span>
             </span>
             <!-- Categories -->
             
@@ -606,21 +606,40 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <p>大语言模型（LLMs）已成为自然语言处理领域的强大工具，近期在推荐系统领域也引起了广泛关注[^1]。大模型在推荐系统的应用上，主要分为判别式推荐模型（DLLM4Rec）和生成式推荐模型（GLLM4Rec）。具体而言，判别式推荐分为提示词微调和模型微调，生成式推荐模型又分为需要模型微调和无需模型微调两部分。既有工作主要分为使用LLM隐藏状态、使用LLM tokens、使用LLM作为推荐系统三个方面。判别式推荐模型主要指BERT系列模型[^2]，[^3]提出的U-BERT方法可用于学习用户表示, 该方法利用内容丰富的领域知识来补充行为数据不足的用户特征. 类似的, UserBERT[^4]在未标记的行为数据上进行用户模型预训练, 通过捕捉用户的内在兴趣与用户特征相关性来得到准确的用户画像. UnisSRec开发了一个基于BERT微调的框架, 通过关联物品描述文本来迁移物体表示, 使得BERT微调适用于更广泛的推荐场景. 以上需要微调的方法存在耗费资源大训练时间长的问题, 因此[^5]利用BERT的 Masked Language Modeling(MLM) 和 Next Sentence Prediction(NSP) 得到物体表示的相似性, 通过比较相关的搜索操作来得到准确的推荐结果. 类似的, [^6]开发了一种结合用户-项目属性公平性分析的对话推荐系统, 通过构建提示词模版来消除观察到的偏差. 生成式推荐模型比判别式推荐模型有更好的自然语言生成能力, 因此生成式推荐模型在近期受到了越来越多的关注. MINT[^7]利用InstructGPT来生成提示词, 总结用户与系统的交互数据来判断用户的使用意图, 但这种方法受提示词影响大, 且对文本描述的目标不明确. KAR[^8]通过引入细粒度的prompt解决了MINT的缺陷. 还有一部分工作为特定的推荐任务提出有效的提示词, 如[^9]引入基于时效性的序列提示词和自举法来提高序列推荐准确性, LLMRG[^10]使用ChatGPT和外部知识库来构建推理图, 从而增强用户表示. [^11]对使用实体的线性投影, 通过权重矩阵替换了LLMs的原始预测层以获取所有候选实体的排序分数. [^12]借助LLMs为用户生成感兴趣产品的标题. 此外, [^13]设计了基于LLMs的交互式推荐框架, 通过多轮对话理解用户需求和调用既有推荐系统. 尽管以上生成式推荐模型方法无需模型微调取得了一定的效果, 单在推荐效果上仍有所欠缺, 目前也有基于LLMs微调的生成式推荐模型方法, 如[^12]使用闭源LLMs获取推荐系统中物品信息的token, 然后用LLaMA来表示物品和用户, 得到可用于训练的模型内部状态. [^14]从美团数据集中提取异构知识, 通过提示词工程构建训练数据集, 用以对LLMs进行推荐场景下的指令微调.</p>
-<p>[^1]:A Survey on Large Language Models for  Recommendation<br>
-[^2]:BERT: pre-training of deep bidirectional transformers for language understanding.<br>
-[^3]:U-BERT: pre-training user representations for improved recommendation<br>
-[^4]:Userbert: Contrastive user model pre-training<br>
-[^5]:What does BERT know about books, movies and music? probing BERT for conversational recommendation<br>
-[^6]:Towards understanding and mitigating unintended biases in language model-driven conversational recommendation<br>
-[^7]:Large language model augmented narrative driven recommendations<br>
-[^8]:Towards open-world recommendation with knowledge augmentation from large language models<br>
-[^9]:Large language models are zero-shot rankers for recommender systems<br>
-[^10]:Enhancing recommender systems with large language model reasoning graphs<br>
-[^11]:Heterogeneous knowledge fusion: A novel approach for personalized recommendation via llm<br>
-[^12]:Once: Boosting content-based recommendation with both open- and closed-source large language models<br>
-[^13]:Large language models are learnable planners for long-term recommendation<br>
-[^14]:Heterogeneous knowledge fusion: A novel approach for personalized recommendation via llm</p>
+    <p>大语言模型（LLMs）已成为自然语言处理领域的强大工具，近期在推荐系统领域也引起了广泛关注<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。大模型在推荐系统的应用上，主要分为判别式推荐模型（DLLM4Rec）和生成式推荐模型（GLLM4Rec）。具体而言，判别式推荐分为提示词微调和模型微调，生成式推荐模型又分为需要模型微调和无需模型微调两部分。既有工作主要分为使用LLM隐藏状态、使用LLM tokens、使用LLM作为推荐系统三个方面。判别式推荐模型主要指BERT系列模型<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>，<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>提出的U-BERT方法可用于学习用户表示, 该方法利用内容丰富的领域知识来补充行为数据不足的用户特征. 类似的, UserBERT<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>在未标记的行为数据上进行用户模型预训练, 通过捕捉用户的内在兴趣与用户特征相关性来得到准确的用户画像. UnisSRec开发了一个基于BERT微调的框架, 通过关联物品描述文本来迁移物体表示, 使得BERT微调适用于更广泛的推荐场景. 以上需要微调的方法存在耗费资源大训练时间长的问题, 因此<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>利用BERT的 Masked Language Modeling(MLM) 和 Next Sentence Prediction(NSP) 得到物体表示的相似性, 通过比较相关的搜索操作来得到准确的推荐结果. 类似的, <sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>开发了一种结合用户-项目属性公平性分析的对话推荐系统, 通过构建提示词模版来消除观察到的偏差. 生成式推荐模型比判别式推荐模型有更好的自然语言生成能力, 因此生成式推荐模型在近期受到了越来越多的关注. MINT<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>利用InstructGPT来生成提示词, 总结用户与系统的交互数据来判断用户的使用意图, 但这种方法受提示词影响大, 且对文本描述的目标不明确. KAR<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>通过引入细粒度的prompt解决了MINT的缺陷. 还有一部分工作为特定的推荐任务提出有效的提示词, 如<sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup>引入基于时效性的序列提示词和自举法来提高序列推荐准确性, LLMRG<sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup>使用ChatGPT和外部知识库来构建推理图, 从而增强用户表示. <sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup>对使用实体的线性投影, 通过权重矩阵替换了LLMs的原始预测层以获取所有候选实体的排序分数. <sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup>借助LLMs为用户生成感兴趣产品的标题. 此外, <sup class="footnote-ref"><a href="#fn13" id="fnref13">[13]</a></sup>设计了基于LLMs的交互式推荐框架, 通过多轮对话理解用户需求和调用既有推荐系统. 尽管以上生成式推荐模型方法无需模型微调取得了一定的效果, 单在推荐效果上仍有所欠缺, 目前也有基于LLMs微调的生成式推荐模型方法, 如<sup class="footnote-ref"><a href="#fn12" id="fnref12:1">[12:1]</a></sup>使用闭源LLMs获取推荐系统中物品信息的token, 然后用LLaMA来表示物品和用户, 得到可用于训练的模型内部状态. <sup class="footnote-ref"><a href="#fn14" id="fnref14">[14]</a></sup>从美团数据集中提取异构知识, 通过提示词工程构建训练数据集, 用以对LLMs进行推荐场景下的指令微调.</p>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>A Survey on Large Language Models for  Recommendation <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>BERT: pre-training of deep bidirectional transformers for language understanding. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>U-BERT: pre-training user representations for improved recommendation <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>Userbert: Contrastive user model pre-training <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>What does BERT know about books, movies and music? probing BERT for conversational recommendation <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>Towards understanding and mitigating unintended biases in language model-driven conversational recommendation <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p>Large language model augmented narrative driven recommendations <a href="#fnref7" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p>Towards open-world recommendation with knowledge augmentation from large language models <a href="#fnref8" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn9" class="footnote-item"><p>Large language models are zero-shot rankers for recommender systems <a href="#fnref9" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p>Enhancing recommender systems with large language model reasoning graphs <a href="#fnref10" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p>Heterogeneous knowledge fusion: A novel approach for personalized recommendation via llm <a href="#fnref11" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p>Once: Boosting content-based recommendation with both open- and closed-source large language models <a href="#fnref12" class="footnote-backref">↩︎</a> <a href="#fnref12:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn13" class="footnote-item"><p>Large language models are learnable planners for long-term recommendation <a href="#fnref13" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn14" class="footnote-item"><p>Heterogeneous knowledge fusion: A novel approach for personalized recommendation via llm <a href="#fnref14" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
   </article>
 
