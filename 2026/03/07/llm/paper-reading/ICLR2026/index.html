@@ -547,7 +547,7 @@
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2026-03-07</time>
+              Edited: <time class="w-max">2026-03-09</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>17 words, 1 min</span>
+              <span>482 words, 1 min</span>
             </span>
             <!-- Categories -->
             
@@ -629,12 +629,23 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h1 id="efficient"><a class="markdownIt-Anchor" href="#efficient"></a> Efficient</h1>
-<h1 id="hallucination"><a class="markdownIt-Anchor" href="#hallucination"></a> Hallucination</h1>
-<h1 id="evolution-continous-learning"><a class="markdownIt-Anchor" href="#evolution-continous-learning"></a> Evolution / Continous Learning</h1>
-<h1 id="safety"><a class="markdownIt-Anchor" href="#safety"></a> Safety</h1>
-<h2 id="iclr2026-every-language-model-has-a-forgery-resistant-signature"><a class="markdownIt-Anchor" href="#iclr2026-every-language-model-has-a-forgery-resistant-signature"></a> [ICLR2026] Every Language Model Has a Forgery-Resistant Signature</h2>
-<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
+    <h1 id="Efficient"><a href="#Efficient" class="headerlink" title="Efficient"></a>Efficient</h1><h2 id="ICLR2026-Oral-Overcoming-joint-intractability-with-lossless-hierarchical-speculative-decoding"><a href="#ICLR2026-Oral-Overcoming-joint-intractability-with-lossless-hierarchical-speculative-decoding" class="headerlink" title="[ICLR2026 Oral] Overcoming joint intractability with lossless hierarchical speculative decoding"></a>[ICLR2026 Oral] Overcoming joint intractability with lossless hierarchical speculative decoding</h2><h1 id="Hallucination"><a href="#Hallucination" class="headerlink" title="Hallucination"></a>Hallucination</h1><h1 id="Evolution-Continual-Learning"><a href="#Evolution-Continual-Learning" class="headerlink" title="Evolution / Continual Learning"></a>Evolution / Continual Learning</h1><p>现有上下文动态管理机制在面对长文本时会遇到上下文崩溃 Context Collapse 问题.</p>
+<p>Contribution:</p>
+<ol>
+<li>将大语言模型处理任务的行为拆解为任务生成Generator, 误差反思Reflector, 上下文整合Curator</li>
+<li>增量差异更新可以解决上下文崩溃</li>
+</ol>
+<h2 id="ICLR2026-Oral-Plug-and-Play-Compositionality-for-Boosting-Continual-Learning-with-Foundation-Models"><a href="#ICLR2026-Oral-Plug-and-Play-Compositionality-for-Boosting-Continual-Learning-with-Foundation-Models" class="headerlink" title="[ICLR2026 Oral] Plug-and-Play Compositionality for Boosting Continual Learning with Foundation Models"></a>[ICLR2026 Oral] Plug-and-Play Compositionality for Boosting Continual Learning with Foundation Models</h2><p>现有方法不足:</p>
+<ol>
+<li>过度依赖全局特征, 容易导致特征覆写与灾难性遗忘 (更新全局特征向量时新特征覆盖了旧特征) </li>
+<li>跨任务概念服用能力缺失. 不同任务共享了大量底层视觉概念, 无法利用学习过的概念加速新类的学习<br>小样本与少类别增量任务重的脆弱性</li>
+</ol>
+<p>Method:</p>
+<p>槽注意力: 将</p>
+<h1 id="Safety"><a href="#Safety" class="headerlink" title="Safety"></a>Safety</h1><h2 id="ICLR2026-Every-Language-Model-Has-a-Forgery-Resistant-Signature"><a href="#ICLR2026-Every-Language-Model-Has-a-Forgery-Resistant-Signature" class="headerlink" title="[ICLR2026] Every Language Model Has a Forgery-Resistant Signature"></a>[ICLR2026] Every Language Model Has a Forgery-Resistant Signature</h2><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h2 id="ICLR2026-Oral-p-less-Sampling-A-Robust-Hyperparameter-Free-Approach-for-LLM-Decoding"><a href="#ICLR2026-Oral-p-less-Sampling-A-Robust-Hyperparameter-Free-Approach-for-LLM-Decoding" class="headerlink" title="[ICLR2026 Oral] p-less Sampling: A Robust Hyperparameter-Free Approach for LLM Decoding"></a>[ICLR2026 Oral] p-less Sampling: A Robust Hyperparameter-Free Approach for LLM Decoding</h2><p>使用一次随机采样恰好命中正确答案的期望概率作为截断阈值, 很巧妙的想法, 简单且无参. 选中 token $v$ 的概率为 $P_{\theta}(v)$, 假设当前训练好的语言模型的预测分布就是对真实世界答案分布的最佳经验估计, 所以采样 logit 截断阈值即</p>
+<script type="math/tex; mode=display">
+L[P_\theta] = \sum_{v \in \mathcal{V}} P_\theta(v \mid x_{1:t-1})^2</script><p>截断后随机采样. 这种方法的解释性强, 缓解了温度系数高时有过多可采样词的问题, 也缓解了 top-p 在所有词的采样概率都很低时造成的类似情况</p>
+<p>在数学上, 这对应了二阶瑞利熵的负指数形式, 二阶瑞利熵是用来衡量离散概率系统中发生”碰撞”的可能性, “碰撞”是同一分布中独立抽取两次, 两次都抽中同一个词的概率</p>
 
   </article>
 
@@ -648,7 +659,7 @@
     </div>
     <div>
       
-        <a href="/zuoduan/2026/02/20/llm/robust/llm-robust/"
+        <a href="/zuoduan/2026/02/20/llm/robustness/llm-robust/"
           class="
             flex 
             justify-center

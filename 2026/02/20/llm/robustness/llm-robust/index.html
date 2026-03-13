@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="zh-cn,en,default">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="unknown">
+
+
+  <meta name="subtitle" content="殊异者具有普世情怀">
+
+
+  <meta name="description" content="想看海
+">
+
+
+  <meta name="keywords" content="佐渡安">
+
+
+<title>LLM-Robust Paper Reading | 佐渡安</title>
+
+
+
+<link rel="icon" href="/zuoduan/web_ico.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/zuoduan/css/main.css">
+
+
+<link rel="stylesheet" href="/zuoduan/css/search.css">
+
+
+
+<script src="/zuoduan/lib/jquery.min.js"></script>
+
+
+<script src="/zuoduan/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.1.1"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a href="/zuoduan/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+      佐渡安
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./archives" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:inbox-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Posts</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./publications" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:science-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Publications</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./about" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:user-info-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>About</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./categories" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-2-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Categories</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./tags" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+        </iconify-icon>
+        
+        
+        <p>Tags</p>
+        
+      </a>
+      
+      
+      
+      
+      
+      
+      <a href="/zuoduan/./index" class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+        
+        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:home-2-fill" width="22">
+        </iconify-icon>
+        
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center">
+
+      <!-- TODO: Add search icon here -->
+
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]" width="24" id="theme-icon">
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex p-1 mx-1 sm:hidden">
+        <a class="w-5 h-5" aria-hidden="true" id="open-menu">
+          <iconify-icon width="24" icon="mingcute:menu-fill" class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+          </iconify-icon>
+        </a>
+        <a class="w-5 h-5 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon width="24" icon="mingcute:close-circle-fill" class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content" class="
+        flex
+        flex-row
+        justify-center
+        items-center
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+    
+    
+    
+    <a href="/zuoduan/./archives" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:inbox-fill" width="22">
+      </iconify-icon>
+      <p>
+        posts
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./publications" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:science-fill" width="22">
+      </iconify-icon>
+      <p>
+        publications
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./about" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:user-info-fill" width="22">
+      </iconify-icon>
+      <p>
+        about
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./categories" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:classify-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        categories
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./tags" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:tag-fill" width="22">
+      </iconify-icon>
+      <p>
+        tags
+      </p>
+    </a>
+    
+    
+    
+    
+    <a href="/zuoduan/./index" class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+      <iconify-icon icon="mingcute:home-2-fill" width="22">
+      </iconify-icon>
+      <p>
+        home
+      </p>
+    </a>
+    
+    
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/zuoduan/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/zuoduan/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">LLM-Robust Paper Reading</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2026-02-20</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2026-03-09</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+              <span class="flex items-center gap-1 group">
+                <iconify-icon width="18" icon="mingcute:user-edit-fill" ></iconify-icon>
+                <p>myself</p>
+              </span>
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>6.9k words, 26 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/zuoduan/categories/%E7%A0%94%E7%A9%B6-%E5%A4%A7%E6%A8%A1%E5%9E%8B/">研究-大模型</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/zuoduan/tags/research/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        research
+      </a>
+    
+      <a href="/zuoduan/tags/llm/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-theme-2)]
+        ">
+        llm
+      </a>
+    
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p>Certified Robustness 可证明鲁棒性可分为两种学派: 概率统计派 (基于随机平滑 Randomized Smoothing) 与确定性推导派 (Deterministic Certification). 可认证鲁棒在数学上保证了只要扰动在特定半径内，模型的预测结果不会发生改变</p>
+<h1 id="随机平滑"><a href="#随机平滑" class="headerlink" title="随机平滑"></a>随机平滑</h1><h2 id="NIPS2019-Short-Talk-Spotlight-Certified-Adversarial-Robustness-via-Randomized-Smoothing"><a href="#NIPS2019-Short-Talk-Spotlight-Certified-Adversarial-Robustness-via-Randomized-Smoothing" class="headerlink" title="[NIPS2019 Short Talk(Spotlight)] Certified Adversarial Robustness via Randomized Smoothing"></a>[NIPS2019 Short Talk(Spotlight)] Certified Adversarial Robustness via Randomized Smoothing</h2><p><strong>TLDR</strong> </p>
+<p>构建过程：</p>
+<ol>
+<li>基础分类器：假设我们有一个任意的、可能不鲁棒的神经网络 $f(x)$, 这个分类器在训练时要有一定的加噪数据, 已经有一定的对噪声数据的识别能力</li>
+<li>添加高斯噪声：对于输入 $x$，我们向其添加服从均值为 0、标准差为 $\sigma$ 的各向同性高斯噪声 $\epsilon \sim \mathcal{N}(0, \sigma^2 I)$。</li>
+<li>多数表决：平滑分类器 $g(x)$ 的输出，是基础分类器 $f$ 在添加噪声后，最有可能输出的类别。</li>
+</ol>
+<p>具体分析:</p>
+<p>在输入空间 $\mathbb{R}^d$ 中，当分类器 $f$ 的预测基于高斯平滑分布 $\mathcal{N}(x, \sigma^2I)$ 时，如果平滑分类器 $g(x)$ 以置信下界 $\underline{p_A}$ 预测出类别 $c_A$，那么在 $l_2$ 半径为 $R$ 的球体内，$g(x+\delta)$ 的预测类别绝对不会发生改变（即依然为 $c_A$）</p>
+<script type="math/tex; mode=display">
+R = \sigma \cdot \Phi^{-1}(\underline{p_A})</script><p>其中 $\sigma$ 是平滑标准差, 也即噪声的标准差; $p<em>A$ 是多数类的置信下界, 即在置信度 $1-\alpha$ 下的最差概率 $p_A$; $\Phi^{-1}$ 是标准正态分布的累积分布函数的逆, $\Phi(z) = \int</em>{-\infty}^{z} \frac{1}{\sqrt{2\pi}} e^{-t^2/2} dt$.</p>
+<blockquote>
+<p>对于随机平滑, 假设样本是高维空间内的一个点, 后门攻击时对样本加噪使加噪样本相比原始样本更靠近高维的有害空间, 此时再加噪, 相当于是有害加噪样本为中心的一个球, 此时这个也有很大一部分是在有害空间的, 为什么能做到防御攻击呢?</p>
+<p>答: 因为噪声尺度并不大, 加噪样本比原始样本仅移动一小部分, 高维空间内判定有害可能性更大的空间想象成一个锥形, 大多数投票后判定仍然是安全</p>
+</blockquote>
+<p><strong>Trade-off</strong></p>
+<p>$\sigma$ 越大, 噪声越大, 但是干净图像的准确率会降低, 所以需要做 Trade-off, 这就引入了 ACR (Average Certified Radius 平均认证半径)</p>
+<script type="math/tex; mode=display">
+ACR = \frac{1}{|D_{test}|} \sum_{(x,y) \in D_{test}} R(x, y) \cdot \mathbb{I}(\text{预测正确})</script><p>遍历测试集 $D_{test}$ 中的所有图片; 如果模型把这只猫认错了，那这只猫提供的半径贡献直接记为 $0$; 如果认对了，就把算出来的认证半径 $R$ 累加起来; 最后除以测试集总样本数，求平均</p>
+<p><strong>优缺点</strong></p>
+<p>优势 (Pros)：</p>
+<ol>
+<li>模型不可知 (Model-Agnostic)：不需要知道 $f$ 的内部结构，把 $f$ 当作黑盒即可。</li>
+<li>可扩展性极强 (Scalability)：完美适配 ResNet 等大型网络和 ImageNet 等大型数据集的。</li>
+</ol>
+<p>局限性 (Cons)：</p>
+<ol>
+<li>推理成本高昂：为了对一张图片进行分类和认证，可能需要进行 $10^4$ 到 $10^5$ 次前向传播（因为要蒙特卡洛采样）。</li>
+<li>概率性认证：认证结果不是 100% 确定的，而是以 $1 - \alpha$ 的置信度成立（尽管 $\alpha$ 可以设置得很小）。</li>
+<li>准确率权衡 (Accuracy Trade-off)：加入较大的噪声 $\sigma$ 虽然能提升鲁棒半径，但也破坏了图像原本的特征，会导致模型在干净样本上的标准准确率下降。</li>
+</ol>
+<p>公式推导如下:</p>
+<p>设基础分类器为 (f:\mathbb{R}^d\to\mathcal{Y})，噪声为 (\varepsilon\sim \mathcal{N}(0,\sigma^2 I))，平滑分类器定义为<br>[<br>g(x)=\arg\max<em>{c\in\mathcal{Y}}\mathbb{P}\big(f(x+\varepsilon)=c\big).<br>]<br>记当前输入 (x) 处的预测类别为 (A)，即 (A=g(x))。进一步记<br>(p_A=\mathbb{P}(f(x+\varepsilon)=A))，<br>(p_B=\max</em>{c\neq A}\mathbb{P}(f(x+\varepsilon)=c))。<br>对任意扰动 (\delta\in\mathbb{R}^d)，目标是推出一个半径条件，使得当 (|\delta|_2) 足够小时仍有 (g(x+\delta)=A)。</p>
+<hr>
+<p>对任意类别 (c)，定义集合<br>[<br>S_c:={z\in\mathbb{R}^d:f(z)=c}.<br>]<br>于是<br>[<br>\mathbb{P}(f(x+\varepsilon)=c)=\mathbb{P}(x+\varepsilon\in S_c).<br>]</p>
+<p>令<br>[<br>X\sim \mathcal{N}(x,\sigma^2 I),\qquad Y\sim \mathcal{N}(x+\delta,\sigma^2 I).<br>]<br>则<br>[<br>\mathbb{P}(X\in S_A)=p_A,\qquad \mathbb{P}(X\in S_c)\le p_B\quad(c\neq A).<br>]</p>
+<p>由高斯测度在平移下的最优界，若 (\mathbb{P}(X\in S)\ge p)，则<br>[<br>\mathbb{P}(Y\in S)\ge \Phi!\left(\Phi^{-1}(p)-\frac{|\delta|_2}{\sigma}\right),<br>]<br>若 (\mathbb{P}(X\in S)\le p)，则<br>[<br>\mathbb{P}(Y\in S)\le \Phi!\left(\Phi^{-1}(p)+\frac{|\delta|_2}{\sigma}\right),<br>]<br>其中 (\Phi) 是标准正态分布的分布函数。</p>
+<p>因此对类别 (A)，有<br>[<br>\mathbb{P}(f(x+\delta+\varepsilon)=A)<br>=<br>\mathbb{P}(Y\in S_A)<br>\ge<br>\Phi!\left(\Phi^{-1}(p_A)-\frac{|\delta|_2}{\sigma}\right).<br>]</p>
+<p>对任意 (c\neq A)，有<br>[<br>\mathbb{P}(f(x+\delta+\varepsilon)=c)<br>=<br>\mathbb{P}(Y\in S_c)<br>\le<br>\Phi!\left(\Phi^{-1}(p_B)+\frac{|\delta|_2}{\sigma}\right).<br>]</p>
+<p>为了保证 (g(x+\delta)=A)，只需对所有 (c\neq A) 满足<br>[<br>\mathbb{P}(f(x+\delta+\varepsilon)=A)<br>&gt;<br>\mathbb{P}(f(x+\delta+\varepsilon)=c).<br>]<br>由上面的上下界，一个充分条件是<br>[<br>\Phi!\left(\Phi^{-1}(p_A)-\frac{|\delta|_2}{\sigma}\right)<br>&gt;<br>\Phi!\left(\Phi^{-1}(p_B)+\frac{|\delta|_2}{\sigma}\right).<br>]<br>由于 (\Phi) 单调递增，上式等价于<br>[<br>\Phi^{-1}(p_A)-\frac{|\delta|_2}{\sigma}<br>&gt;<br>\Phi^{-1}(p_B)+\frac{|\delta|_2}{\sigma}.<br>]<br>整理得<br>[<br>\Phi^{-1}(p_A)-\Phi^{-1}(p_B)<br>&gt;<br>2\frac{|\delta|_2}{\sigma}.<br>]<br>故当<br>[<br>|\delta|_2<br>&lt;<br>\frac{\sigma}{2}\Big(\Phi^{-1}(p_A)-\Phi^{-1}(p_B)\Big)<br>]<br>时，必有<br>[<br>g(x+\delta)=A.<br>]</p>
+<p>因此随机平滑的认证半径为<br>[<br>\boxed{<br>R=<br>\frac{\sigma}{2}\Big(\Phi^{-1}(p_A)-\Phi^{-1}(p_B)\Big)<br>}.<br>]</p>
+<p>若进一步采用二分类式或 top-1 / 其余类合并的写法，即令 (p_B=1-p_A)，则<br>[<br>R<br>=<br>\frac{\sigma}{2}\Big(\Phi^{-1}(p_A)-\Phi^{-1}(1-p_A)\Big).<br>]<br>由 (\Phi^{-1}(1-p)=-\Phi^{-1}(p))，化简为<br>[<br>\boxed{<br>R=\sigma\Phi^{-1}(p_A)<br>}.<br>]</p>
+<p>实际中 (p_A) 往往由采样估计。若采样得到的是 (p_A) 的置信下界 (\underline p_A)，则对应的可认证半径写为<br>[<br>\boxed{<br>R=\sigma\Phi^{-1}(\underline p_A)<br>}<br>]<br>或更一般地，若同时有 (p_B) 的置信上界 (\overline p_B)，则<br>[<br>\boxed{<br>R=<br>\frac{\sigma}{2}\Big(\Phi^{-1}(\underline p_A)-\Phi^{-1}(\overline p_B)\Big)<br>}.<br>]</p>
+<h2 id="NIPS2020-Certifying-Confidence-via-Randomized-Smoothing"><a href="#NIPS2020-Certifying-Confidence-via-Randomized-Smoothing" class="headerlink" title="[NIPS2020] Certifying Confidence via Randomized Smoothing"></a>[NIPS2020] Certifying Confidence via Randomized Smoothing</h2><p>传统随机平滑只关注 hard label 的多数表决, 但假如基分类器在最多数的类别上仅有微弱优势 (51% 是安全的), 依然是有问题的. 指出了基分类器的置信度问题可能导致虚假的高鲁棒性, 下面 EMNLP2025 Oral 那篇论文在大模型领域将这一点用置信度 $\alpha$ 给概括了</p>
+<h2 id="LD4C2022-Certified-Robustness-via-Locally-Biased-Randomized-Smoothing"><a href="#LD4C2022-Certified-Robustness-via-Locally-Biased-Randomized-Smoothing" class="headerlink" title="[LD4C2022] Certified Robustness via Locally Biased Randomized Smoothing"></a>[LD4C2022] Certified Robustness via Locally Biased Randomized Smoothing</h2><p>LD4C (Learning for Dynamics and Control Conference) 在2019年举办第一届, 整体录用率在25%-30%之间, 偏向AI+物理, 有一些机器人与控制交叉领域的工作</p>
+<p><strong>TLDR</strong>: </p>
+<p>随机平滑最初始的假设是加入零均值且数据无关的高斯噪声, 且需要做准确率与鲁棒性的 trade-off. 本篇论文设置输入图像的自适应噪声, 噪声分布有均值偏移, 均值来自输入图像在 Support Set 中的 KNN 结果, 偏置为数据点指向 K 近邻的多数类邻结点的质心. 结果是在相同的认证半径内, 准确率下降的可能性被降低了</p>
+<p>输入图像与 Support Set 的 KNN: 一张图片 $x$ 输入 $\rightarrow$ 通过高维索引查出最近的 $K$ 个训练样本 $\rightarrow$ 根据邻居位置描绘出局部的几何安全边界 $\rightarrow$ 代入闭式解公式，瞬间算出最佳的平移向量 $\mu(x)$ 和防御半径 $R$ $\rightarrow$ 将加上了偏移量的点喂给冻结的神经网络，得出最终分类。</p>
+<p>由 KNN 得到偏置函数: 由数据点指向 K 近邻的多数类邻结点的质心</p>
+<script type="math/tex; mode=display">
+\mu_{KNN}(x) = \frac{1}{|\mathcal{N}_{K, c}(x)|} \sum_{x_i \in \mathcal{N}_{K, c}(x)} x_i</script><blockquote>
+<p>传统的随机平滑是“在悬崖边上闭着眼睛乱晃”（极易掉下去，准确率低）；而 KNN 偏置是“先把你拉回安全的安全区中心，然后再让你晃”。因此，在相同的认证半径内，准确率下降的可能性确实被降低了</p>
+</blockquote>
+<p>优点:</p>
+<ol>
+<li>在保证鲁棒性的同时尽量提升准确率</li>
+<li>拥有闭式解, 不需要蒙特卡洛采样</li>
+<li>传统高斯平滑无法改变线性分类器的决策边界, 本文可以</li>
+<li>数学理论严密</li>
+</ol>
+<p>缺点:</p>
+<ol>
+<li>KNN 的隐式计算成本不低</li>
+<li>KNN 在高维空间的维度灾难</li>
+<li>需要用到大规模数据集</li>
+<li>偏置计算的脆弱性</li>
+</ol>
+<h2 id="NIPS2022-Invariance-Aware-Randomized-Smoothing-Certificates"><a href="#NIPS2022-Invariance-Aware-Randomized-Smoothing-Certificates" class="headerlink" title="[NIPS2022] Invariance-Aware Randomized Smoothing Certificates"></a>[NIPS2022] Invariance-Aware Randomized Smoothing Certificates</h2><p>随机平滑是一种黑盒防御方法, 无法利用真实世界的物理规律, 算出的认证半径保守. 如果模型对某些变换是鲁棒的, 把先验写进数学公式里能得到更大的安全半径</p>
+<h2 id="arXiv-2404-05350v1-Certified-PEFTSmoothing-Parameter-Efficient-Fine-Tuning-with-Randomized-Smoothing"><a href="#arXiv-2404-05350v1-Certified-PEFTSmoothing-Parameter-Efficient-Fine-Tuning-with-Randomized-Smoothing" class="headerlink" title="[arXiv:2404.05350v1] Certified PEFTSmoothing: Parameter-Efficient Fine-Tuning with Randomized Smoothing"></a>[arXiv:2404.05350v1] Certified PEFTSmoothing: Parameter-Efficient Fine-Tuning with Randomized Smoothing</h2><p>L2范数对抗攻击就是在寻找一个能让模型出错的恶意噪声 $\delta$ 时，严格限制这个噪声的总能量（即 L2 范数）不超过某个极小的阈值 $\epsilon$。数学表达即为：$||\delta||_2 \leq \epsilon$</p>
+<p>随机平滑具体的运作步骤如下：</p>
+<ol>
+<li>疯狂加噪：当输入一张图片（比如猫）时，我们不直接把它喂给模型，而是给这张图片加上成百上千次不同的高斯噪声，生成一大批“毛毛糙糙”的带噪图片。</li>
+<li>批量预测：把这成百上千张带噪图片分别送进基础模型 $f$ 中，让它给出每一次的预测结果。</li>
+<li>多数投票（Majority Vote）：统计所有的预测结果。如果这 1000 次预测里，有 800 次预测是“猫”，150 次是“狗”，50次是“汽车”，那么平滑模型 $g$ 的最终输出就是得票数最高的“猫”。</li>
+</ol>
+<p>黑盒模型通过零阶优化也能做类似的训练. 在图片周围加上一些可调整的像素, 通过调整像素来比较输出正确答案的概率(软标签), 反向估计梯度的近似值</p>
+<p><strong>Certified Robust</strong> 认证鲁棒性/可证明的鲁棒性: 随机平滑技术中, 算出安全半径 $R$ 后, 只要攻击者添加的噪声能量不超过 $R$, 那么噪声不会影响预测结果</p>
+<blockquote>
+<p>图像可以看作高维空间中的一个点，对抗扰动就是对这个点在空间中的位移。随机平滑的意义在于，它为这个点计算出了一个认证半径 $R$；只要黑客对图像的扰动位移不超过这个半径 $R$，平滑模型输出的最终预测结果就获得了绝对安全的数学保证，绝不改变</p>
+<p>对于这篇论文. 训练数据有带噪图片, 那对新的带噪图片也能进行识别. 但是基础模型训练时少有特意的带噪训练, 传统方法是训练时加入带噪数据或图片输入前手动去噪. 作者把带噪图像的识别也识别为一种下游任务, PEFT 微调 Vision Encoder 来去除噪声的影响</p>
+<p>但是论文存在严重的问题:</p>
+<ol>
+<li>PEFT+随机平滑没办法解决随机平滑刚需的多次加噪输入图片的问题, 推理时间长</li>
+<li>防御类型单一: L2就只能防御L2</li>
+</ol>
+</blockquote>
+<h2 id="ACL2020-Certified-Robustness-to-Text-Adversarial-Attacks-by-Randomized-Smoothing"><a href="#ACL2020-Certified-Robustness-to-Text-Adversarial-Attacks-by-Randomized-Smoothing" class="headerlink" title="[ACL2020] Certified Robustness to Text Adversarial Attacks by Randomized Smoothing"></a>[ACL2020] Certified Robustness to Text Adversarial Attacks by Randomized Smoothing</h2><p>将随机平滑引入文本领域, 将高斯噪声替换成同义词替换</p>
+<ol>
+<li>构造同义词典</li>
+<li>输入句子作随机同义词替换, 生成多个变体句子</li>
+<li>目标分类器处理所有变体句子, 多数投票</li>
+</ol>
+<p>结论: 最多替换 $k$ 个但从. 多数投票结果不会改变. BERT 时代的工作</p>
+<h2 id="NAACL2024-Advancing-the-Robustness-of-Large-Language-Models-through-Self-Denoised-Smoothing"><a href="#NAACL2024-Advancing-the-Robustness-of-Large-Language-Models-through-Self-Denoised-Smoothing" class="headerlink" title="[NAACL2024] Advancing the Robustness of Large Language Models through Self-Denoised Smoothing"></a>[NAACL2024] Advancing the Robustness of Large Language Models through Self-Denoised Smoothing</h2><p>也是 [arXiv:2307.07171v1] Certified Robustness for Large Language Models with Self-Denoising</p>
+<p><strong>TLDR</strong>: 随机平滑在 LLM 上的应用, 难点在于图像是连续的, 直接加噪简单, 文本是离散的, 加噪难度大. 作者用文本的随机遮盖替换图像的加噪过程</p>
+<p>让 LLM 做自己的去噪器, 对输入随机掩码, 让 LLM 补全缺失词, 再用恢复好的文本让 LLM 去做最终的任务预测, 多个问题作大多数投票. 与上面那篇论文其实是类似的, 只不过上面的论文是做图像扰动, 这篇论文做的是文本扰动.</p>
+<p>是上面那篇论文在大模型时代的延伸. </p>
+<h2 id="NIPS2023-RS-Del-Edit-Distance-Robustness-Certificates-for-Sequence-Classifiers-via-Randomized-Deletion"><a href="#NIPS2023-RS-Del-Edit-Distance-Robustness-Certificates-for-Sequence-Classifiers-via-Randomized-Deletion" class="headerlink" title="[NIPS2023] RS-Del: Edit Distance Robustness Certificates for Sequence Classifiers via Randomized Deletion"></a>[NIPS2023] RS-Del: Edit Distance Robustness Certificates for Sequence Classifiers via Randomized Deletion</h2><p>将随机平滑引入到离散序列分类任务中, 可以解决替换, 删除, 插入等序列变长扰动. 不完全是 NLP 领域的工作, 更多是针对序列没有特意考虑文本模态, 针对二分类任务. 提出了随机删除平滑机制的基础理论框架</p>
+<ol>
+<li>随机删除, 生成随机变体子序列</li>
+<li>构建平滑分类器: 多数票决, 将子序列送入基础分类器预测, 利用 Clopper-Pearson 精确置信区间算出置信下界 $p_A$ (使用 Clopper-Pearson 精确置信区间, 即有多少的把握认为胜率最低是多少)</li>
+<li>求解认证编辑距离半径: 利用 Ney-Pearson 引理, 找到认证半径</li>
+</ol>
+<p>基础分类器是 MalConv(1D-CNN) + 全局最大池化, 得到固定维度的向量, 再送入 MLP</p>
+<h2 id="EMNLP2024-Findings-CERT-ED-Certifiably-Robust-Text-Classification-for-Edit-Distance"><a href="#EMNLP2024-Findings-CERT-ED-Certifiably-Robust-Text-Classification-for-Edit-Distance" class="headerlink" title="[EMNLP2024 Findings] CERT-ED: Certifiably Robust Text Classification for Edit Distance"></a>[EMNLP2024 Findings] CERT-ED: Certifiably Robust Text Classification for Edit Distance</h2><p>是上面那篇论文的延续, 作者基本也是同一批人. 将随机删除机制扩展到 NLP 文本领域, 将 RS-Del 扩展到多分类场景上, 在 token 级操作, 提出认证基数代替原本的汉明距离 (就是那个把一个字符串变成另一个字符串需要操作的最小次数)</p>
+<p>文本处理中的数学认证是难以识别语义的, 比如 “我喜欢你” 与 “我喜欢她” 是两种完全不同的语义, 但是二者的汉明距离只有 1, 某种程度上这属于刻舟求剑. 编辑距离 (包括插入删除替换) 也是同理</p>
+<p><strong>认证基数</strong></p>
+<p>基于汉明距离的度量需要保证句子定长, 无法处理插入和删除操作. 传统方法算出的安全半径 $R_H=5$ 代表在保持句子定长时替换 5 个词可以保持结果不变. 但是 CERT-ED 算出的安全半径 $R_E=3$ 代表能防 3 步增删改, 无法比较这两种安全半径谁更安全. </p>
+<p>认证基数: 对于给定的输入文本，在算出的安全半径内，攻击者到底能组合出多少种不同的人类可读句子（或 Token 序列）？这个总数量，就是认证基数. 认证基数将基于汉明距离和编辑距离得到的安全半径都转换为统一度量, 即文本变体的数量. 实际计算时是利用了莱文斯坦球的体积, 自动机+动态规划的算法</p>
+<ul>
+<li>汉明距离的基数增长（算数级）：如果允许 1 步替换，攻击者只能从原句中挑一个词，换成词典里的其他词。产生的变体数量大约是 3 万种。</li>
+<li>编辑距离的基数增长（指数级）：如果允许 1 步编辑（比如插入），攻击者不仅可以替换，还可以在句子开头、中间任意两个词之间、句子末尾等所有可能的缝隙中，插入词典中的任意一个词。产生的变体数量瞬间飙升到 几十万甚至上百万种。</li>
+</ul>
+<h2 id="TMLR2025-05-SmoothLLM-Defending-Large-Language-Models-Against-Jailbreaking-Attacks"><a href="#TMLR2025-05-SmoothLLM-Defending-Large-Language-Models-Against-Jailbreaking-Attacks" class="headerlink" title="[TMLR2025.05] SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks"></a>[TMLR2025.05] SmoothLLM: Defending Large Language Models Against Jailbreaking Attacks</h2><p>许多 jailbreak prompt 对字符级的扰动很脆弱, 于是作者对输入 prompt 作多个随机扰动, 再分别送进模型, 根据结果判断原 prompt 是否是攻击</p>
+<h2 id="ICLR2025-Certified-Robustness-Under-Bounded-Levenshtein-Distance"><a href="#ICLR2025-Certified-Robustness-Under-Bounded-Levenshtein-Distance" class="headerlink" title="[ICLR2025] Certified Robustness Under Bounded Levenshtein Distance"></a>[ICLR2025] Certified Robustness Under Bounded Levenshtein Distance</h2><p>莱文斯坦距离 (Levenshtein Distance): 最开始在通信领域被提出, 是上面两篇论文编辑距离的更严谨的定义.</p>
+<p>这篇文章与 CERT-ED 还是有区别的</p>
+<ul>
+<li>CERT-ED: 在输入空间“稀释”攻击, 既然对抗者试图通过微小的增删改来寻找模型的决策边界，CERT-ED 干脆用随机删除的概率分布把输入“模糊化”</li>
+<li>LipsLev: 限制模型的几何空间剧烈波动, 在莱文斯坦距离下限制卷积层的 Lipschitz 常数, 强制规定输入每发生一个字符的编辑变化，模型输出 logits 的变化幅度被严格锁定在一个常数上限 $G$ 内</li>
+</ul>
+<p>LipsLev: 针对莱文斯坦距离计算卷积分类器 Lipschitz 常数, 能训练出 1-Lipschitz 文本分类器, 仅适用单次前向传播. 这种方法还无法用到大语言模型上, 最多是在大模型前训练一个 CNN 文本分类器, 由这个分类器确认输入是否存在恶意攻击</p>
+<blockquote>
+<p>Lipschitz 常数: 在数学上，如果一个函数 $f$ 满足 Lipschitz 连续条件，意味着存在一个常数 $L$，使得对于任意的输入 $x$ 和 $y$，都满足：</p>
+<script type="math/tex; mode=display">||f(x) - f(y)|| \le L \cdot ||x - y||</script><p>用通俗的话来说，Lipschitz 常数 $L$ 就是模型输出变化的“最高限速”。</p>
+<p>虽然理论极其完美，但在工程实践中，Lipschitz 常数面临两个致命痛点：</p>
+<p>计算是 NP-Hard 的：精确计算一个深层非线性神经网络（如 ResNet 或 Transformer）的全局 Lipschitz 常数在计算复杂性上被证明是极其困难的。我们通常只能计算出一个“上限（Upper Bound）”。</p>
+<p>乘积效应导致的“维度灾难”：如果你计算每一层的常数然后相乘，一个 50 层的网络算出来的全局 $L$ 可能会大到不可思议（比如 $10^{15}$）。这种极其松散的边界在数学上毫无意义。而如果强行把每一层的 $L$ 都限制为 1（比如通过正交权重初始化），又会严重限制神经网络的表达能力（Expressivity），导致模型在干净数据上的准确率大幅下降。</p>
+</blockquote>
+<h2 id="COLM2024-Certifying-LLM-Safety-against-Adversarial-Prompting"><a href="#COLM2024-Certifying-LLM-Safety-against-Adversarial-Prompting" class="headerlink" title="[COLM2024] Certifying LLM Safety against Adversarial Prompting"></a>[COLM2024] Certifying LLM Safety against Adversarial Prompting</h2><p>论文方法防御三种攻击</p>
+<ol>
+<li>对抗性后缀</li>
+<li>对抗性插入: 对抗 token 作为连续序列插入</li>
+<li>对抗性注入: 对抗 token 被打散并随机分布</li>
+</ol>
+<p>提出防御框架 Erase-and-Check: </p>
+<ol>
+<li>穷举擦除: 删除输入序列长度中连续的不超过 $d$ 个 token 的序列, 得到多个子序列</li>
+<li>安全过滤: 多个分类器来检查子序列和原始提示</li>
+<li>一票否决: 任意一个序列被判定有害, 整个输入序列都被否决</li>
+</ol>
+<p>穷举擦差计算代价过高, 论文提出了三种高效的近似算法</p>
+<ol>
+<li>随机子采样: 不穷举所有组合, 按一定比例随机抽取子序列</li>
+<li>贪婪擦除: 贪婪擦差让过滤器输出有害概率最大的 token (完整输入序列输入另一个模型得到有害概率)</li>
+<li>梯度擦除: 白盒模型定位并擦除</li>
+</ol>
+<h2 id="ICLR2025-Certifying-Language-Model-Robustness-with-Fuzzed-Randomized-Smoothing-An-Efficient-Defense-Against-Backdoor-Attacks"><a href="#ICLR2025-Certifying-Language-Model-Robustness-with-Fuzzed-Randomized-Smoothing-An-Efficient-Defense-Against-Backdoor-Attacks" class="headerlink" title="[ICLR2025] Certifying Language Model Robustness with Fuzzed Randomized Smoothing: An Efficient Defense Against Backdoor Attacks"></a>[ICLR2025] Certifying Language Model Robustness with Fuzzed Randomized Smoothing: An Efficient Defense Against Backdoor Attacks</h2><ol>
+<li>使用少量干净数据微调模型, 训练时给模型参数加噪, 优化目标改为带噪参数的期望损失. </li>
+<li>基于蒙特卡洛树搜索 MCTS 的主动模糊测试： 在 Damerau-Levenshtein 空间 (模拟插入删除替换交换等操作) 对输入文本的变体进行推理</li>
+</ol>
+<p><strong>噪声增强微调</strong>: 文本是离散的, 无法在自然语言文本上加噪, 在 embedding 上加噪又会破坏其流形性质, 容易乱码. 参数加噪会让输出的概率分布更平缓, 不会破坏语义特征</p>
+<blockquote>
+<script type="math/tex; mode=display">Logit = W_{normal} \cdot X_{normal} + W_{trigger} \cdot X_{trigger}</script><p>后门攻击时, 当输入文本是极度负面的（例如 $X<em>{normal}$ 产生了很强的负向信号），为了让最终的 $Logit$ 依然指向攻击者设定的正向标签，$W</em>{trigger} \cdot X_{trigger}$ 这一项的值必须极其巨大，大到足以“淹没”和“抵消”掉所有正常词汇的负面得分。这解释了巨大的权重通常容易产生后门的原因</p>
+<script type="math/tex; mode=display">Layer_2 = (W_2 + \epsilon_2)(W_1 x + \epsilon_1 x) \approx W_2 W_1 x + \mathbf{W_2 \epsilon_1 x} + \dots</script><p>$W_2$ 很大时, $W_2 \epsilon_1 x$ 会放大噪声. 所以在多层网络中，下游的巨大权重会将上游的随机噪声呈指数级放大，导致最终输出结果剧烈疯狂地上下跳动。</p>
+<p>模糊化随机平滑（FRS）通过在微调阶段向模型参数注入高斯噪声 $\epsilon \sim \mathcal{N}(0, \sigma^2I)$，巧妙地将“参数鲁棒性”转化为“输入鲁棒性”。从数学本质上看，最小化带噪参数的期望损失 $\mathbb{E}<em>{\epsilon}[L(f</em>{W+\epsilon}(x), y)]$，经过泰勒展开近似后，等价于 $L_{standard} + \lambda |\nabla_W L|^2$。这里的核心在于，根据反向传播的链式法则，参数梯度 $\nabla_W L$ 的计算式中天然包含了权重矩阵 $W$ 本身及其层级连乘。因此，为了让这个直接包含 $W$ 的惩罚项最小化，优化器在训练时被迫“削峰填谷”，直接限制并强行压缩了那些原本为了拟合后门而变得异常巨大的权重 $W$ 的数值。当权重 $W$ 因为加噪导致 $W+\epsilon$ 震荡时，神经网络映射函数 $f(x)$ 的 Lipschitz 常数 $L$ 也随之被限制, 模型不得不学习那些数值较小且稳定的正常语义权重, 最终 $W$ 从单极或多极变得均匀分散。最终，面对输入端带有后门触发器的微小恶意扰动 $\delta$，受限于被压平的映射边界 $||f(x+\delta) - f(x)|| \le L ||\delta||$，被压缩的权重在数学上再也无法将 $\delta$ 放大为颠覆全局语义的极端激活值，从而完美实现了对文本后门篡改的绝对免疫。</p>
+</blockquote>
+<ol>
+<li>生成参数维度级别的噪声. 小模型全参加噪, 大模型 lora 加噪</li>
+<li>前向传播计算损失函数, 反向传播计算梯度</li>
+<li>参数更新. 由于扰动是加性扰动, 所以临时带噪网络计算出来的梯度会直接更新到原始参数上</li>
+</ol>
+<p><strong>蒙特卡洛树采样与多数投票</strong></p>
+<ol>
+<li>MCTS 定位脆弱片段: 不改变模型参数, 使用蒙特卡洛树搜索MCTS在 Damerau-Levenshtein 距离空间 (输入文本的增删改换) 测试. 输出内容是使模型输出发生剧烈震荡的文本片段</li>
+<li>对脆弱片段生成变体</li>
+<li>参数带噪的前向传播: 模型参数加噪, 对上面生成的 $N$ 个变体推理</li>
+<li>多数投票</li>
+</ol>
+<h2 id="EMNLP2025-Main-Oral-Randomized-Smoothing-Meets-Vision-Language-Models"><a href="#EMNLP2025-Main-Oral-Randomized-Smoothing-Meets-Vision-Language-Models" class="headerlink" title="[EMNLP2025 Main Oral] Randomized Smoothing Meets Vision-Language Models"></a>[EMNLP2025 Main Oral] Randomized Smoothing Meets Vision-Language Models</h2><p>Motivation: </p>
+<ol>
+<li>随机平滑是在离散分类任务上提出的, 无法处理 LLM 生成这种非离散的开放式生成序列</li>
+<li>计算复杂度过高</li>
+</ol>
+<p>Method: 接了另一个模型 (命名为 Oracle) 对 LLM 生成答案进行判别分类. 论文利用统计学缩放定律的极限逼近推导了新的置信下界公式, 仅需要约 100 个样本就能计算得到认证半径 (60% 的理论半径换取了约 1000 倍的运算速度)</p>
+<h2 id="IEEE-SaTML2024-Spotlight-Fast-Certification-of-Vision-Language-Models-Using-Incremental-Randomized-Smoothing"><a href="#IEEE-SaTML2024-Spotlight-Fast-Certification-of-Vision-Language-Models-Using-Incremental-Randomized-Smoothing" class="headerlink" title="[IEEE SaTML2024 Spotlight] Fast Certification of Vision-Language Models Using  Incremental Randomized Smoothing"></a>[IEEE SaTML2024 Spotlight] Fast Certification of Vision-Language Models Using  Incremental Randomized Smoothing</h2><p>SaTML 类似安全隐私领域的 TMLR, 是会议. 这篇论文做的是 CLIP 而非 LLM, 做的很工程</p>
+<p>Motivation:</p>
+<ol>
+<li>随机平滑是在离散分类任务上提出的, 无法处理 LLM 生成这种非离散的开放式生成序列</li>
+<li>计算复杂度过高. 这篇文章主要环节这个问题</li>
+</ol>
+<p>Open Vocabulary Certification (OVC) 框架, 这里主要针对的是同一图片不同提示词的情况:</p>
+<ol>
+<li>冷启动阶段: 输入图像并生成多个加噪图像, 逐一经视觉编码器处理后并缓存. 有一预设的已知基础提示词库, 将所有基础提示词与缓存向量作点积预测并缓存预测结果. <ul>
+<li>MVN-OVC 提取分布参数: 可选, 为了节省存储和加速, 计算所有视觉特征向量的均值和方差作为多元正态分布的参数, 随后利用分布抽样代替视觉向量读取</li>
+</ul>
+</li>
+<li>热查询: 输入同一图片的不同提示词, 与视觉特征向量或 MVN-OVC 得到的多元正态分布 (有误差, 误差用算完概率后暴力-1%的方式去抵消) 作点积预测结果, 多数投票</li>
+</ol>
+<h2 id="ICLR2025-Dynamic-Sparse-Training-versus-Dense-Training-The-Unexpected-Winner-in-Image-Corruption-Robustness"><a href="#ICLR2025-Dynamic-Sparse-Training-versus-Dense-Training-The-Unexpected-Winner-in-Image-Corruption-Robustness" class="headerlink" title="[ICLR2025] Dynamic Sparse Training versus Dense Training: The Unexpected Winner in Image Corruption Robustness"></a>[ICLR2025] Dynamic Sparse Training versus Dense Training: The Unexpected Winner in Image Corruption Robustness</h2><h2 id="arXiv-2601-16200v2-Feature-Space-Adversarial-Robustness-Certification-for-Multimodal-Large-Language-Models"><a href="#arXiv-2601-16200v2-Feature-Space-Adversarial-Robustness-Certification-for-Multimodal-Large-Language-Models" class="headerlink" title="[arXiv:2601.16200v2] Feature-Space Adversarial Robustness Certification for Multimodal Large Language Models"></a>[arXiv:2601.16200v2] Feature-Space Adversarial Robustness Certification for Multimodal Large Language Models</h2><p>ICML2026 在投, 在特征空间加噪, 避免视觉编码器的多次处理</p>
+<h2 id="arXiv-2602-01587v1-Provable-Defense-Framework-for-LLM-Jailbreaks-via-Noise-Augumented-Alignment"><a href="#arXiv-2602-01587v1-Provable-Defense-Framework-for-LLM-Jailbreaks-via-Noise-Augumented-Alignment" class="headerlink" title="[arXiv:2602.01587v1] Provable Defense Framework for LLM Jailbreaks via Noise-Augumented Alignment"></a>[arXiv:2602.01587v1] Provable Defense Framework for LLM Jailbreaks via Noise-Augumented Alignment</h2><h2 id="ICML2025-Average-Certified-Radius-is-a-Poor-Metric-for-Randomized-Smoothing"><a href="#ICML2025-Average-Certified-Radius-is-a-Poor-Metric-for-Randomized-Smoothing" class="headerlink" title="[ICML2025] Average Certified Radius is a Poor Metric for Randomized Smoothing"></a>[ICML2025] Average Certified Radius is a Poor Metric for Randomized Smoothing</h2><p>平均认证半径 ACR 存在以下问题</p>
+<ol>
+<li>采样数量无限大时, 平滑分类器会收敛到永远只输出数据集中占比最大的类别</li>
+<li>既有很多方法牺牲了模型在困难样本上的泛化性来提高 ACR</li>
+</ol>
+<p>作者通过以下方法证实了 ACR 的不可靠性</p>
+<ol>
+<li>判定困难样本: 模型训练的特定阶段, 对每个训练样本注入少量随机噪声进行前向传播, 计算带噪样本的预测正确率, 低于阈值即认为是困难样本, 否则为高置信度样本. 后续损失计算和梯度更新中将其 mask 掉, 不再学习</li>
+<li>作者进一步赋予高置信度样本更高的梯度权重</li>
+</ol>
+<h2 id="IJCNLP2025-Short-Defending-Large-Language-Models-against-Jailbreak-Attacks-via-Semantic-Smoothing"><a href="#IJCNLP2025-Short-Defending-Large-Language-Models-against-Jailbreak-Attacks-via-Semantic-Smoothing" class="headerlink" title="[IJCNLP2025 Short] Defending Large Language Models against Jailbreak Attacks via Semantic Smoothing"></a>[IJCNLP2025 Short] Defending Large Language Models against Jailbreak Attacks via Semantic Smoothing</h2><h1 id="确定性推导"><a href="#确定性推导" class="headerlink" title="确定性推导"></a>确定性推导</h1><h2 id="EMNLP2019-Certified-Robustness-to-Adversarial-Word-Substitutions"><a href="#EMNLP2019-Certified-Robustness-to-Adversarial-Word-Substitutions" class="headerlink" title="[EMNLP2019] Certified Robustness to Adversarial Word Substitutions"></a>[EMNLP2019] Certified Robustness to Adversarial Word Substitutions</h2><p><strong>IBP</strong> (Interval Bound Propagation区间边界传播算法): 对抗攻击是在原始输入上加微小扰动, 扰动后的输入被限制在高维空间 $x’ \in [x - \epsilon, x + \epsilon]$ 内, IBP 的目标是逐层计算这个输入区间在通过神经网络后产生的激活值的绝对上下界</p>
+<p>如果目标类别的最差情况（下界） 依然大于 任何其他错误类别的最好情况（上界），我们就从数学上绝对证明了：在这个 $\epsilon$ 半径内，没有任何对抗扰动能让模型分类错误。这就是所谓的“可认证鲁棒”。</p>
+<ul>
+<li>优点: 速度快. 前向传播即可</li>
+<li>缺点: ① 边界爆炸. 深度越大, 区间越宽, 下界可能会远低于实际最小可能值; ② 只能处理定长扰动, 如同义词替换, 不能处理插入或删除等改变输入序列长度的扰动</li>
+</ul>
+<h2 id="ICLR2025-Certified-Robustness-Under-Bounded-Levenshtein-Distance-1"><a href="#ICLR2025-Certified-Robustness-Under-Bounded-Levenshtein-Distance-1" class="headerlink" title="[ICLR2025] Certified Robustness Under Bounded Levenshtein Distance"></a>[ICLR2025] Certified Robustness Under Bounded Levenshtein Distance</h2><p>Levenshtein Distance / Edit Distance: 衡量两个序列相似度的指标, 定义为将一个字符串转换为另一个字符串, 所需最少得单字符编辑次数(包括插入, 删除, 替换). 这种方法需要改变文本序列长度, 对深度学习模型失效</p>
+<p><strong>Lipschitz 连续性</strong>: 如果一个神经网络函数 $f$ 满足 Lipschitz 连续，且常数为 $K$，则对于任意输入 $x_1$ 和 $x_2$，其输出变化都有上限：</p>
+<script type="math/tex; mode=display">
+||f(x_1) - f(x_2)|| \leq K \cdot d(x_1, x_2)</script>
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/zuoduan/2026/03/07/llm/paper-reading/ICLR2026/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          ICLR2026 研读
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/zuoduan/2026/02/19/tools/OpenClaw-install/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          OpenClaw 部署教程
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+  <script src="https://giscus.app/client.js"
+  data-repo="421zuoduan/blog-giscus-discussion"
+  data-repo-id="R_kgDONKEKag"
+  data-category="Announcements"
+  data-category-id="DIC_kwDONKEKas4Cj9R8"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="1"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+</script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/zuoduan/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/zuoduan/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/zuoduan/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/421zuoduan">
+            <iconify-icon width="28" icon=""></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/zuoduan/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>
