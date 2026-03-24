@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>7.2k words, 26 min</span>
+              <span>7k words, 25 min</span>
             </span>
             <!-- Categories -->
             
@@ -629,11 +629,10 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4.jpg" alt="考试范围" /></p>
+    <p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/考试范围.jpg" alt="考试范围"></p>
 <p>填空20, 简答30, 主观题50</p>
 <ul>
-<li>信息抽取
-<ol>
+<li>信息抽取<ol>
 <li>实体识别与抽取</li>
 <li>实体消歧</li>
 <li>关系抽取</li>
@@ -648,8 +647,7 @@
 <li>自动文摘</li>
 <li>机器翻译</li>
 </ul>
-<h2 id="玉海考试题"><a class="markdownIt-Anchor" href="#玉海考试题"></a> 玉海考试题</h2>
-<p>GLEU, ROUGE</p>
+<h2 id="玉海考试题"><a href="#玉海考试题" class="headerlink" title="玉海考试题"></a>玉海考试题</h2><p>GLEU, ROUGE</p>
 <p>第五范式NLP第一代大模型, 第二代大模型(推理能力)</p>
 <p>统计语言模型的缺点, RNN + 词向量怎么解决</p>
 <p>指针生成网络, 简答</p>
@@ -660,14 +658,10 @@
 <p>自回归的预训练, 目标, 数据用的是什么</p>
 <p>SFT 和 RLHF 的数据</p>
 <p>Viterbi 算法</p>
-<p>大模型如何应用到医学场景, 安全问题, 怎么微调对齐,</p>
+<p>大模型如何应用到医学场景, 安全问题, 怎么微调对齐, </p>
 <p>最后一个题, 设计一个多模态模型能 QA, detection 和 generation</p>
-<h2 id="nlp-各范式特点"><a class="markdownIt-Anchor" href="#nlp-各范式特点"></a> NLP 各范式特点</h2>
-<p>1990-2020 概率统计: 完全监督学习, 特征工程, 如贝叶斯, 隐马尔科夫, 最大熵, 可解释性强, 解决问题方法复杂<br />
-2010-2017 神经网络模型: 基于神经网络的完全监督学习–架构工程,<br />
-2018-2021 预训练, 精调范式:<br />
-2021-2022 预训练, 提示范式:<br />
-2023-至今 大模型范式:</p>
+<h2 id="NLP-各范式特点"><a href="#NLP-各范式特点" class="headerlink" title="NLP 各范式特点"></a>NLP 各范式特点</h2><p>1990-2020 概率统计: 完全监督学习, 特征工程, 如贝叶斯, 隐马尔科夫, 最大熵, 可解释性强, 解决问题方法复杂<br>2010-2017 神经网络模型: 基于神经网络的完全监督学习—架构工程,<br>2018-2021 预训练, 精调范式:<br>2021-2022 预训练, 提示范式:<br>2023-至今 大模型范式: </p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -722,18 +716,13 @@
 </tr>
 </tbody>
 </table>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20260123135621.png" alt="NLP范式" /></p>
+</div>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20260123135621.png" alt="NLP范式"></p>
 <ol>
-<li>非神经网络时代的完全监督学习(FullySupervisedLearning, Non-Neural Network)<br />
-特征工程（FeatureEngineering）：人工设计和定义特征模板</li>
-<li>基于神经网络的完全监督学习(FullySupervisedLearning, Neural Network)<br />
-结构工程（Architecture Engineering）: 神经网络解放手动配置特征模板所需要的人力，但需要探究最适配下游<br />
-任务的结构偏置</li>
-<li>预训练，微调范式(Pre-train, Fine-tune)<br />
-目标函数挖掘（Objective Engineering) : 引入额外的目标函数到预训练语言模型上，以便让其更适配下游任务,<br />
-网络结构的挖掘非此阶段的主旋律</li>
-<li>预训练，提示，预测范式(Pre-train,Prompt, Predict)<br />
-Prompt挖掘工程：将微调改为“Prompt+预测”，通过设计合适的prompt实现对下游任务建模方式的重新定义</li>
+<li>非神经网络时代的完全监督学习(FullySupervisedLearning, Non-Neural Network)<br>特征工程（FeatureEngineering）：人工设计和定义特征模板</li>
+<li>基于神经网络的完全监督学习(FullySupervisedLearning, Neural Network)<br>结构工程（Architecture Engineering）: 神经网络解放手动配置特征模板所需要的人力，但需要探究最适配下游<br>任务的结构偏置</li>
+<li>预训练，微调范式(Pre-train, Fine-tune)<br>目标函数挖掘（Objective Engineering) : 引入额外的目标函数到预训练语言模型上，以便让其更适配下游任务,<br>网络结构的挖掘非此阶段的主旋律</li>
+<li>预训练，提示，预测范式(Pre-train,Prompt, Predict)<br>Prompt挖掘工程：将微调改为“Prompt+预测”，通过设计合适的prompt实现对下游任务建模方式的重新定义</li>
 </ol>
 <p>NLP 中的七种基础范式</p>
 <ol>
@@ -745,29 +734,23 @@ Prompt挖掘工程：将微调改为“Prompt+预测”，通过设计合适的p
 <li>Seq2ASeq 序列决策</li>
 <li>(M)LM</li>
 </ol>
-<h2 id="生成式模式的编解码模型-评价指标"><a class="markdownIt-Anchor" href="#生成式模式的编解码模型-评价指标"></a> 生成式模式的编解码模型, 评价指标</h2>
-<p><strong>序列生成模型</strong></p>
+<h2 id="生成式模式的编解码模型-评价指标"><a href="#生成式模式的编解码模型-评价指标" class="headerlink" title="生成式模式的编解码模型, 评价指标"></a>生成式模式的编解码模型, 评价指标</h2><p><strong>序列生成模型</strong></p>
 <p>模型结构:</p>
 <ul>
-<li>纯生成式模型
-<ul>
+<li>纯生成式模型<ul>
 <li>基本 RNN 架构</li>
 <li>RNN + Attention</li>
 <li>Transformer</li>
 </ul>
 </li>
-<li>选择式模型<br />
-指针网: 输出是输入的子集, 凸包问题, 可以解决 OOV 问题</li>
-<li>选择-生成式模型<br />
-输出从输入中选择, 输出与输入词表相同, 无法处理 OOV 问题</li>
+<li>选择式模型<br>指针网: 输出是输入的子集, 凸包问题, 可以解决 OOV 问题</li>
+<li>选择-生成式模型<br>输出从输入中选择, 输出与输入词表相同, 无法处理 OOV 问题</li>
 </ul>
 <p>训练策略:</p>
 <ul>
 <li>自编码(AE, AutoEncoder): 输入与学习目标相同, 隐含层即编码特征.普通自编码器存在潜变量空间不连续, 无法通过随机采样生成新数据, 容易过拟合等问题, 所以提出 VAE 变分自编码器模型, 引入概率分布来约束潜变量空间, Encoder 映射到一个正态分布上, 冲参数化得到潜变量</li>
 <li>对抗生成网络</li>
-<li>扩散生成模型<br />
-优势:
-<ol>
+<li>扩散生成模型<br>优势:<ol>
 <li>高质量数据生成</li>
 <li>训练稳定</li>
 </ol>
@@ -782,80 +765,69 @@ Prompt挖掘工程：将微调改为“Prompt+预测”，通过设计合适的p
 </ol>
 <p>序列生成模型问题:</p>
 <ol>
-<li>曝光偏差问题: 训练时前缀是真实数据 (预测第t个词的时候, 前面的词都是真实标签, 这就是 Teacher Forcing, 否则训练的模型会越走越远, 有误差累计), 测试是模型生成的前缀, 前缀有错误的时候后续序列也会偏离真实分布<br />
-解决方法: 训练中混合使用真实数据和模型生成数据, 随训练次数的增加减小使用真实数据的量</li>
-<li>训练-评价目标不一致: 训练使用最大似然估计, 测试使用 BLEU, ROUGE<br />
-解决方法: 采用强化学习策略进行模型训练, 将最回归序列生成看成一种马尔科夫决策过程</li>
+<li>曝光偏差问题: 训练时前缀是真实数据 (预测第t个词的时候, 前面的词都是真实标签, 这就是 Teacher Forcing, 否则训练的模型会越走越远, 有误差累计), 测试是模型生成的前缀, 前缀有错误的时候后续序列也会偏离真实分布<br>解决方法: 训练中混合使用真实数据和模型生成数据, 随训练次数的增加减小使用真实数据的量</li>
+<li>训练-评价目标不一致: 训练使用最大似然估计, 测试使用 BLEU, ROUGE<br>解决方法: 采用强化学习策略进行模型训练, 将最回归序列生成看成一种马尔科夫决策过程</li>
 </ol>
 <p><strong>BPE (Byte Pair Encoding)</strong></p>
 <p>一种子词分词算法, 处理 OOV 词表问题. 常用词保持完整, 生僻词拆分成常见的词根/子词, 比如 “unhappiness” 分成 “un”, “happi”, “ness”</p>
-<ol start="0">
-<li>准备语料与初始化: 统计语料库中相关词出现的频次. “low</w>” 5, “lower</w>” 2, “newest</w>” 6, “widest</w>” 3</li>
+<ol>
+<li>准备语料与初始化: 统计语料库中相关词出现的频次. “low&lt;/w&gt;” 5, “lower&lt;/w&gt;” 2, “newest&lt;/w&gt;” 6, “widest&lt;/w&gt;” 3</li>
 <li>统计相邻字符对的频率. 比如 “e” 和 “s” 在 “newest” 和 “widest” 都出现了, 频次 6+3=9</li>
 <li>合并最高频的字符对. “e” 和 “s” 合并为最高频的字符对</li>
-<li>继续迭代. “es” 和 “t” 挨在一起, 合并为 “est”, 频次 6+3=9. 直至得到 “est</w>”</li>
+<li>继续迭代. “es” 和 “t” 挨在一起, 合并为 “est”, 频次 6+3=9. 直至得到 “est&lt;/w&gt;”</li>
 <li>处理其他高频对. 直至达到预设的词表大小, 然后用新的词表重新训练</li>
-<li>分词阶段 (inference). 遇到新词 “lowest”, 拆分字符, 按训练时学到的合并顺序, 优先级从高到低进行合并: “l o w es t </w>” -&gt; “l o w est </w>” -&gt; “l o w est</w>” -&gt; “lo w est </w>” -&gt; low est </w></li>
+<li>分词阶段 (inference). 遇到新词 “lowest”, 拆分字符, 按训练时学到的合并顺序, 优先级从高到低进行合并: “l o w es t &lt;/w&gt;” -&gt; “l o w est &lt;/w&gt;” -&gt; “l o w est&lt;/w&gt;” -&gt; “lo w est &lt;/w&gt;” -&gt; low est &lt;/w&gt;</li>
 </ol>
-<p>为什么加 “</w>”: 为了区分单词结尾与单词中间的字符序列</p>
-<h2 id="循环神经网络语言模型-注意力机制-transformer的原理与训练机制-bert"><a class="markdownIt-Anchor" href="#循环神经网络语言模型-注意力机制-transformer的原理与训练机制-bert"></a> 循环神经网络语言模型, 注意力机制, Transformer的原理与训练机制, BERT</h2>
-<h3 id="全连接网络-dnn"><a class="markdownIt-Anchor" href="#全连接网络-dnn"></a> 全连接网络 DNN</h3>
-<h3 id="卷积神经网络-cnn"><a class="markdownIt-Anchor" href="#卷积神经网络-cnn"></a> 卷积神经网络 CNN</h3>
-<p>三个结构上的特性, 使得 CNN 有平移缩放扭曲不变性</p>
+<p>为什么加 “&lt;/w&gt;”: 为了区分单词结尾与单词中间的字符序列</p>
+<h2 id="循环神经网络语言模型-注意力机制-Transformer的原理与训练机制-BERT"><a href="#循环神经网络语言模型-注意力机制-Transformer的原理与训练机制-BERT" class="headerlink" title="循环神经网络语言模型, 注意力机制, Transformer的原理与训练机制, BERT"></a>循环神经网络语言模型, 注意力机制, Transformer的原理与训练机制, BERT</h2><h3 id="全连接网络-DNN"><a href="#全连接网络-DNN" class="headerlink" title="全连接网络 DNN"></a>全连接网络 DNN</h3><h3 id="卷积神经网络-CNN"><a href="#卷积神经网络-CNN" class="headerlink" title="卷积神经网络 CNN"></a>卷积神经网络 CNN</h3><p>三个结构上的特性, 使得 CNN 有平移缩放扭曲不变性</p>
 <ol>
 <li>局部连接</li>
 <li>权重共享</li>
 <li>空间或时间上的次采样</li>
 </ol>
 <p>卷积尺寸通用公式如下, 一般默认不补零</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>O</mi><mo>=</mo><mfrac><mrow><mi>I</mi><mo>−</mo><mi>K</mi><mo>+</mo><mn>2</mn><mi>P</mi></mrow><mi>S</mi></mfrac><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">O = \frac{I - K + 2P}{S} + 1
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
-<p>其中：</p>
+<script type="math/tex; mode=display">O = \frac{I - K + 2P}{S} + 1</script><p>其中：</p>
 <ul>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span></span></span></span>：输出尺寸 (Output Size)</li>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span>：输入尺寸 (Input Size) —— 图中为 10</li>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>：卷积核尺寸 (Kernel Size)</li>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>：补零层数 (Padding)</li>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span>：步长 (Stride) —— 通常默认未说明时为 1</li>
+<li>$O$：输出尺寸 (Output Size)</li>
+<li>$I$：输入尺寸 (Input Size) —— 图中为 10</li>
+<li>$K$：卷积核尺寸 (Kernel Size)</li>
+<li>$P$：补零层数 (Padding)</li>
+<li>$S$：步长 (Stride) —— 通常默认未说明时为 1</li>
 </ul>
 <p>多通道卷积</p>
-<h3 id="图神经网络-gnn"><a class="markdownIt-Anchor" href="#图神经网络-gnn"></a> 图神经网络 GNN</h3>
-<h3 id="循环神经网络-rnn"><a class="markdownIt-Anchor" href="#循环神经网络-rnn"></a> 循环神经网络 RNN</h3>
-<p>单一 DNN, CNN 无法处理时序相关序列问题, 循环神经网络在时序上分解成一系列单元, 单元的神经网络能在时序上在展开, 且能将上一时刻的结果传递给下一时刻</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mi>i</mi></msub><msub><mi>X</mi><mi>t</mi></msub><mo>+</mo><msub><mi>W</mi><mi>h</mi></msub><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(t) = \sigma(W_{i}X_t + W_{h}h(t-1) + b)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span></span></p>
-<p>其中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">X_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是当前时刻输入，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(t-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 是上一时刻的隐藏状态，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">W_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>h</mi></msub></mrow><annotation encoding="application/x-tex">W_h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是权重矩阵. 输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Y</mi><mi>t</mi></msub><mo>=</mo><mtext>softmax</mtext><mo stretchy="false">(</mo><msub><mi>W</mi><mi>o</mi></msub><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Y_t = \text{softmax}(W_{o}h(t))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">softmax</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></p>
-<p>RNN 在整个时间序列的展开过程汇总每一时刻的权重矩阵是相同的, 使用 BPTT 随时间反向传播算法, 这种反向传播在序列很长时容易产生梯度消失和梯度爆炸的问题 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>←</mo><mi>W</mi><mo>−</mo><mi>η</mi><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mfrac><mrow><mi mathvariant="normal">∂</mi><msup><mi>C</mi><mi>k</mi></msup></mrow><mrow><mi mathvariant="normal">∂</mi><mi>W</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">W \leftarrow W - \eta \sum_{k=1}^{n} \frac{\partial C^k}{\partial W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.3879199999999998em;vertical-align:-0.345em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0429199999999998em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">W</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9270285714285713em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> 是 loss</p>
+<h3 id="图神经网络-GNN"><a href="#图神经网络-GNN" class="headerlink" title="图神经网络 GNN"></a>图神经网络 GNN</h3><h3 id="循环神经网络-RNN"><a href="#循环神经网络-RNN" class="headerlink" title="循环神经网络 RNN"></a>循环神经网络 RNN</h3><p>单一 DNN, CNN 无法处理时序相关序列问题, 循环神经网络在时序上分解成一系列单元, 单元的神经网络能在时序上在展开, 且能将上一时刻的结果传递给下一时刻</p>
+<script type="math/tex; mode=display">
+h(t) = \sigma(W_{i}X_t + W_{h}h(t-1) + b)</script><p>其中，$X<em>t$ 是当前时刻输入，$h(t-1)$ 是上一时刻的隐藏状态，$W_i$ 和 $W_h$ 是权重矩阵. 输出 $Y_t = \text{softmax}(W</em>{o}h(t))$</p>
+<p>RNN 在整个时间序列的展开过程汇总每一时刻的权重矩阵是相同的, 使用 BPTT 随时间反向传播算法, 这种反向传播在序列很长时容易产生梯度消失和梯度爆炸的问题 $W \leftarrow W - \eta \sum_{k=1}^{n} \frac{\partial C^k}{\partial W}$, $C$ 是 loss</p>
 <p><strong>LSTM</strong></p>
 <p>为解决长序列训练中的梯度消失和长期依赖问题</p>
-<p>LSTM 的核心设计思想是引入一个细胞状态 (Cell State, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">C_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)，它贯穿所有时间步，像一条传送带一样，信息可以在上面轻松流动并保持不变。通过三个精心设计的“门”结构来控制信息的添加与遗忘。</p>
+<p>LSTM 的核心设计思想是引入一个细胞状态 (Cell State, $C_t$)，它贯穿所有时间步，像一条传送带一样，信息可以在上面轻松流动并保持不变。通过三个精心设计的“门”结构来控制信息的添加与遗忘。</p>
 <p>(1) 核心组件：三个门, LSTM 通过 Sigmoid 神经网络层（输出0到1之间的数值）来控制信息流：</p>
 <ul>
-<li>遗忘门 (Forget Gate, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">f_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：作用：决定从上一时刻的细胞状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">C_{t-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span> 中丢弃哪些信息。机制：读取上一时刻的隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">h_{t-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.902771em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span> 和当前输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">x_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，输出一个 0 到 1 之间的向量。1 表示“完全保留”，0 表示“完全丢弃”。</li>
-<li>输入门 (Input Gate, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">i_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：作用：决定在当前细胞状态中保存哪些新信息。机制：包含两部分：Sigmoid 层决定更新哪些值。Tanh 层创建一个新的候选值向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>C</mi><mo>~</mo></mover><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\tilde{C}_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0701899999999998em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9201899999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span><span style="top:-3.6023300000000003em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</li>
-<li>输出门 (Output Gate, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>o</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">o_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：作用：决定基于当前的细胞状态，输出什么样的隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">h_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。机制：首先运行一个 Sigmoid 层来确定细胞状态的哪个部分将输出，接着把细胞状态通过 Tanh 进行处理（得到 -1 到 1 之间的值），并将两者相乘。</li>
+<li>遗忘门 (Forget Gate, $f<em>t$)：作用：决定从上一时刻的细胞状态 $C</em>{t-1}$ 中丢弃哪些信息。机制：读取上一时刻的隐藏状态 $h_{t-1}$ 和当前输入 $x_t$，输出一个 0 到 1 之间的向量。1 表示“完全保留”，0 表示“完全丢弃”。</li>
+<li>输入门 (Input Gate, $i_t$)：作用：决定在当前细胞状态中保存哪些新信息。机制：包含两部分：Sigmoid 层决定更新哪些值。Tanh 层创建一个新的候选值向量 $\tilde{C}_t$。</li>
+<li>输出门 (Output Gate, $o_t$)：作用：决定基于当前的细胞状态，输出什么样的隐藏状态 $h_t$。机制：首先运行一个 Sigmoid 层来确定细胞状态的哪个部分将输出，接着把细胞状态通过 Tanh 进行处理（得到 -1 到 1 之间的值），并将两者相乘。</li>
 </ul>
-<p>(2) 运作流程遗忘阶段：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">f_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 决定旧状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">C_{t-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span> 中哪些部分被遗忘。记忆阶段：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">i_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 与候选状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>C</mi><mo>~</mo></mover><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">\tilde{C}_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0701899999999998em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9201899999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span><span style="top:-3.6023300000000003em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 结合，向细胞状态中添加新信息。更新公式：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>t</mi></msub><mo>=</mo><msub><mi>f</mi><mi>t</mi></msub><mo>∗</mo><msub><mi>C</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>i</mi><mi>t</mi></msub><mo>∗</mo><msub><mover accent="true"><mi>C</mi><mo>~</mo></mover><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">C_t = f_t * C_{t-1} + i_t * \tilde{C}_t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0701899999999998em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9201899999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span><span style="top:-3.6023300000000003em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;"><span class="mord">~</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>输出阶段：计算最终的隐藏层输出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>o</mi><mi>t</mi></msub><mo>∗</mo><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>C</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_t = o_t * \tanh(C_t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.61528em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<p>(2) 运作流程遗忘阶段：$f<em>t$ 决定旧状态 $C</em>{t-1}$ 中哪些部分被遗忘。记忆阶段：$i<em>t$ 与候选状态 $\tilde{C}_t$ 结合，向细胞状态中添加新信息。更新公式：$C_t = f_t * C</em>{t-1} + i_t <em> \tilde{C}_t$输出阶段：计算最终的隐藏层输出 $h_t = o_t </em> \tanh(C_t)$。</p>
 <p><strong>GRU</strong></p>
 <p><strong>RNNLM</strong></p>
 <ul>
-<li>输入层 (Input Layer)：当前时刻 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal">t</span></span></span></span> 的输入是上一个词 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">w_{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>（通常表示为词向量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>）。</li>
-<li>隐藏层 (Hidden Layer)：这是 RNNLM 的核心。当前隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> 由当前输入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">w_{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span> 和上一时刻的隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(t-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 共同决定。公式：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>tanh</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>X</mi><mi>H</mi><mo>+</mo><mi>M</mi><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(t) = \tanh(X H + M h(t-1) + b_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">tanh</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>：当前词的词向量。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>：输入层到隐藏层的权重矩阵。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>：隐藏层到隐藏层的权重矩阵（即“记忆”参数）。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">b_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：偏置项。意义：通过迭代更新，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> 实际上包含了此前所有上文的信息。</li>
-<li>输出层 (Output Layer)：基于当前的隐藏状态 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span>，预测下一个词 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的概率分布。公式：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>i</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>w</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><mtext>softmax</mtext><mo stretchy="false">(</mo><msub><mi>b</mi><mn>2</mn></msub><mo>+</mo><mi>U</mi><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(w_i | w_{i-1}) = \text{softmax}(b_2 + U h(t))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">softmax</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span></span></span></span>：隐藏层到输出层的权重矩阵。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">b_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>：偏置项。Softmax：将输出转换为概率分布，维度通常等于词表大小 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>V</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|V|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord">∣</span></span></span></span></li>
+<li>输入层 (Input Layer)：当前时刻 $t$ 的输入是上一个词 $w_{i-1}$（通常表示为词向量 $X$）。</li>
+<li>隐藏层 (Hidden Layer)：这是 RNNLM 的核心。当前隐藏状态 $h(t)$ 由当前输入 $w_{i-1}$ 和上一时刻的隐藏状态 $h(t-1)$ 共同决定。公式：$h(t) = \tanh(X H + M h(t-1) + b_1)$. $X$：当前词的词向量。$H$：输入层到隐藏层的权重矩阵。$M$：隐藏层到隐藏层的权重矩阵（即“记忆”参数）。$b_1$：偏置项。意义：通过迭代更新，$h(t)$ 实际上包含了此前所有上文的信息。</li>
+<li>输出层 (Output Layer)：基于当前的隐藏状态 $h(t)$，预测下一个词 $w<em>i$ 的概率分布。公式：$P(w_i | w</em>{i-1}) = \text{softmax}(b_2 + U h(t))$. $U$：隐藏层到输出层的权重矩阵。$b_2$：偏置项。Softmax：将输出转换为概率分布，维度通常等于词表大小 $|V|$</li>
 </ul>
 <p>损失函数本质是交叉熵损失函数, 每个时间步预测的词应与标签的交叉熵求和</p>
 <p>优点:</p>
 <ol>
 <li>RNNLM 可以保留每个词的全部历史信息, 不需简化为n-gram</li>
-<li>引入词向量作为输入后不需要数据平滑 (训练时没有&quot;吃橘子&quot;但有&quot;吃苹果&quot;, 也能输出&quot;吃橘子&quot;)</li>
+<li>引入词向量作为输入后不需要数据平滑 (训练时没有”吃橘子”但有”吃苹果”, 也能输出”吃橘子”)</li>
 </ol>
-<h3 id="注意力机制"><a class="markdownIt-Anchor" href="#注意力机制"></a> 注意力机制</h3>
-<p>注意力机制就是加权求和机制</p>
+<h3 id="注意力机制"><a href="#注意力机制" class="headerlink" title="注意力机制"></a>注意力机制</h3><p>注意力机制就是加权求和机制</p>
 <ul>
 <li>Hard Attention: 一个为 1, 其他为 0</li>
 <li>Soft Attention: 一个概率分布</li>
 </ul>
-<p>优势:</p>
+<p>优势: </p>
 <ol>
 <li>找到输入相关信息, 提高输出质量</li>
 <li>不需要监督信息, 对先验认知少的问题有效</li>
@@ -863,61 +835,33 @@ Prompt挖掘工程：将微调改为“Prompt+预测”，通过设计合适的p
 </ol>
 <p>Q 序列与 K 序列融合编码, 输出序列长度是 Q 序列的长度</p>
 <p>多头注意力机制: 能从不同的表示子空间中学习相关信息</p>
-<h3 id="transformer"><a class="markdownIt-Anchor" href="#transformer"></a> Transformer</h3>
-<p>模型特点</p>
+<h3 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h3><p>模型特点</p>
 <ol>
 <li>全部采用 Attention 机制</li>
 <li>高度并行, 训练速度快</li>
 <li>能捕捉长程依赖信息, 有较高的建模能力 (训练并行, 但是测试时编码端并行, 解码端串行)</li>
 </ol>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">f</mi><mo>−</mo><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">n</mi></mrow><mo stretchy="false">(</mo><mi>Q</mi><mo separator="true">,</mo><mi>K</mi><mo separator="true">,</mo><mi>V</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow><mo fence="false">(</mo><mfrac><mrow><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup></mrow><msqrt><msub><mi>d</mi><mi>k</mi></msub></msqrt></mfrac><mi>V</mi><mo fence="false">)</mo></mrow><annotation encoding="application/x-tex">\mathrm{self-attn}(Q, K, V) = \mathrm{softmax}\big(\frac{QK^T}{\sqrt{d_k}}V \big)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">s</span><span class="mord mathrm">e</span><span class="mord mathrm">l</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathrm">a</span><span class="mord mathrm">t</span><span class="mord mathrm">t</span><span class="mord mathrm">n</span></span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.448331em;vertical-align:-0.93em;"></span><span class="mord"><span class="mord mathrm">s</span><span class="mord mathrm">o</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mathrm">t</span><span class="mord mathrm">m</span><span class="mord mathrm">a</span><span class="mord mathrm">x</span></span><span class="mord"><span class="delimsizing size1">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5183309999999999em;"><span style="top:-2.25278em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85722em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.81722em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
-c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
-c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
-c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
-s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
-c69,-144,104.5,-217.7,106.5,-221
-l0 -0
-c5.3,-9.3,12,-14,20,-14
-H400000v40H845.2724
-s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
-c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
-M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.18278000000000005em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.93em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord"><span class="delimsizing size1">)</span></span></span></span></span></span></p>
-<ul>
-<li>Attention:
-<ul>
+<script type="math/tex; mode=display">
+\mathrm{self-attn}(Q, K, V) = \mathrm{softmax}\big(\frac{QK^T}{\sqrt{d_k}}V \big)</script><ul>
+<li>Attention: <ul>
 <li>输入线性变换: 将QKV映射到不同的子空间</li>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><msub><mi>d</mi><mi>k</mi></msub></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{d_k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.18278000000000005em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.85722em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.81722em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
-c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
-c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
-c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
-s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
-c69,-144,104.5,-217.7,106.5,-221
-l0 -0
-c5.3,-9.3,12,-14,20,-14
-H400000v40H845.2724
-s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
-c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
-M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.18278000000000005em;"><span></span></span></span></span></span></span></span></span>: 避免内积过大时, softmax 产生的结果非 0 即 1</li>
+<li>$\sqrt{d_k}$: 避免内积过大时, softmax 产生的结果非 0 即 1</li>
 <li>层归一化: 对数据进行重新放缩, 提升模型训练稳定性</li>
 <li>MHSA: 不同头为 Attention 提供了不同的表示子空间, 不同表示关注不同位置 (Encoder-Decoder 的多头注意力机制作用: 链接源序列和目标序列, 根据需要从源序列中提取上下文信息; 动态关注不同部分)</li>
-<li>mask:</li>
-</ul>
-<ol>
+<li>mask:<ol>
 <li>padding mask: 处理非定长序列问题, 对加长的数据位置的值加上负无穷, softmax 后权重就会接近 0, 从而不会对 attention 后的向量起作用</li>
 <li>sequence mask: 防止标签泄露</li>
 </ol>
 </li>
+</ul>
+</li>
 <li>FFN: 从其他 token 获取信息后, 融合和处理信息</li>
 </ul>
 <p>Transformer的问题在于固定窗口大小和二次空间复杂度, 这阻碍了其在长文档理解中的应用</p>
-<h3 id="bert"><a class="markdownIt-Anchor" href="#bert"></a> BERT</h3>
-<p>堆叠多个双向 Transformer Encoder, 不使用 Decoder</p>
+<h3 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h3><p>堆叠多个双向 Transformer Encoder, 不使用 Decoder</p>
 <p>预训练策略:</p>
 <ol>
-<li>看不到自己: MLM 随机 mask 部分输入 token, 预测被屏蔽的 token<br />
-问题:
-<ol>
+<li>看不到自己: MLM 随机 mask 部分输入 token, 预测被屏蔽的 token<br>问题:<ol>
 <li>[MASK] 在微调时没出现, 预训练和微调间不匹配: 15% token进行遮盖, 其中 80% 换成 [MASK], 10% 替换另一个语料中的词, 10%不处理. 处理后模型不知道被要求预测哪些单词或哪些单词被随机单词替换, 所以被迫保持每个输入 token 的上下文表示</li>
 <li>只有 15% 数据被预测, 需要更多的预训练来收敛</li>
 </ol>
@@ -939,9 +883,8 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <li>认知学习</li>
 <li>模型应用</li>
 </ol>
-<h2 id="模型优化方式-梯度消失-梯度爆炸"><a class="markdownIt-Anchor" href="#模型优化方式-梯度消失-梯度爆炸"></a> 模型优化方式, 梯度消失, 梯度爆炸</h2>
-<p>梯度下降与反向传播</p>
-<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20260123160446.png" alt="nlp-反向传播算法" /></p>
+<h2 id="模型优化方式-梯度消失-梯度爆炸"><a href="#模型优化方式-梯度消失-梯度爆炸" class="headerlink" title="模型优化方式, 梯度消失, 梯度爆炸"></a>模型优化方式, 梯度消失, 梯度爆炸</h2><p>梯度下降与反向传播</p>
+<p><img src="https://cdn.jsdelivr.net/gh/421zuoduan/blog-imgs@main/imgs/20260123160446.png" alt="nlp-反向传播算法"></p>
 <p>梯度消失解决方法</p>
 <ol>
 <li>选用合适的激活函数</li>
@@ -960,8 +903,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <li>简化模型复杂度</li>
 <li>标签平滑 (预测成 0.9, 其他共分 0.1)</li>
 </ol>
-<h2 id="大模型指令学习-上下文学习-思维链等概念-各类训练方法"><a class="markdownIt-Anchor" href="#大模型指令学习-上下文学习-思维链等概念-各类训练方法"></a> 大模型指令学习, 上下文学习, 思维链等概念, 各类训练方法</h2>
-<p><strong>提示学习设计原则</strong></p>
+<h2 id="大模型指令学习-上下文学习-思维链等概念-各类训练方法"><a href="#大模型指令学习-上下文学习-思维链等概念-各类训练方法" class="headerlink" title="大模型指令学习, 上下文学习, 思维链等概念, 各类训练方法"></a>大模型指令学习, 上下文学习, 思维链等概念, 各类训练方法</h2><p><strong>提示学习设计原则</strong></p>
 <ol>
 <li>预训练模型选择: PLM模型结构多样，同时预训练任务也各有特色，选择与特定任务匹配的PLM模型十分必要</li>
 <li>Prompt Engineering: 针对不同任务，选择对应合适的Prompt输入至关重要</li>
@@ -1004,8 +946,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <li>PPO: 无需人工标注答案, 用奖励模型替代人类评分, 保证生成答案评分高的同时和原始模型不偏差太大</li>
 </ul>
 <p>大模型的涌现能力</p>
-<h2 id="事件抽取概念和子任务"><a class="markdownIt-Anchor" href="#事件抽取概念和子任务"></a> 事件抽取概念和子任务</h2>
-<!-- 事件抽取（Event Extraction, EE）: 从非结构化文本中识别特定事件的信息，并将其转化为结构化形式。其核心目标是捕捉现实世界中事件发生的“谁、何时、何地、什么、为什么”等关键要素 -->
+<h2 id="事件抽取概念和子任务"><a href="#事件抽取概念和子任务" class="headerlink" title="事件抽取概念和子任务"></a>事件抽取概念和子任务</h2><!-- 事件抽取（Event Extraction, EE）: 从非结构化文本中识别特定事件的信息，并将其转化为结构化形式。其核心目标是捕捉现实世界中事件发生的“谁、何时、何地、什么、为什么”等关键要素 -->
 <p>事件抽取: 主要研究如何从描述事件信息的文本中抽取出用户感兴趣的事件信息并以结构化的形式呈现出来</p>
 <p>本质: 从无结构化数据中抽取结构化事件信息</p>
 <p>步骤:</p>
@@ -1016,8 +957,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </ol>
 <p>子任务:</p>
 <ol>
-<li>句子级事件抽取
-<ol>
+<li>句子级事件抽取<ol>
 <li>触发词检测 (标注+分类)</li>
 <li>life/Be-Born 类模板: Person, Time, Place</li>
 <li>按模板抽取角色 (标注)</li>
@@ -1026,27 +966,22 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <li>文档级事件抽取</li>
 <li>小样本/零样本事件抽取</li>
 </ol>
-<h2 id="复杂命名实体识别任务典型模型"><a class="markdownIt-Anchor" href="#复杂命名实体识别任务典型模型"></a> 复杂命名实体识别任务典型模型</h2>
-<ul>
-<li>传统命名实体识别任务
-<ol>
+<h2 id="复杂命名实体识别任务典型模型"><a href="#复杂命名实体识别任务典型模型" class="headerlink" title="复杂命名实体识别任务典型模型"></a>复杂命名实体识别任务典型模型</h2><ul>
+<li>传统命名实体识别任务<ol>
 <li>基于序列标注的方法</li>
 <li>基于生成的方法</li>
 <li>基于 MRC 的方法</li>
 </ol>
 </li>
-<li>复杂命名实体识别
-<ol>
-<li>嵌套实体识别
-<ol>
+<li>复杂命名实体识别<ol>
+<li>嵌套实体识别<ol>
 <li>基于 span 分类的方法: 识别出所有可能的实体span，然后对每个span进行分类 (span 指若干个词组成的实体片段)</li>
 <li>基于超图的方法</li>
 <li>基于序列转换的方法: 将含有嵌套实体的序列转换成不含嵌套结构的超图/序列</li>
 <li>基于任务转换的方法: 将实体识别转换成其他任务进行处理，比如阅读理解、机器翻译、依存树解析等</li>
 </ol>
 </li>
-<li>非连续实体识别
-<ol>
+<li>非连续实体识别<ol>
 <li>基于BIO扩展标注的方法</li>
 <li>基于超图的方法</li>
 <li>基于转换的方法: 例如将非连续实体识别转成生成任务, 通过指针网络生成所有的非连续实体</li>
@@ -1075,21 +1010,17 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <p><strong>联合抽取方法</strong></p>
 <p>基本思想: 实体识别和关系抽取同时建模</p>
 <p>在实体标注中加入关系的类型信息和实体在关系中的主客体信息</p>
-<h2 id="属性级情感分析概念及建模方法"><a class="markdownIt-Anchor" href="#属性级情感分析概念及建模方法"></a> 属性级情感分析概念及建模方法</h2>
-<p>细粒度属性级情感分类是指判断评价对象及其属性的情感倾向</p>
+<h2 id="属性级情感分析概念及建模方法"><a href="#属性级情感分析概念及建模方法" class="headerlink" title="属性级情感分析概念及建模方法"></a>属性级情感分析概念及建模方法</h2><p>细粒度属性级情感分类是指判断评价对象及其属性的情感倾向</p>
 <p>基于属性的情感分析 Aspect-based Sentiment Analysis（ABSA）: 更精细的情感分析，为每个实体（及其属性）识别情感, 能更好地理解主观性文本的情感分布. 属性及情感分类关注的观点为常规性观点, 即对某些目标实体的情绪/意见表达. 任务形式主要为抽取和分类</p>
 <p>建模方法:</p>
 <ol>
-<li>早期深度学习方法 (RNN/LSTM Based)<br />
-这一阶段主要利用RNN/LSTM及其变体来处理序列数据，并引入注意力机制来增强模型对特定属性的感知能力。</li>
+<li>早期深度学习方法 (RNN/LSTM Based)<br>这一阶段主要利用RNN/LSTM及其变体来处理序列数据，并引入注意力机制来增强模型对特定属性的感知能力。</li>
 </ol>
 <ul>
-<li>
-<p>属性抽取 (Aspect Extraction, AE)</p>
+<li><p>属性抽取 (Aspect Extraction, AE)</p>
 <ul>
 <li>模型框架：采用Seq2Seq结构，结合双向GRU（Bi-GRU）。</li>
-<li>核心机制：
-<ul>
+<li>核心机制：<ul>
 <li>门控单元网络：编解码器采用GRU单元。</li>
 <li>位置感知注意力：在关注内容的同时考虑相对位置信息，提升抽取准确率。</li>
 <li>序列标注：通常将抽取任务视为序列标注问题（如BIO标注）。</li>
@@ -1097,23 +1028,19 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </li>
 </ul>
 </li>
-<li>
-<p>属性级情感分类 (ALSC)</p>
+<li><p>属性级情感分类 (ALSC)</p>
 <ul>
 <li>AT-LSTM (Attention-based LSTM)：利用注意力机制捕捉句子中与给定属性（Aspect）相关的部分，将属性向量与LSTM的隐藏层输出进行交互计算注意力权重。</li>
-<li>ATAE-LSTM (Attention-based LSTM with Aspect Embedding)：
-<ul>
+<li>ATAE-LSTM (Attention-based LSTM with Aspect Embedding)：<ul>
 <li>输入层改进：将属性向量直接拼接到输入层的词向量中，使模型在编码阶段就感知到目标属性信息。</li>
 <li>注意力机制：同样使用Attention关注句子的不同部分。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>
-<p>面向属性的观点抽取 (AOE)</p>
+<li><p>面向属性的观点抽取 (AOE)</p>
 <ul>
-<li>IO-LSTM：
-<ul>
+<li>IO-LSTM：<ul>
 <li>Encoder设计：包含三个LSTM模块。向内LSTM（Inward-LSTM）将上下文信息传递给目标属性；向外LSTM（Outward-LSTM）将目标属性信息传递给上下文；IO-LSTM获取全局上下文信息。</li>
 <li>Decoder：每个位置独立进行B/I/O三分类预测。</li>
 </ul>
@@ -1121,24 +1048,20 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </ul>
 </li>
 </ul>
-<ol start="2">
-<li>基于跨度与多任务学习的方法<br />
-为了解决流水线方法的错误传播问题，研究者开始探索基于跨度（Span）的抽取和多任务联合学习。</li>
+<ol>
+<li>基于跨度与多任务学习的方法<br>为了解决流水线方法的错误传播问题，研究者开始探索基于跨度（Span）的抽取和多任务联合学习。</li>
 </ol>
 <ul>
-<li>
-<p>跨度分类流水线</p>
+<li><p>跨度分类流水线</p>
 <ul>
 <li>框架：先抽取后分类（Extract-then-Classify）。</li>
 <li>流程：首先利用基于BERT的抽取器预测属性的开始和结束位置；然后利用分类器直接使用抽取出的属性跨度特征进行情感分类。</li>
 </ul>
 </li>
-<li>
-<p>联合抽取 (SpanMlt)</p>
+<li><p>联合抽取 (SpanMlt)</p>
 <ul>
 <li>模型：基于跨度的多任务学习框架。</li>
-<li>机制：
-<ul>
+<li>机制：<ul>
 <li>共享编码：使用BERT或BiLSTM作为共享编码器。</li>
 <li>枚举跨度：枚举所有可能的跨度，并生成跨度表示。</li>
 <li>评分器：包含术语评分器用于识别实体/观点，关系评分器用于配对。</li>
@@ -1147,20 +1070,17 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </ul>
 </li>
 </ul>
-<ol start="3">
-<li>联合与生成式框架<br />
-这一阶段致力于统一输入输出形式，通过一个模型解决多个子任务，实现端到端的联合抽取与分类。</li>
+<ol>
+<li>联合与生成式框架<br>这一阶段致力于统一输入输出形式，通过一个模型解决多个子任务，实现端到端的联合抽取与分类。</li>
 </ol>
 <ul>
-<li>
-<p>基于阅读理解的联合抽取 (Dual-MRC)</p>
+<li><p>基于阅读理解的联合抽取 (Dual-MRC)</p>
 <ul>
 <li>核心思想：将三元组抽取转化为机器阅读理解（QA）任务。</li>
 <li>架构：双BERT结构，参数共享。一个BERT负责属性抽取，检测开始/结束位置；另一个BERT负责观点抽取和情感分类。</li>
 </ul>
 </li>
-<li>
-<p>统一生成式框架</p>
+<li><p>统一生成式框架</p>
 <ul>
 <li>模型：基于BART的Seq2Seq模型。</li>
 <li>核心思想：将所有ABSA子任务（如属性抽取、观点抽取、情感分类、配对、三元组抽取）统一为生成任务。</li>
@@ -1168,33 +1088,30 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </ul>
 </li>
 </ul>
-<ol start="4">
-<li>基于大模型的方法 (LLM-based)<br />
-利用大语言模型（LLM）的推理能力和少样本学习能力进行ABSA任务。</li>
+<ol>
+<li>基于大模型的方法 (LLM-based)<br>利用大语言模型（LLM）的推理能力和少样本学习能力进行ABSA任务。</li>
 </ol>
 <ul>
-<li>
-<p>推理增强</p>
+<li><p>推理增强</p>
 <ul>
 <li>Extract-Then-Assign：利用思维链（Chain-of-Thought）提示，引导LLM先提取相关项再分配情感标签。</li>
 <li>Self-Consistency：通过多样化推理路径生成多个候选四元组，利用一致性投票筛选最终结果。</li>
 </ul>
 </li>
-<li>
-<p>数据增强与鲁棒性</p>
+<li><p>数据增强与鲁棒性</p>
 <ul>
 <li>反事实样本生成：利用LLM生成高质量的反事实样本（如修改情感词），解决虚假相关性问题。</li>
 <li>信息瓶颈：在训练中平衡事实与反事实部分，学习鲁棒的表示。</li>
 </ul>
 </li>
-<li>
-<p>检索增强</p>
+<li><p>检索增强</p>
 <ul>
 <li>框架：包含示例检索和任务推理两个阶段。</li>
 <li>机制：检索器为给定样本选择相似的候选示例（Few-shot examples），辅助语言模型进行打分和预测。</li>
 </ul>
 </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1236,8 +1153,8 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 </tr>
 </tbody>
 </table>
-<h2 id="任务型对话方法设计思想及典型模型"><a class="markdownIt-Anchor" href="#任务型对话方法设计思想及典型模型"></a> 任务型对话方法设计思想及典型模型</h2>
-<p>任务型对话系统的核心目标是帮助用户完成特定领域的具体任务（如订票、查询天气等），其核心设计通常涉及对用户意图的理解、状态的追踪以及策略的执行</p>
+</div>
+<h2 id="任务型对话方法设计思想及典型模型"><a href="#任务型对话方法设计思想及典型模型" class="headerlink" title="任务型对话方法设计思想及典型模型"></a>任务型对话方法设计思想及典型模型</h2><p>任务型对话系统的核心目标是帮助用户完成特定领域的具体任务（如订票、查询天气等），其核心设计通常涉及对用户意图的理解、状态的追踪以及策略的执行</p>
 <p><strong>pipeline 式对话系统</strong></p>
 <ol>
 <li>自然语言理解 (NLU)：将用户的自然语言输入转换为计算机可理解的语义标签，包含意图识别（分类任务）和语义槽填充（序列标注任务） 。CRF &amp; Bi-LSTM</li>
@@ -1252,8 +1169,7 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">�
 <li>Prompt-based（基于提示）：通过构造Schema、规则和对话历史作为Prompt，直接让LLM进行状态追踪或策略规划，无需大量标注数据 。</li>
 <li>Instruction Tuning（指令微调）：通过Adapter或LoRA等技术对大模型进行轻量级微调，使其适应特定领域的对话任务 。</li>
 </ul>
-<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
-<p><strong>预训练模型</strong></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>预训练模型</strong></p>
 <p>浅层模型缺点:</p>
 <ol>
 <li>无法捕获一词多义的情况, 无法根据下游任务进行调整</li>

@@ -611,16 +611,13 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>本指南详细记录了在使用 Zotero <code>Attanger</code> 插件管理本地相对路径和重命名的前提下，利用腾讯云 Ubuntu 服务器作为中心节点，实现 Mac 与 Windows 之间 PDF 附件无感同步的完整流程。</p>
-<h2 id="架构总览"><a class="markdownIt-Anchor" href="#架构总览"></a> 架构总览</h2>
-<ul>
+<h2 id="架构总览"><a href="#架构总览" class="headerlink" title="架构总览"></a>架构总览</h2><ul>
 <li><strong>中心节点</strong>：腾讯云 Ubuntu 服务器（新加坡节点），负责 24 小时接收和分发数据。</li>
 <li><strong>客户端节点</strong>：Mac 笔记本 / Windows 电脑。</li>
 <li><strong>核心机制</strong>：Zotero 官方同步仅负责条目元数据；Syncthing 负责底层 P2P 同步指定的 PDF 附件物理目录。</li>
 </ul>
-<hr />
-<h2 id="第一步服务器端-ubuntu-部署与控制台安全访问"><a class="markdownIt-Anchor" href="#第一步服务器端-ubuntu-部署与控制台安全访问"></a> 第一步：服务器端 (Ubuntu) 部署与控制台安全访问</h2>
-<h3 id="1-自动化安装与后台守护"><a class="markdownIt-Anchor" href="#1-自动化安装与后台守护"></a> 1. 自动化安装与后台守护</h3>
-<p>通过大模型辅助生成的 Bash 脚本（如使用 OpenClaw 工具）在服务器完成以下核心任务：</p>
+<hr>
+<h2 id="第一步：服务器端-Ubuntu-部署与控制台安全访问"><a href="#第一步：服务器端-Ubuntu-部署与控制台安全访问" class="headerlink" title="第一步：服务器端 (Ubuntu) 部署与控制台安全访问"></a>第一步：服务器端 (Ubuntu) 部署与控制台安全访问</h2><h3 id="1-自动化安装与后台守护"><a href="#1-自动化安装与后台守护" class="headerlink" title="1. 自动化安装与后台守护"></a>1. 自动化安装与后台守护</h3><p>通过大模型辅助生成的 Bash 脚本（如使用 OpenClaw 工具）在服务器完成以下核心任务：</p>
 <ul>
 <li>通过 Syncthing 官方 APT 源安装最新版程序。</li>
 <li>在用户主目录下创建专属同步文件夹（例如 <code>~/Zotero_Papers</code>）。</li>
@@ -628,8 +625,7 @@
 </ul>
 <p>OpenClaw 的指令如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">请作为高级 Linux 运维专家，帮我在服务器上自动化安装并配置 Syncthing，用于多设备间的 PDF 论文同步。请提供完整的执行脚本或逐步命令，必须满足以下所有核心需求：</span><br><span class="line"></span><br><span class="line">官方源安装：请使用 Syncthing 官方的 APT 仓库（获取 GPG key 并添加 source 列表）来安装最新稳定版，不要使用可能过时的 Ubuntu 默认源。</span><br><span class="line"></span><br><span class="line">专属同步目录分配：检测当前执行脚本的用户（例如 ruochen、ubuntu 或 root），并在其用户主目录下创建一个专用的同步文件夹 ~/Zotero_Papers。请确保该目录的属主和读写权限完全正确。</span><br><span class="line"></span><br><span class="line">Systemd 守护进程（极度重要）：配置并启动基于当前用户的 Systemd 服务（即 syncthing@&lt;你的用户名&gt;.service），确保 Syncthing 立即在后台运行，并且每次服务器重启后都能自动无感自启。</span><br><span class="line"></span><br><span class="line">Web 控制台远程访问策略：</span><br><span class="line">这是无图形界面的云服务器，默认的 Web GUI 只监听本地的 127.0.0.1:8384。请帮我实现远程访问，提供以下两种方案中的一种（或同时提供让我选择）：</span><br><span class="line"></span><br><span class="line">方案 A（修改监听地址）：提供一条命令（如使用 sed）直接修改首次运行后生成的 config.xml 文件，将 &lt;gui&gt; 标签下的 &lt;address&gt;127.0.0.1:8384&lt;/address&gt; 替换为 0.0.0.0:8384，并重启服务。请务必在输出中提醒我前往腾讯云控制台的安全组放行 8384 端口，以及首次打开网页后立刻设置强密码。</span><br><span class="line"></span><br><span class="line">方案 B（高安全性的 SSH 隧道）：保持配置文件不动，直接给我提供一条在 Win/Mac 本地终端执行的 SSH 本地端口转发命令（例如 ssh -L 8384:localhost:8384 user@ip 的标准格式），让我可以在本地浏览器通过 127.0.0.1:8384 安全打通服务器的控制台。</span><br><span class="line"></span><br><span class="line">请确保输出的 Bash 命令纯净、可直接复制执行，并对关键步骤提供简短准确的注释。使用方案 B</span><br></pre></td></tr></table></figure>
-<h3 id="2-本地安全打通-web-控制台"><a class="markdownIt-Anchor" href="#2-本地安全打通-web-控制台"></a> 2. 本地安全打通 Web 控制台</h3>
-<p>服务器为无图形界面环境，我想通过图形化界面方便查看与管理，所以通过 SSH 隧道在本地浏览器映射控制台，不直接对外开放 Web 端口。Win 使用的 SyncTrayzor 自带了图形化界面，Mac 可以通过 <code>http://127.0.0.1:8384</code> 直接使用图形化界面</p>
+<h3 id="2-本地安全打通-Web-控制台"><a href="#2-本地安全打通-Web-控制台" class="headerlink" title="2. 本地安全打通 Web 控制台"></a>2. 本地安全打通 Web 控制台</h3><p>服务器为无图形界面环境，我想通过图形化界面方便查看与管理，所以通过 SSH 隧道在本地浏览器映射控制台，不直接对外开放 Web 端口。Win 使用的 SyncTrayzor 自带了图形化界面，Mac 可以通过 <code>http://127.0.0.1:8384</code> 直接使用图形化界面</p>
 <blockquote>
 <p>⚠️ <strong>踩坑记录 1：Web 控制台公网暴露风险</strong></p>
 <ul>
@@ -639,16 +635,14 @@
 执行后挂起终端。此时访问 <code>http://127.0.0.1:9999</code> 即为服务器面板，访问 <code>http://127.0.0.1:8384</code> 即为本地电脑面板，杜绝混淆。</li>
 </ul>
 </blockquote>
-<hr />
-<h2 id="第二步客户端-macwin-初始化"><a class="markdownIt-Anchor" href="#第二步客户端-macwin-初始化"></a> 第二步：客户端 (Mac/Win) 初始化</h2>
-<ul>
+<hr>
+<h2 id="第二步：客户端-Mac-Win-初始化"><a href="#第二步：客户端-Mac-Win-初始化" class="headerlink" title="第二步：客户端 (Mac/Win) 初始化"></a>第二步：客户端 (Mac/Win) 初始化</h2><ul>
 <li><strong>Windows 端</strong>：下载安装带图形界面的封装版 <strong>SyncTrayzor</strong>。</li>
 <li><strong>Mac 端</strong>：下载安装官方 <strong>Syncthing for macOS</strong> 客户端，github 搜索即可。</li>
 <li><strong>关键设置</strong>：必须在两端软件偏好设置中勾选 <strong>“开机/登录时自动启动”</strong>，确保后台静默运行。</li>
 </ul>
-<hr />
-<h2 id="第三步设备配对与底层通信打通"><a class="markdownIt-Anchor" href="#第三步设备配对与底层通信打通"></a> 第三步：设备配对与底层通信打通</h2>
-<p>需将本地电脑与云服务器互相添加为“远程设备”这部分 mac 和 win 的操作基本一致。</p>
+<hr>
+<h2 id="第三步：设备配对与底层通信打通"><a href="#第三步：设备配对与底层通信打通" class="headerlink" title="第三步：设备配对与底层通信打通"></a>第三步：设备配对与底层通信打通</h2><p>需将本地电脑与云服务器互相添加为“远程设备”这部分 mac 和 win 的操作基本一致。</p>
 <ol>
 <li>在服务器面板 (<code>127.0.0.1:9999</code>)，点击 <code>操作 -&gt; 显示 ID</code>，复制设备 ID。</li>
 <li>在本地电脑面板 (<code>127.0.0.1:8384</code>)，点击 <code>添加远程设备</code>，粘贴 ID 并命名为 <code>Tencent-Server</code>。</li>
@@ -660,20 +654,18 @@
 <li><strong>原因分析</strong>：Syncthing 的底层数据传输和设备发现默认走 <code>22000</code> 端口（TCP/UDP），而腾讯云安全组默认只开放了 SSH 的 <code>22</code> 端口，导致握手信号被云端防火墙拦截。</li>
 <li><strong>解决方案</strong>：进入腾讯云控制台 -&gt; 安全组规则，添加一条入站规则：允许 <code>TCP 和 UDP</code> 协议，端口填入 <code>22000</code>（或自定义的同步端口），源 IP 设为 <code>0.0.0.0/0</code>。保存后服务器瞬间弹出连接请求，点击接受即可完成配对。</li>
 </ul>
-<p>⚠️** 踩坑记录 3：设备虽连上，但速度仅有几 KB/s（中继连接问题）**</p>
+<p>⚠️<strong> 踩坑记录 3：设备虽连上，但速度仅有几 KB/s（中继连接问题）</strong></p>
 <ul>
 <li><strong>问题表现</strong>：设备互相添加成功后，发现传输速率极慢。在右侧设备详情里查看“连接类型”，显示为“中继连接 (Relay WAN)”。</li>
 <li><strong>原因分析</strong>：Syncthing 默认使用 dynamic 动态寻找设备，在复杂的跨国或跨网环境下，双方没能直接“握手”，只能绕道走官方的公共中转服务器，而公共节点会强制进行严重限速。</li>
 <li><strong>解决方案</strong>（硬编码强制直连）：在本地电脑面板展开 Tencent-Server 设备，点击 编辑 -&gt; 高级 -&gt; 地址，将里面的 dynamic 删掉，替换为强行指定的 IP 坐标：<code>tcp://&lt;服务器公网IP&gt;:22000</code>（端口替换为你实际放行的同步端口）。保存后，连接类型会变成“TCP 广域网”，速度会大幅提升。</li>
 </ul>
 </blockquote>
-<hr />
-<h2 id="第四步配置文献同步文件夹-对接-attanger"><a class="markdownIt-Anchor" href="#第四步配置文献同步文件夹-对接-attanger"></a> 第四步：配置文献同步文件夹 (对接 Attanger)</h2>
-<p>打通设备后，需配置专门的同步目录来接管 Attanger 重命名后的 PDF 文件。</p>
+<hr>
+<h2 id="第四步：配置文献同步文件夹-对接-Attanger"><a href="#第四步：配置文献同步文件夹-对接-Attanger" class="headerlink" title="第四步：配置文献同步文件夹 (对接 Attanger)"></a>第四步：配置文献同步文件夹 (对接 Attanger)</h2><p>打通设备后，需配置专门的同步目录来接管 Attanger 重命名后的 PDF 文件。</p>
 <ol>
 <li>在本地电脑面板 (<code>127.0.0.1:8384</code>)，点击 <code>添加文件夹</code>。</li>
-<li><strong>常规设置</strong>：
-<ul>
+<li><strong>常规设置</strong>：<ul>
 <li><strong>文件夹标签</strong>：<code>Zotero_Papers</code>（仅做展示用）。</li>
 <li><strong>文件夹 ID</strong>：<code>zotero-sync</code>（<strong>核心规范：Mac、Win、服务器三端的该文件夹 ID 必须完全一致</strong>）。</li>
 <li><strong>文件夹路径</strong>：选择本地脱离 Zotero 默认存储位置的独立文献目录（即 Attanger 设置的目标移动路径）。</li>
@@ -683,9 +675,8 @@
 <li><strong>高级设置</strong>：勾选“监视更改 (Watch for Changes)”，实现文件变动秒级推送。点击保存。</li>
 <li>在服务器面板弹出的接收提示中，确认路径并同意接收。此时同步通道正式闭环。</li>
 </ol>
-<hr />
-<h2 id="第五步跨国网络限速优化-tun-代理加速"><a class="markdownIt-Anchor" href="#第五步跨国网络限速优化-tun-代理加速"></a> 第五步：跨国网络限速优化 (TUN 代理加速)</h2>
-<p>由于使用了位于新加坡的服务器，存在网络问题，代理使用 TUN 模式（即增强模式）可以解决</p>
+<hr>
+<h2 id="第五步：跨国网络限速优化-TUN-代理加速"><a href="#第五步：跨国网络限速优化-TUN-代理加速" class="headerlink" title="第五步：跨国网络限速优化 (TUN 代理加速)"></a>第五步：跨国网络限速优化 (TUN 代理加速)</h2><p>由于使用了位于新加坡的服务器，存在网络问题，代理使用 TUN 模式（即增强模式）可以解决</p>
 <blockquote>
 <p>⚠️ <strong>踩坑记录 ：Mac 开启 ClashX 增强模式导致软件崩溃</strong></p>
 <ul>
