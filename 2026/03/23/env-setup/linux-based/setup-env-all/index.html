@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>97 words, 1 min</span>
+              <span>99 words, 1 min</span>
             </span>
             <!-- Categories -->
             
@@ -629,10 +629,12 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <h2 id="codex"><a href="#codex" class="headerlink" title="codex"></a>codex</h2><p>见本博客下的 <code>codex cli 断外网服务器配置</code>, 可以不改 <code>.vscode-server</code></p>
-<h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh -O /data/ruochen/Anaconda3-2023.09-0-Linux-x86_64.sh</span><br><span class="line">bash Anaconda3-2023.09-0-Linux-x86_64.sh -p /data/ruochen/anaconda -u</span><br></pre></td></tr></table></figure>
+    <h2 id="codex"><a class="markdownIt-Anchor" href="#codex"></a> codex</h2>
+<p>见本博客下的 <code>codex cli 断外网服务器配置</code>, 可以不改 <code>.vscode-server</code></p>
+<h2 id="anaconda"><a class="markdownIt-Anchor" href="#anaconda"></a> Anaconda</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh -O /data/ruochen/Anaconda3-2023.09-0-Linux-x86_64.sh</span><br><span class="line">bash Anaconda3-2023.09-0-Linux-x86_64.sh -p /data/ruochen/anaconda -u</span><br></pre></td></tr></table></figure>
 <p>一直yes, 包括添加到环境</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PATH=&quot;/data/ruochen/anaconda/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PATH=&quot;/data/ruochen/anaconda/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line">conda init</span><br></pre></td></tr></table></figure>
 <p>此时输入<code>conda env list</code>, 能看到base环境</p>
 
   </article>
