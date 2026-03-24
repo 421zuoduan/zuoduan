@@ -611,18 +611,18 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>目的是在断外网的服务器上配置 claude code, 在 claude code 上使用 GLM4.6. 可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1957370685748938170">网址1</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1957902739917997776">网址2</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1933624323849032925">网址3</a>, <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_52136627/article/details/149719262">网址4</a></p>
-<h2 id="安装-claude-code"><a class="markdownIt-Anchor" href="#安装-claude-code"></a> 安装 Claude Code</h2>
-<h3 id="安装-npm"><a class="markdownIt-Anchor" href="#安装-npm"></a> 安装 npm</h3>
+<h2 id="安装-claude-code">安装 Claude Code</h2>
+<h3 id="安装-npm">安装 npm</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash</span><br><span class="line">source ~/.bashrc</span><br><span class="line">nvm install node</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 <p>如果 <code>curl</code> 不可用, 使用 <code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash </code>. 输出版本表示下载完成</p>
-<h3 id="安装-claude-code-2"><a class="markdownIt-Anchor" href="#安装-claude-code-2"></a> 安装 claude code</h3>
+<h3 id="安装-claude-code">安装 claude code</h3>
 <p>设置淘宝镜像</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmmirror.com</span><br><span class="line">npm install -g openai</span><br><span class="line">npm install -g @anthropic-ai/claude-code</span><br></pre></td></tr></table></figure>
-<h3 id="配置-claude-code"><a class="markdownIt-Anchor" href="#配置-claude-code"></a> 配置 claude code</h3>
+<h3 id="配置-claude-code">配置 claude code</h3>
 <p>在 <code>~/.claude/settings.json</code> 文件中写入以下内容:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;env&quot;: &#123;</span><br><span class="line">    &quot;ANTHROPIC_AUTH_TOKEN&quot;: &quot;yourkey here&quot;,</span><br><span class="line">    &quot;API_TIMEOUT_MS&quot;: &quot;3000000&quot;,</span><br><span class="line">    &quot;ANTHROPIC_BASE_URL&quot;: &quot;https://open.bigmodel.cn/api/anthropic&quot;,</span><br><span class="line">    &quot;MCP_TOOL_TIMEOUT&quot;: &quot;30000&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;permissions&quot;: &#123;</span><br><span class="line">    &quot;defaultMode&quot;: &quot;bypassPermissions&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;alwaysThinkingEnabled&quot;: false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 claude code 看来, 我们仍然在使用 sonnet 模型, 不过再细问他他会说他是智谱转发的, 所以配置正确</p>
-<h3 id="mcp-配置"><a class="markdownIt-Anchor" href="#mcp-配置"></a> MCP 配置</h3>
+<h3 id="mcp-配置">MCP 配置</h3>
 <p>联网搜索和多模态功能均为 Pro 及以上套餐提供. 使用 <code>claude mcp add</code> 命令时, 要加 <code>--scope user</code> 才能全局安装. <code>claude mcp list</code> 查看 MCP 列表</p>
 <p><strong>联网搜索</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">claude mcp add-json web-search-prime  &#x27;&#123;&quot;type&quot;:&quot;http&quot;, &quot;url&quot;:&quot;https://open.bigmodel.cn/api/mcp/web_search_prime/mcp&quot;,&quot;headers&quot;:&#123;&quot;Authorization&quot;:&quot;Bearer &lt;你的 GLM API Key&gt;&quot;&#125;&#125;&#x27;   --scope user</span><br></pre></td></tr></table></figure>
