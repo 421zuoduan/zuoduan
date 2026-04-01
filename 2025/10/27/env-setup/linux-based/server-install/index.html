@@ -611,13 +611,16 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>推荐 ubuntu22.04</p>
-<h2 id="方式一：使用-balenaEtcher（推荐）"><a href="#方式一：使用-balenaEtcher（推荐）" class="headerlink" title="方式一：使用 balenaEtcher（推荐）"></a>方式一：使用 balenaEtcher（推荐）</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<h2 id="方式一：使用-balenaetcher-推荐">方式一：使用 balenaEtcher（推荐）</h2>
+<h3 id="准备工作">准备工作</h3>
+<ul>
 <li>一个 <strong>至少 8GB</strong> 的 U 盘</li>
 <li>已下载好的 <strong>Ubuntu 24.04 ISO</strong> 文件</li>
 <li>注意：<strong>烧录会清空 U 盘中的所有内容</strong></li>
 <li>ISO 文件应放在 <strong>Mac 本地磁盘</strong> 中，不要放在目标 U 盘里</li>
 </ul>
-<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<h3 id="操作步骤">操作步骤</h3>
+<ol>
 <li>下载并安装 <strong>balenaEtcher</strong>, RM64 适用于 M 系列 mac</li>
 <li>插入 U 盘</li>
 <li>打开 balenaEtcher</li>
@@ -628,68 +631,83 @@
 <li>点击 <strong>Flash</strong></li>
 <li>等待烧录完成</li>
 </ol>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
-<li><p>烧录完成后，macOS 可能会弹出：</p>
+<h3 id="说明">说明</h3>
+<ul>
+<li>
+<p>烧录完成后，macOS 可能会弹出：</p>
 <blockquote>
 <p>The disk you inserted was not readable by this computer.</p>
 </blockquote>
 <p>这是正常现象，直接点击 <strong>Ignore</strong> 即可。</p>
 </li>
 </ul>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<h3 id="优点">优点</h3>
+<ul>
 <li>图形界面操作简单</li>
 <li>不容易选错磁盘</li>
 <li>适合大多数用户</li>
 </ul>
-<h2 id="方式二：使用命令行烧录-U-盘"><a href="#方式二：使用命令行烧录-U-盘" class="headerlink" title="方式二：使用命令行烧录 U 盘"></a>方式二：使用命令行烧录 U 盘</h2><h3 id="准备工作-1"><a href="#准备工作-1" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<h2 id="方式二：使用命令行烧录-u-盘">方式二：使用命令行烧录 U 盘</h2>
+<h3 id="准备工作">准备工作</h3>
+<ul>
 <li>一个 <strong>至少 8GB</strong> 的 U 盘</li>
 <li>已下载好的 <strong>Ubuntu 22.04 ISO</strong> 文件</li>
 <li>注意：<strong>烧录会清空 U 盘中的所有内容</strong></li>
 <li>ISO 文件应放在 <strong>Mac 本地磁盘</strong> 中，不要放在目标 U 盘里</li>
 <li><strong>务必确认 U 盘对应的磁盘编号</strong>，否则可能误写入其他磁盘</li>
 </ul>
-<h3 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<h3 id="操作步骤">操作步骤</h3>
+<ol>
 <li>插入 U 盘</li>
 <li>打开终端</li>
 <li>查看当前磁盘列表：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure>
-<ol>
+<ol start="4">
 <li>找到你的 U 盘对应的设备编号，例如 <code>/dev/disk4</code></li>
 <li>卸载整个 U 盘（将 <code>disk4</code> 替换为你的实际编号）：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil unmountDisk /dev/disk4</span><br></pre></td></tr></table></figure>
-<ol>
+<ol start="6">
 <li>使用 <code>dd</code> 将 ISO 写入 U 盘（将 ISO 路径和磁盘编号改成你自己的）：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> <span class="keyword">if</span>=~/Downloads/ubuntu-22.04.6-desktop-amd64.iso of=/dev/rdisk4 bs=4m</span><br></pre></td></tr></table></figure>
-<ol>
+<ol start="7">
 <li>等待写入完成</li>
 <li>写入完成后执行同步并弹出 U 盘：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sync</span></span><br><span class="line">diskutil eject /dev/disk4</span><br></pre></td></tr></table></figure>
-<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<h3 id="参数说明">参数说明</h3>
+<ul>
 <li><code>if=</code>：输入文件，即 ISO 文件路径</li>
 <li><code>of=</code>：输出目标，即 U 盘设备</li>
 <li><code>bs=4m</code>：每次写入 4MB，通常更快</li>
 <li><code>rdisk4</code> 相比 <code>disk4</code> 通常写入速度更快</li>
 </ul>
-<h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><ul>
-<li>烧录过程中终端可能长时间没有输出，这是正常现象</li>
-<li>可以按 <code>Ctrl + T</code> 查看 <code>dd</code> 当前进度</li>
-<li><p>烧录完成后，macOS 可能会弹出：</p>
+<h3 id="说明">说明</h3>
+<ul>
+<li>
+<p>烧录过程中终端可能长时间没有输出，这是正常现象</p>
+</li>
+<li>
+<p>可以按 <code>Ctrl + T</code> 查看 <code>dd</code> 当前进度</p>
+</li>
+<li>
+<p>烧录完成后，macOS 可能会弹出：</p>
 <blockquote>
 <p>The disk you inserted was not readable by this computer.</p>
 </blockquote>
 <p>这是正常现象，直接点击 <strong>Ignore</strong> 即可。</p>
 </li>
 </ul>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<h3 id="优点">优点</h3>
+<ul>
 <li>不需要额外安装软件</li>
 <li>适合熟悉终端的用户</li>
 <li>写入过程直接、稳定</li>
 </ul>
-<h3 id="风险"><a href="#风险" class="headerlink" title="风险"></a>风险</h3><ul>
+<h3 id="风险">风险</h3>
+<ul>
 <li>如果磁盘编号写错，可能会误覆盖其他磁盘的数据</li>
 <li>执行 <code>dd</code> 前建议再次用 <code>diskutil list</code> 确认目标设备</li>
 </ul>
@@ -703,7 +721,7 @@
   ">
     <div>
       
-        <a href="/zuoduan/2025/10/30/env-setup/linux-based/claude_code_cli/"
+        <a href="/zuoduan/2025/10/27/env-setup/linux-based/codex-cli/"
           class="
             transition-all
             flex justify-center
@@ -712,13 +730,13 @@
           ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          claude code 断外网服务器配置
+          codex cli 断外网服务器配置
         </a>
       
     </div>
     <div>
       
-        <a href="/zuoduan/2025/10/27/env-setup/linux-based/codex-cli/"
+        <a href="/zuoduan/2025/08/11/llm/explanation/explanation/"
           class="
             flex 
             justify-center
@@ -727,7 +745,7 @@
             hover:text-[var(--c-100)]
           "
         >
-          codex cli 断外网服务器配置
+          大模型可解释性论文
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       

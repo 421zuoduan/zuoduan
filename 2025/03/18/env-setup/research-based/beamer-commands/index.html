@@ -630,7 +630,8 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/687547115">参考</a>. beamer 从入门到放弃, 因为beamer只能导出pdf</p>
-<h2 id="文档类选项"><a href="#文档类选项" class="headerlink" title="文档类选项"></a>文档类选项</h2><ul>
+<h2 id="文档类选项">文档类选项</h2>
+<ul>
 <li>beamer 默认字体为 11pt, 可选 8-20pt.</li>
 <li><code>aspectratio=43</code> 或 <code>aspectratio=169</code>, 设置屏幕纵横比</li>
 <li><code>mathserif</code> 设置衬线字体</li>
@@ -638,30 +639,36 @@
 <li><code>compress</code> 压缩导航栏的排版, 多行变单行</li>
 <li><code>notes</code> 演讲者视图, 在每一页后添加 notes</li>
 </ul>
-<h2 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h2><p>beamer 不支持 <code>\chapter</code>, 使用<code>\section&#123;&#125;</code>, <code>\subsection&#123;&#125;</code> (或<code>\section*&#123;&#125;</code>和<code>\subsection*&#123;&#125;</code>) 来划分结构</p>
-<h2 id="标题页"><a href="#标题页" class="headerlink" title="标题页"></a>标题页</h2><ul>
+<h2 id="文档结构">文档结构</h2>
+<p>beamer 不支持 <code>\chapter</code>, 使用<code>\section&#123;&#125;</code>, <code>\subsection&#123;&#125;</code> (或<code>\section*&#123;&#125;</code>和<code>\subsection*&#123;&#125;</code>) 来划分结构</p>
+<h2 id="标题页">标题页</h2>
+<ul>
 <li><code>\title</code>: 主标题</li>
 <li><code>\subtitle</code>: 子标题</li>
 <li><code>\author</code>: 多个作者间用 <code>and</code> 连接. 用 <code>~</code> 连接可保证姓名不会被换行符分开<code>First~Author</code></li>
 <li><code>\date</code>: 当前日期使用 <code>\date&#123;today&#125;</code></li>
 <li><code>\institute</code>: 机构</li>
 </ul>
-<h2 id="目录页"><a href="#目录页" class="headerlink" title="目录页"></a>目录页</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;frame&#125;&#123;Outline&#125; % or Contents</span><br><span class="line">    \tableofcontents</span><br><span class="line">\end&#123;frame&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="目录页">目录页</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;frame&#125;&#123;Outline&#125; % or Contents</span><br><span class="line">    \tableofcontents</span><br><span class="line">\end&#123;frame&#125;</span><br></pre></td></tr></table></figure>
 <p>使用以下命令在进入每一个章节前复现一次目录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\AtBeginSection[ ]</span><br><span class="line">&#123;</span><br><span class="line">\begin&#123;frame&#125;&#123;Outline&#125;</span><br><span class="line">    \tableofcontents[currentsection]</span><br><span class="line">\end&#123;frame&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>beamer 默认不会给 seciton 和 subsection 编号, 下面代码可以开启编号</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\setbeamertemplate&#123;section in toc&#125;[sections numbered]</span><br><span class="line">\setbeamertemplate&#123;subsection in toc&#125;[subsections numbered]</span><br></pre></td></tr></table></figure>
-<p>完整配置, </p>
+<p>完整配置,</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">\AtBeginSection[]</span><br><span class="line">&#123;</span><br><span class="line">\begin&#123;frame&#125;&#123;Outline&#125;</span><br><span class="line">    \tableofcontents[currentsection,currentsubsection,</span><br><span class="line">        hideothersubsections,</span><br><span class="line">        sectionstyle=show/shaded</span><br><span class="line">    ]</span><br><span class="line">\end&#123;frame&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">\begin&#123;frame&#125;&#123;Outline&#125;</span><br><span class="line">    \tableofcontents[sectionstyle=show,</span><br><span class="line">        subsectionstyle=show/shaded/hide,</span><br><span class="line">        subsubsectionstyle=show/shaded/hide</span><br><span class="line">    ]</span><br><span class="line">\end&#123;frame&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="frame-环境"><a href="#frame-环境" class="headerlink" title="frame 环境"></a>frame 环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">% Frame environment</span><br><span class="line">\begin&#123;frame&#125;</span><br><span class="line">    \frametitle&#123;&lt;Frame Title&gt;&#125;</span><br><span class="line">    \framesubtitle&#123;&lt;Frame subtitle&gt;&#125;</span><br><span class="line"></span><br><span class="line">    content</span><br><span class="line">\end&#123;frame&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="frame-环境">frame 环境</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">% Frame environment</span><br><span class="line">\begin&#123;frame&#125;</span><br><span class="line">    \frametitle&#123;&lt;Frame Title&gt;&#125;</span><br><span class="line">    \framesubtitle&#123;&lt;Frame subtitle&gt;&#125;</span><br><span class="line"></span><br><span class="line">    content</span><br><span class="line">\end&#123;frame&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>[t][c][b]</code> 分别代表页面中竖直方向的对齐方式: 向上, 居中或向下, 默认居中</li>
 <li><code>[plain]</code> 设置移除当前 frame 顶部和底部细节, 可用于标题页展示纯净页面</li>
 <li><code>[allowframebreaks]</code> 允许多余内容自动排版到下一页, 可用于单独展示参考文献列表</li>
 </ul>
-<h2 id="columns-环境"><a href="#columns-环境" class="headerlink" title="columns 环境"></a>columns 环境</h2><p>用于竖向拆分两列, 分别添加不同的文字或者图文进行对比, 也可以用来并列两个图片. 各列宽度和不超过 <code>\textwidth</code>, 和 latex 一样的</p>
+<h2 id="columns-环境">columns 环境</h2>
+<p>用于竖向拆分两列, 分别添加不同的文字或者图文进行对比, 也可以用来并列两个图片. 各列宽度和不超过 <code>\textwidth</code>, 和 latex 一样的</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;columns&#125;</span><br><span class="line">    \column&#123;0.4\textwidth&#125;</span><br><span class="line">        This is an example of text and image in the same slide using columns environment.</span><br><span class="line">    \column&#123;0.6\textwidth&#125;</span><br><span class="line">        \begin&#123;figure&#125;</span><br><span class="line">        \centering</span><br><span class="line">        \includegraphics[width=\textwidth]&#123;xxx.jpg&#125;</span><br><span class="line">        \caption&#123;Neural Network with 5 neurons in the hidden layer. &#125;</span><br><span class="line">        \end&#123;figure&#125;</span><br><span class="line">    \end&#123;columns&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="blocl-定理类环境"><a href="#blocl-定理类环境" class="headerlink" title="blocl/定理类环境"></a>blocl/定理类环境</h2>
+<h2 id="blocl-定理类环境">blocl/定理类环境</h2>
+
   </article>
 
   <!-- prev and next -->
