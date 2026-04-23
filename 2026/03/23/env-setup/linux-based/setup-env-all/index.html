@@ -547,7 +547,7 @@
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2026-03-24</time>
+              Edited: <time class="w-max">2026-04-23</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>194 words, 1 min</span>
+              <span>525 words, 2 min</span>
             </span>
             <!-- Categories -->
             
@@ -642,49 +642,79 @@
 </li>
 </ol>
 <!-- 3. 配置服务器端口, 修改 `.vscode-server/data/Machine/settings.json`, 也即修改远程服务器的 setting.json 文件, 下面 15555 是服务器转发端口, 配置如下
-    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;http.proxy&quot;: &quot;http://127.0.0.1:15555&quot;,</span><br><span class="line">    &quot;http.proxySupport&quot;: &quot;on&quot;,</span><br><span class="line">    &quot;http.proxyStrictSSL&quot;: false, --&gt;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>测试端口转发是否成功, 返回 ip 和无效的 api key 就算转发成功<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -x http://127.0.0.1:15555 https://ipinfo.io/ip</span><br><span class="line">curl -x http://127.0.0.1:15555 https://api.openai.com/v1/models -H &quot;Authorization: Bearer $OPENAI_API_KEY&quot; -i</span><br></pre></td></tr></table></figure>
-</li>
-<li>配置 ssh 连接自启动服务, <code>.bashrc</code> 加入以下指令, 以后使用 <code>codexp</code> 就能启动 codex, 而且只有 codex 走本地代理流量<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">codexp() &#123;</span><br><span class="line">    HTTP_PROXY=&quot;http://127.0.0.1:15555&quot; \</span><br><span class="line">    HTTPS_PROXY=&quot;http://127.0.0.1:15555&quot; \</span><br><span class="line">    NO_PROXY=&quot;127.0.0.1,localhost,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.local,.lan&quot; \</span><br><span class="line">    codex &quot;$@&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>刷新 ssh 连接列表, 重启 vscode 或 ssh 连接</li>
-</ol>
-<blockquote>
-<p>note:</p>
-<ol>
-<li><s>使用端口转发后, 同一用户同时只能保持一个 ssh 连接, 猜测是端口占用的问题, 应该可以解决, 但本人懒了orz</s>  已解决, 本地 ssh 文件配置 <code>ControlMaster</code> 即可</li>
-<li><s>使用端口转发后, pip 的流量走的也是本地, 所以频繁配环境时建议建立一个不使用代理的连接</s> 已解决, <code>.bashrc</code> 配置成 <code>codexp</code> 就可以了, 注意使用 <code>codexp</code> 指令后, 这个 session 后续 pip 等等指令都走的代理流量</li>
-</ol>
-</blockquote>
-<h3 id="安装-npm"><a class="markdownIt-Anchor" href="#安装-npm"></a> 安装 npm</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash</span><br><span class="line">source ~/.bashrc</span><br><span class="line">nvm install node</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>如果 <code>curl</code> 不可用, 使用 <code>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash </code>. 输出版本表示下载完成</p>
-<h3 id="安装-codex-cli"><a class="markdownIt-Anchor" href="#安装-codex-cli"></a> 安装 codex-cli</h3>
-<p>设置淘宝镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npmmirror.com</span><br><span class="line">npm install -g openai</span><br><span class="line">npm install -g @openai/codex</span><br></pre></td></tr></table></figure>
-<h3 id="运行-codex-cli"><a class="markdownIt-Anchor" href="#运行-codex-cli"></a> 运行 codex-cli</h3>
-<p>npm 安装 codex 的环境中输入 <code>codex</code></p>
-<blockquote>
-<p>如果登录后跳转到 <code>http://localhost:1455/auth/callback</code> 这样一个网址, 说明访问的是服务器的 localhost:1455, 需要再配置一个1455到本地1455的端口转发, 刷新网址显示 “Signed in to Codex” 就成功了</p>
-</blockquote>
-<h2 id="anaconda"><a class="markdownIt-Anchor" href="#anaconda"></a> Anaconda</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh -O /data/ruochen/Anaconda3-2023.09-0-Linux-x86_64.sh</span><br><span class="line">bash Anaconda3-2023.09-0-Linux-x86_64.sh -p /data/ruochen/anaconda -u</span><br></pre></td></tr></table></figure>
-<p>一直yes, 包括添加到环境</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PATH=&quot;/data/ruochen/anaconda/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line">conda init</span><br></pre></td></tr></table></figure>
-<p>此时输入<code>conda env list</code>, 能看到base环境</p>
-<h2 id="huggingface-代理"><a class="markdownIt-Anchor" href="#huggingface-代理"></a> Huggingface 代理</h2>
-<p>在 <code>~/.bashrc</code> 里加入以下指令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export HF_ENDPOINT=&quot;https://hf-mirror.com&quot;    # 对于可以联网的机器，配置下载源</span><br><span class="line">&lt;!-- export HF_DATASET_OFFLINE=1    # 如果数据加载出现问题，尝试增加这一项</span><br><span class="line">export HF_HUB_OFFLINE=1    # 如果模型加载出现问题，尝试增加这一项 --&gt;</span><br><span class="line">export HF_HOME=&quot;/data/username/hf-cache&quot;    # 设置Huggingface缓存目录</span><br></pre></td></tr></table></figure>
-<p>下载时使用以下指令可以避免在 <code>HF_HOME</code> 中缓存大量文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install huggingface-cli    # 确保你安装了 huggingface-cli</span><br><span class="line">huggingface-cli download --resume-download gpt2 --local-dir gpt2    # 下载模型</span><br><span class="line">huggingface-cli download --repo-type dataset --resume-download wikitext --local-dir wikitext    # 下载数据集</span><br></pre></td></tr></table></figure>
-<h2 id="git"><a class="markdownIt-Anchor" href="#git"></a> git</h2>
-<h3 id="用户登录"><a class="markdownIt-Anchor" href="#用户登录"></a> 用户登录</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置用户名</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line"></span><br><span class="line"># 设置用户邮箱</span><br><span class="line">git config --global user.email &quot;your.email@example.com&quot;</span><br><span class="line"></span><br><span class="line"># 查看配置</span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-<h3 id="更改-master-分支为-main"><a class="markdownIt-Anchor" href="#更改-master-分支为-main"></a> 更改 master 分支为 main</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 1️⃣ 将本地 master 分支重命名为 main</span><br><span class="line">git branch -m master main</span><br><span class="line"></span><br><span class="line"># 2️⃣ 推送新的 main 分支到远程，并建立跟踪</span><br><span class="line">git push -u origin main</span><br><span class="line"></span><br><span class="line"># 3️⃣ 删除远程的 master 分支（可选，但通常需要）</span><br><span class="line">git push origin --delete master</span><br><span class="line"></span><br><span class="line"># 4️⃣ 设置全局默认新建分支为 main</span><br><span class="line">git config --global init.defaultBranch main</span><br></pre></td></tr></table></figure>
-<h3 id="连接远程仓库并推送代码"><a class="markdownIt-Anchor" href="#连接远程仓库并推送代码"></a> 连接远程仓库并推送代码</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 初始化一个新的 Git 仓库</span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"># 克隆一个远程仓库到本地</span><br><span class="line">git clone &lt;repository_url&gt;</span><br><span class="line"></span><br><span class="line"># 查看远程仓库</span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"># 添加远程仓库</span><br><span class="line">git remote add origin &lt;repository_url&gt;</span><br><span class="line"></span><br><span class="line"># 推送本地分支到远程仓库</span><br><span class="line">git push origin &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 强制推送本地分支到远程仓库</span><br><span class="line">git push -f origin &lt;branch-name&gt;</span><br><span class="line"></span><br><span class="line"># 拉取远程仓库的更新</span><br><span class="line">git pull origin &lt;branch_name&gt;</span><br><span class="line"></span><br><span class="line"># 从远程仓库获取更新但不合并</span><br><span class="line">git fetch origin</span><br></pre></td></tr></table></figure>
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &quot;http.proxy&quot;: &quot;http://127.0.0.1:15555&quot;,</span><br><span class="line">        &quot;http.proxySupport&quot;: &quot;on&quot;,</span><br><span class="line">        &quot;http.proxyStrictSSL&quot;: false, </span><br><span class="line">    ```--&gt;</span><br><span class="line">3. 测试端口转发是否成功, 返回 ip 和无效的 api key 就算转发成功</span><br></pre></td></tr></table></figure>
+<pre><code>curl -x http://127.0.0.1:15555 https://ipinfo.io/ip
+curl -x http://127.0.0.1:15555 https://api.openai.com/v1/models -H &quot;Authorization: Bearer $OPENAI_API_KEY&quot; -i
+</code></pre>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 配置 ssh 连接自启动服务, `.bashrc` 加入以下指令, 以后使用 `codexp` 就能启动 codex, 而且只有 codex 走本地代理流量</span><br></pre></td></tr></table></figure>
+<pre><code>codexp() &#123;
+    HTTP_PROXY=&quot;http://127.0.0.1:15555&quot; \
+    HTTPS_PROXY=&quot;http://127.0.0.1:15555&quot; \
+    NO_PROXY=&quot;127.0.0.1,localhost,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.local,.lan&quot; \
+    codex &quot;$@&quot;
+&#125;
+</code></pre>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">6. 刷新 ssh 连接列表, 重启 vscode 或 ssh 连接</span><br><span class="line"></span><br><span class="line">&gt; note:</span><br><span class="line">&gt; 1. ~~使用端口转发后, 同一用户同时只能保持一个 ssh 连接, 猜测是端口占用的问题, 应该可以解决, 但本人懒了orz~~  已解决, 本地 ssh 文件配置 `ControlMaster` 即可</span><br><span class="line">&gt; 2. ~~使用端口转发后, pip 的流量走的也是本地, 所以频繁配环境时建议建立一个不使用代理的连接~~ 已解决, `.bashrc` 配置成 `codexp` 就可以了, 注意使用 `codexp` 指令后, 这个 session 后续 pip 等等指令都走的代理流量</span><br><span class="line"></span><br><span class="line">### 安装 npm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>curl -o- <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh">https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh</a> | bash<br />
+source ~/.bashrc<br />
+nvm install node<br />
+node -v<br />
+npm -v</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果 `curl` 不可用, 使用 `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash</span><br><span class="line">`. 输出版本表示下载完成</span><br><span class="line"></span><br><span class="line">### 安装 codex-cli</span><br><span class="line"></span><br><span class="line">设置淘宝镜像</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmmirror.com">https://registry.npmmirror.com</a><br />
+npm install -g openai<br />
+npm install -g @openai/codex</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 运行 codex-cli</span><br><span class="line"></span><br><span class="line">npm 安装 codex 的环境中输入 `codex`</span><br><span class="line"></span><br><span class="line">&gt; 如果登录后跳转到 `http://localhost:1455/auth/callback` 这样一个网址, 说明访问的是服务器的 localhost:1455, 需要再配置一个1455到本地1455的端口转发, 刷新网址显示 &quot;Signed in to Codex&quot; 就成功了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Anaconda</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>wget <a target="_blank" rel="noopener" href="https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh">https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh</a> -O /data/ruochen/Anaconda3-2023.09-0-Linux-x86_64.sh<br />
+bash Anaconda3-2023.09-0-Linux-x86_64.sh -p /data/ruochen/anaconda -u</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一直yes, 包括添加到环境</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>echo ‘export PATH=“/data/ruochen/anaconda/bin:$PATH”’ &gt;&gt; ~/.bashrc<br />
+source ~/.bashrc<br />
+conda init</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">此时输入``conda env list``, 能看到base环境</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Huggingface 代理</span><br><span class="line"></span><br><span class="line">在 `~/.bashrc` 里加入以下指令</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>export HF_ENDPOINT=“<a target="_blank" rel="noopener" href="https://hf-mirror.com">https://hf-mirror.com</a>”    # 对于可以联网的机器，配置下载源</p>
+<!-- export HF_DATASET_OFFLINE=1    # 如果数据加载出现问题，尝试增加这一项
+export HF_HUB_OFFLINE=1    # 如果模型加载出现问题，尝试增加这一项 -->
+<p>export HF_HOME=“/data/username/hf-cache”    # 设置Huggingface缓存目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">下载时使用以下指令可以避免在 `HF_HOME` 中缓存大量文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>pip install huggingface-cli    # 确保你安装了 huggingface-cli<br />
+huggingface-cli download --resume-download gpt2 --local-dir gpt2    # 下载模型<br />
+huggingface-cli download --repo-type dataset --resume-download wikitext --local-dir wikitext    # 下载数据集</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## git</span><br><span class="line"></span><br><span class="line">### 用户登录</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="设置用户名"><a class="markdownIt-Anchor" href="#设置用户名"></a> 设置用户名</h1>
+<p>git config --global <a target="_blank" rel="noopener" href="http://user.name">user.name</a> “Your Name”</p>
+<h1 id="设置用户邮箱"><a class="markdownIt-Anchor" href="#设置用户邮箱"></a> 设置用户邮箱</h1>
+<p>git config --global user.email “<a href="mailto:your.email@example.com">your.email@example.com</a>”</p>
+<h1 id="查看配置"><a class="markdownIt-Anchor" href="#查看配置"></a> 查看配置</h1>
+<p>git config --list</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 更改 master 分支为 main</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="1️⃣-将本地-master-分支重命名为-main"><a class="markdownIt-Anchor" href="#1️⃣-将本地-master-分支重命名为-main"></a> 1️⃣ 将本地 master 分支重命名为 main</h1>
+<p>git branch -m master main</p>
+<h1 id="2️⃣-推送新的-main-分支到远程并建立跟踪"><a class="markdownIt-Anchor" href="#2️⃣-推送新的-main-分支到远程并建立跟踪"></a> 2️⃣ 推送新的 main 分支到远程，并建立跟踪</h1>
+<p>git push -u origin main</p>
+<h1 id="3️⃣-删除远程的-master-分支可选但通常需要"><a class="markdownIt-Anchor" href="#3️⃣-删除远程的-master-分支可选但通常需要"></a> 3️⃣ 删除远程的 master 分支（可选，但通常需要）</h1>
+<p>git push origin --delete master</p>
+<h1 id="4️⃣-设置全局默认新建分支为-main"><a class="markdownIt-Anchor" href="#4️⃣-设置全局默认新建分支为-main"></a> 4️⃣ 设置全局默认新建分支为 main</h1>
+<p>git config --global init.defaultBranch main</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">### 连接远程仓库并推送代码</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="初始化一个新的-git-仓库"><a class="markdownIt-Anchor" href="#初始化一个新的-git-仓库"></a> 初始化一个新的 Git 仓库</h1>
+<p>git init</p>
+<h1 id="克隆一个远程仓库到本地"><a class="markdownIt-Anchor" href="#克隆一个远程仓库到本地"></a> 克隆一个远程仓库到本地</h1>
+<p>git clone &lt;repository_url&gt;</p>
+<h1 id="查看远程仓库"><a class="markdownIt-Anchor" href="#查看远程仓库"></a> 查看远程仓库</h1>
+<p>git remote -v</p>
+<h1 id="添加远程仓库"><a class="markdownIt-Anchor" href="#添加远程仓库"></a> 添加远程仓库</h1>
+<p>git remote add origin &lt;repository_url&gt;</p>
+<h1 id="推送本地分支到远程仓库"><a class="markdownIt-Anchor" href="#推送本地分支到远程仓库"></a> 推送本地分支到远程仓库</h1>
+<p>git push origin &lt;branch_name&gt;</p>
+<h1 id="强制推送本地分支到远程仓库"><a class="markdownIt-Anchor" href="#强制推送本地分支到远程仓库"></a> 强制推送本地分支到远程仓库</h1>
+<p>git push -f origin <branch-name></p>
+<h1 id="拉取远程仓库的更新"><a class="markdownIt-Anchor" href="#拉取远程仓库的更新"></a> 拉取远程仓库的更新</h1>
+<p>git pull origin &lt;branch_name&gt;</p>
+<h1 id="从远程仓库获取更新但不合并"><a class="markdownIt-Anchor" href="#从远程仓库获取更新但不合并"></a> 从远程仓库获取更新但不合并</h1>
+<p>git fetch origin</p>
+<pre class="highlight"><code class=""></code></pre>
+
   </article>
 
   <!-- prev and next -->
