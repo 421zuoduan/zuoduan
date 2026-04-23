@@ -562,7 +562,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>525 words, 2 min</span>
+              <span>194 words, 1 min</span>
             </span>
             <!-- Categories -->
             
@@ -642,7 +642,7 @@
 </li>
 </ol>
 <!-- 3. 配置服务器端口, 修改 `.vscode-server/data/Machine/settings.json`, 也即修改远程服务器的 setting.json 文件, 下面 15555 是服务器转发端口, 配置如下
-    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &quot;http.proxy&quot;: &quot;http://127.0.0.1:15555&quot;,</span><br><span class="line">        &quot;http.proxySupport&quot;: &quot;on&quot;,</span><br><span class="line">        &quot;http.proxyStrictSSL&quot;: false, </span><br><span class="line">    ```--&gt;</span><br><span class="line">3. 测试端口转发是否成功, 返回 ip 和无效的 api key 就算转发成功</span><br></pre></td></tr></table></figure>
+    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    &quot;http.proxy&quot;: &quot;http://127.0.0.1:15555&quot;,</span><br><span class="line">        &quot;http.proxySupport&quot;: &quot;on&quot;,</span><br><span class="line">        &quot;http.proxyStrictSSL&quot;: false, </span><br><span class="line">    ``` --&gt;</span><br><span class="line">3. 测试端口转发是否成功, 返回 ip 和无效的 api key 就算转发成功</span><br></pre></td></tr></table></figure>
 <pre><code>curl -x http://127.0.0.1:15555 https://ipinfo.io/ip
 curl -x http://127.0.0.1:15555 https://api.openai.com/v1/models -H &quot;Authorization: Bearer $OPENAI_API_KEY&quot; -i
 </code></pre>
@@ -672,10 +672,10 @@ bash Anaconda3-2023.09-0-Linux-x86_64.sh -p /data/ruochen/anaconda -u</p>
 source ~/.bashrc<br />
 conda init</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">此时输入``conda env list``, 能看到base环境</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Huggingface 代理</span><br><span class="line"></span><br><span class="line">在 `~/.bashrc` 里加入以下指令</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>export HF_ENDPOINT=“<a target="_blank" rel="noopener" href="https://hf-mirror.com">https://hf-mirror.com</a>”    # 对于可以联网的机器，配置下载源</p>
-<!-- export HF_DATASET_OFFLINE=1    # 如果数据加载出现问题，尝试增加这一项
-export HF_HUB_OFFLINE=1    # 如果模型加载出现问题，尝试增加这一项 -->
-<p>export HF_HOME=“/data/username/hf-cache”    # 设置Huggingface缓存目录</p>
+<p>export HF_ENDPOINT=“<a target="_blank" rel="noopener" href="https://hf-mirror.com">https://hf-mirror.com</a>”    # 对于可以联网的机器，配置下载源<br />
+export HF_DATASET_OFFLINE=1    # 如果数据加载出现问题，尝试增加这一项<br />
+export HF_HUB_OFFLINE=1    # 如果模型加载出现问题，尝试增加这一项 --&gt;<br />
+export HF_HOME=“/data/username/hf-cache”    # 设置Huggingface缓存目录</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">下载时使用以下指令可以避免在 `HF_HOME` 中缓存大量文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>pip install huggingface-cli    # 确保你安装了 huggingface-cli<br />
 huggingface-cli download --resume-download gpt2 --local-dir gpt2    # 下载模型<br />
